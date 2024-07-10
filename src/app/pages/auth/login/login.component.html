@@ -1,3 +1,4 @@
+
 <div class="login-container">
   <div class="container-voiage">
     <img src="../../../../assets/img/Letters_Voiage.webp" class="voiage-image"/>
@@ -9,8 +10,8 @@
         <div class="login-main">
 
           <form (ngSubmit)="handleLogin($event)" autocomplete="off" #frm="ngForm">
-            <div class="mb-3">
-              <h1>Sign In</h1>
+            <div class="mb-3 ">
+              <h1 class="yeseva-one-regular font-size-4">Sign In</h1>
             </div>
 
             <div class="custom-line">
@@ -22,7 +23,7 @@
                 Email
               </label>
               <input #email="ngModel" type="text" class="form-control" id="email" name="email"
-                placeholder="agent@gmail.com" [(ngModel)]="loginForm.email" [ngClass]="{
+                placeholder="Email" [(ngModel)]="loginForm.email" [ngClass]="{
                   'is-invalid': email.invalid && email.touched,
                   'is-valid': email.valid && email.touched
                 }" required />
@@ -35,7 +36,7 @@
               <label for="password" class="form-label mb-2">Password</label>
               <div class="form-input position-relative">
                 <input #password="ngModel" type="password" class="form-control" id="password" name="password"
-                  placeholder="*****" [(ngModel)]="loginForm.password" [ngClass]="{
+                  placeholder="*******" [(ngModel)]="loginForm.password" [ngClass]="{
                   'is-invalid': password.invalid && password.touched,
                   'is-valid': password.valid && password.touched
                 }" required />
@@ -49,7 +50,7 @@
             </div>
 
             <div class="form-group mb-0 input-horizontal-margin">
-              <button class="btn btn-login btn-block w-100 " type="submit">
+              <button class="btn btn-login btn-block w-100 yeseva-one-regular" type="submit">
                 Sign in
               </button>
               @if(loginError) {
@@ -67,6 +68,7 @@
   </div>
   <footer class="footer">
     <div class="footer-line"></div>
-    <img src="../../../../assets/icons/Round_Voiage.webp" alt="Logo" class="footer-logo">
+    <!-- <img src="../../../../assets/icons/Round_Voiage.webp" alt="Logo" class="footer-logo"> -->
+    <img src="../../../../assets/icons/Round_Voiage_2.webp" alt="Logo" class="footer-logo">
 </footer>
 </div>

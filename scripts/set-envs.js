@@ -4,12 +4,13 @@ const {
 
 require('dotenv').config();
 
-const targetPath = './src/environments/environment.ts';
+const targetPath = './src/environments/environment.prod.ts';
 
 const envFileContent = `
 export const environment = {
-    gMapsApiKey: "${process.env['GMAPS_API_KEY']}",
-    other: "PROPIEDAD",
+    production: true,
+    apiUrl: "${process.env['apiUrl']}",
+    gMapsKey: "${process.env['gMapsKey']}",
 };
 `;
 

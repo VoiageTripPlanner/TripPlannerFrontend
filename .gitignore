@@ -1,6 +1,8 @@
 #Enviroment
 .env
 src/environments/environment.ts
+src/environments/environment.development.ts
+src/environments/environment.prod.ts
 
 # Logs
 logs

@@ -1,12 +1,18 @@
 import { Component } from '@angular/core';
+import { LocationGMapsComponent } from '../../components/locationGMaps/locationGMaps.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [],
+  imports: [LocationGMapsComponent],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+  styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
-
+  gMapsComponent: LocationGMapsComponent;
+  
+  constructor() {
+    // Instantiate the Google Maps component
+    this.gMapsComponent = new LocationGMapsComponent();
+  }
 }

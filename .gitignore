@@ -1,3 +1,7 @@
+#Enviroment
+.env
+src/environments/environment.ts
+
 # Logs
 logs
 *.log

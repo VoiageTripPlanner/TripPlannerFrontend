@@ -1,6 +1,6 @@
 .env
-src\environments\environment.ts
 
+src/environments/environment.ts
 
 .angular/cache/
 # Logs
@@ -180,4 +180,4 @@ Thumbs.db
 **/.angular/cache/**
 
 .angular/cache/
-
+src\environments\environment.ts

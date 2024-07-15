@@ -95,4 +95,13 @@ export class AuthService {
     localStorage.removeItem('expiresIn');
     localStorage.removeItem('auth_user');
   }
+
+  public resetPassword(user: IUser): Observable<IUser> {
+    return this.http.post('auth/reset-password', user);
+  }
+
+  
+  public validateOtp(user: IUser): Observable<IUser> {
+    return this.http.post('auth/validate-otp', user);
+  }
 }

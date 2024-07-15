@@ -9,6 +9,9 @@ import { AdminRoleGuard } from './guards/admin-role.guard';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { GuestGuard } from './guards/guest.guard';
 import { IRole } from './interfaces';
+import { ResetpasswordComponent } from './pages/resetpassword/resetpassword.component';
+import { ValidateOTPComponent } from './pages/validate-otp/validate-otp.component';
+import { UpdateUserComponent } from './pages/update-user/update-user.component';
 
 export const routes: Routes = [
   {
@@ -19,6 +22,16 @@ export const routes: Routes = [
   {
     path: 'signup',
     component: SigUpComponent,
+    canActivate: [GuestGuard],
+  },
+  {
+    path: 'reset-password',
+    component: ResetpasswordComponent,
+    canActivate: [GuestGuard],
+  },
+  {
+    path: 'validate-otp',
+    component: ValidateOTPComponent,
     canActivate: [GuestGuard],
   },
   {
@@ -49,6 +62,7 @@ export const routes: Routes = [
             IRole.admin, 
             IRole.superAdmin
           ],
+          showInSidebar: true,
           name: 'Users'
         }
       },
@@ -62,6 +76,16 @@ export const routes: Routes = [
             IRole.user
           ],
           name: 'Dashboard'
+        }
+      },
+      {
+        path: 'update-user',
+        component: UpdateUserComponent,
+        data: { 
+          authorities: [
+
+          ],
+          name: 'update-user'
         }
       }
     ],

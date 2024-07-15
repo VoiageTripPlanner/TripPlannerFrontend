@@ -8,15 +8,33 @@ export interface IResponse<T> {
 }
 
 export interface IUser {
+ 
   id?: number;
   name?: string;
-  lastname?: string;
+  last_name?: string;
+  second_last_name?: string;
+  country?: ICountry;
   email?: string;
   password?: string;
-  active?: boolean;
-  createdAt?: string;
-  updatedAt?: string;
+  operational?: boolean;
+  creation_date?: string;
+  creation_resposible?: number;
+  last_update_datetime?: string;
+  upodate_resposible?: number;
   authorities?: IAuthority[];
+  otp?: string;
+
+ 
+  // id?: number;
+  // name?: string;
+  // lastname?: string;
+  // password?: string;
+  // active?: boolean;
+  // email?: string;
+  // createdAt?: string;
+  // updatedAt?: string;
+  // authorities?: IAuthority[];
+  // otp? : string;
 }
 
 export interface IAuthority {
@@ -26,6 +44,15 @@ export interface IAuthority {
 export interface IFeedBackMessage {
   type?: IFeedbackStatus;
   message?: string;
+}
+
+export interface ICountry {
+
+  country_id?: number;
+  country_name?: string;
+  country_code?: string;
+  operational?: boolean;
+  
 }
 
 export enum IFeedbackStatus {

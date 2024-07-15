@@ -8,7 +8,7 @@ import { AccessDeniedComponent } from './pages/access-denied/access-denied.compo
 import { AdminRoleGuard } from './guards/admin-role.guard';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { GuestGuard } from './guards/guest.guard';
-import { IRole } from './interfaces';
+import { IRole } from './interfaces/role';
 
 export const routes: Routes = [
   {
@@ -47,7 +47,6 @@ export const routes: Routes = [
         data: { 
           authorities: [
             IRole.admin, 
-            IRole.superAdmin
           ],
           name: 'Users'
         }
@@ -58,7 +57,6 @@ export const routes: Routes = [
         data: { 
           authorities: [
             IRole.admin, 
-            IRole.superAdmin,
             IRole.user
           ],
           name: 'Dashboard'

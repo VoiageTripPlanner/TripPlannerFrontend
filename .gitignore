@@ -1,3 +1,7 @@
+.env
+src\environments\environment.ts
+
+
 .angular/cache/
 # Logs
 logs

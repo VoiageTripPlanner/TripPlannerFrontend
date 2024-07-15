@@ -1,11 +1,13 @@
 import { Component, effect, inject } from '@angular/core';
 import { UserService } from '../../../services/user.service';
-import { IUser } from '../../../interfaces';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from '../../modal/modal.component';
 import { UserFormComponent } from '../user-from/user-form.component';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
+import { IUser } from '../../../interfaces/user';
+import { CountryService } from '../../../services/country.service';
+import { ICountry } from '../../../interfaces/country';
 
 
 @Component({
@@ -27,10 +29,18 @@ export class UserListComponent {
   private service = inject(UserService);
   private snackBar = inject(MatSnackBar);
   public currentUser: IUser = {
+
+    name: '',
+    last_name: '',
+    second_last_name: '',
+    country:{},
     email: '',
-    lastname: '',
     password: '',
-    name: ''
+    operational:true,
+    creation_datetime: new Date(),
+    last_update_datetime: new Date(),
+
+    //TODO: Debemos hacer una funcion o metodo que me extraiga el id de la persona que esta en la sesion para poner ese id si crea un usuario o lo actualiza
   };
   
   constructor() {
@@ -38,6 +48,7 @@ export class UserListComponent {
     effect(() => {      
       this.userList = this.service.users$();
     });
+
   }
 
   showDetail(user: IUser, modal: any) {

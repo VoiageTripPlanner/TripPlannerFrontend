@@ -1,4 +1,6 @@
+
 export const environment = {
-  production: true,
-  apiUrl: 'http://localhost:8080'
+    production: false,
+    apiUrl: "undefined",
+    gMapsKey: "undefined",
 };

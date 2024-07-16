@@ -21,8 +21,10 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "types": ["jest"],
   },
+  "include": ["src/**/*.spec.ts", "src/**/*.d.ts"],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,

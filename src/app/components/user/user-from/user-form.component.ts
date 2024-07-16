@@ -18,7 +18,7 @@ export class UserFormComponent {
   @Input() title!: string;
   @Input() user: IUser = {
     email: '',
-    lastname: '',
+    last_name: '',
     password: '',
     name: ''
   };

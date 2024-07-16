@@ -28,7 +28,7 @@ export class UserListComponent {
   private snackBar = inject(MatSnackBar);
   public currentUser: IUser = {
     email: '',
-    lastname: '',
+    last_name: '',
     password: '',
     name: ''
   };

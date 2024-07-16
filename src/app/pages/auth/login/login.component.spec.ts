@@ -30,21 +30,19 @@ describe('LoginComponent', () => {
   });
 
   it('should handle login', () => {
-    jest.spyOn(component['router'], 'navigateByUrl');
-    jest.spyOn(authService, 'login').mockReturnValue(
+    const navigateByUrlSpy = jest.spyOn(component['router'], 'navigateByUrl');
+    const loginSpy = jest.spyOn(authService, 'login').mockReturnValue(
         of({email: "test@example.com", password: "password", 
             accessToken: "token", expiresIn: 1234567890}));
-
+    jest.spyOn(component['emailModel'], 'valid', 'get').mockReturnValue(true);
+    jest.spyOn(component['passwordModel'], 'valid', 'get').mockReturnValue(true);
     component.loginForm.email = 'test@example.com';
     component.loginForm.password = 'password';
+    fixture.detectChanges();
+
     component.handleLogin(new Event('click'));
-    component['authService'].login(component.loginForm).subscribe((data) => {
-        expect(component['router'].navigateByUrl).toHaveBeenCalledWith('/app/dashboard');
-    });
-    
-    // expect(component.emailModel.control.markAsTouched).toHaveBeenCalled();
-    // expect(component.passwordModel.control.markAsTouched).toHaveBeenCalled();
-    // expect(authServiceSpy).toHaveBeenCalledWith(component.loginForm);
-    // expect(routerSpy).toHaveBeenCalledWith('/app/dashboard');
+
+    expect(loginSpy).toHaveBeenCalledWith(component.loginForm);
+    expect(navigateByUrlSpy).toHaveBeenCalledWith('/app/dashboard');
   });
 });

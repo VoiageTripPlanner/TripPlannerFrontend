@@ -13,7 +13,7 @@ export class UserService extends BaseService<IUser> {
   private countryListSignal = signal<ICountry[]>([]);
   get users$() {
     return this.userListSignal;
-  }
+  };
 
   getAllSignal() {
 
@@ -26,7 +26,7 @@ export class UserService extends BaseService<IUser> {
         console.error('Error fetching users', error);
       }
     });
-  }
+  };
 
 
   getAllSignalDetailed() {
@@ -39,7 +39,7 @@ export class UserService extends BaseService<IUser> {
         console.error('Error fetching users', error);
       }
     });
-  }
+  };
 
 
   saveUserSignal (user: IUser): Observable<any>{
@@ -52,7 +52,8 @@ export class UserService extends BaseService<IUser> {
         return throwError(error);
       })
     );
-  }
+  };
+
   updateUserSignal (user: IUser): Observable<any>{
     return this.edit(user.user_id, user).pipe(
       tap((response: any) => {
@@ -64,17 +65,36 @@ export class UserService extends BaseService<IUser> {
         return throwError(error);
       })
     );
-  }
+  };
+
   deleteUserSignal (user: IUser): Observable<any>{
-    return this.del(user.user_id).pipe(
+    return this.logicDelete(user.user_id,user).pipe(
       tap((response: any) => {
-        const updatedUsers = this.userListSignal().filter(u => u.user_id !== user.user_id);
-        this.userListSignal.set(updatedUsers);
+        const deletedUsers = this.userListSignal().map(u => u.user_id === user.user_id ? response : u);
+        console.log(deletedUsers);
+        debugger;
+        this.userListSignal.set(deletedUsers);
       }),
       catchError(error => {
+        debugger;
         console.error('Error saving user', error);
         return throwError(error);
       })
     );
   }
+
+  // deleteUserSignal (user: IUser): Observable<any>{
+  //   return this.del(user.user_id).pipe(
+  //     tap((response: any) => {
+  //       const updatedUsers = this.userListSignal().filter(u => u.user_id !== user.user_id);
+  //       this.userListSignal.set(updatedUsers);
+  //     }),
+  //     catchError(error => {
+  //       console.error('Error saving user', error);
+  //       return throwError(error);
+  //     })
+  //   );
+  // };
+
+
 }

@@ -4,8 +4,8 @@
       <tr>
         <!-- <th scope="col">ID</th> -->
         <th scope="col">Name</th>
-        <th scope="col">Last Name</th>
-        <th scope="col">Second Last Name</th>
+        <th scope="col">1st Last Name</th>
+        <th scope="col">2nd Last Name</th>
         <th scope="col">Email</th>
         <th scope="col">Role</th>
         <th scope="col">Country</th>
@@ -28,12 +28,12 @@
         <td>{{item.last_update_datetime | date: 'dd/MM/yyyy HH:mm'}}</td>
         <td>
           <div class="d-flex justify-content-evenly align-items-center">
-            <button type="button" (click)="showDetail(item, formModal)" class="btn btn-secondary">
-              <i class="fa-solid fa-eye white"
+            <button type="button" (click)="showDetail(item, formModal)" class="btn-icon">
+              <i class="bi bi-pencil-fill icon-color-edit"
               ></i>
             </button>
-            <button type="button" (click)="deleteUser(item)" class="btn btn-danger">
-              <i class="fa-solid fa-trash white"
+            <button type="button" (click)="onDeleteUser(item)" class="btn-icon icon-color-delete">
+              <i class="bi bi-trash-fill icon-color-delete"
               ></i>
             </button>
           </div>

@@ -1,0 +1,23 @@
+.btn-icon {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  
+  .icon-color-edit {
+    color: #007bff; 
+  }
+  
+  .icon-color-delete {
+    color: #f51e12; 
+  }
+  
+  .btn-icon:hover .icon-color-edit {
+    color: #0056b3;
+  }
+  
+  .btn-icon:hover .icon-color-delete {
+    color: #700e08; 
+  }
+  

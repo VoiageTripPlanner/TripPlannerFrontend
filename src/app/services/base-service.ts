@@ -31,6 +31,9 @@ export class BaseService<T> {
     return this.http.get<IResponse<T[]>>(this.source + '/userDetailed', { params: { s } });
   }
 
+  public logicDelete(id: number | undefined, data: {}): Observable<IResponse<T>> {
+    return this.http.put<IResponse<T>>(this.source + '/delete/' + id, data);
+  }
 
 
   public del(id: any): Observable<IResponse<T>> {

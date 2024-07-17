@@ -48,7 +48,8 @@ export const routes: Routes = [
           authorities: [
             IRole.admin, 
           ],
-          name: 'Users'
+          name: 'Users',
+          icon:'bi bi-people-fill'
         }
       },
       {
@@ -59,7 +60,8 @@ export const routes: Routes = [
             IRole.admin, 
             IRole.user
           ],
-          name: 'Dashboard'
+          name: 'Dashboard',
+          icon:'bi bi-duffle-fill'
         }
       }
     ],

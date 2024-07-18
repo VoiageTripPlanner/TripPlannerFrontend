@@ -1,11 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap'); 
+
+.yeseva-one-regular {
+  font-family: "Yeseva One", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.font-size-4{
+  font-size: 4vh;
+}
+
+/* Estilos generales para body */
+body {
+    margin: 0;
+    font-family: 'Yeseva One', cursive; 
+}
+
+a {
+  margin-left: 5px; 
+  color: #6d3c52; 
+  font-weight: bold;
+  text-decoration: none; 
+  
+}
+
 .login-container {
   height: 100vh;
-  // background-image: url("../../../../assets/img/login/login-bg.jpg");
-  background-position: left;
+  background-image: url('../../../../assets/img/imagen-desenfocada.png');
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   padding: 20px 20%;
   position: relative;
+  align-items: center;
+  justify-content: center;
   &::before {
     content: '';
     position: absolute;
@@ -13,7 +41,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5); /* Ajusta la opacidad según necesites */
+    background: rgba(0, 0, 0, 0.3); 
     z-index: 1;
   }
   .login-card {
@@ -21,7 +49,7 @@
     z-index: 2;
     width: 50%;
     padding: 40px;
-    border-radius: 10px;
+    border-radius: 2px;
     box-shadow: 0 0 37px rgba(8, 21, 66, 0.05);
     margin: 0 auto;
     background-color: #fff;
@@ -45,3 +73,99 @@
     }
   }
 }
+
+
+// Stylos Voiage
+
+.container-flex-center {
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+}
+
+.container-flex-center p {
+  margin: 0; 
+}
+
+.justify-right{
+  justify-content: end;
+  display: flex;
+}
+
+.input-horizontal-margin{
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+/* Estilos para el botón de inicio de SIGN IN */
+.btn-login {
+  background-color: #4B2137; 
+  color: white; 
+  padding: 10px 20px; 
+  border: none; 
+  border-radius: 5px; 
+  font-size: 1em; 
+  cursor: pointer; 
+}
+
+.btn-login:hover {
+  background-color: #6d3c52; 
+}
+
+/*Linea de separación*/
+
+.custom-line {
+  width: 85%; 
+  height: 2px; 
+  background: linear-gradient(to right, #4B2137 50%, transparent 100%); 
+  margin: 20px 0; 
+}
+
+.container-voiage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.voiage-image{
+  height: 27vh;
+
+}
+
+
+/* Footer */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  // background: transparent;
+  background: #775D68;
+  // background: #FADCD4;
+  background-size: cover;
+  background-position: center;
+  margin-left: 0;
+  // flex-direction: column;
+}
+
+// .footer-line {
+//   flex: 1;
+//   height: 5px;
+//   background: linear-gradient(to left, #FADCD4 0%, transparent 100%);
+//   width: 100%;
+// }
+
+.footer-logo {
+  width: 2.5vw; 
+  height: 5vh;
+
+  // margin-top: 5px;
+
+}
+
+
+
+

@@ -48,11 +48,9 @@ export class UserListComponent {
 
   constructor() {
     this.loadData();
-
-
   };
 
-  loadData = () => {
+  loadData () {
     this.service.getAllSignal();
     effect(() => {
       this.userList = this.service.users$();
@@ -84,4 +82,4 @@ export class UserListComponent {
     })
   };
 
-}
+};

@@ -26,16 +26,12 @@ fdescribe('UserListComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [RouterModule, FormsModule, HttpClientTestingModule, ModalComponent, UserFormComponent, MatSnackBarModule],
-            providers: [AuthService, NotifyService,{provide:UserService, useValue: myServiceMock}],
+            providers: [AuthService, NotifyService,UserService]
         }).compileComponents();
     });
 
     beforeEach(() => {
 
-        myServiceMock = {
-            users$: jest.fn().mockReturnValue(signal<IUser[]>(userListStub)),
-            getAllSignal(){}
-          };
 
         fixture = TestBed.createComponent(UserListComponent);
         component = fixture.componentInstance;

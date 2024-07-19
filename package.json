@@ -23,7 +23,6 @@
     "@angular/platform-browser": "^17.3.0",
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
-    "@esbuild/win32-x64": "^0.23.0",
     "@ng-bootstrap/ng-bootstrap": "^16.0.0",
     "@ngx-env/builder": "^18.0.1",
     "@types/googlemaps": "^3.43.3",

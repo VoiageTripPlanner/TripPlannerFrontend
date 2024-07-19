@@ -15,7 +15,7 @@ import { UserService } from '../../../services/user.service';
 import { signal } from '@angular/core';
 import { IUser } from '../../../interfaces/user';
 
-fdescribe('UserListComponent', () => {
+describe('UserListComponent', () => {
     let component: UserListComponent;
     let fixture: ComponentFixture<UserListComponent>;
     let authService: AuthService;

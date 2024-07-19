@@ -25,7 +25,6 @@ export class GoogleHotelsBaseService<T> {
       check_out_date: searchParams.check_out_date,
       api_key: this.api_key,
     };
-    debugger;
     return this.http.post<IResponse<T[]>>(this.hotelsBaseUrl, body);
   }
 

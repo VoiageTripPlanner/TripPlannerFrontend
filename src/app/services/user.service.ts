@@ -72,11 +72,9 @@ export class UserService extends BaseService<IUser> {
       tap((response: any) => {
         const deletedUsers = this.userListSignal().map(u => u.user_id === user.user_id ? response : u);
         console.log(deletedUsers);
-        debugger;
         this.userListSignal.set(deletedUsers);
       }),
       catchError(error => {
-        debugger;
         console.error('Error saving user', error);
         return throwError(error);
       })

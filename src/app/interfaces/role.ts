@@ -2,7 +2,6 @@
 export enum IRole {
     admin = "ROLE_ADMIN",
     user = "ROLE_USER",
-    // superAdmin = 'ROLE_SUPER_ADMIN'
   }
 
 export interface IRoleDefine  {

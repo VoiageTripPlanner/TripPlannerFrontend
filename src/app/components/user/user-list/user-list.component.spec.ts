@@ -61,17 +61,6 @@ fdescribe('UserListComponent', () => {
     });
 
     
-    // it('it should show list of users', ()=>{
-
-    //     component.loadData();
-    //     expect(component.userList).toEqual(userListStub);
-
-    //     fixture.detectChanges();
-
-
-
-    // })
-
     const userListStub:IUser[]=[
         {
             user_id: 1,

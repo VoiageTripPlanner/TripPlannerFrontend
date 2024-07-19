@@ -83,18 +83,5 @@ export class UserService extends BaseService<IUser> {
     );
   }
 
-  // deleteUserSignal (user: IUser): Observable<any>{
-  //   return this.del(user.user_id).pipe(
-  //     tap((response: any) => {
-  //       const updatedUsers = this.userListSignal().filter(u => u.user_id !== user.user_id);
-  //       this.userListSignal.set(updatedUsers);
-  //     }),
-  //     catchError(error => {
-  //       console.error('Error saving user', error);
-  //       return throwError(error);
-  //     })
-  //   );
-  // };
-
 
 }

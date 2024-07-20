@@ -1,5 +1,5 @@
 
-export interface ILodge {
+export interface IGoogleResponse {
     type:                           string;
     name:                           string;
     link?:                          string;
@@ -77,15 +77,15 @@ export interface IHotelsRating {
 
 export interface ISearchParameters {
     engine?:            string;
-    q:                  string;
+    q?:                 string;
     gl?:                string;
     hl?:                string;
     currency?:          string;
-    check_in_date:      Date;
-    check_out_date:     Date;
+    check_in_date?:     Date;
+    check_out_date?:    Date;
     adults?:            number;
     children?:          number;
-    api_key?:            string;
+    api_key?:           string;
 }
 
 export interface ISerpapiPagination {
@@ -94,3 +94,9 @@ export interface ISerpapiPagination {
     next_page_token: string;
     next:            string;
 }
+
+
+
+// sort_by  3precio menor   8mwjoe rating  13mas visto 
+
+// amenities  number 

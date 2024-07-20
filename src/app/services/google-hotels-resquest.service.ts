@@ -1,8 +1,8 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { ILodge, ISearchParameters } from '../interfaces/lodge';
-import { GoogleHotelsBaseService } from './google-hotels-base-service';
+import { IGoogleResponse, ISearchParameters } from '../interfaces/google-hotel-response.interface';
+import { GoogleHotelsBaseService } from './google-hotel-resquest-base-service';
 import { Observable, throwError } from 'rxjs';
-import { IResponse } from '../interfaces';
+import { IResponse } from '../interfaces/index.interface';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
@@ -11,10 +11,10 @@ import { catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
-export class GoogleHotelsResponseService extends GoogleHotelsBaseService<ILodge>   {
+export class GoogleHotelsResponseService extends GoogleHotelsBaseService<IGoogleResponse>   {
 
 
-  private hotelsListSignal = signal<ILodge[]>([]);
+  private hotelsListSignal = signal<IGoogleResponse[]>([]);
 
   get hotels$() {
     return this.hotelsListSignal;
@@ -22,7 +22,7 @@ export class GoogleHotelsResponseService extends GoogleHotelsBaseService<ILodge>
 
   getAllHotelsSignal(searchParams:ISearchParameters) {
 
-    debugger;
+    
     this.findAllHotels(searchParams).subscribe({
       next: (response: any) => {
         this.hotelsListSignal.set(response);
@@ -30,7 +30,7 @@ export class GoogleHotelsResponseService extends GoogleHotelsBaseService<ILodge>
         response.reverse();
       },
       error: (error: any) => {
-        debugger;
+        
         console.error('Error fetching users', error);
       }
     });

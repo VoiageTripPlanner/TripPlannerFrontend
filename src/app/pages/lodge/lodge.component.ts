@@ -5,6 +5,7 @@ import { GoogleHotelsResponseService } from '../../services/google-hotels-respon
 import { ISearchParameters } from '../../interfaces/lodge';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { IResponse } from '../../interfaces';
 
 @Component({
   selector: 'app-lodge',
@@ -35,7 +36,26 @@ export class LodgeComponent {
     };
 
     this.service.getAllHotelsSignal(datos);
-  }
+  };
+
+
+  // enviarDatos() {
+  //   const datos: ISearchParameters = {
+  //     q: this.destino,
+  //     check_in_date: this.checkIn,
+  //     check_out_date: this.checkOut
+  //   };
+  
+  //   this.service.getAllHotelsSignal(datos).subscribe(
+  //     (response: IResponse<any[]>) => {
+  //       console.log('Respuesta del servicio:', response);
+  //       this.resultado = response;
+  //     },
+  //     error => {
+  //       console.error('Error al enviar los datos', error);
+  //     }
+  //   );
+  // }
 }
 
 

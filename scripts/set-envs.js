@@ -7,7 +7,7 @@ const targetPath = './src/environments/environment.ts';
 
 const envFileContent = `
 export const environment = {
-    production: true,
+    production: false,
     apiUrl: 'http://localhost:8080',
     maps_key: "${ process.env['MAPS_KEY'] }",
     google_hotels:"${process.env['GOOGLE_HOTELS']}"

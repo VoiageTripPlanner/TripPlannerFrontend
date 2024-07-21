@@ -23,18 +23,6 @@ export interface IUser {
   upodate_resposible?: number;
   authorities?: IAuthority[];
   otp?: string;
-
- 
-  // id?: number;
-  // name?: string;
-  // lastname?: string;
-  // password?: string;
-  // active?: boolean;
-  // email?: string;
-  // createdAt?: string;
-  // updatedAt?: string;
-  // authorities?: IAuthority[];
-  // otp? : string;
 }
 
 export interface IAuthority {
@@ -64,5 +52,4 @@ export enum IFeedbackStatus {
 export enum IRole {
   admin = "ROLE_ADMIN",
   user = "ROLE_USER",
-  superAdmin = 'ROLE_SUPER_ADMIN'
 }

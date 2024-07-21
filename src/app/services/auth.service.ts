@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
   private accessToken!: string;
   private expiresIn! : number;
+  private userId!: number;
   private user: IUser = {email: '', authorities: []};
 
   constructor(private http: HttpClient) {
@@ -23,6 +24,8 @@ export class AuthService {
 
     if (this.expiresIn)
       localStorage.setItem('expiresIn',JSON.stringify(this.expiresIn));
+    if (this.userId)
+      localStorage.setItem('userId', JSON.stringify(this.userId));
   }
 
   private load(): void {
@@ -32,6 +35,8 @@ export class AuthService {
     if (exp) this.expiresIn = JSON.parse(exp);
     const user = localStorage.getItem('auth_user');
     if (user) this.user = JSON.parse(user);
+    const userId = localStorage.getItem('userId');
+    if (userId) this.userId = JSON.parse(userId);
   }
 
   public getUser(): IUser | undefined {
@@ -60,6 +65,7 @@ export class AuthService {
         this.user.email = credentials.email;
         this.expiresIn = response.expiresIn;
         this.user = response.authUser;
+        this.userId = response.authUser.user_id;
         this.save();
       })
     );
@@ -94,6 +100,7 @@ export class AuthService {
     localStorage.removeItem('access_token');
     localStorage.removeItem('expiresIn');
     localStorage.removeItem('auth_user');
+    localStorage.removeItem('userId');
   }
 
   public resetPassword(user: IUser): Observable<IUser> {

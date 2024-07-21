@@ -32,7 +32,8 @@ constructor(
   private router: Router
 ) {}
 
-public updateUserForm : {name: string; last_name:string; second_last_name:string;} = {
+public updateUserForm : {id: any; name: string; last_name:string; second_last_name:string;} = {
+  id: localStorage.getItem('userId'),
   name: '',
   last_name: '',
   second_last_name: '',
@@ -43,7 +44,7 @@ public userService : UserService = inject(UserService);
 public handleUpdate(event: Event) {
     this.userService.updateUserSignal(this.updateUserForm).subscribe({
       next: () => {
-        this.router.navigateByUrl('/dashboard')
+        this.router.navigateByUrl('/app/dashboard')
       }
     });
 

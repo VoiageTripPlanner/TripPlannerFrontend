@@ -60,7 +60,6 @@ export const routes: Routes = [
         data: { 
           authorities: [
             IRole.admin, 
-            IRole.superAdmin
           ],
           showInSidebar: true,
           name: 'Users'
@@ -72,7 +71,6 @@ export const routes: Routes = [
         data: { 
           authorities: [
             IRole.admin, 
-            IRole.superAdmin,
             IRole.user
           ],
           name: 'Dashboard'
@@ -83,7 +81,8 @@ export const routes: Routes = [
         component: UpdateUserComponent,
         data: { 
           authorities: [
-
+            IRole.admin,
+            IRole.user
           ],
           name: 'update-user'
         }

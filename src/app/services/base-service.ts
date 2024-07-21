@@ -19,7 +19,6 @@ export class BaseService<T> {
   }
 
   public bringInfoWithParams(params: { [key: string]: any } = {}): Observable<IResponse<T[]>> {
-    
     return this.http.get<IResponse<T[]>>(this.source, { params });
   }
 

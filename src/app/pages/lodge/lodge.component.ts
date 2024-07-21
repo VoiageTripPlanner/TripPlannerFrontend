@@ -24,16 +24,15 @@ import { MapComponent } from '../../components/map/map.component';
 })
 export class LodgeComponent {
 
-  service = inject(GoogleHotelService);
 
-  destino: string = 'Tokyo';
-  checkIn: Date = new Date('2024-08-07');
-  checkOut: Date = new Date('2024-08-14');
-  resultado: any;
+  // service = inject(GoogleHotelService);
 
-  // constructor() {
-  //   this.enviarDatos();
-  // };
+  // destino: string = 'Tokyo';
+  // checkIn: Date = new Date();
+  // checkOut: Date = new Date();
+  // resultado: any;
+
+
 
   // enviarDatos() {
   //   const datos:ISearchParameters = {
@@ -42,8 +41,11 @@ export class LodgeComponent {
   //     check_out_date: this.checkOut
   //   };
 
+  //   
+
   //   this.service.getAllSignal(datos);
   // };
+
 
 
 

@@ -1,14 +1,14 @@
 
 export interface IGoogleResponse {
-    type:                           string;
-    name:                           string;
+    type?:                           string;
+    name?:                           string;
     link?:                          string;
-    gps_coordinates:                IHotelsGpsCoordinates;
-    rate_per_night:                 IHotelsRatePerNight;
-    total_rate:                     IHotelsRatePerNight;
+    gps_coordinates?:                IHotelsGpsCoordinates;
+    rate_per_night?:                 IHotelsRatePerNight;
+    total_rate?:                     IHotelsRatePerNight;
     prices?:                        IHotelsPrice[];
     nearby_places?:                 IHotelsNearbyPlace[];
-    images:                         IHotelsImage[];
+    images?:                         IHotelsImage[];
     overall_rating?:                number;
     reviews?:                       number;
     location_rating?:               number;
@@ -81,8 +81,10 @@ export interface ISearchParameters {
     gl?:                string;
     hl?:                string;
     currency?:          string;
-    check_in_date?:     Date;
-    check_out_date?:    Date;
+    check_in_date?:     String;
+    check_out_date?:    String;
+    // check_in_date?:     Date;
+    // check_out_date?:    Date;
     adults?:            number;
     children?:          number;
     api_key?:           string;

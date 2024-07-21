@@ -28,7 +28,7 @@ export class LodgeCardComponent {
 
 
   //Mas adelante estos datos van a venir del componente padre que va a ser el primer formulario
-  destino: string = 'Tokyo';
+  destino: string = 'Istanbul';
   checkIn: String = "2024-08-07";
   checkOut: String = "2024-08-14";
   resultado: any;

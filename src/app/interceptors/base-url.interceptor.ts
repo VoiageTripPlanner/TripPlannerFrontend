@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 
 export const baseUrlInterceptor: HttpInterceptorFn = (req, next) => {
   const base: string = environment.apiUrl;
+  
 
   const clonedRequest = req.clone({
     url: `${base}/${req.url}`,
@@ -10,6 +11,8 @@ export const baseUrlInterceptor: HttpInterceptorFn = (req, next) => {
       Accept: 'application/json',
     },
   });
+
+
 
   return next(clonedRequest);
 };

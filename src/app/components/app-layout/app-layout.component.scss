@@ -1,0 +1,11 @@
+//variables de color 
+$background-color: #6D3C52;
+$sidebar-color:#4B2137;
+$text-color: #ffffff; 
+$hover-background-color: #FADCD4; 
+$active-background-color: #6D3C52; 
+
+.backgorund-color {
+    // background-color: #FADCD4;
+    background-color: $hover-background-color !important;
+}

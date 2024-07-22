@@ -1,0 +1,60 @@
+//variables de color 
+$background-color: #6D3C52;
+$sidebar-color: #4B2137;
+$text-color: #ffffff;
+$hover-background-color: #FADCD4;
+$active-background-color: #6D3C52;
+
+.backgorund-color {
+  // background-color: #FADCD4;
+  background-color: $sidebar-color;
+}
+
+.toggle-background-color {
+  color: $text-color;
+}
+
+.container-flex {
+  display: flex;
+  justify-content: center;
+}
+
+.margin-top-0 {
+  margin-top: 0% !important;
+}
+
+body {
+  background-color: $background-color;
+  color: $text-color;
+  font-family: Arial, sans-serif;
+  margin-top: 0% !important;
+}
+
+//Color del "General" 
+.sidebar-main * {
+  color: $text-color;
+}
+
+.sidebar-link {
+  color: $text-color;
+
+  &:hover {
+    background-color: $hover-background-color;
+  }
+
+  &:active,
+  &.active {
+    background-color: $active-background-color !important;
+  }
+}
+
+.sidebar-link,
+.sidebar-title,
+.sidebar-link span,
+.sidebar-title span {
+  color: $text-color !important;
+}
+
+.padding-right-3 {
+  padding-right: 3%;
+}

@@ -3,7 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
-import { IUser } from '../../../interfaces';
+import { IUser } from '../../../interfaces/user';
 
 @Component({
   selector: 'app-signup',

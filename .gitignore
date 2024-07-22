@@ -1,6 +1,11 @@
 angular/
 node_modules/
 
+.env
+
+src/environments/environment.ts
+
+.angular/cache/
 # Logs
 logs
 *.log
@@ -174,3 +179,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+**/.angular/cache/**
+
+.angular/cache/
+src\environments\environment.ts

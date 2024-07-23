@@ -45,5 +45,13 @@ export class NotifyService {
     });
   }
 
+  onNoData=()=>{
+    Swal.fire({
+      title: "Oops...",
+      text: "There is no info with these params!",
+      icon: "info"
+    });
+  }
+
 
 }

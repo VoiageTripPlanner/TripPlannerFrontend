@@ -10,6 +10,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { GuestGuard } from './guards/guest.guard';
 import { IRole } from './interfaces/role.interface';
 import { LodgeComponent } from './pages/lodge/lodge.component';
+import { ActivitiesComponent } from './pages/activities/activities.component';
 
 export const routes: Routes = [
   {
@@ -62,6 +63,18 @@ export const routes: Routes = [
             IRole.user
           ],
           name: 'Dashboard',
+          icon:'bi bi-duffle-fill'
+        }
+      },
+      {
+        path: 'activities',
+        component: ActivitiesComponent,
+        data: { 
+          authorities: [
+            IRole.admin, 
+            IRole.user
+          ],
+          name: 'Activities',
           icon:'bi bi-duffle-fill'
         }
       },

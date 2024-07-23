@@ -5,24 +5,24 @@ import { LoaderComponent } from '../../components/loader/loader.component';
 import { ModalComponent } from '../../components/modal/modal.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { YelpActivitiesService } from '../../services/api-request/yelp-food.service';
-import { IYelpApiSearchParams } from '../../interfaces/yelp-activities-response.interface';
+import { FoodCardComponent } from '../../components/food/food-card/food-card.component';
+
 
 @Component({
-  selector: 'app-activities',
+  selector: 'app-food',
   standalone: true,
   imports: [
-    ActivitesCardComponent,
+    FoodCardComponent,
     MapComponent,
     LoaderComponent,
     ModalComponent,
     CommonModule,
     FormsModule
   ],
-  templateUrl: './activities.component.html',
-  styleUrl: './activities.component.scss'
+  templateUrl: './food.component.html',
+  styleUrl: './food.component.scss'
 })
-export class ActivitiesComponent {
+export class FoodComponent {
 
   // service = inject(YelpActivitiesService);
 

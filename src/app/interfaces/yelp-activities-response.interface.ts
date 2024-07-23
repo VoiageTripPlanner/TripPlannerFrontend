@@ -1,10 +1,10 @@
-export interface IYelpActivities {
-    businesses: IActivitiesBusiness[];
+export interface IYelpFood {
+    businesses: IFoodBusiness[];
     total:      number;
     region:     Region;
 }
 
-export interface IActivitiesBusiness {
+export interface IFoodBusiness {
     id?:                string;
     alias?:             string;
     name?:              string;

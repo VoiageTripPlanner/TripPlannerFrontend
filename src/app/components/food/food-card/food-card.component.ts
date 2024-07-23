@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-activites-card',
+  selector: 'app-food-card',
   standalone: true,
   imports: [
     MapComponent,
@@ -17,13 +17,13 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     FormsModule
   ],
-  templateUrl: './activites-card.component.html',
-  styleUrl: './activites-card.component.scss'
+  templateUrl: './food-card.component.html',
+  styleUrl: './food-card.component.scss'
 })
-export class ActivitesCardComponent {
+export class FoodCardComponent {
 
   service = inject(YelpActivitiesService);
-  yelpActiviitesResponseList: IFoodBusiness[] = []
+  yelpFoodResponseList: IFoodBusiness[] = []
 
   latitude: number = 37.786882;
   longitude:number = -122.399972;
@@ -44,8 +44,8 @@ export class ActivitesCardComponent {
     this.service.getAllSignal(datos);
     effect(() => {
       
-      this.yelpActiviitesResponseList = this.service.yelpFoodResponse$();
-      console.log(this.yelpActiviitesResponseList);
+      this.yelpFoodResponseList = this.service.yelpFoodResponse$();
+      console.log(this.yelpFoodResponseList);
     })
 
   };

@@ -2,23 +2,23 @@ import { inject, Injectable, signal } from '@angular/core';
 import { BaseService } from '../base-service';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { IGoogleResponse, ISearchParameters } from '../../interfaces/google-hotel-response.interface';
-import { IActivitiesBusiness, IYelpApiSearchParams } from '../../interfaces/yelp-activities-response.interface';
+import { IFoodBusiness, IYelpApiSearchParams } from '../../interfaces/yelp-activities-response.interface';
 import { NotifyService } from '../../shared/notify/notify.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class YelpActivitiesService extends BaseService<IActivitiesBusiness> {
+export class YelpActivitiesService extends BaseService<IFoodBusiness> {
 
   private notifyService = inject(NotifyService);
   
-  protected override source: string = 'api/activities';
+  protected override source: string = 'api/food';
 
-  private yelpActivitiesResponseSignal = signal<IActivitiesBusiness[]>([]);
+  private yelpFoodResponseSignal = signal<IFoodBusiness[]>([]);
 
 
-  get yelpActivitiesResponse$() {
-    return this.yelpActivitiesResponseSignal;
+  get yelpFoodResponse$() {
+    return this.yelpFoodResponseSignal;
   }
 
   getAllSignal(searchParams: IYelpApiSearchParams) {
@@ -28,14 +28,14 @@ export class YelpActivitiesService extends BaseService<IActivitiesBusiness> {
         debugger
         if (!response || response.businesses.length==0) {
 
-          this.yelpActivitiesResponseSignal.set([]);
+          this.yelpFoodResponseSignal.set([]);
 
           return this.notifyService.onNoData();
           
         }
         
         console.log(response.businesses);
-        this.yelpActivitiesResponseSignal.set(response.businesses);
+        this.yelpFoodResponseSignal.set(response.businesses);
 
 
       },

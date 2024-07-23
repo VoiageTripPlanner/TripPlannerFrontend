@@ -1,6 +1,6 @@
 import { Component, effect, inject } from '@angular/core';
-import { YelpFoodService } from '../../../services/api-request/yelp-food.service';
-import { IFoodBusiness, IYelpApiSearchParams } from '../../../interfaces/yelp-food-response.interface';
+import { YelpActivitiesService } from '../../../services/api-request/yelp-food.service';
+import { IActivitiesBusiness, IYelpApiSearchParams } from '../../../interfaces/yelp-food-response.interface';
 import { MapComponent } from '../../map/map.component';
 import { LoaderComponent } from '../../loader/loader.component';
 import { ModalComponent } from '../../modal/modal.component';
@@ -22,8 +22,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class ActivitesCardComponent {
 
-  service = inject(YelpFoodService);
-  yelpActiviitesResponseList: IFoodBusiness[] = []
+  service = inject(YelpActivitiesService);
+  yelpActiviitesResponseList: IActivitiesBusiness[] = []
 
   latitude: number = 37.786882;
   longitude:number = -122.399972;
@@ -44,13 +44,13 @@ export class ActivitesCardComponent {
     this.service.getAllSignal(datos);
     effect(() => {
       
-      this.yelpActiviitesResponseList = this.service.yelpFoodResponse$();
+      this.yelpActiviitesResponseList = this.service.yelpActivitiesResponse$();
       console.log(this.yelpActiviitesResponseList);
     })
 
   };
 
-  trackByIndex(index: number, googleHotelResponseList: IFoodBusiness): number {
+  trackByIndex(index: number, googleHotelResponseList: IActivitiesBusiness): number {
     return index;
   }
 

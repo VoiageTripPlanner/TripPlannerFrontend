@@ -1,11 +1,12 @@
 import { Component, effect, inject } from '@angular/core';
 import { YelpFoodService } from '../../../services/api-request/yelp-food.service';
-import { IFoodBusiness, IYelpApiSearchParams } from '../../../interfaces/yelp-activities-response.interface';
+import { IFoodBusiness, IYelpApiSearchParams } from '../../../interfaces/yelp-food-response.interface';
 import { MapComponent } from '../../map/map.component';
 import { LoaderComponent } from '../../loader/loader.component';
 import { ModalComponent } from '../../modal/modal.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NotifyService } from '../../../shared/notify/notify.service';
 
 @Component({
   selector: 'app-food-card',
@@ -23,6 +24,7 @@ import { FormsModule } from '@angular/forms';
 export class FoodCardComponent {
 
   service = inject(YelpFoodService);
+  notifyService = inject(NotifyService);
   yelpFoodResponseList: IFoodBusiness[] = []
 
   latitude: number = 35.659107;
@@ -52,10 +54,18 @@ export class FoodCardComponent {
 
   trackByIndex(index: number, googleHotelResponseList: IFoodBusiness): number {
     return index;
-  }
+  };
 
   generateId() {
     return Math.random().toString(36).substring(2, 9);
-  }
+  };
+
+  visitSite(url: string | undefined): void {
+    if (url) {
+      window.open(url,'_blank') ;
+    } else {
+      this.notifyService.onNoData();
+    }
+  };
 
 }

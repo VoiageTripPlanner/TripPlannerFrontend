@@ -6,7 +6,7 @@ import { ModalComponent } from '../../components/modal/modal.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { YelpFoodService } from '../../services/api-request/yelp-food.service';
-import { IYelpApiSearchParams } from '../../interfaces/yelp-activities-response.interface';
+import { IYelpApiSearchParams } from '../../interfaces/yelp-food-response.interface';
 
 @Component({
   selector: 'app-activities',

@@ -1,5 +1,5 @@
 import { Component, effect, inject } from '@angular/core';
-import { YelpActivitiesService } from '../../../services/api-request/yelp-food.service';
+import { YelpFoodService } from '../../../services/api-request/yelp-food.service';
 import { IFoodBusiness, IYelpApiSearchParams } from '../../../interfaces/yelp-activities-response.interface';
 import { MapComponent } from '../../map/map.component';
 import { LoaderComponent } from '../../loader/loader.component';
@@ -22,11 +22,11 @@ import { FormsModule } from '@angular/forms';
 })
 export class FoodCardComponent {
 
-  service = inject(YelpActivitiesService);
+  service = inject(YelpFoodService);
   yelpFoodResponseList: IFoodBusiness[] = []
 
-  latitude: number = 37.786882;
-  longitude:number = -122.399972;
+  latitude: number = 35.659107;
+  longitude:number = 139.700343;
   resultado: any;
 
   constructor() {

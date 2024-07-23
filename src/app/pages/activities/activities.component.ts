@@ -5,7 +5,7 @@ import { LoaderComponent } from '../../components/loader/loader.component';
 import { ModalComponent } from '../../components/modal/modal.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { YelpActivitiesService } from '../../services/api-request/yelp-food.service';
+import { YelpFoodService } from '../../services/api-request/yelp-food.service';
 import { IYelpApiSearchParams } from '../../interfaces/yelp-activities-response.interface';
 
 @Component({
@@ -24,7 +24,7 @@ import { IYelpApiSearchParams } from '../../interfaces/yelp-activities-response.
 })
 export class ActivitiesComponent {
 
-  // service = inject(YelpActivitiesService);
+  // service = inject(YelpFoodService);
 
   // latitude: number = 37.786882;
   // longitude:number = -122.399972;

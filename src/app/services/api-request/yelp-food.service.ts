@@ -8,7 +8,7 @@ import { NotifyService } from '../../shared/notify/notify.service';
 @Injectable({
   providedIn: 'root',
 })
-export class YelpActivitiesService extends BaseService<IFoodBusiness> {
+export class YelpFoodService extends BaseService<IFoodBusiness> {
 
   private notifyService = inject(NotifyService);
   

@@ -70,8 +70,8 @@ export interface Location {
     display_address: string[];
 }
 
-export enum Country {
-    Jp = "JP",
+export interface Country {
+    Jp : string,
 }
 
 export interface Price {

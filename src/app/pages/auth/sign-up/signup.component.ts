@@ -3,7 +3,6 @@ import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
-import { IUser } from '../../../interfaces';
 import { IUserSignUp } from '../../../interfaces/user-signup.interface';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
@@ -15,6 +14,7 @@ import { ICurrency } from '../../../interfaces/currency.interface';
 import { passwordMatchValidator } from '../../../validators/password-match.validator';
 import { CountryService } from '../../../services/country.service';
 import { CurrencyService } from '../../../services/currency.service';
+import { IUser } from '../../../interfaces/user';
 
 @Component({
   selector: 'app-signup',

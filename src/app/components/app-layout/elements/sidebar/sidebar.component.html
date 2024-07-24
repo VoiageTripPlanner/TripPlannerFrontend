@@ -1,8 +1,8 @@
-<div class="logo-wrapper">
+<div class="logo-wrapper backgorund-color margin-top-0 container-flex">
   <a routerLink="/">
     <img
-      class="img-fluid"
-      src="../../../../../assets/icons/logo@2x.png"
+      class="img-fluid container-flex"
+      src="../../../../../assets/icons/Round_Voiage.webp"
       width="50"
       alt="Logo"
     />
@@ -12,16 +12,16 @@
     <i class="fa-solid fa-arrow-left"></i>
   </div>
 
-  <div class="toggle-sidebar" (click)="layoutService.toggleSidebar()">
+  <div class="toggle-sidebar toggle-background-color" (click)="layoutService.toggleSidebar()">
     <i class="fa-solid fa fa-thumb-tack"></i>
   </div>
 </div>
 
-<div class="logo-icon-wrapper">
+<div class="logo-icon-wrapper backgorund-color container-flex">
   <a href="javascript:void(0)">
     <img
-      class="img-fluid"
-      src="../../../../../assets/icons/logo@2x.png"
+      class="img-fluid container-flex"
+      src="../../../../../assets/icons/Round_Voiage.webp"
       width="35"
       alt=""
     />
@@ -38,12 +38,12 @@
   </div>
 
   <div id="sidebar-menu" style="margin-left: 0px">
-    <ul class="sidebar-links custom-scrollbar">
+    <ul class="sidebar-links custom-scrollbar backgorund-color margin-top-0">
       <div class="simplebar-wrapper">
         <div class="simplebar-mask">
           <div class="simplebar-offset">
             <div class="simplebar-content-wrapper">
-              <div class="simplebar-content">
+              <div class="simplebar-content color-white">
                 <li class="back-btn">
                   <a href="javascript:void(0)">
                     <img
@@ -64,19 +64,21 @@
 
                 <li class="sidebar-main-title">
                   <div>
+
                     <h6>General</h6>
                   </div>
                 </li>
 
                 @for (route of permittedRoutes; track $index) {
-                  <li class="sidebar-list">
+                  <li class="sidebar-list color-white">
                     <a
                       routerLink="{{route.path}}"
                       routerLinkActive="active"
-                      class="sidebar-link sidebar-title"
+                      class="sidebar-link sidebar-title color-white"
                     >
-                      @if (route.data) {
-                        <span>{{route.data['name']}}</span>
+                    @if (route.data) {
+                        <i [class]="route.data['icon']" class="padding-right-3">&nbsp;</i> 
+                        <span class="color-white">{{route.data['name']}}</span>
                       }
                     </a>
                   </li>

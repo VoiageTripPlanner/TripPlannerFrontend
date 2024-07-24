@@ -7,22 +7,6 @@ export interface IResponse<T> {
   data: T;
 }
 
-export interface IUser {
-  id?: number;
-  name?: string;
-  lastname?: string;
-  secondLastname?: string;
-  email?: string;
-  birthDate?: Date;
-  password?: string;
-  operational?: boolean;
-  createdAt?: string;
-  updatedAt?: string;
-  authorities?: IAuthority[];
-  countryId?: string;
-  currencyId?: string;
-}
-
 export interface IAuthority {
   authority: string;
 }
@@ -38,8 +22,3 @@ export enum IFeedbackStatus {
   default = ''
 }
 
-export enum IRole {
-  admin = "ROLE_ADMIN",
-  user = "ROLE_USER",
-  superAdmin = 'ROLE_SUPER_ADMIN'
-}

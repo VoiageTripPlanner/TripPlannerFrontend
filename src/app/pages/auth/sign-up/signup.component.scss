@@ -1,8 +1,29 @@
 .login-container {
   height: 100vh;
-  background: #1D0F1C;
+  background: linear-gradient(#2D2230, #2D2230 10%, #1D0F1C 30%, #1D0F1C 70%, #2D2230 90%, #2D2230) #1D0F1C;
   padding: 20px 20%;
   position: relative;
+
+  header {
+    margin-bottom: 5%;
+
+    img {
+      width: 60px;
+    }
+    p {
+      color: #FADCD4;
+      line-height: 54px;
+    }
+  }
+
+  footer {
+    margin: 0 20%;
+    border-top: 2px solid #FADCD4;
+
+    img {
+      width: 90px;
+    }
+  }
 
   .login-card {
     position: relative;
@@ -13,10 +34,24 @@
     box-shadow: 0 0 37px rgba(8, 21, 66, 0.05);
     margin: 0 auto;
     background: #FADCD4;
+
+    h2 {
+      border-bottom: 2px solid #1D0F1C;
+    }
   }
   .invalid-feedback {
     position: absolute;
     margin-top: 0px;
+  }
+
+  .datepicker-wrapper {
+    position: relative;
+
+    mat-datepicker-toggle {
+      position: absolute;
+      top: -4px;
+      right: 20px;
+    }
   }
   @media screen and (min-width: 801px) and (max-width: 1500px) {
     padding: 20px 5%;

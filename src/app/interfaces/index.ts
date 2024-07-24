@@ -11,12 +11,16 @@ export interface IUser {
   id?: number;
   name?: string;
   lastname?: string;
+  secondLastname?: string;
   email?: string;
+  birthDate?: Date;
   password?: string;
-  active?: boolean;
+  operational?: boolean;
   createdAt?: string;
   updatedAt?: string;
   authorities?: IAuthority[];
+  countryId?: string;
+  currencyId?: string;
 }
 
 export interface IAuthority {

@@ -65,6 +65,18 @@ export const routes: Routes = [
           icon:'bi bi-duffle-fill'
         }
       },
+      {
+        path: 'lodge',
+        component: LodgeComponent,
+        data: { 
+          authorities: [
+            IRole.admin, 
+            IRole.user
+          ],
+          name: 'Lodge',
+          icon:'bi bi-duffle-fill'
+        }
+      },
 
     ],
   },

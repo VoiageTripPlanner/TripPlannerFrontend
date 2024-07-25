@@ -10,7 +10,6 @@ export const environment = {
     production: false,
     apiUrl: 'http://localhost:8080',
     maps_key: "${ process.env['MAPS_KEY'] }",
-    google_hotels:"${process.env['GOOGLE_HOTELS']}"
 };
 `;
 

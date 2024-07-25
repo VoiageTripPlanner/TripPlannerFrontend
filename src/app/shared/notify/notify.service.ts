@@ -53,5 +53,13 @@ export class NotifyService {
     });
   }
 
+  onNoFormData=()=>{
+    Swal.fire({
+      title: "Oops...",
+      text: "Please complete the form",
+      icon: "info"
+    });
+  }
+
 
 }

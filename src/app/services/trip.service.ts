@@ -15,18 +15,25 @@ export class TripService extends BaseService<ICountry> {
   }
 
   onGetDefaultTripForm (){
+
+    const getNextDay = (): Date => {
+      const today = new Date();
+      return new Date(today.setDate(today.getDate() + 1));
+    };
+
+
     const defaultValue:ITripForm={
       q:                '',
       check_in_date:    new Date(),
-      check_out_date:   new Date(),
+      check_out_date:   getNextDay(),
       latitude:         0,
       longitude:        0,
       departure_id:     '',
       arrival_id:       '',
       outbound_date:    new Date(),
-      return_date:      new Date(),
+      return_date:      getNextDay(),
       stops:            0,
-      type:             0
+      type:             1
     }
 
     return defaultValue;
@@ -45,6 +52,8 @@ export class TripService extends BaseService<ICountry> {
       }
     });
   };
+
+
 
   // getAllSignalDetailed() {
   //   this.findAllDetailed().subscribe({

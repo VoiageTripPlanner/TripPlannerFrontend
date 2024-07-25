@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 import { TripService } from '../../services/trip.service';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { NotifyService } from '../../shared/notify/notify.service';
 
 
 @Component({
@@ -22,6 +24,7 @@ import { BrowserModule } from '@angular/platform-browser';
     MatNativeDateModule,
     MatRadioModule,
     FormsModule,
+    CommonModule
   ],
   providers: [provideNativeDateAdapter()],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31,7 +34,11 @@ import { BrowserModule } from '@angular/platform-browser';
 export class TripFormComponent {
 
   tripService=inject(TripService);
+  notifyService=inject(NotifyService);
   tripFormNgModel :ITripForm 
+  formGeneralInfoSubmitted = false;
+  formFlightSubmitted = false;
+
 
   constructor(
     private router: Router, 
@@ -40,9 +47,23 @@ export class TripFormComponent {
   }
   
 
-  setTripInfo(){
-    console.log(this.tripFormNgModel)
-  }
+  setTripInfo(formGeneralInfo: any, formFlightInfo: any,event:Event){
+    event.preventDefault();
+    if (formGeneralInfo.valid && formFlightInfo.valid) {
+      console.log(this.tripFormNgModel);
+    } else{
+      this.notifyService.onNoFormData();
+    }
+
+
+  };
+
+  dateFilter = (d: Date | null): boolean => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return d !== null && d >= today;
+  };
+
 
 
 }

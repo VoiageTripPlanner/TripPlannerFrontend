@@ -36,7 +36,6 @@ $title-color: #6D3652;
 
 // Contenedor general de todo
 
-
 .card-container {
     width: 20%;
     max-width: 90%;
@@ -139,7 +138,7 @@ $title-color: #6D3652;
 
 .button-container {
     display: flex;
-    justify-content: flex-end; /* Alinea el contenido (el botón) al extremo derecho */
+    justify-content: flex-end; 
 }
 
 // Material

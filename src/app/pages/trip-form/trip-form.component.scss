@@ -102,6 +102,10 @@ $title-color: #6D3652;
     margin-bottom: 10%;
 }
 
+.move-to-right{
+    align-self: flex-end; 
+}
+
 .space-between {
     justify-content: space-between;
 }
@@ -115,12 +119,27 @@ $title-color: #6D3652;
     font-size: 1.3rem;
 }
 
+.width-20 {
+    width: 20%;
+}
 .width-45 {
     width: 45%;
 }
 
+.width-75 {
+    width: 75%;
+}
+
+.width-80 {
+    width: 80%;
+}
 .width-100 {
     width: 100%;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end; /* Alinea el contenido (el botón) al extremo derecho */
 }
 
 // Material

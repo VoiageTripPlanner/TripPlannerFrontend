@@ -1,7 +1,17 @@
 <div class="padding-1 align-boxes">
+    <div class="width-100">
 
-    <img src="../../../../assets/icons/Round_Voiage.webp" alt="Logo" class="logo">
-    <h1 class="title yeseva-one-regular ">Trip Planning </h1>
+        <div class="width-80 display-flex">
+            <img src="../../../../assets/icons/Round_Voiage.webp" alt="Logo" class="logo">
+            <h1 class="title yeseva-one-regular">Trip Planning </h1>
+        </div>
+        <div class="button-container width-20">
+            <button type="button" class="btn btn-secondary move-to-right " (click)="setTripInfo()">Start Planning</button>
+    
+        </div>
+
+    </div>
+
 
 </div>
 
@@ -18,9 +28,10 @@
 
             <form>
                 <div class="form-group margin-bottom-10">
-                    <label for="destinyCountry font-size-price margin-bottom-3" class="margin-bottom-3 font-size-label">Destination</label>
+                    <label for="destinyCountry font-size-price margin-bottom-3" class="margin-bottom-3 font-size-label" >Destination</label>
                     <input type="text" class="form-control" id="destinyCountry" aria-describedby="countryHelp"
-                        placeholder="Tell us your destination" required>
+                        placeholder="Tell us your destination" required [(ngModel)]="tripFormNgModel.q" name="q" required>
+                        
                 </div>
 
 
@@ -32,7 +43,7 @@
                     <div class=" width-45 ">
                         <mat-form-field class="width-100">
                             <mat-label >Check In Date</mat-label>
-                            <input matInput [matDatepicker]="pickerCheckIn">
+                            <input matInput [matDatepicker]="pickerCheckIn" [(ngModel)]="tripFormNgModel.check_in_date" name="check_in_date" required >
                             <mat-datepicker-toggle matIconSuffix [for]="pickerCheckIn"></mat-datepicker-toggle>
                             <mat-datepicker #pickerCheckIn></mat-datepicker>
                         </mat-form-field>
@@ -45,7 +56,7 @@
 
                         <mat-form-field class="width-100">
                             <mat-label>Check Out Date</mat-label>
-                            <input matInput [matDatepicker]="pickerCheckOut">
+                            <input matInput [matDatepicker]="pickerCheckOut" [(ngModel)]="tripFormNgModel.check_out_date" required name="check_out_date">
                             <mat-datepicker-toggle matIconSuffix [for]="pickerCheckOut"></mat-datepicker-toggle>
                             <mat-datepicker #pickerCheckOut></mat-datepicker>
                         </mat-form-field>
@@ -58,29 +69,25 @@
                     <div class="form-group width-45">
                         <label for="latitude" class="margin-bottom-6 font-size-label">Latitude</label>
                         <input type="number" class="form-control" id="latitude" aria-describedby="airportHelp"
-                            placeholder="Latitude" required required >
+                            placeholder="Latitude" required required [(ngModel)]="tripFormNgModel.latitude" name="latitude" >
                     </div>
 
                     <div class="form-group width-45">
                         <label for="longitude" class="margin-bottom-6 font-size-label">Longitude</label>
                         <input type="number" class="form-control" id="longitude"
-                            aria-describedby="airportDestinyHelp" placeholder="Longitude" required maxlength="3">
+                            aria-describedby="airportDestinyHelp" placeholder="Longitude" required maxlength="3" [(ngModel)]="tripFormNgModel.longitude" name="longitude">
                     </div>
 
                 </div>
             </form>
-
-
         </div>
 
     </div>
 
 
-
     <div class="inputs-card align-boxes card-container">
 
         <div class="width-100">
-
 
             <div class="display-flex">
                 <i class="bi bi-airplane-engines-fill"></i>
@@ -95,13 +102,13 @@
                     <div class="form-group width-45">
                         <label for="departureAirport" class="margin-bottom-6 font-size-label">Departure Airport</label>
                         <input type="text" class="form-control" id="departureAirport" aria-describedby="airportHelp"
-                            placeholder="Indicate an airport" required required maxlength="3">
+                            placeholder="Indicate an airport" required required maxlength="3" required [(ngModel)]="tripFormNgModel.departure_id" name="departure_id">
                     </div>
 
                     <div class="form-group width-45">
                         <label for="destinyAirport" class="margin-bottom-6 font-size-label">Destination Airport</label>
                         <input type="text" class="form-control" id="destinyAirport"
-                            aria-describedby="airportDestinyHelp" placeholder="Indicate an airport" required maxlength="3">
+                            aria-describedby="airportDestinyHelp" placeholder="Indicate an airport" required maxlength="3"  [(ngModel)]="tripFormNgModel.arrival_id" name="arrival_id">
                     </div>
 
                 </div>
@@ -109,7 +116,7 @@
                 <div class="margin-bottom-10">
 
                     <label for="flightType" class="margin-bottom-3 font-size-label">Select your type of Flight</label>
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" [(ngModel)]="tripFormNgModel.type" name="type">
                         <option selected value="1">Round Trip</option>
                         <option value="2">One Way</option>
 
@@ -123,7 +130,7 @@
                     <div class=" width-45 ">
                         <mat-form-field class="width-100">
                             <mat-label >Departure Date</mat-label>
-                            <input matInput [matDatepicker]="pickerDeparture">
+                            <input matInput [matDatepicker]="pickerDeparture"  [(ngModel)]="tripFormNgModel.outbound_date" name="outbound_date">
                             <mat-datepicker-toggle matIconSuffix [for]="pickerDeparture"></mat-datepicker-toggle>
                             <mat-datepicker #pickerDeparture></mat-datepicker>
                         </mat-form-field>
@@ -136,7 +143,8 @@
 
                         <mat-form-field class="width-100">
                             <mat-label>Return Date</mat-label>
-                            <input matInput [matDatepicker]="pickerReturn">
+                            <input matInput [matDatepicker]="pickerReturn" [(ngModel)]="tripFormNgModel.return_date" name="return_date">
+                            <!-- [disabled]="flightType === '2'" -->
                             <mat-datepicker-toggle matIconSuffix [for]="pickerReturn"></mat-datepicker-toggle>
                             <mat-datepicker #pickerReturn></mat-datepicker>
                         </mat-form-field>
@@ -147,7 +155,7 @@
                 <div class="margin-bottom-10">
 
                     <label for="numberStops" class="margin-bottom-3 font-size-label">Select number of stops</label>
-                    <select class="form-select" aria-label="Select number of stops">
+                    <select class="form-select" aria-label="Select number of stops" [(ngModel)]="tripFormNgModel.stops" name="stops">
                         <option selected value="0">Any number of stops</option>
                         <option value="1">Nonstop only</option>
                         <option value="2">1 stop or fewer</option>
@@ -156,18 +164,9 @@
                     </select>
                 </div>
 
-
-
             </form>
         </div>
 
-
-
-
     </div>
-<!-- 
-    <div class="inputs-card align-boxes card-container">
-        <h1 class="box-title yeseva-one-regular "> Map</h1>
-    </div> -->
 
 </div>

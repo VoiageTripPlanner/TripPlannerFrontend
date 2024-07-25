@@ -9,6 +9,7 @@ import { AdminRoleGuard } from './guards/admin-role.guard';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { GuestGuard } from './guards/guest.guard';
 import { IRole } from './interfaces/role';
+import { RecomendationsComponent } from './pages/recomendations/recomendations.component';
 
 export const routes: Routes = [
   {
@@ -61,6 +62,18 @@ export const routes: Routes = [
             IRole.user
           ],
           name: 'Dashboard',
+          icon:'bi bi-duffle-fill'
+        }
+      },
+      {
+        path: 'Recomendations',
+        component: RecomendationsComponent,
+        data: { 
+          authorities: [
+            IRole.admin, 
+            IRole.user
+          ],
+          name: 'Recomendations',
           icon:'bi bi-duffle-fill'
         }
       },

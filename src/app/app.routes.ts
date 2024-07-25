@@ -12,6 +12,7 @@ import { IRole } from './interfaces/role.interface';
 import { LodgeComponent } from './pages/lodge/lodge.component';
 import { ActivitiesComponent } from './pages/activities/activities.component';
 import { FoodComponent } from './pages/food/food.component';
+import { TripFormComponent } from './pages/trip-form/trip-form.component';
 
 export const routes: Routes = [
   {
@@ -64,6 +65,18 @@ export const routes: Routes = [
             IRole.user
           ],
           name: 'Dashboard',
+          icon:'bi bi-duffle-fill'
+        }
+      },
+      {
+        path: 'trip-form',
+        component: TripFormComponent,
+        data: { 
+          authorities: [
+            IRole.admin, 
+            IRole.user
+          ],
+          name: 'Trip Form',
           icon:'bi bi-duffle-fill'
         }
       },

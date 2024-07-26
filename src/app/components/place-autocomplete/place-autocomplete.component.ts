@@ -1,3 +1,6 @@
+import { GoogleService } from './../../services/google.service';
+import { Router } from '@angular/router';
+import { routes } from './../../app.routes';
 import {
   Component,
   ElementRef,
@@ -46,7 +49,17 @@ export class PlaceAutocompleteComponent implements OnInit {
 
   listener: any;
 
-  constructor(private ngZone: NgZone) {}
+  private ngZone: NgZone;
+  private googleService: GoogleService;
+  private router: Router;
+
+  constructor(ngZone: NgZone, googleService: GoogleService, router: Router) {
+    this.ngZone = new NgZone({ enableLongStackTrace: false });
+    this.googleService = new GoogleService();
+    this.router = new Router();
+  }
+
+
 
   ngOnInit() {}
 
@@ -64,12 +77,10 @@ export class PlaceAutocompleteComponent implements OnInit {
           location: place?.geometry?.location,
           imageUrl: this.getPhotoUrl(place),
           iconUrl: place?.icon,
-          price: place?.price_level,
           //Mandar para o backend
           
-
         };
-
+        this.googleService.getPlaceRecomendations(result);
         this.placeChanged.emit(result);
         console.log(JSON.stringify(result, null, 4));
 

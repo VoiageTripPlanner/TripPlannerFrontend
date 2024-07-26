@@ -35,10 +35,6 @@ export class RecomendationComponent {
     if (this.fromValue.address) {
       this.fromNearbyPlaces = places;
     }
-    if (this.toValue.address) {
-      this.toNearbyPlaces = places;
-    }
-
     // Merge all places to display in the map
     this.allNearbyPlaces = [...this.fromNearbyPlaces, ...this.toNearbyPlaces];
   }

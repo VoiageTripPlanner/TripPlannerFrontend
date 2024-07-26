@@ -4,5 +4,4 @@ export interface IPlaceSearchResult {
     imageUrl?: string;
     iconUrl?: string;
     name?: string;
-    price ?: number;
   }

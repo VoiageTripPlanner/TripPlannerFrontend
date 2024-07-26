@@ -7,6 +7,10 @@ import { ModalComponent } from '../../modal/modal.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NotifyService } from '../../../shared/notify/notify.service';
+import { TripService } from '../../../services/trip.service';
+import { ITripForm } from '../../../interfaces/trip.interface';
+import { formatDateToYYYYMMDD } from '../../../shared/utils/date-formatter';
+import { MapsComponent } from '../../maps/maps.component';
 
 @Component({
   selector: 'app-lodge-card',
@@ -16,7 +20,8 @@ import { NotifyService } from '../../../shared/notify/notify.service';
     LoaderComponent,
     ModalComponent,
     CommonModule,
-    FormsModule
+    FormsModule,
+    MapsComponent
 
   ],
   templateUrl: './lodge-card.component.html',
@@ -26,27 +31,31 @@ export class LodgeCardComponent {
 
   service = inject(GoogleHotelService);
   notifyService = inject(NotifyService);
+  tripFormService=inject(TripService);
   googleHotelResponseList: IGoogleResponse[] = []
 
+  
+  initialForm:ITripForm;
 
-  //Mas adelante estos datos van a venir del componente padre que va a ser el primer formulario
-  destino: string = 'New York';
-  checkIn: String = "2024-08-07";
-  checkOut: String = "2024-08-14";
-  resultado: any;
 
+  
   constructor() {
+
+    this.initialForm=this.tripFormService.tripForm$();    
     this.sendData();
+
   };
-
+  
+  
+  
+  
   sendData() {
-
     const datos: ISearchParameters = {
-      q: this.destino,
-      check_in_date: this.checkIn,
-      check_out_date: this.checkOut
+      q: this.initialForm.q,
+      check_in_date: formatDateToYYYYMMDD(this.initialForm.check_in_date),
+      check_out_date: formatDateToYYYYMMDD(this.initialForm.check_out_date)
     };
-
+    
     this.service.getAllSignal(datos);
 
     effect(() => {

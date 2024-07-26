@@ -50,21 +50,24 @@ export class TripFormComponent {
 
   setTripInfo(formGeneralInfo: any, formFlightInfo: any,event:Event){
     event.preventDefault();
+    debugger;
     if (formGeneralInfo.valid && formFlightInfo.valid) {
-      // this.router.navigateByUrl('/lodge'),
-      // this.router.navigate(['lodge'], { relativeTo: this.route });
-      console.log(this.tripFormNgModel);
+
+      this.tripService.setInitialForm(this.tripFormNgModel);
+      this.router.navigateByUrl('/lodge')
+
     } else{
       this.notifyService.onNoFormData();
     }
-
 
   };
 
   dateFilter = (d: Date | null): boolean => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    return d !== null && d >= today;
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    return d !== null && d >= tomorrow;
   };
 
 

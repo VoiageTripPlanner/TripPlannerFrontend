@@ -7,11 +7,13 @@ import { ITripForm } from '../interfaces/trip.interface';
 @Injectable({
   providedIn: 'root',
 })
-export class TripService extends BaseService<ICountry> {
+export class TripService extends BaseService<ITripForm> {
   protected override source: string = 'trip';
-  private countryListSignal = signal<ICountry>({});
-  get country$() {
-    return this.countryListSignal;
+  private tripFormSignal = signal<ITripForm>(this.onGetDefaultTripForm());
+
+
+  get tripForm$() {
+    return this.tripFormSignal;
   }
 
   onGetDefaultTripForm (){
@@ -21,16 +23,21 @@ export class TripService extends BaseService<ICountry> {
       return new Date(today.setDate(today.getDate() + 1));
     };
 
+    const getTowDaysAhead = (): Date => {
+      const today = new Date();
+      return new Date(today.setDate(today.getDate() + 2));
+    };
+
 
     const defaultValue:ITripForm={
       q:                '',
-      check_in_date:    new Date(),
-      check_out_date:   getNextDay(),
+      check_in_date:    getNextDay(),
+      check_out_date:   getTowDaysAhead(),
       latitude:         0,
       longitude:        0,
       departure_id:     '',
       arrival_id:       '',
-      outbound_date:    new Date(),
+      outbound_date:    getNextDay(),
       return_date:      getNextDay(),
       stops:            0,
       type:             1
@@ -40,12 +47,16 @@ export class TripService extends BaseService<ICountry> {
 
   }
 
+  setInitialForm(data:ITripForm){
+    this.tripFormSignal.set(data);
+  }
+
 
   getAllSignal() {
     this.findAll().subscribe({
       next: (response: any) => {
         response.reverse();
-        this.countryListSignal.set(response);
+        this.tripFormSignal.set(response);
       },
       error: (error: any) => {
         console.error('Error fetching users', error);

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { LoaderComponent } from '../../components/loader/loader.component';
 import { ModalComponent } from '../../components/modal/modal.component';
 import { ISearchParameters } from '../../interfaces/google-hotel-response.interface';
@@ -7,6 +7,9 @@ import { FormsModule } from '@angular/forms';
 import { GoogleHotelService } from '../../services/api-request/google-hotel.service';
 import { LodgeCardComponent } from '../../components/lodge/lodge-card/lodge-card.component';
 import { MapComponent } from '../../components/map/map.component';
+import { ITripForm } from '../../interfaces/trip.interface';
+import { ActivatedRoute } from '@angular/router';
+import { TripService } from '../../services/trip.service';
 
 @Component({
   selector: 'app-lodge',
@@ -24,7 +27,13 @@ import { MapComponent } from '../../components/map/map.component';
 })
 export class LodgeComponent {
 
+  tripFormService=inject(TripService);
+  
+  initialForm:ITripForm;
 
+  constructor(){
+    this.initialForm=this.tripFormService.tripForm$();  
+  }
 }
 
 

@@ -165,7 +165,7 @@
                             <mat-label>Departure Date</mat-label>
                             <input matInput [matDatepicker]="pickerDeparture"
                                 [(ngModel)]="tripFormNgModel.outbound_date" name="outbound_date"
-                                [matDatepickerFilter]="dateFilter" id="outbound_date" #outbound_date="ngModel" required>
+                                [matDatepickerFilter]="dateFilter" id="outbound_date" #outbound_date="ngModel" >
                             <mat-datepicker-toggle matIconSuffix [for]="pickerDeparture"></mat-datepicker-toggle>
                             <mat-datepicker #pickerDeparture></mat-datepicker>
                         </mat-form-field>

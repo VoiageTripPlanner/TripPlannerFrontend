@@ -79,18 +79,6 @@ export const routes: Routes = [
           icon:'bi bi-duffle-fill'
         }
       },
-      // {
-      //   path: 'activities',
-      //   component: ActivitiesComponent,
-      //   data: { 
-      //     authorities: [
-      //       IRole.admin, 
-      //       IRole.user
-      //     ],
-      //     name: 'Activities',
-      //     icon:'bi bi-duffle-fill'
-      //   }
-      // },
 
     ],
   },

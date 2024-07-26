@@ -6,6 +6,7 @@ import { LoaderComponent } from '../../loader/loader.component';
 import { ModalComponent } from '../../modal/modal.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NotifyService } from '../../../shared/notify/notify.service';
 
 @Component({
   selector: 'app-lodge-card',
@@ -24,11 +25,12 @@ import { FormsModule } from '@angular/forms';
 export class LodgeCardComponent {
 
   service = inject(GoogleHotelService);
+  notifyService = inject(NotifyService);
   googleHotelResponseList: IGoogleResponse[] = []
 
 
   //Mas adelante estos datos van a venir del componente padre que va a ser el primer formulario
-  destino: string = 'Istanbul';
+  destino: string = 'New York';
   checkIn: String = "2024-08-07";
   checkOut: String = "2024-08-14";
   resultado: any;
@@ -48,7 +50,7 @@ export class LodgeCardComponent {
     this.service.getAllSignal(datos);
 
     effect(() => {
-      
+
       this.googleHotelResponseList = this.service.googleHotelResponse$();
       console.log(this.googleHotelResponseList);
     })
@@ -63,6 +65,22 @@ export class LodgeCardComponent {
   generateId() {
     return Math.random().toString(36).substring(2, 9);
   }
+
+  visitSite(url: string | undefined): void {
+    if (url) {
+      window.open(url, '_blank');
+    } else {
+      this.notifyService.onNoData();
+    }
+  };
+
+  onImageError(event: Event) {
+    const target = event.target as HTMLImageElement;
+    target.src = '../../../../assets/img/No_image_available.png';
+  }
+
+
+
 
 }
 

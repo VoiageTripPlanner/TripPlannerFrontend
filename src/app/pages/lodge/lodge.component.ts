@@ -25,30 +25,6 @@ import { MapComponent } from '../../components/map/map.component';
 export class LodgeComponent {
 
 
-  // service = inject(GoogleHotelService);
-
-  // destino: string = 'Tokyo';
-  // checkIn: Date = new Date();
-  // checkOut: Date = new Date();
-  // resultado: any;
-
-
-
-  // enviarDatos() {
-  //   const datos:ISearchParameters = {
-  //     q: this.destino,
-  //     check_in_date: this.checkIn,
-  //     check_out_date: this.checkOut
-  //   };
-
-  //   
-
-  //   this.service.getAllSignal(datos);
-  // };
-
-
-
-
 }
 
 

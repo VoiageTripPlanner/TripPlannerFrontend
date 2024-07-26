@@ -3,8 +3,9 @@ import { Component, inject, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from '../../components/modal/modal.component';
 import { AuthService } from '../../services/auth.service';
-import { IUser } from '../../interfaces';
+
 import { Router } from '@angular/router';
+import { IUser } from '../../interfaces/user.interface';
 
 @Component({
   selector: 'app-validate-otp',

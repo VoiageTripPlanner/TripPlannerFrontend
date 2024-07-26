@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
-import { PlaceSearchResult } from './place-autocomplete.component';
+import { IPlaceSearchResult } from '../../interfaces/placeSearch';
+
+
 
 @Component({
   selector: 'app-place-card',
@@ -37,7 +39,7 @@ import { PlaceSearchResult } from './place-autocomplete.component';
   ],
 })
 export class PlaceCardComponent implements OnInit {
-  @Input() places: PlaceSearchResult[] = [];
+  @Input() places: IPlaceSearchResult[] = [];
 
   constructor() {}
 

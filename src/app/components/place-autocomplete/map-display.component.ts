@@ -5,8 +5,9 @@ import {
   GoogleMapsModule,
   MapDirectionsService,
 } from '@angular/google-maps';
-import { PlaceSearchResult } from './place-autocomplete.component';
 import { BehaviorSubject, map } from 'rxjs';
+import { IPlaceSearchResult } from '../../interfaces/placeSearch';
+
 
 @Component({
   selector: 'app-map-display',
@@ -39,13 +40,13 @@ export class MapDisplayComponent implements OnInit, OnChanges {
   map!: GoogleMap;
 
   @Input()
-  from: PlaceSearchResult | undefined;
+  from: IPlaceSearchResult | undefined;
 
   @Input()
-  to: PlaceSearchResult | undefined;
+  to: IPlaceSearchResult | undefined;
 
   @Input()
-  pointsOfInterest: PlaceSearchResult[] = [];
+  pointsOfInterest: IPlaceSearchResult[] = [];
 
   markerPositions: google.maps.LatLng[] = [];
 

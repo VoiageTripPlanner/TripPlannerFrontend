@@ -9,7 +9,7 @@ import { AdminRoleGuard } from './guards/admin-role.guard';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { GuestGuard } from './guards/guest.guard';
 import { IRole } from './interfaces/role';
-import { RecomendationsComponent } from './pages/recomendations/recomendations.component';
+import { RecomendationComponent } from './pages/recomendation/recomendation.component';
 
 export const routes: Routes = [
   {
@@ -66,14 +66,14 @@ export const routes: Routes = [
         }
       },
       {
-        path: 'Recomendations',
-        component: RecomendationsComponent,
+        path: 'Recomendation',
+        component: RecomendationComponent,
         data: { 
           authorities: [
             IRole.admin, 
             IRole.user
           ],
-          name: 'Recomendations',
+          name: 'Recomendation',
           icon:'bi bi-duffle-fill'
         }
       },

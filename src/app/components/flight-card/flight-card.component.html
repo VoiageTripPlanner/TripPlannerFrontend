@@ -1,0 +1,62 @@
+<div class="container-box">
+
+    <div class="align-boxes">
+        <div class="col-md-6 flight-container">
+
+            @for (item of googleFlightsResponseList   ; track trackByIndex) {
+                <div class="hotel-card align-boxes">
+
+                    <div class="information-container">
+    
+                        <div class="align-boxes space-between">
+                            <h1 class="bold-text font-size-title">{{item.departure_airport?.id || ''}}</h1>
+                            <h1 class="move-to-right font-size-price">Total: {{item.booking_token?.lowest}}</h1>
+                        </div>
+    
+                        <div class="align-boxes space-between">
+                            <h3>Stats: {{item.overall_rating}}/5</h3>
+                            <h3 class="move-to-right">Price per night {{item.rate_per_night?.lowest}}</h3>
+                        </div>
+    
+                        <div class="width-100">
+                            <h2>Amenities:</h2>
+                            <ul class="circle-list">
+                                @for (amenity of item.amenities   ; track generateId) {
+                                    <li>{{amenity}}</li>
+
+                                }
+
+                            </ul>
+    
+                        </div>
+    
+                        <div class="align-boxes space-between">
+                            <button type="button" class="btn btn-outline-info ">View in map</button>
+                            <!-- <button type="button" class="btn btn-success ps-3">Select</button> -->
+                            <button type="button" class="btn btn-outline-success">Select option </button>
+    
+                        </div>
+    
+                    </div>
+    
+                    <div class="image-container">
+                        @if(item.images && item.images.length){
+                            <img [src]="item.images[0].original_image" alt="Logo" class="">
+                        }@else{
+                            <img src="../../../../assets/img/no-image.jpg" alt="Logo" class="">
+                        }
+                    </div>
+    
+    
+    
+                </div>
+            }
+        </div>
+        <div class="map-container">
+
+        </div>
+
+    </div>
+
+
+</div>

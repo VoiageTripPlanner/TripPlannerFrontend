@@ -18,6 +18,10 @@ export class BaseService<T> {
     return this.http.get<IResponse<T[]>>(this.source, { params: { s } });
   }
 
+  public bringInfoWithParams(params: { [key: string]: any } = {}): Observable<IResponse<T[]>> {
+    return this.http.get<IResponse<T[]>>(this.source, { params });
+  }
+
   public add(data: {}): Observable<IResponse<T>> {
     return this.http.post<IResponse<T>>(this.source, data);
   }
@@ -25,7 +29,6 @@ export class BaseService<T> {
   public edit(id: number | undefined, data: {}): Observable<IResponse<T>> {
     return this.http.put<IResponse<T>>(this.source + '/' + id, data);
   }
-
 
   public findAllDetailed(s: string = ''): Observable<IResponse<T[]>> {
     return this.http.get<IResponse<T[]>>(this.source + '/userDetailed', { params: { s } });

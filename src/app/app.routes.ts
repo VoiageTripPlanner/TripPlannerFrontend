@@ -8,10 +8,10 @@ import { AccessDeniedComponent } from './pages/access-denied/access-denied.compo
 import { AdminRoleGuard } from './guards/admin-role.guard';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { GuestGuard } from './guards/guest.guard';
-import { IRole } from './interfaces';
+import { IRole } from './interfaces/role.interface';
+import { LodgeComponent } from './pages/lodge/lodge.component';
 import { ResetpasswordComponent } from './pages/resetpassword/resetpassword.component';
 import { ValidateOTPComponent } from './pages/validate-otp/validate-otp.component';
-import { UpdateUserComponent } from './pages/update-user/update-user.component';
 
 export const routes: Routes = [
   {
@@ -59,10 +59,10 @@ export const routes: Routes = [
         canActivate:[AdminRoleGuard],
         data: { 
           authorities: [
-            IRole.admin,
+            IRole.admin, 
           ],
-          showInSidebar: true,
-          name: 'Users'
+          name: 'Users',
+          icon:'bi bi-people-fill'
         }
       },
       {
@@ -73,20 +73,23 @@ export const routes: Routes = [
             IRole.admin, 
             IRole.user
           ],
-          name: 'Dashboard'
+          name: 'Dashboard',
+          icon:'bi bi-duffle-fill'
         }
       },
       {
-        path: 'update-user',
-        component: UpdateUserComponent,
+        path: 'lodge',
+        component: LodgeComponent,
         data: { 
           authorities: [
             IRole.admin, 
             IRole.user
           ],
-          name: 'update-user'
+          name: 'Lodge',
+          icon:'bi bi-duffle-fill'
         }
-      }
+      },
+
     ],
   },
 ];

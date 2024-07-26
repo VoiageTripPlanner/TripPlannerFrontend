@@ -19,7 +19,7 @@ import { Router } from '@angular/router';
 })
 export class ValidateOTPComponent {
 
-  
+  public validaOTPError!: String;
   @Output () user: IUser = {};
 
 
@@ -27,23 +27,23 @@ export class ValidateOTPComponent {
     private router: Router
   ) {}
 
-  public validateOtpForm : {otp: string; password: string} = {
+  public validateOtpForm : {otp: string; password: string; password2:string} = {
     otp: '',
     password: '',
+    password2: ''
   };
 
   public authService : AuthService = inject(AuthService);
 
   public handleOtp(event: Event) {
+    event.preventDefault();
+    if (this.validateOtpForm.password == this.validateOtpForm.password2) {
       this.authService.validateOtp(this.validateOtpForm).subscribe({
-        next: () => {
-          this.router.navigateByUrl('/login')
-        }
+        next: () => 
+          this.router.navigateByUrl('/login'),
+          error: (err: any) => (this.validaOTPError = err.description),
       });
-    
-
-  
-    
+    }
   }
 
 }

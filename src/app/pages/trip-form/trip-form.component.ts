@@ -6,7 +6,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatNativeDateModule, provideNativeDateAdapter} from '@angular/material/core';
 import {MatRadioModule} from '@angular/material/radio';
 import { ITripForm } from '../../interfaces/trip.interface';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TripService } from '../../services/trip.service';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -42,6 +42,7 @@ export class TripFormComponent {
 
   constructor(
     private router: Router, 
+    private route:ActivatedRoute
   ){
     this.tripFormNgModel=this.tripService.onGetDefaultTripForm();    
   }
@@ -50,6 +51,8 @@ export class TripFormComponent {
   setTripInfo(formGeneralInfo: any, formFlightInfo: any,event:Event){
     event.preventDefault();
     if (formGeneralInfo.valid && formFlightInfo.valid) {
+      // this.router.navigateByUrl('/lodge'),
+      // this.router.navigate(['lodge'], { relativeTo: this.route });
       console.log(this.tripFormNgModel);
     } else{
       this.notifyService.onNoFormData();

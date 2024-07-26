@@ -8,8 +8,8 @@ import { AccessDeniedComponent } from './pages/access-denied/access-denied.compo
 import { AdminRoleGuard } from './guards/admin-role.guard';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { GuestGuard } from './guards/guest.guard';
-import { IRole } from './interfaces/role';
-import { RecomendationComponent } from './pages/recomendation/recomendation.component';
+import { IRole } from './interfaces/role.interface';
+import { LodgeComponent } from './pages/lodge/lodge.component';
 
 export const routes: Routes = [
   {
@@ -66,14 +66,14 @@ export const routes: Routes = [
         }
       },
       {
-        path: 'Recomendation',
-        component: RecomendationComponent,
+        path: 'lodge',
+        component: LodgeComponent,
         data: { 
           authorities: [
             IRole.admin, 
             IRole.user
           ],
-          name: 'Recomendation',
+          name: 'Lodge',
           icon:'bi bi-duffle-fill'
         }
       },

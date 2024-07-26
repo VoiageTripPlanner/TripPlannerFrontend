@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IGame } from '../../../interfaces';
+import { IGame } from '../../../interfaces/index.interface';
 
 @Component({
   selector: 'app-agent-games-config',

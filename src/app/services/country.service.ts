@@ -1,7 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { BaseService } from './base-service';
 import { Observable, catchError, tap, throwError } from 'rxjs';
-import { ICountry } from '../interfaces/country';
+import { ICountry } from '../interfaces/country.interface';
 
 @Injectable({
   providedIn: 'root',

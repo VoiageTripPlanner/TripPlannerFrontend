@@ -1,6 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { BaseService } from '../base-service';
 import { IGFlightsResponse, OtherFlight, SearchParameters } from '../../interfaces/google-flights-response.interface';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -19,12 +20,14 @@ export class GoogleFlightsService extends BaseService<IGFlightsResponse> {
     this.bringInfoWithParams(searchParams).subscribe({
       next: (response: any) => {
         
-        console.log(response.properties);
-        this.gFlightsResponseSignal.set(response.properties);
+        console.log(response.other_flights);
+        this.gFlightsResponseSignal.set(response.other_flights);
       },
-      error: (error: any) => {
-        
+      error: (error: HttpErrorResponse) => {
         console.error('Error fetching Google Flights list', error);
+        console.error('Status:', error.status);
+        console.error('Message:', error.message);
+        console.error('URL:', error.url);
       }
     });
   }

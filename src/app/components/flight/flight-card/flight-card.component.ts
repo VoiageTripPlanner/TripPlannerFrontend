@@ -26,8 +26,8 @@ export class FlightCardComponent {
   type: string = '2';
   departure_id: string = 'SJO';
   arrival_id: string = 'LNV';
-  outbound_date: Date = new Date("2024-08-19");
-  return_date?: Date;
+  outbound_date: String = "2024-08-19";
+  return_date?: String;
 
   constructor() {
     this.sendData();

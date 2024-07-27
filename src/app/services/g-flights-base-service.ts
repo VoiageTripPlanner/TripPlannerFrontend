@@ -20,8 +20,9 @@ export class GFlightsBaseService<T> {
       .set('gl', searchParams.gl || '')
       .set('departure_id', searchParams.departure_id || '')
       .set('arrival_id', searchParams.arrival_id || '')
-      .set('outbound_date', searchParams.outbound_date?.toISOString() || '');
-    
+      .set('outbound_date', searchParams.outbound_date?.toISOString() || '')
+      .set('travel_class', searchParams.travel_class || '')
+
     if (searchParams.type === '1') {
       params = params
         .set('type', searchParams.type || '')
@@ -36,8 +37,4 @@ export class GFlightsBaseService<T> {
     return this.http.get<IResponse<T[]>>(this.flightsBaseUrl, { params }).pipe(
     );
   }
-
-
-
-
 }

@@ -11,6 +11,9 @@ import { TripService } from '../../../services/trip.service';
 import { ITripForm } from '../../../interfaces/trip.interface';
 import { formatDateToYYYYMMDD } from '../../../shared/utils/date-formatter';
 import { MapsComponent } from '../../maps/maps.component';
+import { BudgetService } from '../../../services/budged.service';
+import { BudgetBarComponent } from '../../budget-bar/budget-bar.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lodge-card',
@@ -32,17 +35,19 @@ export class LodgeCardComponent {
   service = inject(GoogleHotelService);
   notifyService = inject(NotifyService);
   tripFormService=inject(TripService);
+  budgetService=inject(BudgetService);
   googleHotelResponseList: IGoogleResponse[] = []
-
   
   initialForm:ITripForm;
 
 
   
-  constructor() {
+  constructor(
+    private router: Router,
+  ) {
 
     this.initialForm=this.tripFormService.tripForm$();    
-    // this.sendData();
+    this.sendData();
 
   };
   
@@ -85,6 +90,22 @@ export class LodgeCardComponent {
     target.src = '../../../../assets/img/No_image_available.png';
   }
 
+
+  selectOption(amount:number | undefined){
+
+
+    if (!amount) {
+      amount=0;
+    }
+
+    const classification = 'lodge'; 
+
+    this.budgetService.updateSpending(amount, classification);
+
+    this.router.navigateByUrl('/food');
+
+    
+  }
 
 
 

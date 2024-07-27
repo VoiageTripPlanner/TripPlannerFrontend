@@ -52,6 +52,6 @@ export class NotifyService {
       icon: "info"
     });
   }
-
+  
   
 }

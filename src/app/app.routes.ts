@@ -10,6 +10,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { GuestGuard } from './guards/guest.guard';
 import { IRole } from './interfaces/role.interface';
 import { LodgeComponent } from './pages/lodge/lodge.component';
+import { ActivitiesComponent } from './pages/activities/activities.component';
+import { FoodComponent } from './pages/food/food.component';
 import { RecomendationComponent } from './pages/recomendation/recomendation.component';
 
 export const routes: Routes = [
@@ -67,14 +69,14 @@ export const routes: Routes = [
         }
       },
       {
-        path: 'lodge',
-        component: LodgeComponent,
+        path: 'food',
+        component: FoodComponent,
         data: { 
           authorities: [
             IRole.admin, 
             IRole.user
           ],
-          name: 'Lodge',
+          name: 'Food',
           icon:'bi bi-duffle-fill'
         }
       },

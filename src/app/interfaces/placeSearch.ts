@@ -1,9 +1,9 @@
 export interface IPlaceSearchResult {
     address: string;
-    location?: google.maps.LatLng;
+    name?: string;
+    imageUrl?: string;
     latitude?: number;
     longitude?: number;
-    imageUrl?: string;
     iconUrl?: string;
-    name?: string;
+    location?: google.maps.LatLng;
   }

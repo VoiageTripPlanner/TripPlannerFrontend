@@ -14,16 +14,16 @@
       </tr>
     </thead>
     <tbody>
-      @for (item of userList; track item.user_id) {
+      @for (item of userList; track item.id) {
       <tr>
         <td>{{item.name}}</td>
-        <td>{{item.last_name}}</td>
-        <td>{{item.second_last_name}}</td>
+        <td>{{item.lastname}}</td>
+        <td>{{item.secondLastname}}</td>
         <td>{{item.email}}</td>
-        <td>{{item.role?.role_name}}</td>
-        <td>{{item.country?.country_name}}</td>
-        <td>{{item.creation_datetime | date: 'dd/MM/yyyy HH:mm'}}</td>
-        <td>{{item.last_update_datetime | date: 'dd/MM/yyyy HH:mm'}}</td>
+        <td>{{getRole(item.roleId)}}</td>
+        <td>{{getCountry(item.countryId)}}</td>
+        <td>{{getDate(item.createAt) | date: 'dd/MM/yyyy HH:mm'}}</td>
+        <td>{{getDate(item.updateAt) | date: 'dd/MM/yyyy HH:mm'}}</td>
         <td>
           <div class="d-flex justify-content-evenly align-items-center">
             <button type="button" (click)="showDetail(item, formModal)" class="btn-icon">

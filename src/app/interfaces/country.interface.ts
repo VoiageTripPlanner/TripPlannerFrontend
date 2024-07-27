@@ -1,6 +1,6 @@
-export interface ICountry{
-    country_id?:number;
-    country_name?:string;
-    country_code?:string;
-    operational?:boolean;
+export interface ICountry {
+  id: string;
+  name: string;
+  code: string;
+  currencyId: string;
 }

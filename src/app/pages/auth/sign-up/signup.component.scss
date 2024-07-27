@@ -16,6 +16,10 @@
     }
   }
 
+  div:has(.login-card) {
+    height: calc(100% - 280px);
+  }
+
   footer {
     margin: 0 20%;
     border-top: 2px solid #FADCD4;

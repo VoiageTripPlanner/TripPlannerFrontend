@@ -19,14 +19,13 @@ export class UserFormComponent {
   @Input() title!: string;
   @Input() user: IUser = {
     name: '',
-    last_name: '',
-    second_last_name: '',
-    country:{},
+    lastname: '',
+    secondLastname: '',
     email: '',
     password: '',
     operational:true,
-    creation_datetime: new Date(),
-    last_update_datetime: new Date(),
+    createAt: '',
+    updateAt: '',
   };
   @Input() action: string = 'add'
   service = inject(UserService);

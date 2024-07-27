@@ -10,6 +10,7 @@ import { CountryService } from '../../../services/country.service';
 import { ICountry } from '../../../interfaces/country';
 import Swal from 'sweetalert2';
 import { NotifyService } from '../../../shared/notify/notify.service';
+import { UserRole } from '../../enums/role.enum';
 
 
 @Component({
@@ -34,20 +35,21 @@ export class UserListComponent {
   public currentUser: IUser = {
 
     name: '',
-    last_name: '',
-    second_last_name: '',
-    country: {},
+    lastname: '',
+    secondLastname: '',
+    countryId: '',
     email: '',
     password: '',
     operational: true,
-    creation_datetime: new Date(),
-    last_update_datetime: new Date(),
+    createAt: '',
+    updateAt: '',
 
     //TODO: Debemos hacer una funcion o metodo que me extraiga el id de la persona que esta en la sesion para poner ese id si crea un usuario o lo actualiza
   };
 
-  constructor() {
+  constructor(private countryService: CountryService) {
     this.loadData();
+    this.countryService.getAllSignal();
   };
 
   loadData () {
@@ -81,5 +83,26 @@ export class UserListComponent {
       }
     })
   };
+
+  public getRole(roleId: UserRole|undefined): string {
+    if (roleId) {
+      return UserRole[roleId];
+    }
+    return '---';
+  }
+
+  public getCountry(countryId: string|undefined): string {
+    if (countryId) {
+      return this.countryService.countriesSig().find(country => country.id === countryId)?.name ?? '---';
+    }
+    return '---';
+  }
+
+  public getDate(value: any): Date|null {
+    if (value) {
+      return new Date(value);
+    }
+    return null;
+  }
 
 };

@@ -5,7 +5,7 @@
       <p class="flex-grow-1 text-center mb-0 fs-1">The Wise Journey</p>
     </h1>
   </header>
-  <div class="d-flex align-items-center justify-content-center h-auto">
+  <div class="d-flex align-items-center justify-content-center">
     <div class="login-card">
       <div class="w-100">
         <h2 class="fs-2 pb-2">Sign Up</h2>
@@ -17,7 +17,7 @@
                   Name
                 </label>
                 <input formControlName="name" #name type="text" class="form-control" id="name" name="name"
-                  placeholder="User" [ngClass]="{
+                  [ngClass]="{
                     'is-invalid': signUpForm.get('name')?.invalid && signUpForm.get('name')?.touched,
                     'is-valid': signUpForm.get('name')?.valid && signUpForm.get('name')?.touched
                   }" />
@@ -30,7 +30,7 @@
                   Lastname
                 </label>
                 <input formControlName="lastname" #lastname type="text" class="form-control" id="lastname" name="lastname"
-                  placeholder="demo" [ngClass]="{
+                  [ngClass]="{
                     'is-invalid': signUpForm.get('lastname')?.invalid && signUpForm.get('lastname')?.touched,
                     'is-valid': signUpForm.get('lastname')?.valid && signUpForm.get('lastname')?.touched
                   }" />
@@ -42,8 +42,7 @@
                 <label for="lastname" class="form-label mb-2">
                   2nd Lastname
                 </label>
-                <input formControlName="secondLastname" #secondLastname type="text" class="form-control" id="second-lastname" name="secondLastname"
-                  placeholder="demo" />
+                <input formControlName="secondLastname" #secondLastname type="text" class="form-control" id="second-lastname" name="secondLastname" />
               </div>
             </div>
             <div class="row form-group mb-3">
@@ -65,7 +64,7 @@
                   Birth Date
                 </label>
                 <div class="datepicker-wrapper">
-                  <input formControlName="birthDate" #birthDate matInput [matDatepicker]="picker" class="form-control" id="birth-date" name="birthDate"
+                  <input formControlName="birthDate" #birthDate matInput [max]="maxDate" [matDatepicker]="picker" class="form-control" id="birth-date" name="birthDate"
                     placeholder="agent@gmail.com" [ngClass]="{
                       'is-invalid': signUpForm.get('birthDate')?.invalid && signUpForm.get('birthDate')?.touched,
                       'is-valid': signUpForm.get('birthDate')?.valid && signUpForm.get('birthDate')?.touched

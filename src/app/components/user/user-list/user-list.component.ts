@@ -1,18 +1,23 @@
 import { Component, effect, inject } from '@angular/core';
 import { UserService } from '../../../services/user.service';
-import { IUser } from '../../../interfaces';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from '../../modal/modal.component';
 import { UserFormComponent } from '../user-from/user-form.component';
-import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { IUser } from '../../../interfaces/user.interface';
+import { CountryService } from '../../../services/country.service';
+import { ICountry } from '../../../interfaces/country.interface';
+import Swal from 'sweetalert2';
+import { NotifyService } from '../../../shared/notify/notify.service';
+import { UserRole } from '../../enums/role.enum';
 
 
 @Component({
   selector: 'app-user-list',
   standalone: true,
   imports: [
-    CommonModule, 
+    CommonModule,
     FormsModule,
     ModalComponent,
     UserFormComponent,
@@ -26,42 +31,78 @@ export class UserListComponent {
   public userList: IUser[] = [];
   private service = inject(UserService);
   private snackBar = inject(MatSnackBar);
+  private notifyService = inject(NotifyService);
   public currentUser: IUser = {
+
+    name: '',
+    lastname: '',
+    secondLastname: '',
+    countryId: '',
     email: '',
-    last_name: '',
     password: '',
-    name: ''
+    operational: true,
+    createAt: '',
+    updateAt: '',
+
+    //TODO: Debemos hacer una funcion o metodo que me extraiga el id de la persona que esta en la sesion para poner ese id si crea un usuario o lo actualiza
   };
-  
-  constructor() {
+
+  constructor(private countryService: CountryService) {
+    this.loadData();
+    this.countryService.getAllSignal();
+  };
+
+  loadData () {
     this.service.getAllSignal();
-    effect(() => {      
+    effect(() => {
       this.userList = this.service.users$();
     });
-  }
+  };
 
   showDetail(user: IUser, modal: any) {
-    this.currentUser = {...user}; 
+    this.currentUser = { ...user };
     modal.show();
-  }
+  };
+
+  onDeleteUser = (user: IUser) => {
+    this.notifyService.onDeleteConfirmation().then((result) => {
+      if (result.isConfirmed) {
+        this.deleteUser(user)
+      }
+    })
+  };
 
   deleteUser(user: IUser) {
     this.service.deleteUserSignal(user).subscribe({
       next: () => {
-        this.snackBar.open('User deleted', 'Close', {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          duration: 5 * 1000,
-        });
+        this.notifyService.onSuccess()
+        this.loadData();
       },
       error: (error: any) => {
-        this.snackBar.open('Error deleting user', 'Close', {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
+        this.notifyService.onError();
       }
     })
+  };
+
+  public getRole(roleId: UserRole|undefined): string {
+    if (roleId) {
+      return UserRole[roleId];
+    }
+    return '---';
   }
 
-}
+  public getCountry(countryId: string|undefined): string {
+    if (countryId) {
+      return this.countryService.countriesSig().find(country => country.id === countryId)?.name ?? '---';
+    }
+    return '---';
+  }
+
+  public getDate(value: any): Date|null {
+    if (value) {
+      return new Date(value);
+    }
+    return null;
+  }
+
+};

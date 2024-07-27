@@ -4,8 +4,6 @@ import { FormsModule, NgModel } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { ModalComponent } from "../../../components/modal/modal.component";
-import { IUser } from '../../../interfaces';
-import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-login',

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ILoginResponse, IResponse, IUser } from '../interfaces';
+import { ILoginResponse, IResponse } from '../interfaces/index.interface';
 import { Observable, firstValueFrom, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { IUser } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root',

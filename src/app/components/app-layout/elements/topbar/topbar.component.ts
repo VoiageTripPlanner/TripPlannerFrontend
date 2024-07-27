@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../services/auth.service';
-import { IUser } from '../../../../interfaces';
 import { LayoutService } from '../../../../services/layout.service';
 import { MyAccountComponent } from '../../../my-account/my-account.component';
+import { IUser } from '../../../../interfaces/user.interface';
 
 @Component({
   selector: 'app-topbar',

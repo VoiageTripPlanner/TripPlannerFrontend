@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { MapsComponent } from "../../components/maps/maps.component";
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [],
+  imports: [MapsComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })

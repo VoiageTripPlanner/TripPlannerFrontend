@@ -1,0 +1,37 @@
+$background-color-white: #ffffff;
+$background-color-grey: #b4b4b4;
+$background-color-grey-light: #f9f9f9;
+
+
+$hover-background-color: #FADCD4;
+$hover-background-color2: #775D68;
+$sidebar-color: #4B2137;
+$active-background-color: #6D3C52;
+
+
+.width-100 {
+    width: 100%;
+}
+
+
+//Colores barra 
+
+.custom-progress-bar-lodge {
+    background-color: $hover-background-color2;
+}
+
+.custom-progress-bar-flight {
+    background-color: $sidebar-color;
+}
+
+.custom-progress-bar-food {
+    background-color: $active-background-color;
+}
+
+.custom-progress-bar-activities {
+    background-color: $hover-background-color;
+}
+
+.custom-progress-bar-others {
+    background-color: $background-color-grey;
+}

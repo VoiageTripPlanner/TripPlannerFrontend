@@ -1,6 +1,5 @@
 import { Injectable, Signal, signal } from '@angular/core';
 import { BaseService } from './base-service';
-import { IResponse } from '../interfaces';
 import { ICurrency } from '../interfaces/currency.interface';
 
 @Injectable({

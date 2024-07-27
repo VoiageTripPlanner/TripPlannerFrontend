@@ -1,21 +1,28 @@
 import { Component, inject } from '@angular/core';
 import { LoaderComponent } from '../../components/loader/loader.component';
 import { ModalComponent } from '../../components/modal/modal.component';
-import { ISearchParameters } from '../../interfaces/gFlights-response.interface';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { GFlightsS0ervice } from '../../services/api-request/gFlights.service';
 import { LodgeCardComponent } from '../../components/lodge/lodge-card/lodge-card.component';
 import { MapComponent } from '../../components/map/map.component';
+import { FlightCardComponent } from "../../components/flight/flight-card/flight-card.component";
 
 @Component({
   selector: 'app-flights',
+  standalone: true,
+  imports: [
+    LodgeCardComponent,
+    MapComponent,
+    LoaderComponent,
+    ModalComponent,
+    CommonModule,
+    FormsModule,
+    FlightCardComponent
+],
+  templateUrl: './flights.component.html',
+  styleUrl: './flights.component.scss'
 
-  service = inject(GFlightsService);
-
-  destino: string = 'Tokyo';
-  checkIn: Date = new Date('2024-08-07');
-  checkOut: Date = new Date('2024-08-14');
-  resultado: any;
+})
+export class FlightsComponent {
 
 }

@@ -9,8 +9,8 @@ import { AdminRoleGuard } from './guards/admin-role.guard';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { GuestGuard } from './guards/guest.guard';
 import { IRole } from './interfaces/role.interface';
-import { LodgeComponent } from './pages/lodge/lodge.component';
-
+import { LodgeComponent} from './pages/lodge/lodge.component';
+import { FlightsComponent } from './pages/flights/flights.component';
 export const routes: Routes = [
   {
     path: 'login',
@@ -77,6 +77,18 @@ export const routes: Routes = [
           icon:'bi bi-duffle-fill'
         }
       },
+      {
+        path: 'flight',
+        component: FlightsComponent,
+        data: { 
+          authorities: [
+            IRole.admin, 
+            IRole.user
+          ],
+          name: 'Flight',
+          icon:'bi bi-duffle-fill'
+        }
+      },   
 
     ],
   },

@@ -1,30 +1,25 @@
 import { GFlightsBaseService } from './g-flights-base-service';
 import { Injectable, signal } from '@angular/core';
-import { IFlights } from '../interfaces/flights';
-import { Observable, throwError } from 'rxjs';
-import { IResponse } from '../interfaces';
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-
-import { environment } from '../../environments/environment';
-import { catchError } from 'rxjs/operators';
+import { OtherFlight, SearchParameters } from '../interfaces/google-flights-response.interface';
 
 
 @Injectable({
   providedIn: 'root',
 })
-export class GFlightsResponseService extends GFlightsBaseService<IFlights>   {
+export class GFlightsResponseService extends GFlightsBaseService<OtherFlight>   {
 
 
-  private flightsListSignal = signal<IFlights[]>([]);
-
+  private flightsListSignal = signal<OtherFlight>({});
+  get flights$() {
+    return this.flightsListSignal;
   };
 
-  getAllHotelsSignal(searchParams:ISearchParameters) {
+  getAllHotelsSignal(searchParams:SearchParameters) {
 
     debugger;
     this.searchFlights(searchParams).subscribe({
       next: (response: any) => {
-        this.hotelsListSignal.set(response);
+        this.flightsListSignal.set(response.other_flights);
         console.log(response);
         response.reverse();
       },
@@ -33,4 +28,5 @@ export class GFlightsResponseService extends GFlightsBaseService<IFlights>   {
         console.error('Error fetching users', error);
       }
     });
-	
+  };
+}

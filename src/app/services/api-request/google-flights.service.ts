@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { BaseService } from '../base-service';
-import { IGFlightsResponse, SearchParameters } from '../../interfaces/gFlights-Response';
+import { IGFlightsResponse, OtherFlight, SearchParameters } from '../../interfaces/google-flights-response.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,7 @@ import { IGFlightsResponse, SearchParameters } from '../../interfaces/gFlights-R
 export class GoogleFlightsService extends BaseService<IGFlightsResponse> {
   protected override source: string = 'api/flights';
 
-  private gFlightsResponseSignal = signal<IGFlightsResponse[]>([]);
+  private gFlightsResponseSignal = signal<OtherFlight>({});
 
 
   get googleFlightsResponse$() {

@@ -1,5 +1,5 @@
 export interface IGFlightsResponse{
-Airport: any;
+    Airport: any;
     search_metadata?:   SearchMetadata;
     search_parameters?: SearchParameters;
     other_flights?:     OtherFlight[];
@@ -7,8 +7,8 @@ Airport: any;
 }
 
 export interface OtherFlight {
-    flights?:          Flight[];
-    layovers?:         Layover[];
+   flights?:          Flight[];
+    layovers?:         Layover[]; 
     total_duration?:   number;
     carbon_emissions?: CarbonEmissions;
     price?:            number;

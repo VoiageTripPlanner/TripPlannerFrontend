@@ -3,14 +3,15 @@
     <div class="align-boxes">
         <div class="col-md-6 flight-container">
 
-            @for (item of googleFlightsResponseList   ; track trackByIndex) {
-                <div class="hotel-card align-boxes">
+            @for (item of googleFlightsResponseList.flights   ; track trackByIndex) {
+                <div class="flight-card align-boxes">
 
                     <div class="information-container">
     
                         <div class="align-boxes space-between">
-                            <h1 class="bold-text font-size-title">{{item.departure_airport?.id || ''}}</h1>
-                            <h1 class="move-to-right font-size-price">Total: {{item.booking_token?.lowest}}</h1>
+                            <h1 class="bold-text font-size-title">{{item.departure_airport}}</h1>
+                            <h2 class="move-to-right font-size-price">Total: {{item.arrival_airport?.id}}</h2>
+                            
                         </div>
     
                         <div class="align-boxes space-between">

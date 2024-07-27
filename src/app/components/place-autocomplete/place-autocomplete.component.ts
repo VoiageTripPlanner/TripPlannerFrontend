@@ -52,14 +52,14 @@ export class PlaceAutocompleteComponent implements OnInit {
   private ngZone: NgZone;
   private googleService: GoogleService;
   private router: Router;
+  private geocoder: (new () => google.maps.Geocoder) | undefined;
 
   constructor(ngZone: NgZone, googleService: GoogleService, router: Router) {
     this.ngZone = new NgZone({ enableLongStackTrace: false });
     this.googleService = new GoogleService();
     this.router = new Router();
+    this.geocoder = google.maps.Geocoder;
   }
-
-
 
   ngOnInit() {}
 
@@ -77,22 +77,22 @@ export class PlaceAutocompleteComponent implements OnInit {
           location: place?.geometry?.location,
           imageUrl: this.getPhotoUrl(place),
           iconUrl: place?.icon,
-          //Mandar para o backend
-          
+          latitude: place?.geometry?.location?.lat() ?? 0,
+          longitude: place?.geometry?.location?.lng(),          
         };
         this.googleService.getPlaceRecomendations(result);
         this.placeChanged.emit(result);
         console.log(JSON.stringify(result, null, 4));
 
-       // if (result.location) {
-        //  this.findNearbyPlaces(result.location);
-        //}
+      // if (result.location) {
+      //  this.findNearbyPlaces(result.location);
+      //  }
       });
     });
 
     const map = new google.maps.Map(this.inputField.nativeElement, { // Temporary map to initialize the PlacesService
       center: new google.maps.LatLng(0, 0),
-      zoom: 15,
+      zoom: 10,
     });
     this.placesService = new google.maps.places.PlacesService(map);
   }
@@ -107,13 +107,13 @@ export class PlaceAutocompleteComponent implements OnInit {
 
   findNearbyPlaces(location: google.maps.LatLng) {
     
-    const radiusString = "500"; // Example dynamic or external radius value
+    const radiusString = "50000"; // Example dynamic or external radius value
     const radiusNumber = parseInt(radiusString, 10); // Convert to number
 
     const request = {
       location: location,
       radius: radiusNumber,
-      type: 'cultura',
+      type: 'tourist',
     };
 
     this.placesService?.nearbySearch(request, (results, status) => {

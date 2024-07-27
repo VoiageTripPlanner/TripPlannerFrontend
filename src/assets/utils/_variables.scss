@@ -267,7 +267,7 @@ $sidebar-arrow-color: $theme-body-font-color;
 $sidebar-open-icon: "\f107";
 $sidebar-close-icon: "\f105";
 $sidebar-icon-font-family: $font-awesome;
-$sidebar-height: calc(100vh - 115px);
+$sidebar-height: calc(100vh - 69px);
 $sidebar-compact-width: 265px;
 
 //Header settings
@@ -304,6 +304,7 @@ $header-wrapper-nav-icon-color: $theme-font-color;
 $header-wrapper-nav-icon-align: middle;
 $header-size: 136px;
 $box-layout-space: 40px;
+$footer-height: 50px;
 
 // widgets variables
 $widget-shadow: 1px 2px 21px -2px rgba(214, 214, 227, 0.83);

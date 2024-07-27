@@ -20,4 +20,9 @@ export class MyAccountComponent implements OnInit {
     this.service.logout();
     this.router.navigateByUrl('/login');
   }
+
+  updateProfile() {
+    this.router.navigateByUrl('/app/update-user');
+  }
+
 }

@@ -1,6 +1,5 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, Signal, signal } from '@angular/core';
 import { BaseService } from './base-service';
-import { Observable, catchError, tap, throwError } from 'rxjs';
 import { ICountry } from '../interfaces/country.interface';
 
 @Injectable({
@@ -8,20 +7,24 @@ import { ICountry } from '../interfaces/country.interface';
 })
 export class CountryService extends BaseService<ICountry> {
   protected override source: string = 'country';
-  private countryListSignal = signal<ICountry>({});
-  get country$() {
-    return this.countryListSignal;
+  private countryListSig = signal<ICountry[]>([]);
+
+  public get countriesSig(): Signal<ICountry[]> {
+    return this.countryListSig;
   }
-  getAllSignal() {
+
+  public getAllSignal(): void {
     this.findAll().subscribe({
       next: (response: any) => {
-        response.reverse();
-        this.countryListSignal.set(response);
+        if (response) {
+          this.countryListSig.set(response);
+        } else {
+          this.countryListSig.set([]);
+        }
       },
       error: (error: any) => {
-        console.error('Error fetching users', error);
+        console.error('Error fetching countries', error);
       }
     });
   }
-
 }

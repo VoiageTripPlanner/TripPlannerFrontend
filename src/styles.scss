@@ -50,7 +50,7 @@ body[class="dark-only"] {
 @import "./assets/layout/layout.scss";
 //end template styles
 
-html, body { 
+body { 
   height: 100%; 
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -58,4 +58,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .error-snackbar .mdc-snackbar__surface{
   background-color: rgb(197, 49, 49) !important;
+}
+
+.btn-primary {
+  background: #4B2137;
+
+  &:disabled {
+    background: #775D68;
+  }
+
+  &:hover {
+    background: #6D3052;
+  }
 }

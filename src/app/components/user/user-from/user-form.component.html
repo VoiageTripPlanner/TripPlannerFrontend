@@ -49,7 +49,7 @@
         <input #last_name="ngModel" type="text" class="form-control" id="last_name" 
           name="last_name" 
           placeholder="Hernández"
-          [(ngModel)]="user.last_name" 
+          [(ngModel)]="user.lastname" 
           [ngClass]="{ 
             'is-invalid': last_name.invalid && last_name.touched,
             'is-valid': last_name.valid && last_name.touched

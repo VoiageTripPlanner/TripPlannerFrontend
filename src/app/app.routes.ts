@@ -9,8 +9,12 @@ import { AdminRoleGuard } from './guards/admin-role.guard';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { GuestGuard } from './guards/guest.guard';
 import { IRole } from './interfaces/role.interface';
-import { LodgeComponent} from './pages/lodge/lodge.component';
-import { FlightsComponent } from './pages/flights/flights.component';
+import { LodgeComponent } from './pages/lodge/lodge.component';
+import { ResetpasswordComponent } from './pages/resetpassword/resetpassword.component';
+import { ValidateOTPComponent } from './pages/validate-otp/validate-otp.component';
+import { ActivitiesComponent } from './pages/activities/activities.component';
+import { FoodComponent } from './pages/food/food.component';
+
 export const routes: Routes = [
   {
     path: 'login',
@@ -20,6 +24,16 @@ export const routes: Routes = [
   {
     path: 'signup',
     component: SigUpComponent,
+    canActivate: [GuestGuard],
+  },
+  {
+    path: 'reset-password',
+    component: ResetpasswordComponent,
+    canActivate: [GuestGuard],
+  },
+  {
+    path: 'validate-otp',
+    component: ValidateOTPComponent,
     canActivate: [GuestGuard],
   },
   {
@@ -74,6 +88,18 @@ export const routes: Routes = [
             IRole.user
           ],
           name: 'Lodge',
+          icon:'bi bi-duffle-fill'
+        }
+      },
+      {
+        path: 'food',
+        component: FoodComponent,
+        data: { 
+          authorities: [
+            IRole.admin, 
+            IRole.user
+          ],
+          name: 'Food',
           icon:'bi bi-duffle-fill'
         }
       },

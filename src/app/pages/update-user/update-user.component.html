@@ -1,0 +1,78 @@
+
+<div class="login-container">
+    <div class="container-voiage">
+      <img src="../../../../assets/img/Letters_Voiage.webp" class="voiage-image"/>
+    </div>
+    <div class="d-flex align-items-center justify-content-center mt-4">
+      <div class="login-card">
+        <div class="w-100">
+  
+          <div class="login-main">
+  
+            <form (ngSubmit)="handleUpdate($event)" autocomplete="off" #frm="ngForm">
+              <div class="mb-3 ">
+                <h1 class="yeseva-one-regular font-size-4">Reset Password</h1>
+              </div>
+  
+              <div class="custom-line">
+  
+              </div>
+  
+              <div class="form-group mb-3 input-horizontal-margin">
+                <label for="name" class="form-label mb-2">
+                  Name
+                </label>
+                <input #name="ngModel" type="text" class="form-control" id="name" name="name"
+                  placeholder="Name" [(ngModel)]="updateUserForm.name" [ngClass]="{
+                    'is-invalid': name.invalid && name.touched,
+                    'is-valid': name.valid && name.touched
+                  }" required />
+                <div *ngIf="name.invalid" class="invalid-feedback">
+                  Please add a valid email
+                </div>
+              </div>
+                
+              <div class="form-group mb-3 input-horizontal-margin">
+                <label for="last_name" class="form-label mb-2">
+                  Last Name
+                </label>
+                <input #last_name="ngModel" type="text" class="form-control" id="last_name" name="last_name"
+                  placeholder="Last Name" [(ngModel)]="updateUserForm.last_name" [ngClass]="{
+                    'is-invalid': last_name.invalid && last_name.touched,
+                    'is-valid': last_name.valid && last_name.touched
+                  }" required />
+                <div *ngIf="last_name.invalid" class="invalid-feedback">
+                  Please add a valid email
+                </div>
+              </div>
+
+              <div class="form-group mb-3 input-horizontal-margin">
+                <label for="second_last_name" class="form-label mb-2">
+                  Second Last Name
+                </label>
+                <input #second_last_name="ngModel" type="text" class="form-control" id="second_last_name" name="second_last_name"
+                  placeholder="Second Last Name" [(ngModel)]="updateUserForm.second_last_name" [ngClass]="{
+                    'is-invalid': second_last_name.invalid && second_last_name.touched,
+                    'is-valid': second_last_name.valid && second_last_name.touched
+                  }" required />
+                <div *ngIf="second_last_name.invalid" class="invalid-feedback">
+                  Please add a valid email
+                </div>
+              </div>
+
+              <div class="form-group mb-0 input-horizontal-margin">
+                <button class="btn btn-login btn-block w-100 yeseva-one-regular" type="submit">
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="footer-line"></div>
+      <img src="../../../../assets/icons/Round_Voiage_2.webp" alt="Logo" class="footer-logo">
+  </footer>
+  </div>
+  

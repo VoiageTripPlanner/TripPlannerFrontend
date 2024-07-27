@@ -35,7 +35,7 @@
                         <div class="align-boxes space-between">
                             <button type="button" class="btn btn-outline-info ">View in map</button>
                             <button type="button" class="btn btn-outline-dark" (click)="visitSite(item.link)">Go to the Site</button>
-                            <button type="button" class="btn btn-outline-success">Select option </button>
+                            <button type="button" class="btn btn-outline-success" (click)="selectOption(item.total_rate?.extracted_lowest)">Select option </button>
     
                         </div>
     

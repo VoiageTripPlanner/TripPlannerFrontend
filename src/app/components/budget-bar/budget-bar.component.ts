@@ -20,6 +20,7 @@ export class BudgetBarComponent implements OnInit {
   
   amount = 100;
   amount2 = 50;
+  amount3 = 70;
   clasification = 'lodge'
 
   constructor() {
@@ -31,8 +32,9 @@ export class BudgetBarComponent implements OnInit {
 
   ngOnInit() {
     this.budgetService.setBudget(this.budgetQuantity);
-    this.increaseSpending(this.amount,'lodge');
+    // this.increaseSpending(this.amount,'lodge');
     this.increaseSpending(this.amount2,'food');
+    this.increaseSpending(this.amount3,'activities');
   }
 
   increaseSpending(amount: number, clasification: ClasificationType) {
@@ -40,23 +42,29 @@ export class BudgetBarComponent implements OnInit {
 
     switch (clasification) {
       case 'flights':
-        this.budgetQuantity.flightAmount += amount;
+        this.budgetQuantity.flightAmount = amount;
         break;
       case 'lodge':
-        this.budgetQuantity.lodgeAmount += amount;
+        this.budgetQuantity.lodgeAmount = amount;
         break;
       case 'food':
-        this.budgetQuantity.foodAmount = this.budgetQuantity.foodAmount ? this.budgetQuantity.foodAmount + amount : amount;
+        this.budgetQuantity.foodAmount = amount;
         break;
       case 'activities':
-        this.budgetQuantity.activitiesAmount = this.budgetQuantity.activitiesAmount ? this.budgetQuantity.activitiesAmount + amount : amount;
+        this.budgetQuantity.activitiesAmount = amount;
         break;
       case 'other':
-        this.budgetQuantity.otherAmount = this.budgetQuantity.otherAmount ? this.budgetQuantity.otherAmount + amount : amount;
+        this.budgetQuantity.otherAmount =  amount;
         break;
     }
 
-    this.budgetQuantity.total += amount;
+    this.budgetQuantity.total = (
+                                  this.budgetQuantity.flightAmount
+                                  +this.budgetQuantity.lodgeAmount
+                                  +(this.budgetQuantity.foodAmount ? this.budgetQuantity.foodAmount : 0 )
+                                  +(this.budgetQuantity.activitiesAmount ? this.budgetQuantity.activitiesAmount : 0 )
+                                  +(this.budgetQuantity.otherAmount ? this.budgetQuantity.otherAmount : 0 )
+                                );
     this.budgetService.setBudget(this.budgetQuantity);
 
   }

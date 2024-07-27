@@ -8,8 +8,9 @@ import { GoogleHotelService } from '../../services/api-request/google-hotel.serv
 import { LodgeCardComponent } from '../../components/lodge/lodge-card/lodge-card.component';
 import { MapComponent } from '../../components/map/map.component';
 import { ITripForm } from '../../interfaces/trip.interface';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TripService } from '../../services/trip.service';
+import { BudgetBarComponent } from '../../components/budget-bar/budget-bar.component';
 
 @Component({
   selector: 'app-lodge',
@@ -19,6 +20,7 @@ import { TripService } from '../../services/trip.service';
     MapComponent,
     LoaderComponent,
     ModalComponent,
+    BudgetBarComponent,
     CommonModule,
     FormsModule
   ],
@@ -27,13 +29,18 @@ import { TripService } from '../../services/trip.service';
 })
 export class LodgeComponent {
 
-  tripFormService=inject(TripService);
-  
-  initialForm:ITripForm;
+  tripFormService = inject(TripService);
 
-  constructor(){
-    this.initialForm=this.tripFormService.tripForm$();  
+  initialForm: ITripForm;
+
+  constructor(private router: Router,) {
+    this.initialForm = this.tripFormService.tripForm$();
   }
+
+  navigateToDashboard() {
+    this.router.navigateByUrl('app/dashboard')
+  }
+
 }
 
 

@@ -14,10 +14,11 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { of, throwError } from 'rxjs';
 import { MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
 import { importProvidersFrom } from '@angular/core';
-import { IUser } from '../../../interfaces/user';
+import { IUser } from '../../../interfaces/user.interface';
 import { ICountry } from '../../../interfaces/country.interface';
 import { ICurrency } from '../../../interfaces/currency.interface';
-import { ILoginResponse } from '../../../interfaces';
+import { ILoginResponse } from '../../../interfaces/index.interface';
+
 
 describe('SigUpComponent', () => {
   let component: SigUpComponent;

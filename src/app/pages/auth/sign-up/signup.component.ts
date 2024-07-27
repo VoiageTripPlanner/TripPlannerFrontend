@@ -14,7 +14,7 @@ import { ICurrency } from '../../../interfaces/currency.interface';
 import { passwordMatchValidator } from '../../../validators/password-match.validator';
 import { CountryService } from '../../../services/country.service';
 import { CurrencyService } from '../../../services/currency.service';
-import { IUser } from '../../../interfaces/user';
+import { IUser } from '../../../interfaces/user.interface';
 
 @Component({
   selector: 'app-signup',

@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { AgentGamesConfigComponent } from '../agent-games-config/agent-games-config.component';
 import { ModalComponent } from '../../modal/modal.component';
-import { IGame } from '../../../interfaces';
+import { IGame } from '../../../interfaces/index.interface';
 
 @Component({
   selector: 'app-agent-games-table',

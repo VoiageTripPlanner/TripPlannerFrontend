@@ -13,7 +13,7 @@ import Swal, { SweetAlertResult } from 'sweetalert2';
 import { NotifyService } from '../../../shared/notify/notify.service';
 import { UserService } from '../../../services/user.service';
 import { signal } from '@angular/core';
-import { IUser } from '../../../interfaces/user';
+import { IUser } from '../../../interfaces/user.interface';
 
 describe('UserListComponent', () => {
     let component: UserListComponent;

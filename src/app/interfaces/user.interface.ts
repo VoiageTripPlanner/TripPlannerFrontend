@@ -1,6 +1,6 @@
-import { IAuthority } from ".";
-import { ICountry } from "./country";
-import { IRoleDefine } from "./role";
+import { IAuthority } from "./index.interface";
+import { ICountry } from "./country.interface";
+import { IRoleDefine } from "./role.interface";
 
 export interface IUser {
   id?: number;

@@ -20,12 +20,12 @@ export class TripService extends BaseService<ITripForm> {
 
     const getNextDay = (): Date => {
       const today = new Date();
-      return new Date(today.setDate(today.getDate() + 1));
+      return new Date(today.setDate(today.getDate() + 3));
     };
 
     const getTowDaysAhead = (): Date => {
       const today = new Date();
-      return new Date(today.setDate(today.getDate() + 2));
+      return new Date(today.setDate(today.getDate() + 4));
     };
 
 

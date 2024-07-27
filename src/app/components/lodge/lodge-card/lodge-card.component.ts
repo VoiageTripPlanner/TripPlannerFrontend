@@ -42,26 +42,23 @@ export class LodgeCardComponent {
   constructor() {
 
     this.initialForm=this.tripFormService.tripForm$();    
-    this.sendData();
+    // this.sendData();
 
   };
   
   
-  
-  
   sendData() {
-    const datos: ISearchParameters = {
+    const data: ISearchParameters = {
       q: this.initialForm.q,
       check_in_date: formatDateToYYYYMMDD(this.initialForm.check_in_date),
       check_out_date: formatDateToYYYYMMDD(this.initialForm.check_out_date)
     };
     
-    this.service.getAllSignal(datos);
+    this.service.getAllSignal(data);
 
     effect(() => {
 
       this.googleHotelResponseList = this.service.googleHotelResponse$();
-      console.log(this.googleHotelResponseList);
     })
   };
 

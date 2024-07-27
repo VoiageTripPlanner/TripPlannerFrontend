@@ -46,6 +46,17 @@ export const routes: Routes = [
     }
   },
   {
+    path: 'food',
+    component: FoodComponent,
+    data: { 
+      authorities: [
+        IRole.admin, 
+        IRole.user
+      ],
+      name: 'Food',
+    }
+  },
+  {
     path: 'app',
     component: AppLayoutComponent,
     canActivate: [AuthGuard],

@@ -3,8 +3,8 @@ import { Component, inject, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { ModalComponent } from '../../components/modal/modal.component';
-import { ICountry, IUser } from '../../interfaces';
 import { UserService } from '../../services/user.service';
+import { IUser } from '../../interfaces/user.interface';
 
 @Component({
   selector: 'app-update-user',

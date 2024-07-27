@@ -7,6 +7,9 @@ import { ModalComponent } from '../../modal/modal.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NotifyService } from '../../../shared/notify/notify.service';
+import { MapsComponent } from '../../maps/maps.component';
+import { TripService } from '../../../services/trip.service';
+import { ITripForm } from '../../../interfaces/trip.interface';
 
 @Component({
   selector: 'app-food-card',
@@ -15,6 +18,7 @@ import { NotifyService } from '../../../shared/notify/notify.service';
     MapComponent,
     LoaderComponent,
     ModalComponent,
+    MapsComponent,
     CommonModule,
     FormsModule
   ],
@@ -25,35 +29,29 @@ export class FoodCardComponent {
 
   service = inject(YelpFoodService);
   notifyService = inject(NotifyService);
+  tripFormService = inject(TripService);
   yelpFoodResponseList: IFoodBusiness[] = []
 
-  latitude: number = 35.659107;
-  longitude:number = 139.700343;
-  resultado: any;
+  initialForm: ITripForm;
 
   constructor() {
+
+    this.initialForm = this.tripFormService.tripForm$();
     this.sendData();
   };
 
   sendData() {
-    const datos: IYelpApiSearchParams = {
-      latitude: this.latitude,
-      longitude: this.longitude,
+    
+    const data: IYelpApiSearchParams = {
+      latitude: this.initialForm.latitude,
+      longitude: this.initialForm.longitude,
     };
 
-
-
-    this.service.getAllSignal(datos);
+    this.service.getAllSignal(data);
     effect(() => {
-      
       this.yelpFoodResponseList = this.service.yelpFoodResponse$();
-      console.log(this.yelpFoodResponseList);
     })
 
-  };
-
-  trackByIndex(index: number, googleHotelResponseList: IFoodBusiness): number {
-    return index;
   };
 
   generateId() {
@@ -62,7 +60,7 @@ export class FoodCardComponent {
 
   visitSite(url: string | undefined): void {
     if (url) {
-      window.open(url,'_blank') ;
+      window.open(url, '_blank');
     } else {
       this.notifyService.onNoData();
     }

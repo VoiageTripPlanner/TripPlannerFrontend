@@ -1,4 +1,4 @@
-<div class="container-box">
+<div class="container-box margin-2">
     <div class="align-boxes">
         <div class="col-md-6 flight-container">
             @for (item of googleFlightsResponseList ; track trackByIndex) {
@@ -9,21 +9,20 @@
 
                 <div class="information-container">
                     <div class="align-boxes space-between">
-                        <h1 class="bold-text font-size-title">{{flight.departure_airport?.name}}</h1>
-                        <h1 class="bold-text font-size-title">{{flight.arrival_airport?.name}}</h1>
+                        <h2 class="bold-text font-size-title">{{flight.departure_airport?.name}}</h2>
+                        <h2 class="bold-text font-size-title right-aligned-text">{{flight.arrival_airport?.name}}</h2>
                     </div>
 
 
                     <div class="align-boxes space-between">
                         <h3>Departure: {{flight.departure_airport?.time}}</h3>
-                        <h3>Arrival: {{flight.arrival_airport?.time}}</h3>
-
+                        <h3 class="right-aligned-text">Arrival: {{flight.arrival_airport?.time}}</h3>
                     </div>
 
                     <div class="width-100">
                         <h2>Included:</h2>
                         <ul class="circle-list">
-                            @for (amenity of flight.extensions   ; track generateId) {
+                            @for (amenity of flight.extensions ; track generateId) {
                                 <li>{{amenity}}</li>
 
                             }

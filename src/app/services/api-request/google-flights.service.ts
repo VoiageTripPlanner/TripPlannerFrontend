@@ -22,10 +22,8 @@ export class GoogleFlightsService extends BaseService<IGFlightsResponse> {
 
   getAllSignal(searchParams: SearchParameters) {
 
-    debugger
     this.bringInfoWithParams(searchParams).subscribe({
       next: (response: any) => {
-        debugger;
         console.log(response.other_flights);
         this.gFlightsResponseSignal.set(response.other_flights);
       },

@@ -108,7 +108,7 @@ $image-backgorund-color: #FADCD4;
 }
 
 .font-size-title{
-    font-size: 2rem;  
+    font-size: 1.6rem;  
 }
 
 .font-size-price{
@@ -118,6 +118,10 @@ $image-backgorund-color: #FADCD4;
 .width-100{
     width: 100%;
 }
+
+.right-aligned-text {
+    text-align: end;
+  }
 
 //Lista no ordenada 
 
@@ -130,4 +134,8 @@ $image-backgorund-color: #FADCD4;
 }
 .circle-list li {
     break-inside: avoid; 
+}
+
+.margin-2{
+    margin: 2%;
 }

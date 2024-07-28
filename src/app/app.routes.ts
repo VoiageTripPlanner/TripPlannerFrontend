@@ -14,6 +14,7 @@ import { ResetpasswordComponent } from './pages/resetpassword/resetpassword.comp
 import { ValidateOTPComponent } from './pages/validate-otp/validate-otp.component';
 import { ActivitiesComponent } from './pages/activities/activities.component';
 import { FoodComponent } from './pages/food/food.component';
+import { TripFormComponent } from './pages/trip-form/trip-form.component';
 
 
 export const routes: Routes = [

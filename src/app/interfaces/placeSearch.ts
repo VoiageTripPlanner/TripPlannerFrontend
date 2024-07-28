@@ -8,5 +8,5 @@ export interface IPlaceSearchResult {
     location?: google.maps.LatLng;
   }
   export interface IOpenAIResponse {
-    result?: string;
+    content?: string;
   }

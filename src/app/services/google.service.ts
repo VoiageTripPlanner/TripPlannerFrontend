@@ -1,6 +1,6 @@
 import { Injectable, input, signal } from "@angular/core";
 import { BaseService } from "./base-service";
-import { IPlaceSearchResult } from "../interfaces/placeSearch";
+import { IOpenAIResponse, IPlaceSearchResult } from "../interfaces/placeSearch";
 import { catchError, Observable, tap, throwError } from "rxjs";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { IResponse } from "../interfaces/index.interface";
@@ -12,11 +12,18 @@ import { IResponse } from "../interfaces/index.interface";
   export class GoogleService extends BaseService<IPlaceSearchResult> {
     protected override source: string = 'openai';
 
+    private suggestionsResponseSignal = signal<IOpenAIResponse>({});
+
+    get suggestionsResponseSignal$() {
+      return this.suggestionsResponseSignal;
+    }
+
     //Revive la respuesta de la API desde
     public getPlaceSuggestions (input: string) {
       this.getSuggestions(input).subscribe({
         next: (response: any) => {
           console.log(response.choices[0].message.content);
+          this.suggestionsResponseSignal.set(response.choices[0].message.content);
         },
         error: (error: any) => {
           console.error('Error fetching Travel suggestions', error);

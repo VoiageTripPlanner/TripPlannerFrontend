@@ -1,40 +1,28 @@
-.input-area {
+@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
+
+.yeseva-one-regular {
+    font-family: "Yeseva One", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.title{
+    transform: translateY(30%);
+    padding-left: 1%;
+    font-size: 4vh;
+}
+
+.logo {
+    width: 2.5vw;
+    height: 5vh;
+}
+
+.padding-1 {
+    padding: 1%;
+}
+
+.align-boxes {
+    width: 100%;
     display: flex;
-    gap: 16px;
-    align-items: center;
-  }
-
-  .display-area {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-    height: calc(100vh - 180px);
-
-    > div {
-      width: 30%;
-      overflow: auto;
-      padding: 8px;
-      height: inherit;
-
-      > * {
-        margin-bottom: 16px;
-      }
-    }
-
-    > app-map-display {
-      width: 70%;
-      height: inherit;
-    }
-  }
-
-  .display-area[hidden] {
-    display: none;
-  }
-
-  .container {
-    padding: 24px;
-  }
-
-  app-place-autocomplete {
-    width: 300px;
-  }
+    flex-wrap: nowrap;
+}

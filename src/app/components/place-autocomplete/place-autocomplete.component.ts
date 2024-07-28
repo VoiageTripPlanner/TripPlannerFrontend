@@ -80,7 +80,6 @@ export class PlaceAutocompleteComponent implements OnInit {
           latitude: place?.geometry?.location?.lat() ?? 0,
           longitude: place?.geometry?.location?.lng(),          
         };
-        this.googleService.getPlaceSuggestions(result.address);
         this.placeChanged.emit(result);
         console.log(JSON.stringify(result, null, 4));
 

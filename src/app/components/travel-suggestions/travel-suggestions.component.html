@@ -1,0 +1,33 @@
+<div class="container-box">
+  <div class="container">
+    <div class="input">
+      <h2>Quiero ir a</h2>
+      <app-place-autocomplete
+        (placeChanged)="fromValue = $event"
+        (nearbyPlacesFound)="onNearbyPlacesFound($event)"
+        placeholder="Enter from address..."
+      ></app-place-autocomplete>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h4>Travel Suggestions</h4>
+        <div class="input-group mb-3">
+          <h1>
+            <p class="expanded-text">{{GoogleService.suggestionsResponseSignal$()}}</p>
+          </h1> 
+        </div>
+        <!-- Botón para obtener sugerencias de viaje -->
+        <button (click)="getTravelSuggestions()" class="btn btn-primary">Get Travel Suggestions</button>
+      </div>
+    </div>
+    <!-- <div
+      class="display-area"
+      [hidden]="!fromValue.address && !toValue.address"
+    >
+      <div>
+        <app-place-card [places]="fromNearbyPlaces"></app-place-card>
+        <app-place-card [places]="toNearbyPlaces"></app-place-card>
+      </div>
+    </div> -->
+  </div>
+</div>

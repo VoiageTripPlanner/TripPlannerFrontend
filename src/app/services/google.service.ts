@@ -12,7 +12,7 @@ import { IResponse } from "../interfaces/index.interface";
   export class GoogleService extends BaseService<IPlaceSearchResult> {
     protected override source: string = 'openai';
 
-    private suggestionsResponseSignal = signal<IOpenAIResponse>({});
+    private suggestionsResponseSignal = signal<IOpenAIResponse>({content: ''});
 
     get suggestionsResponseSignal$() {
       return this.suggestionsResponseSignal;

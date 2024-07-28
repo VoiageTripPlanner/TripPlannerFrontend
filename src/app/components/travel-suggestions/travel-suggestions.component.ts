@@ -30,10 +30,17 @@ export class TravelSuggestionsComponent {
   public GoogleService: GoogleService = inject(GoogleService);
   public travelSuggestions!: IOpenAIResponse;
 
+
+
   constructor() {
+    this.getTravelSuggestions();
   }
 
   getTravelSuggestions() {
+    if (!this.fromValue.address) {
+      this.GoogleService.suggestionsResponseSignal$();  
+    }
+      
     const datos : IPlaceSearchResult = {
       address: this.fromValue.address
     };

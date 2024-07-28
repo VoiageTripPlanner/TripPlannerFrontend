@@ -1,7 +1,7 @@
 <div class="container-box">
   <div class="container">
     <div class="input">
-      <h2>Quiero ir a</h2>
+      <h1>I'm interested on going to:</h1>
       <app-place-autocomplete
         (placeChanged)="fromValue = $event"
         (nearbyPlacesFound)="onNearbyPlacesFound($event)"
@@ -10,7 +10,7 @@
     </div>
     <div class>
       <div>
-        <h4>Travel Suggestions</h4>
+        <h1>Travel Suggestions</h1>
         <div >
       
             <p class="expanded-text">{{GoogleService.suggestionsResponseSignal$()}}</p>

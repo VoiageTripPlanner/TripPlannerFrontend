@@ -103,18 +103,6 @@ export const routes: Routes = [
           icon:'bi bi-duffle-fill'
         }
       },
-      {
-        path: 'budget-bar',
-        component: BudgetBarComponent,
-        data: { 
-          authorities: [
-            IRole.admin, 
-            IRole.user
-          ],
-          name: 'Budget Bar',
-          icon:'bi bi-duffle-fill'
-        }
-      },
     ],
   },
 ];

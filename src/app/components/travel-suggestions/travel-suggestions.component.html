@@ -8,13 +8,13 @@
         placeholder="Enter from address..."
       ></app-place-autocomplete>
     </div>
-    <div class="row">
-      <div class="col-md-6">
+    <div class>
+      <div>
         <h4>Travel Suggestions</h4>
-        <div class="input-group mb-3">
-          <h1>
+        <div >
+      
             <p class="expanded-text">{{GoogleService.suggestionsResponseSignal$()}}</p>
-          </h1> 
+           
         </div>
         <!-- Botón para obtener sugerencias de viaje -->
         <button (click)="getTravelSuggestions()" class="btn btn-primary">Get Travel Suggestions</button>

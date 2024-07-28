@@ -1,4 +1,4 @@
-import { Component, effect, inject } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { YelpFoodService } from '../../../services/api-request/yelp-food.service';
 import { IFoodBusiness, IYelpApiSearchParams } from '../../../interfaces/yelp-food-response.interface';
 import { MapComponent } from '../../map/map.component';
@@ -25,6 +25,7 @@ import { ITripForm } from '../../../interfaces/trip.interface';
   templateUrl: './food-card.component.html',
   styleUrl: './food-card.component.scss'
 })
+// export class FoodCardComponent implements OnInit {
 export class FoodCardComponent {
 
   service = inject(YelpFoodService);
@@ -36,23 +37,43 @@ export class FoodCardComponent {
 
   constructor() {
 
-    this.initialForm = this.tripFormService.tripForm$();
+    // this.initialForm = this.tripFormService.tripForm$();
+      this.initialForm = this.tripFormService.getFormData();
     this.sendData();
+
   };
 
+  // ngOnInit(): void {
+  //   debugger;
+  //   this.initialForm = this.tripFormService.getFormData();
+  //   this.sendData();
+
+
+  // }
+
+
   sendData() {
-    
+    debugger;
+
     const data: IYelpApiSearchParams = {
       latitude: this.initialForm.latitude,
       longitude: this.initialForm.longitude,
     };
 
     this.service.getAllSignal(data);
+
+
+    debugger
     effect(() => {
       this.yelpFoodResponseList = this.service.yelpFoodResponse$();
     })
 
+
+
+
+
   };
+
 
   generateId() {
     return Math.random().toString(36).substring(2, 9);

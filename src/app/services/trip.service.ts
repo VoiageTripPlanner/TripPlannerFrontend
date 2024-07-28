@@ -10,6 +10,7 @@ import { ITripForm } from '../interfaces/trip.interface';
 export class TripService extends BaseService<ITripForm> {
   protected override source: string = 'trip';
   private tripFormSignal = signal<ITripForm>(this.onGetDefaultTripForm());
+  private storageKey = 'tripFormData';
 
 
   get tripForm$() {
@@ -65,58 +66,13 @@ export class TripService extends BaseService<ITripForm> {
   };
 
 
+  saveFormData(formData: ITripForm): void {
+    localStorage.setItem(this.storageKey, JSON.stringify(formData));
+  }
 
-  // getAllSignalDetailed() {
-  //   this.findAllDetailed().subscribe({
-  //     next: (response: any) => {
-  //       this.userListSignal.set(response);
-  //       response.reverse();
-  //     },
-  //     error: (error: any) => {
-  //       console.error('Error fetching users', error);
-  //     }
-  //   });
-  // };
-
-
-  // saveUserSignal (user: IUser): Observable<any>{
-  //   return this.add(user).pipe(
-  //     tap((response: any) => {
-  //       this.userListSignal.update( users => [response, ...users]);
-  //     }),
-  //     catchError(error => {
-  //       console.error('Error saving user', error);
-  //       return throwError(error);
-  //     })
-  //   );
-  // };
-
-  // updateUserSignal (user: IUser): Observable<any>{
-  //   return this.edit(user.user_id, user).pipe(
-  //     tap((response: any) => {
-  //       const updatedUsers = this.userListSignal().map(u => u.user_id === user.user_id ? response : u);
-  //       this.userListSignal.set(updatedUsers);
-  //     }),
-  //     catchError(error => {
-  //       console.error('Error saving user', error);
-  //       return throwError(error);
-  //     })
-  //   );
-  // };
-
-  // deleteUserSignal (user: IUser): Observable<any>{
-  //   return this.logicDelete(user.user_id,user).pipe(
-  //     tap((response: any) => {
-  //       const deletedUsers = this.userListSignal().map(u => u.user_id === user.user_id ? response : u);
-  //       console.log(deletedUsers);
-  //       this.userListSignal.set(deletedUsers);
-  //     }),
-  //     catchError(error => {
-  //       console.error('Error saving user', error);
-  //       return throwError(error);
-  //     })
-  //   );
-  // };
-
+  getFormData(): ITripForm {
+    const formData = localStorage.getItem(this.storageKey);
+    return formData ? JSON.parse(formData) : this.onGetDefaultTripForm();
+  }
 
 }

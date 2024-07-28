@@ -47,7 +47,7 @@ export class LodgeCardComponent {
   ) {
 
     this.initialForm=this.tripFormService.tripForm$();    
-    this.sendData();
+    // this.sendData();
 
   };
   

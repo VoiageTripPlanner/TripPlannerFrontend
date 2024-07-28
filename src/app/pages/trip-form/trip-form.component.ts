@@ -50,12 +50,15 @@ export class TripFormComponent {
 
   setTripInfo(formGeneralInfo: any, formFlightInfo: any,event:Event){
     event.preventDefault();
-    ;
+    
     if (formGeneralInfo.valid && formFlightInfo.valid) {
+      debugger
 
       this.tripService.setInitialForm(this.tripFormNgModel);
-      this.router.navigateByUrl('/lodge')
-      // this.router.navigateByUrl('/food')
+      this.tripService.saveFormData(this.tripFormNgModel);
+
+      // this.router.navigateByUrl('/lodge');
+      this.router.navigateByUrl('/food');
 
     } else{
       this.notifyService.onNoFormData();

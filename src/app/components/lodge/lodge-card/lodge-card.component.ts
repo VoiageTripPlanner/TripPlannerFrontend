@@ -70,7 +70,9 @@ export class LodgeCardComponent {
     effect(() => {
       
       this.googleHotelResponseList = this.service.googleHotelResponse$();
-      this.isLoading = false;
+      if (this.googleHotelResponseList.length > 0) {
+        this.isLoading=false;
+      }
     })
   };
 

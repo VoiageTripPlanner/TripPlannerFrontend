@@ -1,4 +1,12 @@
 <!-- Add the required attributes to the google-map component -->
 
-<google-map class="maps" height="100vh" width="100vw" [options]="options"></google-map>
+<div class="maps">
+
+    <div *ngIf="isLoading" class="col-md-6 lodge-container loader-desing">
+        <app-loader></app-loader>
+    </div>
+    
+        <google-map class="maps" height="100vh" width="100vw" [options]="options" (mapReady)="onMapReady()"></google-map>
+
+</div>
 

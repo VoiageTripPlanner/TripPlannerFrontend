@@ -28,12 +28,13 @@ export class FlightCardComponent {
   
   googleFlightsResponseList: OtherFlight []= [];
 
-  // engine: string = 'google_flights';
   type: string = '1';
   departure_id: string = 'PEK';
   arrival_id: string = 'AUS';
   outbound_date: String = "2024-07-30";
   return_date?: String = "2024-08-06";
+  travel_class: number = 1;
+  stops: number = 0;
 
   constructor() {
     this.sendData();
@@ -48,15 +49,37 @@ export class FlightCardComponent {
       return_date: this.return_date,
       type: this.type
     };
+  
+    if (this.type === '1') {
+      datos.return_date = this.return_date || undefined;
+    }else if (this.type === '2') {
+      datos.return_date = this.return_date || undefined;
+    }else {
+      console.log('Invalid type value');
+      return;
+    }
+
+    if (this.travel_class >= 2 || this.travel_class <= 4) {
+      datos.travel_class = this.travel_class;
+    }else {
+      datos.travel_class = 1;
+      return
+    }
+    
+    if (this.stops >= 0 || this.stops <= 3) {
+      datos.stops = this.stops;
+    }else {
+      datos.stops = 0;
+      return
+    }
 
     this.service.getAllSignal(datos);
-
+  
     effect(() => {
-      
       this.googleFlightsResponseList = this.service.googleFlightsResponse$();
       console.log(this.googleFlightsResponseList);
-    })
-  };
+    });
+  }
 
   trackByIndex(index: number, googleFlightsResponseList: OtherFlight): number {
     return index;
@@ -65,7 +88,19 @@ export class FlightCardComponent {
   generateId() {
     return Math.random().toString(36).substring(2, 9);
   }
+  
+  visitSite(url: string | undefined): void {
+    if (url) {
+      window.open(url, '_blank');
+    } else {
+      this.notifyService.onNoData();
+    }
+  };
 
+  onImageError(event: Event) {
+    const target = event.target as HTMLImageElement;
+    target.src = '../../../../assets/img/No_image_available.png';
+  }
 
 
   openLayouts(): void {
@@ -76,5 +111,7 @@ export class FlightCardComponent {
     // }
     console.log('implement layouts')
   };
+
+
 
 }

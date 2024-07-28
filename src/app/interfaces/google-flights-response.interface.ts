@@ -77,7 +77,8 @@ export interface SearchParameters {
     arrival_id?:    string;
     outbound_date?: String;
     return_date?:   String;
-    travel_class?: number;
+    travel_class?:  number;
+    stops?:         number;
 }
 
 export interface ISerpapiPagination {

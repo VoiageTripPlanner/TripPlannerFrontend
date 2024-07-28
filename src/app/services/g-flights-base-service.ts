@@ -20,15 +20,22 @@ export class GFlightsBaseService<T> {
       .set('gl', searchParams.gl || '')
       .set('departure_id', searchParams.departure_id || '')
       .set('arrival_id', searchParams.arrival_id || '')
-      .set('outbound_date', searchParams.outbound_date?.toISOString() || '')
-      .set('travel_class', searchParams.travel_class || '')
+      .set('outbound_date', searchParams.outbound_date?.toString() ?? '')
+      
+      .set('stops', searchParams.stops?.toString() || '');
 
     if (searchParams.type === '1') {
       params = params
         .set('type', searchParams.type || '')
-        .set('return_date', searchParams.return_date?.toISOString() || '');  
+        .set('return_date', searchParams.return_date?.toString() ?? '');  
     } else if (searchParams.type === '2') {
-      // Do nothing, skip capturing the data
+
+    if (parseInt(String(searchParams.travel_class ?? '')) >= 1 && parseInt(String(searchParams.travel_class ?? '')) <= 4) {
+      params = params
+        .set('travel_class', searchParams.travel_class || '');
+    } else  
+
+
     } else {
       alert('Invalid type value');
     }

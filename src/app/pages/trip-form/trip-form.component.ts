@@ -52,13 +52,12 @@ export class TripFormComponent {
     event.preventDefault();
     
     if (formGeneralInfo.valid && formFlightInfo.valid) {
-      debugger
 
       this.tripService.setInitialForm(this.tripFormNgModel);
       this.tripService.saveFormData(this.tripFormNgModel);
 
-      // this.router.navigateByUrl('/lodge');
-      this.router.navigateByUrl('/food');
+      this.router.navigateByUrl('/lodge');
+      // this.router.navigateByUrl('/food');
 
     } else{
       this.notifyService.onNoFormData();

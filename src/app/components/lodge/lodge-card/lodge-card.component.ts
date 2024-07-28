@@ -46,14 +46,21 @@ export class LodgeCardComponent {
     private router: Router,
   ) {
 
-    this.initialForm=this.tripFormService.tripForm$();    
-    // this.sendData();
+    // this.initialForm=this.tripFormService.tripForm$();    
+    // // this.sendData();
+    debugger
+    this.initialForm = this.tripFormService.getFormData();
+    this.sendData();
 
   };
   
   
   sendData() {
+
+    debugger
+    console.log(this.initialForm);
     const data: ISearchParameters = {
+    
       q: this.initialForm.q,
       check_in_date: formatDateToYYYYMMDD(this.initialForm.check_in_date),
       check_out_date: formatDateToYYYYMMDD(this.initialForm.check_out_date)

@@ -14,6 +14,7 @@ import { ResetpasswordComponent } from './pages/resetpassword/resetpassword.comp
 import { ValidateOTPComponent } from './pages/validate-otp/validate-otp.component';
 import { ActivitiesComponent } from './pages/activities/activities.component';
 import { FoodComponent } from './pages/food/food.component';
+import { UpdateUserComponent } from './pages/update-user/update-user.component';
 
 export const routes: Routes = [
   {
@@ -88,6 +89,18 @@ export const routes: Routes = [
             IRole.user
           ],
           name: 'Food',
+          icon:'bi bi-duffle-fill'
+        }
+      },
+      {
+        path: 'update-user',
+        component: UpdateUserComponent,
+        data: { 
+          authorities: [
+            IRole.admin, 
+            IRole.user
+          ],
+          name: 'Update User',
           icon:'bi bi-duffle-fill'
         }
       },

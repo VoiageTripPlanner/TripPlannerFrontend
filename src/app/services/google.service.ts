@@ -1,4 +1,4 @@
-import { Injectable, signal } from "@angular/core";
+import { Injectable, input, signal } from "@angular/core";
 import { BaseService } from "./base-service";
 import { IPlaceSearchResult } from "../interfaces/placeSearch";
 import { catchError, Observable, tap, throwError } from "rxjs";
@@ -13,16 +13,15 @@ import { IResponse } from "../interfaces/index.interface";
     protected override source: string = 'openai';
 
     //Revive la respuesta de la API desde
-    public getPlaceSuggestions (input: string): Observable<any> {
-      return this.get(input).pipe(
-        tap((response: any) => {
-          console.log(response);
-        }),
-        catchError(error => {
-          console.error('Error fetching Google Places', error);
-          return throwError(error);
-        })
-      );
+    public getPlaceSuggestions (input: string) {
+      this.getSuggestions(input).subscribe({
+        next: (response: any) => {
+          console.log(response.choices[0].message.content);
+        },
+        error: (error: any) => {
+          console.error('Error fetching Travel suggestions', error);
+        }
+       });
     };
 
   }

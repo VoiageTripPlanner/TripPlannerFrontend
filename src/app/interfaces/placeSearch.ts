@@ -7,3 +7,6 @@ export interface IPlaceSearchResult {
     iconUrl?: string;
     location?: google.maps.LatLng;
   }
+  export interface IOpenAIResponse {
+    result?: string;
+  }

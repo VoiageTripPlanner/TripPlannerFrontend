@@ -1,3 +1,4 @@
+import { input } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IResponse } from '../interfaces/index.interface';
@@ -30,8 +31,8 @@ export class BaseService<T> {
     return this.http.put<IResponse<T>>(this.source + '/' + id, data);
   }
 
-  public get(input: string=''): Observable<IResponse<T>> {
-    return this.http.get<IResponse<T>>(this.source, { params: { input } });
+  public getSuggestions( query:string ): Observable<IResponse<T>> {
+    return this.http.get<IResponse<T>>(this.source, { params: { query } });
   }
 
   public findAllDetailed(s: string = ''): Observable<IResponse<T[]>> {

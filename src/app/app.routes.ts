@@ -10,6 +10,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { GuestGuard } from './guards/guest.guard';
 import { IRole } from './interfaces/role.interface';
 import { LodgeComponent } from './pages/lodge/lodge.component';
+import { ResetpasswordComponent } from './pages/resetpassword/resetpassword.component';
+import { ValidateOTPComponent } from './pages/validate-otp/validate-otp.component';
 import { ActivitiesComponent } from './pages/activities/activities.component';
 import { FoodComponent } from './pages/food/food.component';
 import { RecomendationComponent } from './pages/recomendation/recomendation.component';
@@ -23,6 +25,16 @@ export const routes: Routes = [
   {
     path: 'signup',
     component: SigUpComponent,
+    canActivate: [GuestGuard],
+  },
+  {
+    path: 'reset-password',
+    component: ResetpasswordComponent,
+    canActivate: [GuestGuard],
+  },
+  {
+    path: 'validate-otp',
+    component: ValidateOTPComponent,
     canActivate: [GuestGuard],
   },
   {

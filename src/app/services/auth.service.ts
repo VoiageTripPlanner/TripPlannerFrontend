@@ -112,4 +112,13 @@ export class AuthService {
   public validateOtp(user: IUser): Observable<IUser> {
     return this.http.post('auth/validate-otp', user);
   }
+
+  public resetPassword(user: IUser): Observable<IUser> {
+    return this.http.post('auth/reset-password', user);
+  }
+
+  
+  public validateOtp(user: IUser): Observable<IUser> {
+    return this.http.post('auth/validate-otp', user);
+  }
 }

@@ -3,19 +3,20 @@ import { ICountry } from "./country.interface";
 import { IRoleDefine } from "./role.interface";
 
 export interface IUser {
-    user_id?: number;
-    name?: string;
-    last_name?: string;
-    second_last_name?: string;
-    country?:ICountry;
-    email?: string;
-    password?: string;
-    operational?:boolean;
-    creation_datetime?: Date;
-    creation_responsible?:number;
-    last_update_datetime?: Date;
-    update_responsible?:number;
-    authorities?: IAuthority[];
-    role?:IRoleDefine;
-  }
+  id?: number;
+  name?: string;
+  lastname?: string;
+  secondLastname?: string;
+  email?: string;
+  birthDate?: Date;
+  password?: string;
+  operational?: boolean;
+  createAt?: string;
+  updateAt?: string;
+  authorities?: IAuthority[];
+  countryId?: string;
+  currencyId?: string;
+  roleId?: number;
+  otp?: string;
+}
   

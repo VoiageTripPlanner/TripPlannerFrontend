@@ -10,7 +10,6 @@ import { NotifyService } from '../../../shared/notify/notify.service';
 import { TripService } from '../../../services/trip.service';
 import { ITripForm } from '../../../interfaces/trip.interface';
 import { formatDateToYYYYMMDD } from '../../../shared/utils/date-formatter';
-import { MapsComponent } from '../../maps/maps.component';
 
 @Component({
   selector: 'app-lodge-card',
@@ -21,7 +20,7 @@ import { MapsComponent } from '../../maps/maps.component';
     ModalComponent,
     CommonModule,
     FormsModule,
-    MapsComponent
+    MapComponent
 
   ],
   templateUrl: './lodge-card.component.html',

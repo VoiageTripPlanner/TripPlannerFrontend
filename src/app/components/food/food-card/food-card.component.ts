@@ -7,7 +7,6 @@ import { ModalComponent } from '../../modal/modal.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NotifyService } from '../../../shared/notify/notify.service';
-import { MapsComponent } from '../../maps/maps.component';
 import { TripService } from '../../../services/trip.service';
 import { ITripForm } from '../../../interfaces/trip.interface';
 
@@ -18,7 +17,7 @@ import { ITripForm } from '../../../interfaces/trip.interface';
     MapComponent,
     LoaderComponent,
     ModalComponent,
-    MapsComponent,
+    MapComponent,
     CommonModule,
     FormsModule
   ],

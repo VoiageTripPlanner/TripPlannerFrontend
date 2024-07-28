@@ -8,6 +8,7 @@ import { baseUrlInterceptor } from './interceptors/base-url.interceptor';
 import { accessTokenInterceptor } from './interceptors/access-token.interceptor';
 import { handleErrorsInterceptor } from './interceptors/handle-errors.interceptor';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,6 +20,7 @@ export const appConfig: ApplicationConfig = {
         accessTokenInterceptor,
         //handleErrorsInterceptor
       ])
-    ), provideAnimationsAsync(), provideAnimationsAsync()
+    ), provideAnimationsAsync(),
+    provideNativeDateAdapter()
   ]
 };

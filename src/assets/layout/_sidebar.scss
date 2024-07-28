@@ -696,7 +696,9 @@
     background-color: $main-body-color;
 
     .page-body {
-      min-height: calc(100vh - #{$header-size});
+      $extra-height: $header-size + $footer-height;
+      min-height: calc(100vh - #{$extra-height});
+
       margin-top: $header-size;
       padding: $page-body-padding;
       position: relative;
@@ -1988,7 +1990,7 @@
       }
 
       .page-body {
-        min-height: calc(93vh - 80px);
+        min-height: calc(100vh - 130px);
         margin-top: 80px;
         margin-left: $sidebar-compact-width;
         // animation: pagebody 1000ms ease-in-out;

@@ -7,7 +7,6 @@ import { ModalComponent } from '../../modal/modal.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NotifyService } from '../../../shared/notify/notify.service';
-import { MapsComponent } from '../../maps/maps.component';
 import { TripService } from '../../../services/trip.service';
 import { ITripForm } from '../../../interfaces/trip.interface';
 import { BudgetService } from '../../../services/budged.service';
@@ -21,7 +20,7 @@ import { IBudgetPrices } from '../../../interfaces/budget.interface';
     MapComponent,
     LoaderComponent,
     ModalComponent,
-    MapsComponent,
+    MapComponent,
     CommonModule,
     FormsModule
   ],
@@ -37,6 +36,7 @@ export class FoodCardComponent {
 
   initialForm: ITripForm;
   tripBudget:IBudgetPrices;
+  isLoading: boolean = false;
 
 
   yelpFoodResponseList: IFoodBusiness[] = []
@@ -54,16 +54,20 @@ export class FoodCardComponent {
 
 
   sendData() {
-
+    this.isLoading = true;
+    
     const data: IYelpApiSearchParams = {
       latitude: this.initialForm.latitude,
       longitude: this.initialForm.longitude,
     };
-
+    
     this.service.getAllSignal(data);
 
     effect(() => {
       this.yelpFoodResponseList = this.service.yelpFoodResponse$();
+      if (this.yelpFoodResponseList.length > 0) {
+        this.isLoading=false;
+      }
     })
 
   };

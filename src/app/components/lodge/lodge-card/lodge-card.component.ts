@@ -10,7 +10,6 @@ import { NotifyService } from '../../../shared/notify/notify.service';
 import { TripService } from '../../../services/trip.service';
 import { ITripForm } from '../../../interfaces/trip.interface';
 import { formatDateToYYYYMMDD } from '../../../shared/utils/date-formatter';
-import { MapsComponent } from '../../maps/maps.component';
 import { BudgetService } from '../../../services/budged.service';
 import { BudgetBarComponent } from '../../budget-bar/budget-bar.component';
 import { Router } from '@angular/router';
@@ -25,7 +24,7 @@ import { IBudgetPrices } from '../../../interfaces/budget.interface';
     ModalComponent,
     CommonModule,
     FormsModule,
-    MapsComponent
+    MapComponent
 
   ],
   templateUrl: './lodge-card.component.html',
@@ -41,6 +40,7 @@ export class LodgeCardComponent {
   googleHotelResponseList: IGoogleResponse[] = []
   initialForm:ITripForm;
   tripBudget:IBudgetPrices;
+  isLoading: boolean = false;
 
 
   
@@ -57,7 +57,7 @@ export class LodgeCardComponent {
   
   
   sendData() {
-
+    this.isLoading = true;
     const data: ISearchParameters = {
     
       q: this.initialForm.q,
@@ -66,10 +66,11 @@ export class LodgeCardComponent {
     };
     
     this.service.getAllSignal(data);
-
+    
     effect(() => {
-
+      
       this.googleHotelResponseList = this.service.googleHotelResponse$();
+      this.isLoading = false;
     })
   };
 

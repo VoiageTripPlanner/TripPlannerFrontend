@@ -14,6 +14,7 @@ import { MapsComponent } from '../../maps/maps.component';
 import { BudgetService } from '../../../services/budged.service';
 import { BudgetBarComponent } from '../../budget-bar/budget-bar.component';
 import { Router } from '@angular/router';
+import { IBudgetPrices } from '../../../interfaces/budget.interface';
 
 @Component({
   selector: 'app-lodge-card',
@@ -33,12 +34,13 @@ import { Router } from '@angular/router';
 export class LodgeCardComponent {
 
   service = inject(GoogleHotelService);
+  budgetService=inject(BudgetService);
   notifyService = inject(NotifyService);
   tripFormService=inject(TripService);
-  budgetService=inject(BudgetService);
-  googleHotelResponseList: IGoogleResponse[] = []
   
+  googleHotelResponseList: IGoogleResponse[] = []
   initialForm:ITripForm;
+  tripBudget:IBudgetPrices;
 
 
   
@@ -46,10 +48,9 @@ export class LodgeCardComponent {
     private router: Router,
   ) {
 
-    // this.initialForm=this.tripFormService.tripForm$();    
-    // // this.sendData();
-    debugger
     this.initialForm = this.tripFormService.getFormData();
+    this.tripBudget=this.budgetService.getBudgetData();
+
     this.sendData();
 
   };
@@ -57,8 +58,6 @@ export class LodgeCardComponent {
   
   sendData() {
 
-    debugger
-    console.log(this.initialForm);
     const data: ISearchParameters = {
     
       q: this.initialForm.q,

@@ -25,15 +25,12 @@ export class BudgetBarComponent implements OnInit {
 
   constructor() {
 
-    // this.budgetQuantity = this.budgetService.onGetDefaultBudget();
-    this.budgetQuantity = this.budgetService.budget$();
+    this.budgetQuantity=this.budgetService.getBudgetData();
 
   };
 
   ngOnInit() {
     this.budgetService.setBudget(this.budgetQuantity);
-    // this.increaseSpending(this.amount,'lodge');
-    this.increaseSpending(this.amount2,'food');
     this.increaseSpending(this.amount3,'activities');
   }
 

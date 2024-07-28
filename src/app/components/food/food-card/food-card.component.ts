@@ -10,6 +10,9 @@ import { NotifyService } from '../../../shared/notify/notify.service';
 import { MapsComponent } from '../../maps/maps.component';
 import { TripService } from '../../../services/trip.service';
 import { ITripForm } from '../../../interfaces/trip.interface';
+import { BudgetService } from '../../../services/budged.service';
+import { Router } from '@angular/router';
+import { IBudgetPrices } from '../../../interfaces/budget.interface';
 
 @Component({
   selector: 'app-food-card',
@@ -25,35 +28,32 @@ import { ITripForm } from '../../../interfaces/trip.interface';
   templateUrl: './food-card.component.html',
   styleUrl: './food-card.component.scss'
 })
-// export class FoodCardComponent implements OnInit {
 export class FoodCardComponent {
 
+  budgetService = inject(BudgetService);
   service = inject(YelpFoodService);
   notifyService = inject(NotifyService);
   tripFormService = inject(TripService);
-  yelpFoodResponseList: IFoodBusiness[] = []
 
   initialForm: ITripForm;
+  tripBudget:IBudgetPrices;
 
-  constructor() {
 
-    // this.initialForm = this.tripFormService.tripForm$();
-      this.initialForm = this.tripFormService.getFormData();
+  yelpFoodResponseList: IFoodBusiness[] = []
+  
+  
+  constructor(
+    private router: Router,
+  ) {
+    this.initialForm    = this.tripFormService.getFormData();
+    this.tripBudget     =this.budgetService.getBudgetData();
+
     this.sendData();
 
   };
 
-  // ngOnInit(): void {
-  //   debugger;
-  //   this.initialForm = this.tripFormService.getFormData();
-  //   this.sendData();
-
-
-  // }
-
 
   sendData() {
-    debugger;
 
     const data: IYelpApiSearchParams = {
       latitude: this.initialForm.latitude,
@@ -62,15 +62,9 @@ export class FoodCardComponent {
 
     this.service.getAllSignal(data);
 
-
-    debugger
     effect(() => {
       this.yelpFoodResponseList = this.service.yelpFoodResponse$();
     })
-
-
-
-
 
   };
 
@@ -86,5 +80,21 @@ export class FoodCardComponent {
       this.notifyService.onNoData();
     }
   };
+
+  selectOption(amount: number) {
+
+
+    if (!amount) {
+      amount = 0;
+    }
+
+    const classification = 'food';
+
+    this.budgetService.updateSpending(amount, classification);
+
+    this.router.navigateByUrl('/app/dashboard');
+
+
+  }
 
 }

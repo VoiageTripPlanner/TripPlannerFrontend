@@ -10,6 +10,7 @@ import { ClasificationType, IBudgetPrices } from '../interfaces/budget.interface
 export class BudgetService extends BaseService<IBudgetPrices> {
   protected override source: string = 'budget';
   private budgetSignal = signal<IBudgetPrices>(this.onGetDefaultBudget());
+  private storageKey = 'budget';
 
 
   get budget$() {
@@ -39,7 +40,8 @@ export class BudgetService extends BaseService<IBudgetPrices> {
 
   
   updateSpending(amount: number, classification: ClasificationType) {
-    const currentBudget = this.budgetSignal();
+    const currentBudget=this.getBudgetData();
+
     switch (classification) {
       case 'flights':
         currentBudget.flightAmount = amount;
@@ -67,7 +69,23 @@ export class BudgetService extends BaseService<IBudgetPrices> {
     );
 
     this.setBudget(currentBudget);
+    this.saveFormData(currentBudget);
   }
 
+
+  saveFormData(formData: IBudgetPrices): void {
+    localStorage.setItem(this.storageKey, JSON.stringify(formData));
+  }
+
+  getBudgetData(): IBudgetPrices {
+    const formDataString = localStorage.getItem(this.storageKey);
+    if (formDataString) {
+      const formData = JSON.parse(formDataString);
+
+      return formData;
+    } else {
+      return this.onGetDefaultBudget();
+    }
+  }
 
 }

@@ -70,11 +70,6 @@ export class TripService extends BaseService<ITripForm> {
     localStorage.setItem(this.storageKey, JSON.stringify(formData));
   }
 
-  // getFormData(): ITripForm {
-  //   const formData = localStorage.getItem(this.storageKey);
-  //   return formData ? JSON.parse(formData) : this.onGetDefaultTripForm();
-  // }
-
   getFormData(): ITripForm {
     const formDataString = localStorage.getItem(this.storageKey);
     if (formDataString) {
@@ -83,6 +78,8 @@ export class TripService extends BaseService<ITripForm> {
       // Convertir los Dates
       formData.check_in_date = new Date(formData.check_in_date);
       formData.check_out_date = new Date(formData.check_out_date);
+      formData.outbound_date = new Date(formData.outbound_date);
+      formData.return_date = new Date(formData.return_date);
       return formData;
     } else {
       return this.onGetDefaultTripForm();

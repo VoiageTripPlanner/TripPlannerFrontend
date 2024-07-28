@@ -1,25 +1,25 @@
 import { Injectable, Signal, signal } from '@angular/core';
 import { BaseService } from './base-service';
-import { ICountry } from '../interfaces/country.interface';
+import { ICurrency } from '../interfaces/currency.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CountryService extends BaseService<ICountry> {
-  protected override source: string = 'country';
-  private countryListSig = signal<ICountry[]>([]);
+export class CurrencyService extends BaseService<ICurrency> {
+  protected override source: string = 'currency';
+  private currencyListSig = signal<ICurrency[]>([]);
 
-  public get countriesSig(): Signal<ICountry[]> {
-    return this.countryListSig;
+  public get currenciesSig(): Signal<ICurrency[]> {
+    return this.currencyListSig;
   }
-
+  
   public getAllSignal(): void {
     this.findAll().subscribe({
       next: (response: any) => {
         if (response) {
-          this.countryListSig.set(response);
+          this.currencyListSig.set(response);
         } else {
-          this.countryListSig.set([]);
+          this.currencyListSig.set([]);
         }
       },
       error: (error: any) => {

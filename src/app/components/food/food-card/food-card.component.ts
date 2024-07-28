@@ -94,7 +94,9 @@ export class FoodCardComponent {
 
     this.router.navigateByUrl('/app/dashboard');
 
-
+    //Esto temporalmente mientras se completan demas componentes y borrar bien el local storage cuando se salga 
+    localStorage.removeItem('budget');
+    localStorage.removeItem('tripFormData');
   }
 
 }

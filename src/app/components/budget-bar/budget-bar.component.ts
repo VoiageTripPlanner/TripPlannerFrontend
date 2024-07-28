@@ -31,7 +31,6 @@ export class BudgetBarComponent implements OnInit {
 
   ngOnInit() {
     this.budgetService.setBudget(this.budgetQuantity);
-    this.increaseSpending(this.amount3,'activities');
   }
 
   increaseSpending(amount: number, clasification: ClasificationType) {

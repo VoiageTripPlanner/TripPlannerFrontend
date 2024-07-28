@@ -14,6 +14,8 @@ import { ResetpasswordComponent } from './pages/resetpassword/resetpassword.comp
 import { ValidateOTPComponent } from './pages/validate-otp/validate-otp.component';
 import { ActivitiesComponent } from './pages/activities/activities.component';
 import { FoodComponent } from './pages/food/food.component';
+import { TripFormComponent } from './pages/trip-form/trip-form.component';
+
 
 export const routes: Routes = [
   {
@@ -44,6 +46,28 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',
+  },
+  {
+    path: 'lodge',
+    component: LodgeComponent,
+    data: { 
+      authorities: [
+        IRole.admin, 
+        IRole.user
+      ],
+      name: 'Lodge',
+    }
+  },
+  {
+    path: 'food',
+    component: FoodComponent,
+    data: { 
+      authorities: [
+        IRole.admin, 
+        IRole.user
+      ],
+      name: 'Food',
+    }
   },
   {
     path: 'app',
@@ -80,18 +104,17 @@ export const routes: Routes = [
         }
       },
       {
-        path: 'food',
-        component: FoodComponent,
+        path: 'trip-form',
+        component: TripFormComponent,
         data: { 
           authorities: [
             IRole.admin, 
             IRole.user
           ],
-          name: 'Food',
+          name: 'Trip Form',
           icon:'bi bi-duffle-fill'
         }
       },
-
     ],
   },
 ];

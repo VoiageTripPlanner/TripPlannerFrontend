@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { LodgeCardComponent } from '../../components/lodge/lodge-card/lodge-card.component';
 import { MapComponent } from '../../components/map/map.component';
 import { FlightCardComponent } from "../../components/flight/flight-card/flight-card.component";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-flights',
@@ -24,5 +25,15 @@ import { FlightCardComponent } from "../../components/flight/flight-card/flight-
 
 })
 export class FlightsComponent {
+
+  constructor(
+    private router: Router, 
+  ){
+
+  }
+
+  navigateToDashboard() {
+    this.router.navigateByUrl('app/dashboard')
+  }
 
 }

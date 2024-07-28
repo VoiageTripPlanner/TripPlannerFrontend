@@ -7,7 +7,7 @@ export interface IGFlightsResponse{
 }
 
 export interface OtherFlight {
-   flights?:          Flight[];
+    flights?:          Flight[];
     layovers?:         Layover[]; 
     total_duration?:   number;
     carbon_emissions?: CarbonEmissions;

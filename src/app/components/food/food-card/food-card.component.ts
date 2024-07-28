@@ -7,6 +7,8 @@ import { ModalComponent } from '../../modal/modal.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NotifyService } from '../../../shared/notify/notify.service';
+import { TripService } from '../../../services/trip.service';
+import { ITripForm } from '../../../interfaces/trip.interface';
 
 @Component({
   selector: 'app-food-card',
@@ -15,6 +17,7 @@ import { NotifyService } from '../../../shared/notify/notify.service';
     MapComponent,
     LoaderComponent,
     ModalComponent,
+    MapComponent,
     CommonModule,
     FormsModule
   ],
@@ -25,35 +28,34 @@ export class FoodCardComponent {
 
   service = inject(YelpFoodService);
   notifyService = inject(NotifyService);
+  tripFormService = inject(TripService);
   yelpFoodResponseList: IFoodBusiness[] = []
 
-  latitude: number = 35.659107;
-  longitude:number = 139.700343;
-  resultado: any;
+  initialForm: ITripForm;
+  isLoading: boolean = false;
 
   constructor() {
+
+    this.initialForm = this.tripFormService.tripForm$();
     this.sendData();
   };
 
   sendData() {
-    const datos: IYelpApiSearchParams = {
-      latitude: this.latitude,
-      longitude: this.longitude,
+    this.isLoading = true;
+    
+    const data: IYelpApiSearchParams = {
+      latitude: this.initialForm.latitude,
+      longitude: this.initialForm.longitude,
     };
-
-
-
-    this.service.getAllSignal(datos);
+    
+    this.service.getAllSignal(data);
     effect(() => {
-      
       this.yelpFoodResponseList = this.service.yelpFoodResponse$();
-      console.log(this.yelpFoodResponseList);
+      if (this.yelpFoodResponseList.length > 0) {
+        this.isLoading=false;
+      }
     })
 
-  };
-
-  trackByIndex(index: number, googleHotelResponseList: IFoodBusiness): number {
-    return index;
   };
 
   generateId() {
@@ -62,7 +64,7 @@ export class FoodCardComponent {
 
   visitSite(url: string | undefined): void {
     if (url) {
-      window.open(url,'_blank') ;
+      window.open(url, '_blank');
     } else {
       this.notifyService.onNoData();
     }

@@ -33,6 +33,7 @@ export class FoodCardComponent {
   yelpFoodResponseList: IFoodBusiness[] = []
 
   initialForm: ITripForm;
+  isLoading: boolean = false;
 
   constructor() {
 
@@ -41,15 +42,19 @@ export class FoodCardComponent {
   };
 
   sendData() {
+    this.isLoading = true;
     
     const data: IYelpApiSearchParams = {
       latitude: this.initialForm.latitude,
       longitude: this.initialForm.longitude,
     };
-
+    
     this.service.getAllSignal(data);
     effect(() => {
       this.yelpFoodResponseList = this.service.yelpFoodResponse$();
+      if (this.yelpFoodResponseList.length > 0) {
+        this.isLoading=false;
+      }
     })
 
   };

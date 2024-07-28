@@ -36,6 +36,7 @@ export class LodgeCardComponent {
 
   
   initialForm:ITripForm;
+  isLoading: boolean = false;
 
 
   
@@ -48,6 +49,7 @@ export class LodgeCardComponent {
   
   
   sendData() {
+    this.isLoading = true;
     const data: ISearchParameters = {
       q: this.initialForm.q,
       check_in_date: formatDateToYYYYMMDD(this.initialForm.check_in_date),
@@ -55,10 +57,11 @@ export class LodgeCardComponent {
     };
     
     this.service.getAllSignal(data);
-
+    
     effect(() => {
-
+      
       this.googleHotelResponseList = this.service.googleHotelResponse$();
+      this.isLoading = false;
     })
   };
 

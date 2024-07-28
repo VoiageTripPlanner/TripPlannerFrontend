@@ -2,7 +2,12 @@
 <div class="container-box">
 
     <div class="align-boxes">
-        <div class="col-md-6 lodge-container">
+
+        <div *ngIf="isLoading" class="col-md-6 lodge-container loader-desing">
+            <app-loader></app-loader>
+        </div>
+
+        <div class="col-md-6 lodge-container" *ngIf="!isLoading">
 
             
             @for (item of yelpFoodResponseList   ; track item.id) {
@@ -25,7 +30,6 @@
                             <ul class="circle-list">
                                 @for (transaction of item.transactions   ; track generateId) {
                                     <li>{{transaction}}</li>
-
                                 }
 
                             </ul>
@@ -57,7 +61,7 @@
 
         </div>
         <div class="map-container">
-            <app-map></app-map>
+            <app-maps></app-maps>
 
         </div>
 

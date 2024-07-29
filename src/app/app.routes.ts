@@ -15,6 +15,7 @@ import { ValidateOTPComponent } from './pages/validate-otp/validate-otp.componen
 import { ActivitiesComponent } from './pages/activities/activities.component';
 import { FoodComponent } from './pages/food/food.component';
 import { FlightsComponent } from './pages/flights/flights.component';
+import { TripFormComponent } from './pages/trip-form/trip-form.component';
 
 export const routes: Routes = [
   {
@@ -101,6 +102,18 @@ export const routes: Routes = [
             IRole.user
           ],
           name: 'Food',
+          icon:'bi bi-duffle-fill'
+        }
+      },
+      {
+      path: 'trip-form',
+        component: TripFormComponent,
+        data: { 
+          authorities: [
+            IRole.admin, 
+            IRole.user
+          ],
+          name: 'Trip Form',
           icon:'bi bi-duffle-fill'
         }
       },

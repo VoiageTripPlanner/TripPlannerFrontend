@@ -14,6 +14,7 @@ import { ResetpasswordComponent } from './pages/resetpassword/resetpassword.comp
 import { ValidateOTPComponent } from './pages/validate-otp/validate-otp.component';
 import { ActivitiesComponent } from './pages/activities/activities.component';
 import { FoodComponent } from './pages/food/food.component';
+import { RecomendationComponent } from './pages/recomendation/recomendation.component';
 import { BudgetBarComponent } from './components/budget-bar/budget-bar.component';
 import { FlightsComponent } from './pages/flights/flights.component';
 import { TripFormComponent } from './pages/trip-form/trip-form.component';
@@ -127,6 +128,31 @@ export const routes: Routes = [
           icon:'bi bi-duffle-fill'
         }
       },
+
+      {
+        path: 'flight',
+        component: FlightsComponent,
+        data: { 
+          authorities: [
+            IRole.admin, 
+            IRole.user
+          ],
+          name: 'Flight',
+          icon:'bi bi-duffle-fill'
+        }
+      },
+      {
+        path: 'recomendation',
+        component: RecomendationComponent,
+        data: { 
+          authorities: [
+            IRole.admin, 
+            IRole.user
+          ],
+          name: 'Recomendation',
+          icon:'bi bi-duffle-fill'
+        }
+      },      
     ],
   },
 ];

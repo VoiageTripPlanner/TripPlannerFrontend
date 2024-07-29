@@ -15,6 +15,7 @@ import { ValidateOTPComponent } from './pages/validate-otp/validate-otp.componen
 import { FoodComponent } from './pages/food/food.component';
 import { FlightsComponent } from './pages/flights/flights.component';
 import { TripFormComponent } from './pages/trip-form/trip-form.component';
+import { UpdateUserComponent } from './pages/update-user/update-user.component';
 
 export const routes: Routes = [
   {
@@ -87,6 +88,15 @@ export const routes: Routes = [
             IRole.admin, 
           ],
           name: 'Users',
+          icon:'bi bi-people-fill'
+        }
+      },
+      {
+        path: 'update-user',
+        component: UpdateUserComponent,
+        data: { 
+          authorities: [],
+          name: 'Update User',
           icon:'bi bi-people-fill'
         }
       },

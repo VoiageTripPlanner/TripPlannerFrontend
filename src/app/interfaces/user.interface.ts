@@ -17,5 +17,6 @@ export interface IUser {
   countryId?: string;
   currencyId?: string;
   roleId?: number;
+  otp?: string;
 }
   

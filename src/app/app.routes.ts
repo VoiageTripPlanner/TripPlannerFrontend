@@ -48,6 +48,28 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'lodge',
+    component: LodgeComponent,
+    data: { 
+      authorities: [
+        IRole.admin, 
+        IRole.user
+      ],
+      name: 'Lodge',
+    }
+  },
+  {
+    path: 'food',
+    component: FoodComponent,
+    data: { 
+      authorities: [
+        IRole.admin, 
+        IRole.user
+      ],
+      name: 'Food',
+    }
+  },
+  {
     path: 'app',
     component: AppLayoutComponent,
     canActivate: [AuthGuard],
@@ -94,19 +116,7 @@ export const routes: Routes = [
         }
       },
       {
-        path: 'food',
-        component: FoodComponent,
-        data: { 
-          authorities: [
-            IRole.admin, 
-            IRole.user
-          ],
-          name: 'Food',
-          icon:'bi bi-duffle-fill'
-        }
-      },
-      {
-      path: 'trip-form',
+        path: 'trip-form',
         component: TripFormComponent,
         data: { 
           authorities: [
@@ -117,6 +127,7 @@ export const routes: Routes = [
           icon:'bi bi-duffle-fill'
         }
       },
+
       {
         path: 'flight',
         component: FlightsComponent,
@@ -129,7 +140,6 @@ export const routes: Routes = [
           icon:'bi bi-duffle-fill'
         }
       },   
-
     ],
   },
 ];

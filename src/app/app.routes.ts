@@ -12,12 +12,12 @@ import { IRole } from './interfaces/role.interface';
 import { LodgeComponent } from './pages/lodge/lodge.component';
 import { ResetpasswordComponent } from './pages/resetpassword/resetpassword.component';
 import { ValidateOTPComponent } from './pages/validate-otp/validate-otp.component';
-import { ActivitiesComponent } from './pages/activities/activities.component';
 import { FoodComponent } from './pages/food/food.component';
 import { RecomendationComponent } from './pages/recomendation/recomendation.component';
 import { BudgetBarComponent } from './components/budget-bar/budget-bar.component';
 import { FlightsComponent } from './pages/flights/flights.component';
 import { TripFormComponent } from './pages/trip-form/trip-form.component';
+import { UpdateUserComponent } from './pages/update-user/update-user.component';
 
 export const routes: Routes = [
   {
@@ -101,6 +101,15 @@ export const routes: Routes = [
             IRole.admin, 
           ],
           name: 'Users',
+          icon:'bi bi-people-fill'
+        }
+      },
+      {
+        path: 'update-user',
+        component: UpdateUserComponent,
+        data: { 
+          authorities: [],
+          name: 'Update User',
           icon:'bi bi-people-fill'
         }
       },

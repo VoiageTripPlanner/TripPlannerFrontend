@@ -137,19 +137,6 @@ export const routes: Routes = [
           icon:'bi bi-duffle-fill'
         }
       },
-
-      {
-        path: 'flight',
-        component: FlightsComponent,
-        data: { 
-          authorities: [
-            IRole.admin, 
-            IRole.user
-          ],
-          name: 'Flight',
-          icon:'bi bi-duffle-fill'
-        }
-      },
       {
         path: 'recomendation',
         component: RecomendationComponent,

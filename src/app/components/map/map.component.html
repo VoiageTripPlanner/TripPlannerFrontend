@@ -1,2 +1,16 @@
 <!-- Add the required attributes to the google-map component -->
-<google-map class="maps" [options]="options"></google-map>
+<google-map class="maps" [options]="options">
+    @for (location of aLocations; track location) {
+        <map-advanced-marker
+          #markerElem="mapAdvancedMarker"
+          [position]="{ lat: location.lat, lng: location.lng }"
+          [content]="location.content"
+        />
+        } @for (location of bLocations; track location) {
+        <map-advanced-marker
+          #markerElem="mapAdvancedMarker"
+          [position]="{ lat: location.lat, lng: location.lng }"
+          [content]="location.content"
+        />
+        }
+</google-map>

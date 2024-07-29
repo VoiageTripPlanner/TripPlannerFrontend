@@ -1,9 +1,9 @@
 import { Component, Input, inject } from '@angular/core';
-import { IFeedBackMessage, IFeedbackStatus} from '../../../interfaces';
+import { IFeedBackMessage, IFeedbackStatus} from '../../../interfaces/index.interface';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { UserService } from '../../../services/user.service';
-import { IUser } from '../../../interfaces/user';
+import { IUser } from '../../../interfaces/user.interface';
 
 @Component({
   selector: 'app-user-form',
@@ -19,27 +19,27 @@ export class UserFormComponent {
   @Input() title!: string;
   @Input() user: IUser = {
     name: '',
-    last_name: '',
-    second_last_name: '',
-    country:{},
+    lastname: '',
+    secondLastname: '',
     email: '',
     password: '',
     operational:true,
-    creation_datetime: new Date(),
-    last_update_datetime: new Date(),
+    createAt: '',
+    updateAt: '',
   };
   @Input() action: string = 'add'
   service = inject(UserService);
   feedbackMessage: IFeedBackMessage = {type: IFeedbackStatus.default, message: ''};
 
   handleAction (form: NgForm) {
+    const { authorities, ...payload } = this.user;
     if (form.invalid) {
       Object.keys(form.controls).forEach(controlName => {
         form.controls[controlName].markAsTouched();
       });
       return;
     } else {
-      this.service[ this.action == 'add' ? 'saveUserSignal': 'updateUserSignal'](this.user).subscribe({
+      this.service[ this.action == 'add' ? 'saveUserSignal': 'updateUserSignal'](payload as IUser).subscribe({
         next: () => {
           this.feedbackMessage.type = IFeedbackStatus.success;
           this.feedbackMessage.message = `User successfully ${this.action == 'add' ? 'added': 'updated'}`

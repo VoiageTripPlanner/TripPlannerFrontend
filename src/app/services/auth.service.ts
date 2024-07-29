@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ILoginResponse, IResponse } from '../interfaces';
+import { ILoginResponse, IResponse } from '../interfaces/index.interface';
 import { Observable, firstValueFrom, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { IUser } from '../interfaces/user';
+import { IUser } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +10,7 @@ import { IUser } from '../interfaces/user';
 export class AuthService {
   private accessToken!: string;
   private expiresIn! : number;
+  private userId!: number;
   private user: IUser = {email: '', authorities: []};
 
   constructor(private http: HttpClient) {
@@ -24,6 +25,8 @@ export class AuthService {
 
     if (this.expiresIn)
       localStorage.setItem('expiresIn',JSON.stringify(this.expiresIn));
+    if (this.userId)
+      localStorage.setItem('userId', JSON.stringify(this.userId));
   }
 
   private load(): void {
@@ -33,9 +36,11 @@ export class AuthService {
     if (exp) this.expiresIn = JSON.parse(exp);
     const user = localStorage.getItem('auth_user');
     if (user) this.user = JSON.parse(user);
+    const userId = localStorage.getItem('userId');
+    if (userId) this.userId = JSON.parse(userId);
   }
 
-  public getUser(): IUser | undefined {
+  public getUser(): any {
     return this.user;
   }
 
@@ -61,6 +66,7 @@ export class AuthService {
         this.user.email = credentials.email;
         this.expiresIn = response.expiresIn;
         this.user = response.authUser;
+        this.userId = response.authUser.user_id;
         this.save();
       })
     );
@@ -95,5 +101,14 @@ export class AuthService {
     localStorage.removeItem('access_token');
     localStorage.removeItem('expiresIn');
     localStorage.removeItem('auth_user');
+    localStorage.removeItem('userId');
+  }
+
+  public resetPassword(user: IUser): Observable<IUser> {
+    return this.http.post('auth/reset-password', user);
+  }
+
+  public validateOtp(user: IUser): Observable<IUser> {
+    return this.http.post('auth/validate-otp', user);
   }
 }

@@ -1,6 +1,7 @@
+import { input } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IResponse } from '../interfaces';
+import { IResponse } from '../interfaces/index.interface';
 import { Injectable, inject } from '@angular/core';
 
 @Injectable({
@@ -18,6 +19,10 @@ export class BaseService<T> {
     return this.http.get<IResponse<T[]>>(this.source, { params: { s } });
   }
 
+  public bringInfoWithParams(params: { [key: string]: any } = {}): Observable<IResponse<T[]>> {
+    return this.http.get<IResponse<T[]>>(this.source, { params });
+  }
+
   public add(data: {}): Observable<IResponse<T>> {
     return this.http.post<IResponse<T>>(this.source, data);
   }
@@ -26,6 +31,9 @@ export class BaseService<T> {
     return this.http.put<IResponse<T>>(this.source + '/' + id, data);
   }
 
+  public getSuggestions( query:string ): Observable<IResponse<T>> {
+    return this.http.get<IResponse<T>>(this.source, { params: { query } });
+  }
 
   public findAllDetailed(s: string = ''): Observable<IResponse<T[]>> {
     return this.http.get<IResponse<T[]>>(this.source + '/userDetailed', { params: { s } });
@@ -35,8 +43,10 @@ export class BaseService<T> {
     return this.http.put<IResponse<T>>(this.source + '/delete/' + id, data);
   }
 
-
   public del(id: any): Observable<IResponse<T>> {
     return this.http.delete<IResponse<T>>(this.source + '/' + id);
   }
+
+
+  
 }

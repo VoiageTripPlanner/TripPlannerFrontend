@@ -45,5 +45,36 @@ export class NotifyService {
     });
   }
 
+  onNoData=()=>{
+    Swal.fire({
+      title: "Oops...",
+      text: "There is no info with these params!",
+      icon: "info"
+    });
+  }
 
+
+  onSearchDisclaimer=()=>{
+
+    return Swal.fire({
+      title: "Be aware !",
+      text: "Voiage is not responsible for the prices shown!",
+      icon: "info",
+      showCancelButton: false,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Acknowledged !"
+    })
+    
+  };
+
+  onNoFormData=()=>{
+    Swal.fire({
+      title: "Oops...",
+      text: "Please complete the form",
+      icon: "info"
+    });
+  }
+
+
+  
 }

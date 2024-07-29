@@ -1,0 +1,43 @@
+//variables de color 
+$background-color-white: #ffffff;
+$background-color-grey: #b4b4b4;
+$background-color-grey-light: #f9f9f9;
+$border-color: #775D68;
+$image-backgorund-color: #FADCD4;
+$title-color: #6D3652;
+
+
+@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
+
+.yeseva-one-regular {
+    font-family: "Yeseva One", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.title{
+    transform: translateY(30%);
+    padding-left: 1%;
+    font-size: 4vh;
+    color: $background-color-white;
+}
+
+.logo {
+    width: 2.5vw;
+    height: 5vh;
+}
+
+.padding-1 {
+    padding: 1%;
+}
+
+.align-boxes {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.background-color{
+    background-color: $title-color;
+}
+

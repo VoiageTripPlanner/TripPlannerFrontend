@@ -11,7 +11,7 @@
 
           <form (ngSubmit)="handleLogin($event)" autocomplete="off" #frm="ngForm">
             <div class="mb-3 ">
-              <h1 class="yeseva-one-regular font-size-4">Sign In</h1>
+              <h1 class="yeseva-one-regular font-size-4">Log in</h1>
             </div>
 
             <div class="custom-line">
@@ -45,13 +45,15 @@
                 </div>
               </div>
               <div class="justify-right mt-1">
-                <a href="/signup">Forgot Password ?</a> 
+                <div class="container-flex-center mt-2">
+                  <a href="/reset-password">Forgot Password?</a>
+                </div>
               </div>
             </div>
 
             <div class="form-group mb-0 input-horizontal-margin">
               <button class="btn btn-login btn-block w-100 yeseva-one-regular" type="submit">
-                Sign in
+                Log in
               </button>
               @if(loginError) {
               <p class="text-danger">{{loginError}}</p>

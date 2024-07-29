@@ -1,8 +1,8 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, Signal, signal } from '@angular/core';
 import { BaseService } from './base-service';
 import { Observable, catchError, forkJoin, tap, throwError } from 'rxjs';
-import { IUser } from '../interfaces/user';
-import { ICountry } from '../interfaces/country';
+import { IUser } from '../interfaces/user.interface';
+import { ICountry } from '../interfaces/country.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -10,9 +10,14 @@ import { ICountry } from '../interfaces/country';
 export class UserService extends BaseService<IUser> {
   protected override source: string = 'users';
   private userListSignal = signal<IUser[]>([]);
+  private userSignal = signal<IUser>({} as IUser);
   private countryListSignal = signal<ICountry[]>([]);
   get users$() {
     return this.userListSignal;
+  };
+
+  public get userSig(): Signal<IUser> {
+    return this.userSignal;
   };
 
   getAllSignal() {
@@ -26,6 +31,18 @@ export class UserService extends BaseService<IUser> {
         console.error('Error fetching users', error);
       }
     });
+  };
+
+  public getUserById(id: number): void {
+    this.find(id)
+      .subscribe({
+        next: (response: any) => {
+          this.userSignal.set(response);
+        },
+        error: (error: any) => {
+          console.error('Error fetching user', error);
+        }
+      });
   };
 
 
@@ -55,9 +72,9 @@ export class UserService extends BaseService<IUser> {
   };
 
   updateUserSignal (user: IUser): Observable<any>{
-    return this.edit(user.user_id, user).pipe(
+    return this.edit(user.id, user).pipe(
       tap((response: any) => {
-        const updatedUsers = this.userListSignal().map(u => u.user_id === user.user_id ? response : u);
+        const updatedUsers = this.userListSignal().map(u => u.id === user.id ? response : u);
         this.userListSignal.set(updatedUsers);
       }),
       catchError(error => {
@@ -68,9 +85,9 @@ export class UserService extends BaseService<IUser> {
   };
 
   deleteUserSignal (user: IUser): Observable<any>{
-    return this.logicDelete(user.user_id,user).pipe(
+    return this.logicDelete(user.id,user).pipe(
       tap((response: any) => {
-        const deletedUsers = this.userListSignal().map(u => u.user_id === user.user_id ? response : u);
+        const deletedUsers = this.userListSignal().map(u => u.id === user.id ? response : u);
         console.log(deletedUsers);
         this.userListSignal.set(deletedUsers);
       }),

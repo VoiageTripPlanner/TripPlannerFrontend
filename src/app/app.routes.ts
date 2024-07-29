@@ -16,6 +16,7 @@ import { ActivitiesComponent } from './pages/activities/activities.component';
 import { FoodComponent } from './pages/food/food.component';
 import { TripFormComponent } from './pages/trip-form/trip-form.component';
 import { RecomendationComponent } from './pages/recomendation/recomendation.component';
+import { ActivitiesNearbyComponent } from './pages/activities-nearby/activities-nearby.component';
 
 export const routes: Routes = [
   {
@@ -124,6 +125,18 @@ export const routes: Routes = [
             IRole.user
           ],
           name: 'Recomendation',
+          icon:'bi bi-duffle-fill'
+        }
+      },
+      {
+        path: 'activitiesNearby',
+        component: ActivitiesNearbyComponent,
+        data: { 
+          authorities: [
+            IRole.admin, 
+            IRole.user
+          ],
+          name: 'Activities Nearby',
           icon:'bi bi-duffle-fill'
         }
       },

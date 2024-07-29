@@ -83,9 +83,9 @@ export class PlaceAutocompleteComponent implements OnInit {
         this.placeChanged.emit(result);
         console.log(JSON.stringify(result, null, 4));
 
-      // if (result.location) {
-      //  this.findNearbyPlaces(result.location);
-      //  }
+       if (result.location) {
+        this.findNearbyPlaces(result.location);
+        }
       });
     });
 

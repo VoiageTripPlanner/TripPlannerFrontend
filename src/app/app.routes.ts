@@ -14,6 +14,7 @@ import { ResetpasswordComponent } from './pages/resetpassword/resetpassword.comp
 import { ValidateOTPComponent } from './pages/validate-otp/validate-otp.component';
 import { ActivitiesComponent } from './pages/activities/activities.component';
 import { FoodComponent } from './pages/food/food.component';
+import { BudgetBarComponent } from './components/budget-bar/budget-bar.component';
 import { FlightsComponent } from './pages/flights/flights.component';
 import { TripFormComponent } from './pages/trip-form/trip-form.component';
 
@@ -70,6 +71,17 @@ export const routes: Routes = [
     }
   },
   {
+    path: 'flight',
+    component: FlightsComponent,
+    data: { 
+      authorities: [
+        IRole.admin, 
+        IRole.user
+      ],
+      name: 'Flight',
+    }
+  },
+  {
     path: 'app',
     component: AppLayoutComponent,
     canActivate: [AuthGuard],
@@ -104,18 +116,6 @@ export const routes: Routes = [
         }
       },
       {
-        path: 'lodge',
-        component: LodgeComponent,
-        data: { 
-          authorities: [
-            IRole.admin, 
-            IRole.user
-          ],
-          name: 'Lodge',
-          icon:'bi bi-duffle-fill'
-        }
-      },
-      {
         path: 'trip-form',
         component: TripFormComponent,
         data: { 
@@ -127,19 +127,6 @@ export const routes: Routes = [
           icon:'bi bi-duffle-fill'
         }
       },
-
-      {
-        path: 'flight',
-        component: FlightsComponent,
-        data: { 
-          authorities: [
-            IRole.admin, 
-            IRole.user
-          ],
-          name: 'Flight',
-          icon:'bi bi-duffle-fill'
-        }
-      },   
     ],
   },
 ];

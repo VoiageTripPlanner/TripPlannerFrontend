@@ -53,6 +53,20 @@ export class NotifyService {
     });
   }
 
+
+  onSearchDisclaimer=()=>{
+
+    return Swal.fire({
+      title: "Be aware !",
+      text: "Voiage is not responsible for the prices shown!",
+      icon: "info",
+      showCancelButton: false,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Acknowledged !"
+    })
+    
+  };
+
   onNoFormData=()=>{
     Swal.fire({
       title: "Oops...",

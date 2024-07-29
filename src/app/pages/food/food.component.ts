@@ -6,6 +6,8 @@ import { ModalComponent } from '../../components/modal/modal.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FoodCardComponent } from '../../components/food/food-card/food-card.component';
+import { Router } from '@angular/router';
+import { BudgetBarComponent } from '../../components/budget-bar/budget-bar.component';
 
 
 @Component({
@@ -16,6 +18,7 @@ import { FoodCardComponent } from '../../components/food/food-card/food-card.com
     MapComponent,
     LoaderComponent,
     ModalComponent,
+    BudgetBarComponent,
     CommonModule,
     FormsModule
   ],
@@ -24,6 +27,12 @@ import { FoodCardComponent } from '../../components/food/food-card/food-card.com
 })
 export class FoodComponent {
 
+  constructor(
+    private router: Router, 
+  ){}
 
+  navigateToDashboard() {
+    this.router.navigateByUrl('app/dashboard')
+  }
 
 }

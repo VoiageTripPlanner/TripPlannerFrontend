@@ -1,6 +1,12 @@
 <div class="container-box margin-2">
     <div class="align-boxes">
-        <div class="col-md-6 flight-container">
+
+        <div *ngIf="isLoading" class="col-md-6 flight-container loader-desing">
+            <app-loader></app-loader>
+        </div>
+
+
+        <div class="col-md-6 flight-container" *ngIf="!isLoading">
             @for (item of googleFlightsResponseList ; track trackByIndex) {
 
             @for (flight of item.flights ; track trackByIndex) {
@@ -11,6 +17,10 @@
                     <div class="align-boxes space-between">
                         <h2 class="bold-text font-size-title">{{flight.departure_airport?.name}}</h2>
                         <h2 class="bold-text font-size-title right-aligned-text">{{flight.arrival_airport?.name}}</h2>
+                    </div>
+
+                    <div class="align-boxes space-between">
+                        <h2 class="bold-text font-size-title">Flight Price: $ {{item.price}}</h2>
                     </div>
 
 
@@ -33,9 +43,8 @@
 
                     <div class="align-boxes space-between">
                         <button type="button" class="btn btn-outline-info ">View in map</button>
-                        <button type="button" class="btn btn-outline-dark" (click)="openLayouts()">Go to the
-                            Site</button>
-                        <button type="button" class="btn btn-outline-success">Select option </button>
+                        <button type="button" class="btn btn-outline-dark" (click)="openLayouts()">Open Layouts</button>
+                        <button type="button" class="btn btn-outline-success" (click)="selectOption(item.price)">Select option </button>
                     </div>
 
                 </div>

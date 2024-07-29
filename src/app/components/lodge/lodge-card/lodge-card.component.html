@@ -2,8 +2,7 @@
 
     <div class="align-boxes">
 
-        <div *ngIf="isLoading" class="loader">
-            <!-- Aquí pones tu HTML del loader -->
+        <div *ngIf="isLoading" class="col-md-6 lodge-container loader-desing">
             <app-loader></app-loader>
         </div>
 
@@ -41,7 +40,8 @@
                         <button type="button" class="btn btn-outline-info ">View in map</button>
                         <button type="button" class="btn btn-outline-dark" (click)="visitSite(item.link)">Go to the
                             Site</button>
-                        <button type="button" class="btn btn-outline-success">Select option </button>
+                        <button type="button" class="btn btn-outline-success"
+                            (click)="selectOption(item.total_rate?.extracted_lowest )">Select option </button>
 
                     </div>
 
@@ -63,7 +63,9 @@
 
         </div>
         <div class="map-container">
-            <app-maps/>
+
+            
+            <app-maps />
 
         </div>
 

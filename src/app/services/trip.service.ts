@@ -41,7 +41,8 @@ export class TripService extends BaseService<ITripForm> {
       outbound_date:    getNextDay(),
       return_date:      getNextDay(),
       stops:            0,
-      type:             1
+      type:             1,
+      travel_class:     1,
     }
 
     return defaultValue;

@@ -15,6 +15,7 @@ import { ValidateOTPComponent } from './pages/validate-otp/validate-otp.componen
 import { ActivitiesComponent } from './pages/activities/activities.component';
 import { FoodComponent } from './pages/food/food.component';
 import { RecomendationComponent } from './pages/recomendation/recomendation.component';
+import { FlightsComponent } from './pages/flights/flights.component';
 import { TripFormComponent } from './pages/trip-form/trip-form.component';
 
 export const routes: Routes = [
@@ -104,6 +105,18 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'lodge',
+        component: LodgeComponent,
+        data: { 
+          authorities: [
+            IRole.admin, 
+            IRole.user
+          ],
+          name: 'Lodge',
+          icon:'bi bi-duffle-fill'
+        }
+      },
+      {
         path: 'trip-form',
         component: TripFormComponent,
         data: { 
@@ -112,6 +125,19 @@ export const routes: Routes = [
             IRole.user
           ],
           name: 'Trip Form',
+          icon:'bi bi-duffle-fill'
+        }
+      },
+
+      {
+        path: 'flight',
+        component: FlightsComponent,
+        data: { 
+          authorities: [
+            IRole.admin, 
+            IRole.user
+          ],
+          name: 'Flight',
           icon:'bi bi-duffle-fill'
         }
       },
@@ -126,7 +152,7 @@ export const routes: Routes = [
           name: 'Recomendation',
           icon:'bi bi-duffle-fill'
         }
-      },
+      },      
     ],
   },
 ];

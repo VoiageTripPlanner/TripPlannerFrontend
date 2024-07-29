@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { NotifyService } from '../../shared/notify/notify.service';
+import { timeout, timer } from 'rxjs';
 
 
 @Component({
@@ -50,12 +51,19 @@ export class TripFormComponent {
 
   setTripInfo(formGeneralInfo: any, formFlightInfo: any,event:Event){
     event.preventDefault();
-    ;
+    
     if (formGeneralInfo.valid && formFlightInfo.valid) {
 
       this.tripService.setInitialForm(this.tripFormNgModel);
-      // this.router.navigateByUrl('/lodge')
-      this.router.navigateByUrl('/food')
+      this.tripService.saveFormData(this.tripFormNgModel);
+
+      
+
+      
+      this.notifyService.onSearchDisclaimer();
+
+      // this.router.navigateByUrl('/lodge');
+      this.router.navigateByUrl('/flight');
 
     } else{
       this.notifyService.onNoFormData();

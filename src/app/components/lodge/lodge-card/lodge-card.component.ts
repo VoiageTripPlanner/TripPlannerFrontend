@@ -10,6 +10,10 @@ import { NotifyService } from '../../../shared/notify/notify.service';
 import { TripService } from '../../../services/trip.service';
 import { ITripForm } from '../../../interfaces/trip.interface';
 import { formatDateToYYYYMMDD } from '../../../shared/utils/date-formatter';
+import { BudgetService } from '../../../services/budged.service';
+import { BudgetBarComponent } from '../../budget-bar/budget-bar.component';
+import { Router } from '@angular/router';
+import { IBudgetPrices } from '../../../interfaces/budget.interface';
 
 @Component({
   selector: 'app-lodge-card',
@@ -29,20 +33,25 @@ import { formatDateToYYYYMMDD } from '../../../shared/utils/date-formatter';
 export class LodgeCardComponent {
 
   service = inject(GoogleHotelService);
+  budgetService=inject(BudgetService);
   notifyService = inject(NotifyService);
   tripFormService=inject(TripService);
-  googleHotelResponseList: IGoogleResponse[] = []
-
   
+  googleHotelResponseList: IGoogleResponse[] = []
   initialForm:ITripForm;
+  tripBudget:IBudgetPrices;
   isLoading: boolean = false;
 
 
   
-  constructor() {
+  constructor(
+    private router: Router,
+  ) {
 
-    this.initialForm=this.tripFormService.tripForm$();    
-    // this.sendData();
+    this.initialForm = this.tripFormService.getFormData();
+    this.tripBudget=this.budgetService.getBudgetData();
+
+    this.sendData();
 
   };
   
@@ -50,6 +59,7 @@ export class LodgeCardComponent {
   sendData() {
     this.isLoading = true;
     const data: ISearchParameters = {
+    
       q: this.initialForm.q,
       check_in_date: formatDateToYYYYMMDD(this.initialForm.check_in_date),
       check_out_date: formatDateToYYYYMMDD(this.initialForm.check_out_date)
@@ -60,7 +70,9 @@ export class LodgeCardComponent {
     effect(() => {
       
       this.googleHotelResponseList = this.service.googleHotelResponse$();
-      this.isLoading = false;
+      if (this.googleHotelResponseList.length > 0) {
+        this.isLoading=false;
+      }
     })
   };
 
@@ -87,6 +99,22 @@ export class LodgeCardComponent {
     target.src = '../../../../assets/img/No_image_available.png';
   }
 
+
+  selectOption(amount:number | undefined){
+
+
+    if (!amount) {
+      amount=0;
+    }
+
+    const classification = 'lodge'; 
+
+    this.budgetService.updateSpending(amount, classification);
+
+    this.router.navigateByUrl('/food');
+
+    
+  }
 
 
 

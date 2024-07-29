@@ -28,7 +28,7 @@ export class GoogleFlightsService extends BaseService<IGFlightsResponse> {
         this.gFlightsResponseSignal.set(response.other_flights);
       },
       error: (error: HttpErrorResponse) => {
-        // this.notifyService.onError();
+        this.notifyService.onError();
 
         console.error('Error fetching Google Flights list', error);
         console.error('Status:', error.status);

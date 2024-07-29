@@ -7,6 +7,7 @@ import { LodgeCardComponent } from '../../components/lodge/lodge-card/lodge-card
 import { MapComponent } from '../../components/map/map.component';
 import { FlightCardComponent } from "../../components/flight/flight-card/flight-card.component";
 import { Router } from '@angular/router';
+import { BudgetBarComponent } from '../../components/budget-bar/budget-bar.component';
 
 @Component({
   selector: 'app-flights',
@@ -16,6 +17,7 @@ import { Router } from '@angular/router';
     MapComponent,
     LoaderComponent,
     ModalComponent,
+    BudgetBarComponent,
     CommonModule,
     FormsModule,
     FlightCardComponent

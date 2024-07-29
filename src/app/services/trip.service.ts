@@ -10,6 +10,7 @@ import { ITripForm } from '../interfaces/trip.interface';
 export class TripService extends BaseService<ITripForm> {
   protected override source: string = 'trip';
   private tripFormSignal = signal<ITripForm>(this.onGetDefaultTripForm());
+  private storageKey = 'tripFormData';
 
 
   get tripForm$() {
@@ -40,7 +41,8 @@ export class TripService extends BaseService<ITripForm> {
       outbound_date:    getNextDay(),
       return_date:      getNextDay(),
       stops:            0,
-      type:             1
+      type:             1,
+      travel_class:     1,
     }
 
     return defaultValue;
@@ -65,5 +67,24 @@ export class TripService extends BaseService<ITripForm> {
   };
 
 
+  saveFormData(formData: ITripForm): void {
+    localStorage.setItem(this.storageKey, JSON.stringify(formData));
+  }
+
+  getFormData(): ITripForm {
+    const formDataString = localStorage.getItem(this.storageKey);
+    if (formDataString) {
+      const formData = JSON.parse(formDataString);
+      
+      // Convertir los Dates
+      formData.check_in_date = new Date(formData.check_in_date);
+      formData.check_out_date = new Date(formData.check_out_date);
+      formData.outbound_date = new Date(formData.outbound_date);
+      formData.return_date = new Date(formData.return_date);
+      return formData;
+    } else {
+      return this.onGetDefaultTripForm();
+    }
+  }
 
 }

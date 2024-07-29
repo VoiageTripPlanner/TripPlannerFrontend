@@ -34,9 +34,6 @@ export class GFlightsBaseService<T> {
       params = params
         .set('travel_class', searchParams.travel_class || '');
     } else  
-
-
-    } else {
       alert('Invalid type value');
     }
 

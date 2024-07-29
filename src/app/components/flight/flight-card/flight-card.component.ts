@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { GoogleFlightsService } from '../../../services/api-request/google-flights.service';
 import { OtherFlight, SearchParameters } from '../../../interfaces/google-flights-response.interface';
-import { MapsComponent } from '../../maps/maps.component';
+import { MapComponent } from '../../map/map.component';
 import { NotifyService } from '../../../shared/notify/notify.service';
 
 @Component({
@@ -15,7 +15,7 @@ import { NotifyService } from '../../../shared/notify/notify.service';
     LoaderComponent,
     ModalComponent,
     CommonModule,
-    MapsComponent,
+    MapComponent,
     FormsModule
   ],
   templateUrl: './flight-card.component.html',

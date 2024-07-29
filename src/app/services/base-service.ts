@@ -30,7 +30,6 @@ export class BaseService<T> {
     return this.http.put<IResponse<T>>(this.source + '/' + id, data);
   }
 
-
   public findAllDetailed(s: string = ''): Observable<IResponse<T[]>> {
     return this.http.get<IResponse<T[]>>(this.source + '/userDetailed', { params: { s } });
   }

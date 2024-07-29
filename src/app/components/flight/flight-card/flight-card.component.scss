@@ -51,7 +51,7 @@ $image-backgorund-color: #FADCD4;
 
 //   Tarjetas de hoteles 
 
-.hotel-card {
+.flight-card {
     width: 100%;
     max-height: 100%;
     background: $background-color-white;
@@ -108,7 +108,7 @@ $image-backgorund-color: #FADCD4;
 }
 
 .font-size-title{
-    font-size: 2rem;  
+    font-size: 1.6rem;  
 }
 
 .font-size-price{
@@ -118,6 +118,10 @@ $image-backgorund-color: #FADCD4;
 .width-100{
     width: 100%;
 }
+
+.right-aligned-text {
+    text-align: end;
+  }
 
 //Lista no ordenada 
 
@@ -132,7 +136,6 @@ $image-backgorund-color: #FADCD4;
     break-inside: avoid; 
 }
 
-.loader-desing{
-    align-items: center;
-
+.margin-2{
+    margin: 2%;
 }

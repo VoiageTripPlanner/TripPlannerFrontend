@@ -1,9 +1,9 @@
 import { Component, Input, inject } from '@angular/core';
-import { IFeedBackMessage, IFeedbackStatus} from '../../../interfaces';
+import { IFeedBackMessage, IFeedbackStatus} from '../../../interfaces/index.interface';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { UserService } from '../../../services/user.service';
-import { IUser } from '../../../interfaces/user';
+import { IUser } from '../../../interfaces/user.interface';
 
 @Component({
   selector: 'app-user-form',
@@ -19,14 +19,13 @@ export class UserFormComponent {
   @Input() title!: string;
   @Input() user: IUser = {
     name: '',
-    last_name: '',
-    second_last_name: '',
-    country:{},
+    lastname: '',
+    secondLastname: '',
     email: '',
     password: '',
     operational:true,
-    creation_datetime: new Date(),
-    last_update_datetime: new Date(),
+    createAt: '',
+    updateAt: '',
   };
   @Input() action: string = 'add'
   service = inject(UserService);

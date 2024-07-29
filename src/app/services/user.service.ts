@@ -1,8 +1,8 @@
 import { Injectable, signal } from '@angular/core';
 import { BaseService } from './base-service';
 import { Observable, catchError, forkJoin, tap, throwError } from 'rxjs';
-import { IUser } from '../interfaces/user';
-import { ICountry } from '../interfaces/country';
+import { IUser } from '../interfaces/user.interface';
+import { ICountry } from '../interfaces/country.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -55,9 +55,9 @@ export class UserService extends BaseService<IUser> {
   };
 
   updateUserSignal (user: IUser): Observable<any>{
-    return this.edit(user.user_id, user).pipe(
+    return this.edit(user.id, user).pipe(
       tap((response: any) => {
-        const updatedUsers = this.userListSignal().map(u => u.user_id === user.user_id ? response : u);
+        const updatedUsers = this.userListSignal().map(u => u.id === user.id ? response : u);
         this.userListSignal.set(updatedUsers);
       }),
       catchError(error => {
@@ -68,9 +68,9 @@ export class UserService extends BaseService<IUser> {
   };
 
   deleteUserSignal (user: IUser): Observable<any>{
-    return this.logicDelete(user.user_id,user).pipe(
+    return this.logicDelete(user.id,user).pipe(
       tap((response: any) => {
-        const deletedUsers = this.userListSignal().map(u => u.user_id === user.user_id ? response : u);
+        const deletedUsers = this.userListSignal().map(u => u.id === user.id ? response : u);
         console.log(deletedUsers);
         this.userListSignal.set(deletedUsers);
       }),

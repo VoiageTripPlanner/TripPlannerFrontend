@@ -20,8 +20,10 @@ import { SvgIconComponent } from '../svg-icon/svg-icon.component';
 })
 export class AppLayoutComponent {
   public title?: string;
+  public readonly currentYear: number;
 
   constructor(public layoutService: LayoutService) {
+    this.currentYear = new Date().getFullYear();
     this.layoutService.title.subscribe((title) => (this.title = title));
   }
 }

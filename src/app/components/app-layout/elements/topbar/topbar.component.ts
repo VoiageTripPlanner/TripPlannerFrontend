@@ -4,7 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../services/auth.service';
 import { LayoutService } from '../../../../services/layout.service';
 import { MyAccountComponent } from '../../../my-account/my-account.component';
-import { IUser } from '../../../../interfaces/user';
+import { IUser } from '../../../../interfaces/user.interface';
 
 @Component({
   selector: 'app-topbar',

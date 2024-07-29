@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ILoginResponse, IResponse } from '../interfaces';
+import { ILoginResponse, IResponse } from '../interfaces/index.interface';
 import { Observable, firstValueFrom, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { IUser } from '../interfaces/user';
+import { IUser } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -95,5 +95,14 @@ export class AuthService {
     localStorage.removeItem('access_token');
     localStorage.removeItem('expiresIn');
     localStorage.removeItem('auth_user');
+  }
+
+  public resetPassword(user: IUser): Observable<IUser> {
+    return this.http.post('auth/reset-password', user);
+  }
+
+  
+  public validateOtp(user: IUser): Observable<IUser> {
+    return this.http.post('auth/validate-otp', user);
   }
 }

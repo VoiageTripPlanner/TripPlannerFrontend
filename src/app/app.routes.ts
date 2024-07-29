@@ -8,7 +8,15 @@ import { AccessDeniedComponent } from './pages/access-denied/access-denied.compo
 import { AdminRoleGuard } from './guards/admin-role.guard';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { GuestGuard } from './guards/guest.guard';
-import { IRole } from './interfaces/role';
+import { IRole } from './interfaces/role.interface';
+import { LodgeComponent } from './pages/lodge/lodge.component';
+import { ResetpasswordComponent } from './pages/resetpassword/resetpassword.component';
+import { ValidateOTPComponent } from './pages/validate-otp/validate-otp.component';
+import { ActivitiesComponent } from './pages/activities/activities.component';
+import { FoodComponent } from './pages/food/food.component';
+import { BudgetBarComponent } from './components/budget-bar/budget-bar.component';
+import { FlightsComponent } from './pages/flights/flights.component';
+import { TripFormComponent } from './pages/trip-form/trip-form.component';
 
 export const routes: Routes = [
   {
@@ -22,6 +30,16 @@ export const routes: Routes = [
     canActivate: [GuestGuard],
   },
   {
+    path: 'reset-password',
+    component: ResetpasswordComponent,
+    canActivate: [GuestGuard],
+  },
+  {
+    path: 'validate-otp',
+    component: ValidateOTPComponent,
+    canActivate: [GuestGuard],
+  },
+  {
     path: 'access-denied',
     component: AccessDeniedComponent,
   },
@@ -29,6 +47,39 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',
+  },
+  {
+    path: 'lodge',
+    component: LodgeComponent,
+    data: { 
+      authorities: [
+        IRole.admin, 
+        IRole.user
+      ],
+      name: 'Lodge',
+    }
+  },
+  {
+    path: 'food',
+    component: FoodComponent,
+    data: { 
+      authorities: [
+        IRole.admin, 
+        IRole.user
+      ],
+      name: 'Food',
+    }
+  },
+  {
+    path: 'flight',
+    component: FlightsComponent,
+    data: { 
+      authorities: [
+        IRole.admin, 
+        IRole.user
+      ],
+      name: 'Flight',
+    }
   },
   {
     path: 'app',
@@ -64,7 +115,18 @@ export const routes: Routes = [
           icon:'bi bi-duffle-fill'
         }
       },
-
+      {
+        path: 'trip-form',
+        component: TripFormComponent,
+        data: { 
+          authorities: [
+            IRole.admin, 
+            IRole.user
+          ],
+          name: 'Trip Form',
+          icon:'bi bi-duffle-fill'
+        }
+      },
     ],
   },
 ];

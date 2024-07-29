@@ -78,7 +78,10 @@ export class PlaceAutocompleteComponent implements OnInit {
           imageUrl: this.getPhotoUrl(place),
           iconUrl: place?.icon,
           latitude: place?.geometry?.location?.lat() ?? 0,
-          longitude: place?.geometry?.location?.lng(),          
+          longitude: place?.geometry?.location?.lng(), 
+          rating: place?.rating,
+          types: place?.types,
+          pricelevel: place?.price_level,           
         };
         this.placeChanged.emit(result);
         console.log(JSON.stringify(result, null, 4));
@@ -112,7 +115,7 @@ export class PlaceAutocompleteComponent implements OnInit {
     const request = {
       location: location,
       radius: radiusNumber,
-      type: 'tourist',
+      type: 'tourist_attraction',
     };
 
     this.placesService?.nearbySearch(request, (results, status) => {
@@ -123,7 +126,9 @@ export class PlaceAutocompleteComponent implements OnInit {
           location: place.geometry?.location,
           imageUrl: this.getPhotoUrl(place),
           iconUrl: place.icon,
-          price: place.price_level,
+          types: place.types,
+          rating: place?.rating,
+          placelevel: place?.price_level,  
         }));
 
         this.nearbyPlacesFound.emit(nearbyPlaces);

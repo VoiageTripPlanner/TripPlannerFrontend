@@ -42,24 +42,4 @@ export class ActivitiesNearbyCardComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  fromValue: IPlaceSearchResult = { address: '' };
-  toValue: IPlaceSearchResult = { address: '' };
-  fromNearbyPlaces: IPlaceSearchResult[] = [];
-  toNearbyPlaces: IPlaceSearchResult[] = [];
-  allNearbyPlaces: IPlaceSearchResult[] = [];
-  
-  onNearbyPlacesFound(places: IPlaceSearchResult[]) {
-
-       // Logic to update nearby places based on which field is being updated
-       if (this.fromValue.address) {
-        this.fromNearbyPlaces = places;
-      }
-      if (this.toValue.address) {
-        this.toNearbyPlaces = places;
-      }
-  
-      // Merge all places to display in the map
-      this.allNearbyPlaces = [...this.fromNearbyPlaces, ...this.toNearbyPlaces];
-    }
-
 }

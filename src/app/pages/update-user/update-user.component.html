@@ -1,78 +1,124 @@
-
 <div class="login-container">
-    <div class="container-voiage">
-      <img src="../../../../assets/img/Letters_Voiage.webp" class="voiage-image"/>
-    </div>
-    <div class="d-flex align-items-center justify-content-center mt-4">
-      <div class="login-card">
-        <div class="w-100">
-  
-          <div class="login-main">
-  
-            <form (ngSubmit)="handleUpdate($event)" autocomplete="off" #frm="ngForm">
-              <div class="mb-3 ">
-                <h1 class="yeseva-one-regular font-size-4">Update User</h1>
-              </div>
-  
-              <div class="custom-line">
-  
-              </div>
-  
-              <div class="form-group mb-3 input-horizontal-margin">
+  <div class="d-flex align-items-center justify-content-center">
+    <div class="login-card shadow">
+      <div class="w-100">
+        <h2 class="fs-2 pb-2">Personal Information</h2>
+        <div class="login-main">
+          <form (ngSubmit)="handleUpdate($event)" autocomplete="off" [formGroup]="updateUserForm" class="container">
+            <div class="row form-group mb-3">
+              <div class="col-4 form-group px-1">
                 <label for="name" class="form-label mb-2">
                   Name
                 </label>
-                <input #name="ngModel" type="text" class="form-control" id="name" name="name"
-                  placeholder="Name" [(ngModel)]="updateUserForm.name" [ngClass]="{
-                    'is-invalid': name.invalid && name.touched,
-                    'is-valid': name.valid && name.touched
-                  }" required />
-                <div *ngIf="name.invalid" class="invalid-feedback">
-                  Please add a valid email
+                <input formControlName="name" #name type="text" class="form-control" id="name" name="name"
+                  [ngClass]="{
+                    'is-invalid': updateUserForm.get('name')?.invalid && updateUserForm.get('name')?.touched,
+                    'is-valid': updateUserForm.get('name')?.valid && updateUserForm.get('name')?.touched
+                  }" />
+                <div *ngIf="updateUserForm.get('name')?.invalid" class="invalid-feedback">
+                  Please add a valid name
                 </div>
               </div>
-                
-              <div class="form-group mb-3 input-horizontal-margin">
-                <label for="last_name" class="form-label mb-2">
-                  Last Name
+              <div class="col-4 px-1">
+                <label for="lastname" class="form-label mb-2">
+                  Lastname
                 </label>
-                <input #last_name="ngModel" type="text" class="form-control" id="last_name" name="last_name"
-                  placeholder="Last Name" [(ngModel)]="updateUserForm.last_name" [ngClass]="{
-                    'is-invalid': last_name.invalid && last_name.touched,
-                    'is-valid': last_name.valid && last_name.touched
-                  }" required />
-                <div *ngIf="last_name.invalid" class="invalid-feedback">
-                  Please add a valid email
+                <input formControlName="lastname" #lastname type="text" class="form-control" id="lastname" name="lastname"
+                  [ngClass]="{
+                    'is-invalid': updateUserForm.get('lastname')?.invalid && updateUserForm.get('lastname')?.touched,
+                    'is-valid': updateUserForm.get('lastname')?.valid && updateUserForm.get('lastname')?.touched
+                  }" />
+                <div *ngIf="updateUserForm.get('lastname')?.invalid" class="invalid-feedback">
+                  Please add a valid lastname
                 </div>
               </div>
-
-              <div class="form-group mb-3 input-horizontal-margin">
-                <label for="second_last_name" class="form-label mb-2">
-                  Second Last Name
+              <div class="col-4 px-1">
+                <label for="lastname" class="form-label mb-2">
+                  2nd Lastname
                 </label>
-                <input #second_last_name="ngModel" type="text" class="form-control" id="second_last_name" name="second_last_name"
-                  placeholder="Second Last Name" [(ngModel)]="updateUserForm.second_last_name" [ngClass]="{
-                    'is-invalid': second_last_name.invalid && second_last_name.touched,
-                    'is-valid': second_last_name.valid && second_last_name.touched
-                  }" required />
-                <div *ngIf="second_last_name.invalid" class="invalid-feedback">
+                <input formControlName="secondLastname" #secondLastname type="text" class="form-control" id="second-lastname" name="secondLastname" />
+              </div>
+            </div>
+            <div class="row form-group mb-3">
+              <div class="col-6 ps-0">
+                <label for="email" class="form-label mb-2">
+                  Email Address
+                </label>
+                <input formControlName="email" #email type="text" class="form-control" id="email" name="email"
+                  placeholder="agent@gmail.com" [ngClass]="{
+                    'is-invalid': updateUserForm.get('email')?.invalid && updateUserForm.get('email')?.touched,
+                    'is-valid': updateUserForm.get('email')?.valid && updateUserForm.get('email')?.touched
+                  }" />
+                <div *ngIf="updateUserForm.get('email')?.invalid" class="invalid-feedback">
                   Please add a valid email
                 </div>
               </div>
-
-              <div class="form-group mb-0 input-horizontal-margin">
-                <button class="btn btn-login btn-block w-100 yeseva-one-regular" type="submit">
-                  Submit
-                </button>
+              <div class="col-6 pe-0">
+                <label for="birthDate" class="form-label mb-2">
+                  Birth Date
+                </label>
+                <div class="datepicker-wrapper">
+                  <input formControlName="birthDate" #birthDate matInput [max]="maxDate" [matDatepicker]="picker" class="form-control" id="birth-date" name="birthDate"
+                    placeholder="agent@gmail.com" [ngClass]="{
+                      'is-invalid': updateUserForm.get('birthDate')?.invalid && updateUserForm.get('birthDate')?.touched,
+                      'is-valid': updateUserForm.get('birthDate')?.valid && updateUserForm.get('birthDate')?.touched
+                    }" />
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </div>
+                <div *ngIf="updateUserForm.get('birthDate')?.invalid" class="invalid-feedback">
+                  Please add a valid birth date
+                </div>
               </div>
-            </form>
-          </div>
+            </div>
+            <div class="row form-group mb-5">
+              <div class="col-6 ps-0">
+                <label for="country" class="form-label mb-2">Country</label>
+                <div class="form-input position-relative">
+                  <input formControlName="countryId" [matAutocomplete]="autoCountries" class="form-control" id="country" name="country"
+                  [ngClass]="{
+                    'is-invalid': updateUserForm.get('countryId')?.invalid && updateUserForm.get('countryId')?.touched,
+                    'is-valid': updateUserForm.get('countryId')?.valid && updateUserForm.get('countryId')?.touched
+                  }" />
+                  <mat-autocomplete #autoCountries="matAutocomplete" [displayWith]="displayCountryName" (optionSelected)="updateCurrency($event)">
+                    @for (country of filteredCountries$ | async; track country) {
+                      <mat-option [value]="country.id">{{country.name}}</mat-option>
+                    }
+                  </mat-autocomplete>
+                  <div *ngIf="updateUserForm.get('countryId')?.invalid" class="invalid-feedback">
+                    Please add a valid country
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 pe-0">
+                <label for="country" class="form-label mb-2">Currency</label>
+                <div class="form-input position-relative">
+                  <input #currencyInput formControlName="currencyId" [matAutocomplete]="autoCurrencies" class="form-control" id="currency" name="currency"
+                  [ngClass]="{
+                    'is-invalid': updateUserForm.get('currencyId')?.invalid && updateUserForm.get('currencyId')?.touched,
+                    'is-valid': updateUserForm.get('currencyId')?.valid && updateUserForm.get('currencyId')?.touched
+                  }" />
+                  <mat-autocomplete #autoCurrencies="matAutocomplete" [displayWith]="displayCurrencyName">
+                    @for (currency of filteredCurrencies$ | async; track currency) {
+                      <mat-option [value]="currency.id">{{currency.name}}</mat-option>
+                    }
+                  </mat-autocomplete>
+                  <div *ngIf="updateUserForm.get('currencyId')?.invalid" class="invalid-feedback">
+                    Please add a valid currency
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row form-group px-0 mb-1">
+              <button class="btn btn-primary btn-block w-100" type="submit" [disabled]="updateUserForm.invalid">
+                Save
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
-    <footer class="footer">
-      <div class="footer-line"></div>
-      <img src="../../../../assets/icons/Round_Voiage_2.webp" alt="Logo" class="footer-logo">
-  </footer>
   </div>
-  
+</div>

@@ -40,7 +40,7 @@ export class AuthService {
     if (userId) this.userId = JSON.parse(userId);
   }
 
-  public getUser(): IUser | undefined {
+  public getUser(): any {
     return this.user;
   }
 

@@ -24,23 +24,6 @@ import { FoodCardComponent } from '../../components/food/food-card/food-card.com
 })
 export class FoodComponent {
 
-  // service = inject(YelpActivitiesService);
 
-  // latitude: number = 37.786882;
-  // longitude:number = -122.399972;
-  // resultado: any;
-
-
-
-  // enviarDatos() {
-  //   const datos: IYelpApiSearchParams = {
-  //     latitude: this.latitude,
-  //     longitude: this.longitude,
-  //   };
-
-
-
-  //   this.service.getAllSignal(datos);
-  // };
 
 }

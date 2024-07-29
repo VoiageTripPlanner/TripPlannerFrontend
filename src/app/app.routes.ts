@@ -12,11 +12,9 @@ import { IRole } from './interfaces/role.interface';
 import { LodgeComponent } from './pages/lodge/lodge.component';
 import { ResetpasswordComponent } from './pages/resetpassword/resetpassword.component';
 import { ValidateOTPComponent } from './pages/validate-otp/validate-otp.component';
-import { ActivitiesComponent } from './pages/activities/activities.component';
 import { FoodComponent } from './pages/food/food.component';
-import { UpdateUserComponent } from './pages/update-user/update-user.component';
+import { FlightsComponent } from './pages/flights/flights.component';
 import { TripFormComponent } from './pages/trip-form/trip-form.component';
-
 
 export const routes: Routes = [
   {
@@ -105,6 +103,18 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'lodge',
+        component: LodgeComponent,
+        data: { 
+          authorities: [
+            IRole.admin, 
+            IRole.user
+          ],
+          name: 'Lodge',
+          icon:'bi bi-duffle-fill'
+        }
+      },
+      {
         path: 'trip-form',
         component: TripFormComponent,
         data: { 
@@ -116,20 +126,19 @@ export const routes: Routes = [
           icon:'bi bi-duffle-fill'
         }
       },
+
       {
-        path: 'update-user',
-        component: UpdateUserComponent,
+        path: 'flight',
+        component: FlightsComponent,
         data: { 
           authorities: [
             IRole.admin, 
             IRole.user
           ],
-          name: 'Update User',
+          name: 'Flight',
           icon:'bi bi-duffle-fill'
         }
-      },
-
-
+      },   
     ],
   },
 ];

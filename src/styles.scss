@@ -66,6 +66,8 @@ $demo-angular-front-theme: mat.define-light-theme((
   --fc-button-hover-border-color: var(--theme-default);
 }
 
+$custom-gradient: linear-gradient(to bottom, #2D2230, #1D0F1C, #4B2137,);
+
 body[class="dark-only"] {
   --light-background: rgba(31, 32, 40, 0.65);
   --recent-chart-bg: #262932;
@@ -81,18 +83,24 @@ body[class="dark-only"] {
   --view-grid-bg: var(--light-bg);
   --view-border-marker: #2c2c45d4;
 }
+
 // scss variables
 @import "./assets/utils/variables";
 //start template styles
 @import "./assets/layout/layout.scss";
 //end template styles
 
-body { 
-  height: 100%; 
+body {
+  height: 100%;
+  background-image: $custom-gradient;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-
+html {
+  height: 100%;
+}	
 .error-snackbar .mdc-snackbar__surface{
   background-color: rgb(197, 49, 49) !important;
 }

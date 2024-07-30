@@ -41,22 +41,22 @@
                     'is-invalid': password.invalid && password.touched,
                     'is-valid': password.valid && password.touched
                   }" required />
-                <div *ngIf="otp.invalid" class="invalid-feedback">
+                <div *ngIf="password.invalid" class="invalid-feedback">
                   Please add your New Password
                 </div>
-              </div>
-              <div class="form-group mb-3 input-horizontal-margin">
-                <label for="passwordConfirm" class="form-label mb-2">
-                  Confirm Password
-                </label>
-                <input #password="ngModel" type="password" class="form-control" id="passwordConfirm" name="passwordConfirm"
-                  placeholder="passwordConfirm" [(ngModel)]="validateOtpForm.password2" [ngClass]="{
-                    'is-invalid': password.invalid && password.touched,
-                    'is-valid': password.valid && password.touched
-                  }" required />
-                <div *ngIf="otp.invalid" class="invalid-feedback">
-                  Please confirm your new Password
                 </div>
+                <div class="form-group mb-3 input-horizontal-margin">
+                  <label for="passwordConfirm" class="form-label mb-2">
+                    Confirm Password
+                  </label>
+                  <input #passwordConfirm="ngModel" type="password" class="form-control" id="passwordConfirm" name="passwordConfirm"
+                    placeholder="passwordConfirm" [(ngModel)]="validateOtpForm.password2" [ngClass]="{
+                      'is-invalid': passwordConfirm.invalid && passwordConfirm.touched || validateOtpForm.password !== validateOtpForm.password2,
+                      'is-valid': passwordConfirm.valid && passwordConfirm.touched && validateOtpForm.password === validateOtpForm.password2
+                    }" required />
+                  <div *ngIf="passwordConfirm.invalid || validateOtpForm.password !== validateOtpForm.password2" class="invalid-feedback">
+                    Make sure it matches the New Password field.
+                  </div>
               </div>
               <div class="form-group mb-0 input-horizontal-margin">
                 <button class="btn btn-login btn-block w-100 yeseva-one-regular" type="submit">
@@ -70,7 +70,6 @@
     </div>
     <footer class="footer">
       <div class="footer-line"></div>
-      <img src="../../../../assets/icons/Round_Voiage.webp" alt="Logo" class="footer-logo">
       <img src="../../../../assets/icons/Round_Voiage_2.webp" alt="Logo" class="footer-logo">
   </footer>
   </div>

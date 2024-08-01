@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { GoogleMapsModule, MapInfoWindow, MapAdvancedMarker } from '@angular/google-maps';
 import { RouterOutlet } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-maps',
@@ -31,10 +32,14 @@ export class MapComponent {
     this.infoWindow.openAdvancedMarkerElement(marker.advancedMarker, marker.advancedMarker.title);
   }
 
-  options: google.maps.MapOptions = {
-    center: { lat: -31, lng: 147 },
-    zoom: 4,
-  };
+  async initMap(): Promise<void> {
+    const { Map } = await google.maps.importLibrary("maps") as typeof google.maps;
+     this.map = new Map(document.getElementById("maps") as HTMLElement, {
+      center: { lat: this.latitude, lng: this.longitude },
+      zoom: 8,
+      mapId: `${environment.maps_id}`,
+    });
+  }
 
   aLocations: any[] = [
     { lat: 0, lng: 0 },
@@ -43,5 +48,7 @@ export class MapComponent {
     { lat: 0, lng: 0 },
   ];
 
-
+  ngOnInit() {
+    this.initMap();
+  }
 }

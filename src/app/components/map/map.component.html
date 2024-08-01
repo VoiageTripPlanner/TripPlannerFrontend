@@ -1,5 +1,5 @@
 <!-- Add the required attributes to the google-map component -->
-<google-map class="maps" [options]="options">
+<google-map class="maps" >
     @for (location of aLocations; track location) {
         <map-advanced-marker
           #markerElem="mapAdvancedMarker"

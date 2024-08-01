@@ -18,6 +18,7 @@ import { BudgetBarComponent } from './components/budget-bar/budget-bar.component
 import { FlightsComponent } from './pages/flights/flights.component';
 import { TripFormComponent } from './pages/trip-form/trip-form.component';
 import { UpdateUserComponent } from './pages/update-user/update-user.component';
+import { StepperComponent } from './components/stepper/stepper.component';
 
 export const routes: Routes = [
   {
@@ -82,6 +83,18 @@ export const routes: Routes = [
       name: 'Flight',
     }
   },
+  {
+    path: 'planning',
+    component: StepperComponent,
+    data: { 
+      authorities: [
+        IRole.admin, 
+        IRole.user
+      ],
+      name: 'Stepper',
+      icon:'bi bi-duffle-fill'
+    }
+  },   
   {
     path: 'app',
     component: AppLayoutComponent,
@@ -149,6 +162,7 @@ export const routes: Routes = [
           icon:'bi bi-duffle-fill'
         }
       },      
+   
     ],
   },
 ];

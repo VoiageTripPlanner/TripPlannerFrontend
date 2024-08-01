@@ -7,40 +7,41 @@ import { IVoiageActivities } from '../interfaces/activities.interface';
 @Injectable({
   providedIn: 'root',
 })
-export class ActivitiesService extends BaseService<IVoiageActivities>   {
+export class ActivitiesService extends BaseService<IVoiageActivities> {
 
-  notifyService=inject(NotifyService);
+  notifyService = inject(NotifyService);
 
 
-  private restaurantListSignal = signal<IVoiageActivities[]>([]);
+  private activitiesListSignal = signal<IVoiageActivities[]>(this.onGetDefaultVoiageActivities());
 
-  get restaurant$() {
-    return this.restaurantListSignal;
+  get activities$() {
+    return this.activitiesListSignal;
   };
 
 
-  onGetDefaultVoiageActivities(){
+  onGetDefaultVoiageActivities() {
 
-    const defaultValue: IVoiageActivities = {
+    return [
+      {
 
     }
 
-    return defaultValue;
+    ];
 
-  };
+};
 
 
-  getAllActivities() {
+getAllActivities() {
 
-    this.findAll().subscribe({
-      next: (response: any) => {
-        this.restaurantListSignal.set(response);
-        response.reverse();
-      },
-      error: (error: any) => {
-        console.error('Error fetching users', error);
-        this.notifyService.onError();
-      }
-    });
-  };
+  this.findAll().subscribe({
+    next: (response: any) => {
+      this.activitiesListSignal.set(response);
+      response.reverse();
+    },
+    error: (error: any) => {
+      console.error('Error fetching users', error);
+      this.notifyService.onError();
+    }
+  });
+};
 }

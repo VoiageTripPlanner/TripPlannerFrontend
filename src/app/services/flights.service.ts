@@ -8,7 +8,7 @@ import { NotifyService } from '../shared/notify/notify.service';
 @Injectable({
   providedIn: 'root',
 })
-export class FlightsService extends BaseService<IVoiageFlight>   {
+export class FlightService extends BaseService<IVoiageFlight>   {
 
   notifyService=inject(NotifyService);
 

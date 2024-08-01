@@ -14,41 +14,48 @@ export class FoodService extends BaseService<IVoiageRestaurant>   {
   notifyService=inject(NotifyService);
   locationMarkService=inject(LocationMarkService);
 
-  private restaurantListSignal = signal<IVoiageRestaurant>(this.onGetDefaultVoiageLocationMark());
+  private restaurantListSignal = signal<IVoiageRestaurant[]>(this.onGetDefaultVoiageRestaurant());
 
   get restaurant$() {
     return this.restaurantListSignal;
   };
 
 
-  onGetDefaultVoiageLocationMark(){
+  onGetDefaultVoiageRestaurant(){
 
-    const defaultValue: IVoiageRestaurant = {
-      restaurant_id                 : 0,
-      name                          : '',
-      description                   : '',
-      average_price                 : 0,
-      location_mark                 : this.locationMarkService.onGetDefaultVoiageLocationMark(),
-      creation_datetime             : new Date(),
-      creation_responsible          : 0
+      return [
+        {
+          restaurant_id                 : 0,
+          name                          : '',
+          description                   : '',
+          average_price                 : 0,
+          location_mark                 : this.locationMarkService.onGetDefaultVoiageLocationMark(),
+          creation_datetime             : new Date(),
+          creation_responsible          : 0
+
+        }
+
+       ];
     }
 
-    return defaultValue;
+
+    getAllRestauranSignal() {
+
+      this.findAll().subscribe({
+        next: (response: any) => {
+          this.restaurantListSignal.set(response);
+          response.reverse();
+        },
+        error: (error: any) => {
+          console.error('Error fetching users', error);
+          this.notifyService.onError();
+        }
+      });
+    };
+
+
 
   };
 
 
-  getAllRestauranSignal() {
 
-    this.findAll().subscribe({
-      next: (response: any) => {
-        this.restaurantListSignal.set(response);
-        response.reverse();
-      },
-      error: (error: any) => {
-        console.error('Error fetching users', error);
-        this.notifyService.onError();
-      }
-    });
-  };
-}

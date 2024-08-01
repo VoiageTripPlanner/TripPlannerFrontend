@@ -12,8 +12,12 @@ import { IRole } from './interfaces/role.interface';
 import { LodgeComponent } from './pages/lodge/lodge.component';
 import { ResetpasswordComponent } from './pages/resetpassword/resetpassword.component';
 import { ValidateOTPComponent } from './pages/validate-otp/validate-otp.component';
-import { ActivitiesComponent } from './pages/activities/activities.component';
 import { FoodComponent } from './pages/food/food.component';
+import { RecomendationComponent } from './pages/recomendation/recomendation.component';
+import { BudgetBarComponent } from './components/budget-bar/budget-bar.component';
+import { FlightsComponent } from './pages/flights/flights.component';
+import { TripFormComponent } from './pages/trip-form/trip-form.component';
+import { UpdateUserComponent } from './pages/update-user/update-user.component';
 
 export const routes: Routes = [
   {
@@ -46,6 +50,39 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'lodge',
+    component: LodgeComponent,
+    data: { 
+      authorities: [
+        IRole.admin, 
+        IRole.user
+      ],
+      name: 'Lodge',
+    }
+  },
+  {
+    path: 'food',
+    component: FoodComponent,
+    data: { 
+      authorities: [
+        IRole.admin, 
+        IRole.user
+      ],
+      name: 'Food',
+    }
+  },
+  {
+    path: 'flight',
+    component: FlightsComponent,
+    data: { 
+      authorities: [
+        IRole.admin, 
+        IRole.user
+      ],
+      name: 'Flight',
+    }
+  },
+  {
     path: 'app',
     component: AppLayoutComponent,
     canActivate: [AuthGuard],
@@ -68,6 +105,15 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'update-user',
+        component: UpdateUserComponent,
+        data: { 
+          authorities: [],
+          name: 'Update User',
+          icon:'bi bi-people-fill'
+        }
+      },
+      {
         path: 'dashboard',
         component: DashboardComponent,
         data: { 
@@ -80,18 +126,29 @@ export const routes: Routes = [
         }
       },
       {
-        path: 'food',
-        component: FoodComponent,
+        path: 'trip-form',
+        component: TripFormComponent,
         data: { 
           authorities: [
             IRole.admin, 
             IRole.user
           ],
-          name: 'Food',
+          name: 'Trip Form',
           icon:'bi bi-duffle-fill'
         }
       },
-
+      {
+        path: 'recomendation',
+        component: RecomendationComponent,
+        data: { 
+          authorities: [
+            IRole.admin, 
+            IRole.user
+          ],
+          name: 'Recomendation',
+          icon:'bi bi-duffle-fill'
+        }
+      },      
     ],
   },
 ];

@@ -1,16 +1,32 @@
 import { Component, ViewChild } from '@angular/core';
 import { GoogleMapsModule, MapInfoWindow, MapAdvancedMarker } from '@angular/google-maps';
 import { RouterOutlet } from '@angular/router';
-import { environment } from '../../../environments/environment';
+import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-maps',
   standalone: true,
-  imports: [RouterOutlet, GoogleMapsModule],
+  imports: [LoaderComponent,RouterOutlet, GoogleMapsModule],
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss'
 })
 export class MapComponent {
+
+  // isLoading: boolean = false;
+  isLoading: boolean = true;
+
+  options: google.maps.MapOptions = {
+    center: { lat: -31, lng: 147 },
+    zoom: 4,
+  };
+
+  onMapReady() {
+    this.isLoading = false;
+  }
+
+
+}
+
   @ViewChild(MapInfoWindow) infoWindow!: MapInfoWindow;
   map!: google.maps.Map;
   latitude: number = 0;

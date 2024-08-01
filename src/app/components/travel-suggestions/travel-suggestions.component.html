@@ -1,0 +1,28 @@
+<div class="container">
+  <div>
+    <!-- Contenedor del input y el botón con alineación horizontal -->
+    <h1>I'm interested in going to:</h1>
+    <div class="input d-flex align-items-center">
+      <!-- Título de la sección -->
+    
+      <!-- Componente de autocompletado de lugar con margen derecho -->
+      <app-place-autocomplete
+        (placeChanged)="fromValue = $event"
+        (nearbyPlacesFound)="onNearbyPlacesFound($event)"
+        placeholder="Enter from address..."
+        class="mr-3"
+      ></app-place-autocomplete>
+      <!-- Botón para obtener sugerencias de viaje -->
+      <button (click)="getTravelSuggestions()" class="btn btn-primary mb-3">Get Travel Suggestions</button>
+    </div>
+  </div>
+  <div class="container">
+    <!-- Contenedor de las sugerencias de viaje -->
+    <div>
+      <h1>Travel Suggestions:</h1>
+      <div>
+        <p class="expanded-text">{{GoogleService.suggestionsResponseSignal$()}}</p>
+      </div>
+    </div>
+  </div>
+</div>

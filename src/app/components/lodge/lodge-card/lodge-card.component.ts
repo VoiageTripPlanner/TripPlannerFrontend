@@ -7,6 +7,13 @@ import { ModalComponent } from '../../modal/modal.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NotifyService } from '../../../shared/notify/notify.service';
+import { TripService } from '../../../services/trip.service';
+import { ITripForm } from '../../../interfaces/trip.interface';
+import { formatDateToYYYYMMDD } from '../../../shared/utils/date-formatter';
+import { BudgetService } from '../../../services/budged.service';
+import { BudgetBarComponent } from '../../budget-bar/budget-bar.component';
+import { Router } from '@angular/router';
+import { IBudgetPrices } from '../../../interfaces/budget.interface';
 
 @Component({
   selector: 'app-lodge-card',
@@ -16,7 +23,8 @@ import { NotifyService } from '../../../shared/notify/notify.service';
     LoaderComponent,
     ModalComponent,
     CommonModule,
-    FormsModule
+    FormsModule,
+    MapComponent
 
   ],
   templateUrl: './lodge-card.component.html',
@@ -25,34 +33,46 @@ import { NotifyService } from '../../../shared/notify/notify.service';
 export class LodgeCardComponent {
 
   service = inject(GoogleHotelService);
+  budgetService=inject(BudgetService);
   notifyService = inject(NotifyService);
+  tripFormService=inject(TripService);
+  
   googleHotelResponseList: IGoogleResponse[] = []
+  initialForm:ITripForm;
+  tripBudget:IBudgetPrices;
+  isLoading: boolean = false;
 
 
-  //Mas adelante estos datos van a venir del componente padre que va a ser el primer formulario
-  destino: string = 'New York';
-  checkIn: String = "2024-08-07";
-  checkOut: String = "2024-08-14";
-  resultado: any;
+  
+  constructor(
+    private router: Router,
+  ) {
 
-  constructor() {
+    this.initialForm = this.tripFormService.getFormData();
+    this.tripBudget=this.budgetService.getBudgetData();
+
     this.sendData();
+
   };
-
+  
+  
   sendData() {
-
-    const datos: ISearchParameters = {
-      q: this.destino,
-      check_in_date: this.checkIn,
-      check_out_date: this.checkOut
+    this.isLoading = true;
+    const data: ISearchParameters = {
+    
+      q: this.initialForm.q,
+      check_in_date: formatDateToYYYYMMDD(this.initialForm.check_in_date),
+      check_out_date: formatDateToYYYYMMDD(this.initialForm.check_out_date)
     };
-
-    this.service.getAllSignal(datos);
-
+    
+    this.service.getAllSignal(data);
+    
     effect(() => {
-
+      
       this.googleHotelResponseList = this.service.googleHotelResponse$();
-      console.log(this.googleHotelResponseList);
+      if (this.googleHotelResponseList.length > 0) {
+        this.isLoading=false;
+      }
     })
   };
 
@@ -79,6 +99,22 @@ export class LodgeCardComponent {
     target.src = '../../../../assets/img/No_image_available.png';
   }
 
+
+  selectOption(amount:number | undefined){
+
+
+    if (!amount) {
+      amount=0;
+    }
+
+    const classification = 'lodge'; 
+
+    this.budgetService.updateSpending(amount, classification);
+
+    this.router.navigateByUrl('/food');
+
+    
+  }
 
 
 

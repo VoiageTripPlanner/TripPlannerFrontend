@@ -25,7 +25,6 @@ export class YelpFoodService extends BaseService<IFoodBusiness> {
     this.bringInfoWithParams(searchParams).subscribe({
       next: (response: any) => {
 
-        debugger
         if (!response || response.businesses.length==0) {
 
           this.yelpFoodResponseSignal.set([]);
@@ -33,7 +32,6 @@ export class YelpFoodService extends BaseService<IFoodBusiness> {
           return this.notifyService.onNoData();
           
         }
-        
         console.log(response.businesses);
         this.yelpFoodResponseSignal.set(response.businesses);
 

@@ -6,6 +6,8 @@ import { ModalComponent } from '../../components/modal/modal.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FoodCardComponent } from '../../components/food/food-card/food-card.component';
+import { Router } from '@angular/router';
+import { BudgetBarComponent } from '../../components/budget-bar/budget-bar.component';
 
 
 @Component({
@@ -16,6 +18,7 @@ import { FoodCardComponent } from '../../components/food/food-card/food-card.com
     MapComponent,
     LoaderComponent,
     ModalComponent,
+    BudgetBarComponent,
     CommonModule,
     FormsModule
   ],
@@ -24,23 +27,12 @@ import { FoodCardComponent } from '../../components/food/food-card/food-card.com
 })
 export class FoodComponent {
 
-  // service = inject(YelpActivitiesService);
+  constructor(
+    private router: Router, 
+  ){}
 
-  // latitude: number = 37.786882;
-  // longitude:number = -122.399972;
-  // resultado: any;
-
-
-
-  // enviarDatos() {
-  //   const datos: IYelpApiSearchParams = {
-  //     latitude: this.latitude,
-  //     longitude: this.longitude,
-  //   };
-
-
-
-  //   this.service.getAllSignal(datos);
-  // };
+  navigateToDashboard() {
+    this.router.navigateByUrl('app/dashboard')
+  }
 
 }

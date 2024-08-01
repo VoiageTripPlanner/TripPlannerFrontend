@@ -1,6 +1,16 @@
 /**=====================
     78. Sidebar CSS Start
 ==========================**/
+
+//variables de color 
+$neutro-color-main:#1D0F1C;
+$neutro-color-second: #2D2230;
+$middle-color-main:#4B2137;
+$middle-color-second:#6D3C52;
+$light-color-main: #FADCD4;
+$light-color-second: #775D68;
+$line-gradient:linear-gradient(to right, rgba(255, 255, 255, 0.1), #FADCD4, rgba(255, 255, 255, 0.1)); 
+
 %sidebar-after {
   position: absolute;
   content: "";
@@ -207,7 +217,7 @@
                   font-size: 18px;
                   font-weight: 600;
                   transition: all 0.3s ease;
-
+                  
                   &.fa-lightbulb-o {
                     font-weight: 500;
                     font-size: 22px;

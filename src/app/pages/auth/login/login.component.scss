@@ -37,6 +37,13 @@ p {
   font-family: 'Roboto', sans-serif;
 }
 
+.text-danger {
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  padding-top: 1rem;
+}	
+
 .login-container {
   height: 100vh;
   background-image: url('../../../../assets/img/imagen-desenfocada.png');
@@ -54,7 +61,6 @@ p {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.3); 
     z-index: 1;
   }
   .login-card {

@@ -36,6 +36,7 @@ export interface ITrip{
     food:               IVoiageRestaurant[]; 
     activities:         IActivities[] 
     user_id:            number;
+    ai_suggestions?:    string;
 
 
     //Propiedades de auditoria

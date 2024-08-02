@@ -5,6 +5,7 @@ export interface IPlaceSearchResult {
     latitude?: number;
     longitude?: number;
     iconUrl?: string;
+    //Cambiar a Location
     location?: google.maps.LatLng;
   }
   export interface IOpenAIResponse {

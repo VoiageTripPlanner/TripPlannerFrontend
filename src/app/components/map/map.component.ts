@@ -1,9 +1,11 @@
+import { Location } from './../../interfaces/yelp-food-response.interface';
 import { Component, OnInit } from '@angular/core';
-import { GoogleMapsModule, MapAdvancedMarker } from '@angular/google-maps';
+import { GoogleMapsModule, MapAdvancedMarker, MapGeocoder } from '@angular/google-maps';
 import { RouterOutlet } from '@angular/router';
 import { LoaderComponent } from '../loader/loader.component';
 import { environment } from '../../../environments/environment';
 import { CommonModule } from '@angular/common';
+import { ILocation } from '../../interfaces/location.interface';
 
 
 @Component({
@@ -22,8 +24,6 @@ export class MapComponent implements OnInit {
   ngOnInit(): void {
     if (!this.isValidApiKey()) {
       throw new Error('Invalid API Key');
-    }else{
-      console.log('Valid');
     }
   }
   markerOptions: google.maps.MarkerOptions = {draggable: false};
@@ -81,6 +81,18 @@ export class MapComponent implements OnInit {
           if (results && results[0]) {
             console.log(results[0]);
             // Store the geocode object in a variable or use it as needed
+            const geocode = results[0];
+            const address = geocode.formatted_address;
+            const placeId = geocode.place_id;
+            this.latitude = geocode.geometry.location.lat();
+            this.longitude = geocode.geometry.location.lng();
+            const Location: ILocation = {
+              address: address,
+              place_id: placeId,
+              latitude: this.latitude,
+              longitude: this.longitude
+            };
+
           } else {
             console.log("No results found");
           }

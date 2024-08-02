@@ -130,3 +130,37 @@ $image-backgorund-color: #FADCD4;
 .circle-list li {
     break-inside: avoid; 
 }
+
+.input-area {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .display-area {
+    display: flex;
+    align-items: flex;
+    height: calc(100vh - 180px);
+
+    > div {
+      width: 60%;
+      overflow: auto;
+      padding: 8px;
+      height: inherit;
+
+      > * {
+        margin-bottom: 16px;
+      }
+    }
+
+    > app-map-display {
+        width: 40%;
+        height: 100vh;
+    }
+  }
+
+
+
+  app-place-autocomplete {
+    width: 300px;
+  }

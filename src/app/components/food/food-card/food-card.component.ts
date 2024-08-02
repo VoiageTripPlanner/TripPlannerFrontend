@@ -1,4 +1,4 @@
-import { Component, effect, inject } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { YelpFoodService } from '../../../services/api-request/yelp-food.service';
 import { IFoodBusiness, IYelpApiSearchParams } from '../../../interfaces/yelp-food-response.interface';
 import { MapComponent } from '../../map/map.component';
@@ -9,6 +9,9 @@ import { FormsModule } from '@angular/forms';
 import { NotifyService } from '../../../shared/notify/notify.service';
 import { TripService } from '../../../services/trip.service';
 import { ITripForm } from '../../../interfaces/trip.interface';
+import { BudgetService } from '../../../services/budged.service';
+import { Router } from '@angular/router';
+import { IBudgetPrices } from '../../../interfaces/budget.interface';
 
 @Component({
   selector: 'app-food-card',
@@ -26,19 +29,29 @@ import { ITripForm } from '../../../interfaces/trip.interface';
 })
 export class FoodCardComponent {
 
+  budgetService = inject(BudgetService);
   service = inject(YelpFoodService);
   notifyService = inject(NotifyService);
   tripFormService = inject(TripService);
-  yelpFoodResponseList: IFoodBusiness[] = []
 
   initialForm: ITripForm;
+  tripBudget:IBudgetPrices;
   isLoading: boolean = false;
 
-  constructor() {
 
-    this.initialForm = this.tripFormService.tripForm$();
+  yelpFoodResponseList: IFoodBusiness[] = []
+  
+  
+  constructor(
+    private router: Router,
+  ) {
+    this.initialForm    = this.tripFormService.getFormData();
+    this.tripBudget     =this.budgetService.getBudgetData();
+
     this.sendData();
+
   };
+
 
   sendData() {
     this.isLoading = true;
@@ -49,6 +62,7 @@ export class FoodCardComponent {
     };
     
     this.service.getAllSignal(data);
+
     effect(() => {
       this.yelpFoodResponseList = this.service.yelpFoodResponse$();
       if (this.yelpFoodResponseList.length > 0) {
@@ -57,6 +71,7 @@ export class FoodCardComponent {
     })
 
   };
+
 
   generateId() {
     return Math.random().toString(36).substring(2, 9);
@@ -69,5 +84,23 @@ export class FoodCardComponent {
       this.notifyService.onNoData();
     }
   };
+
+  selectOption(amount: number) {
+
+
+    if (!amount) {
+      amount = 0;
+    }
+
+    const classification = 'food';
+
+    this.budgetService.updateSpending(amount, classification);
+
+    this.router.navigateByUrl('/app/dashboard');
+
+    //Esto temporalmente mientras se completan demas componentes y borrar bien el local storage cuando se salga 
+    localStorage.removeItem('budget');
+    localStorage.removeItem('tripFormData');
+  }
 
 }

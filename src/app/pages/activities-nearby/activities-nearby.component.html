@@ -1,16 +1,2 @@
 
-<div class="container">
-  <div class="input-area">
-    <h2>I want to go from</h2>
-    <app-place-autocomplete
-      (placeChanged)="fromValue = $event"
-      (nearbyPlacesFound)="onNearbyPlacesFound($event)"
-      placeholder="Enter from address..."
-    ></app-place-autocomplete>
-  <div
-  >
-    <div>
-      <app-activities-nearby-card [places]="fromNearbyPlaces"></app-activities-nearby-card>
-    </div>
-  </div>
-</div>
+      <app-activities-nearby-card ></app-activities-nearby-card>

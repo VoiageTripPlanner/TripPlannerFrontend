@@ -7,12 +7,13 @@ import {
 } from '@angular/google-maps';
 import { BehaviorSubject, map } from 'rxjs';
 import { IPlaceSearchResult } from '../../interfaces/placeSearch';
-
+import { RouterOutlet } from '@angular/router';
+import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-map-display',
   standalone: true,
-  imports: [CommonModule, GoogleMapsModule],
+  imports: [CommonModule, GoogleMapsModule, RouterOutlet, LoaderComponent],
   template: `
     <google-map #map [zoom]="zoom" width="100%" height="100%">
       <map-directions-renderer

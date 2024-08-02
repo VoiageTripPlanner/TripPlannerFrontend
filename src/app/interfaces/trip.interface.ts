@@ -10,4 +10,5 @@ export interface ITripForm{
     return_date?:       Date; 
     stops:              number;
     type:               number;
+    travel_class?:      number;
 }

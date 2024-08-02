@@ -115,7 +115,7 @@ export class PlaceAutocompleteComponent implements OnInit {
     const request = {
       location: location,
       radius: radiusNumber,
-      type: 'tourist_attraction',
+      type: 'Vegan Restaurant',
     };
 
     this.placesService?.nearbySearch(request, (results, status) => {

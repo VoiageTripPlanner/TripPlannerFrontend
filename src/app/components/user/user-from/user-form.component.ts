@@ -32,13 +32,14 @@ export class UserFormComponent {
   feedbackMessage: IFeedBackMessage = {type: IFeedbackStatus.default, message: ''};
 
   handleAction (form: NgForm) {
+    const { authorities, ...payload } = this.user;
     if (form.invalid) {
       Object.keys(form.controls).forEach(controlName => {
         form.controls[controlName].markAsTouched();
       });
       return;
     } else {
-      this.service[ this.action == 'add' ? 'saveUserSignal': 'updateUserSignal'](this.user).subscribe({
+      this.service[ this.action == 'add' ? 'saveUserSignal': 'updateUserSignal'](payload as IUser).subscribe({
         next: () => {
           this.feedbackMessage.type = IFeedbackStatus.success;
           this.feedbackMessage.message = `User successfully ${this.action == 'add' ? 'added': 'updated'}`

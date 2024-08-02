@@ -42,8 +42,6 @@ export class PlaceAutocompleteComponent implements OnInit {
   private googleService: GoogleService;
   private router: Router;
   private geocoder: (new () => google.maps.Geocoder) | undefined;
-  private longitudeDestination!: number;
-  private latitudeDestination!: number
 
   constructor(ngZone: NgZone, googleService: GoogleService, router: Router) {
     this.ngZone = new NgZone({ enableLongStackTrace: false });

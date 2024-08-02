@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IPlaceSearchResult } from '../../interfaces/placeSearch';
 import { CommonModule, NgIf } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
@@ -29,6 +29,7 @@ import { PlaceCardComponent } from '../place-autocomplete/place-card.componet';
 export class ActivitiesNearbyCardComponent implements OnInit {
 
   @Input() places: IPlaceSearchResult[] = [];
+  @Output() onPlaceSelected = new EventEmitter<IPlaceSearchResult>();
   tripFormService: any;
   inputField: any;
 
@@ -50,6 +51,7 @@ export class ActivitiesNearbyCardComponent implements OnInit {
   fromNearbyPlaces: IPlaceSearchResult[] = [];
   toNearbyPlaces: IPlaceSearchResult[] = [];
   allNearbyPlaces: IPlaceSearchResult[] = [];
+  zoomToPlace: IPlaceSearchResult = { address: '' };
 
   onNearbyPlacesFound(places: IPlaceSearchResult[]) {
     // Logic to update nearby places based on which field is being updated
@@ -69,6 +71,7 @@ export class ActivitiesNearbyCardComponent implements OnInit {
     //Llama al componente de mapa para mostrar la ubicación de un lugar
     viewInMap(place: IPlaceSearchResult) {
 
+      this.zoomToPlace = place; // Set the place to zoom to
     }
 
 

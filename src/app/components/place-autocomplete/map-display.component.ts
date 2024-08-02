@@ -47,6 +47,9 @@ export class MapDisplayComponent implements OnInit, OnChanges {
   to: IPlaceSearchResult | undefined;
 
   @Input()
+  zoomPlace : IPlaceSearchResult | undefined;
+
+  @Input()
   pointsOfInterest: IPlaceSearchResult[] = [];
 
   markerPositions: google.maps.LatLng[] = [];
@@ -63,16 +66,26 @@ export class MapDisplayComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {}
 
-  ngOnChanges() {
+  ngOnChanges() { // This method is called when the component is initialized and whenever the input properties change.
     const fromLocation = this.from?.location;
     const toLocation = this.to?.location;
+    const zoomPlace = this.zoomPlace?.location;
 
-    if (fromLocation && toLocation) {
+    if (fromLocation && toLocation && zoomPlace) {
       this.getDirections(fromLocation, toLocation);
-    } else if (fromLocation) {
+    } else if (fromLocation && !toLocation && !zoomPlace) {
       this.gotoLocation(fromLocation);
-    } else if (toLocation) {
+    } else if (toLocation && !fromLocation && !zoomPlace) {
       this.gotoLocation(toLocation);
+    }else if (zoomPlace) {
+      this.gotoLocationZoom(zoomPlace);
+    }
+
+    //Clear the directions if the from or to location is changed
+    if (fromLocation || toLocation) {
+      this.from = undefined;
+      this.to = undefined;
+      this.zoomPlace = undefined;
     }
   }
 
@@ -80,6 +93,13 @@ export class MapDisplayComponent implements OnInit, OnChanges {
     this.markerPositions = [location];
     this.map.panTo(location);
     this.zoom = 10;
+    this.directionsResult$.next(undefined);
+  }
+
+  gotoLocationZoom(location: google.maps.LatLng) {
+    this.markerPositions = [location];
+    this.map.panTo(location);
+    this.zoom = 20;
     this.directionsResult$.next(undefined);
   }
 

@@ -33,11 +33,18 @@
     
                         <div class="align-boxes space-between">
                             <h3>Address: {{item.address}}</h3>
-                            <h3 class="move-to-right">Rating: {{item.rating}}</h3>
+                            <h3 class="move-to-right">
+                                Rating:
+                                @if (item.rating) {
+                                    {{item.rating}}
+                                } @else{
+                                    Not available
+                                } 
+                            </h3>
                         </div>
     
                         <div class="align-boxes space-between">
-                            <button type="button" class="btn btn-outline-info ">View in map</button>
+                            <button type="button" class="btn btn-outline-info" (click)="viewInMap(item)" >View in map</button>
                             <button type="button" class="btn btn-outline-success">Select option </button>
     
                         </div>
@@ -58,7 +65,7 @@
             <app-map-display
             [from]="fromValue"
             [to]="toValue"
-            [pointsOfInterest]="allNearbyPlaces">
+            [pointsOfInterest]="allNearbyPlaces"
             ></app-map-display>
 
         </div>

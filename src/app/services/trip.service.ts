@@ -34,8 +34,8 @@ export class TripService extends BaseService<ITripForm> {
       q:                '',
       check_in_date:    getNextDay(),
       check_out_date:   getTowDaysAhead(),
-      latitude:         0,
-      longitude:        0,
+      latitude:         this.getLatitudeDestination(),
+      longitude:        this.getLongitudeDestination(),
       departure_id:     '',
       arrival_id:       '',
       outbound_date:    getNextDay(),
@@ -53,6 +53,15 @@ export class TripService extends BaseService<ITripForm> {
     this.tripFormSignal.set(data);
   }
 
+  getLatitudeDestination(): number {
+    const latitudeDestination = parseFloat(localStorage.getItem('latitudeDestination') ?? '0');
+    return latitudeDestination;
+  }
+
+  getLongitudeDestination(): number {
+    const latitudeDestination = parseFloat(localStorage.getItem('longitudeDestination') ?? '0');
+    return latitudeDestination;
+  }
 
   getAllSignal() {
     this.findAll().subscribe({

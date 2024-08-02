@@ -51,6 +51,8 @@ export class MapDisplayComponent implements OnInit, OnChanges {
 
   markerPositions: google.maps.LatLng[] = [];
 
+  zoomToPlace$ = new BehaviorSubject<IPlaceSearchResult | undefined>(undefined);
+
   zoom = 5;
 
   directionsResult$ = new BehaviorSubject<
@@ -77,7 +79,7 @@ export class MapDisplayComponent implements OnInit, OnChanges {
   gotoLocation(location: google.maps.LatLng) {
     this.markerPositions = [location];
     this.map.panTo(location);
-    this.zoom = 17;
+    this.zoom = 10;
     this.directionsResult$.next(undefined);
   }
 
@@ -99,4 +101,11 @@ export class MapDisplayComponent implements OnInit, OnChanges {
         this.markerPositions = [];
       });
   }
+
+  zoomToPlace(place: IPlaceSearchResult) {
+    if (place.location) {
+      this.gotoLocation(place.location);
+    }
+  }
+
 }

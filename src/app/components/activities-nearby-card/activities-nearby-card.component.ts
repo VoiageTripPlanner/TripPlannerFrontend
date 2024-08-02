@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { IPlaceSearchResult } from '../../interfaces/placeSearch';
 import { CommonModule, NgIf } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
@@ -30,6 +30,9 @@ export class ActivitiesNearbyCardComponent implements OnInit {
 
   @Input() places: IPlaceSearchResult[] = [];
   tripFormService: any;
+  inputField: any;
+
+  
 
   trackByIndex(index: number, places: IGoogleResponse): number {
     return index;
@@ -52,7 +55,7 @@ export class ActivitiesNearbyCardComponent implements OnInit {
     // Logic to update nearby places based on which field is being updated
     if (this.fromValue.address) {
       this.fromNearbyPlaces = places;
-      console.log(this.fromNearbyPlaces);
+
     }
     if (this.toValue.address) {
       this.toNearbyPlaces = places;
@@ -60,6 +63,11 @@ export class ActivitiesNearbyCardComponent implements OnInit {
 
     // Merge all places to display in the map
     this.allNearbyPlaces = [...this.fromNearbyPlaces, ...this.toNearbyPlaces];
+
+    }
+
+    //Llama al componente de mapa para mostrar la ubicación de un lugar
+    viewInMap(place: IPlaceSearchResult) {
 
     }
 

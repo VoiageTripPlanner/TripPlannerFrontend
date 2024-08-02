@@ -1,5 +1,6 @@
 export interface IPlaceSearchResult {
-    address: string;
+  id?: string;  
+  address: string;
     name?: string;
     imageUrl?: string;
     latitude?: number;

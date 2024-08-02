@@ -22,18 +22,8 @@ import { IPlaceSearchResult } from '../../interfaces/placeSearch';
   selector: 'app-place-autocomplete',
   standalone: true,
   imports: [CommonModule, MatFormFieldModule, MatInputModule, FormsModule],
-  template: `
-    <mat-form-field appearance="outline">
-      <input [placeholder]="placeholder" #inputField matInput />
-    </mat-form-field>
-  `,
-  styles: [
-    `
-      .mat-form-field {
-        width: 100%;
-      }
-    `,
-  ],
+  templateUrl: './place-autocomplete.component.html',
+  styleUrls: ['./place-autocomplete.component.scss'],
 })
 export class PlaceAutocompleteComponent implements OnInit {
   @ViewChild('inputField')
@@ -46,13 +36,14 @@ export class PlaceAutocompleteComponent implements OnInit {
 
   autocomplete: google.maps.places.Autocomplete | undefined;
   placesService: google.maps.places.PlacesService | undefined;
-
   listener: any;
 
   private ngZone: NgZone;
   private googleService: GoogleService;
   private router: Router;
   private geocoder: (new () => google.maps.Geocoder) | undefined;
+  private longitudeDestination!: number;
+  private latitudeDestination!: number
 
   constructor(ngZone: NgZone, googleService: GoogleService, router: Router) {
     this.ngZone = new NgZone({ enableLongStackTrace: false });
@@ -73,6 +64,7 @@ export class PlaceAutocompleteComponent implements OnInit {
         const place = this.autocomplete?.getPlace();
         const result: IPlaceSearchResult = {
           address: this.inputField.nativeElement.value,
+          id: place?.place_id,
           name: place?.name,
           location: place?.geometry?.location,
           imageUrl: this.getPhotoUrl(place),
@@ -86,6 +78,9 @@ export class PlaceAutocompleteComponent implements OnInit {
         this.placeChanged.emit(result);
         console.log(JSON.stringify(result, null, 4));
 
+        localStorage.setItem('latitudeDestination', JSON.stringify(result.latitude));
+        localStorage.setItem('longitudeDestination', JSON.stringify(result.longitude));
+
        if (result.location) {
         this.findNearbyPlaces(result.location);
         }
@@ -94,7 +89,7 @@ export class PlaceAutocompleteComponent implements OnInit {
 
     const map = new google.maps.Map(this.inputField.nativeElement, { // Temporary map to initialize the PlacesService
       center: new google.maps.LatLng(0, 0),
-      zoom: 10,
+      zoom: 2,
     });
     this.placesService = new google.maps.places.PlacesService(map);
   }
@@ -115,7 +110,7 @@ export class PlaceAutocompleteComponent implements OnInit {
     const request = {
       location: location,
       radius: radiusNumber,
-      type: 'Vegan Restaurant',
+      type: 'Tourist Attraction',
     };
 
     this.placesService?.nearbySearch(request, (results, status) => {
@@ -123,6 +118,7 @@ export class PlaceAutocompleteComponent implements OnInit {
         const nearbyPlaces: IPlaceSearchResult[] = results.map((place) => ({
           address: place.vicinity || '',
           name: place.name,
+          id  : place.place_id,
           location: place.geometry?.location,
           imageUrl: this.getPhotoUrl(place),
           iconUrl: place.icon,

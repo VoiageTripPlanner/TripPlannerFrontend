@@ -146,7 +146,7 @@ export const routes: Routes = [
             IRole.admin, 
             IRole.user
           ],
-          name: 'Recomendation',
+          name: 'Travel Suggestions',
           icon:'bi bi-duffle-fill'
         }
       },

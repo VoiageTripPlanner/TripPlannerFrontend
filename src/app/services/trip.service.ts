@@ -119,7 +119,7 @@ export class TripService extends BaseService<ITripForm> {
       return_date                     : getNextDay(),
       lodge                           : this.lodgeService.onGetDefaultVoiageLodge(),
       flight                          : this.flightService.onGetDefaultVoiageFlight(),
-      food                            : this.foodService.onGetDefaultVoiageRestaurant(),
+      food                            : this.foodService.onGetDefaultVoiageRestaurantList(),
       activities                      : this.activitiesService.onGetDefaultVoiageActivities(),
       user_id                         : 0,
       creation_datetime               : getNextDay(),

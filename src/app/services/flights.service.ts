@@ -68,14 +68,17 @@ export class FlightService extends BaseService<IVoiageFlight>   {
     localStorage.setItem(this.storageKey, JSON.stringify(formData));
   }
 
-  getBudgetData(): IVoiageFlight {
+  getFlightData(): IVoiageFlight {
     const formDataString = localStorage.getItem(this.storageKey);
     if (formDataString) {
-      const formData = JSON.parse(formDataString);
 
+      const formData = JSON.parse(formDataString);
       return formData;
+
     } else {
+
       return this.onGetDefaultVoiageFlight();
+      
     }
   }
 }

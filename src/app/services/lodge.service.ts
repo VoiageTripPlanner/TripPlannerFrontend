@@ -67,7 +67,7 @@ export class LodgeService extends BaseService<IVoiageLodge>   {
     localStorage.setItem(this.storageKey, JSON.stringify(formData));
   }
 
-  getBudgetData(): IVoiageLodge {
+  getLodgeData(): IVoiageLodge {
     const formDataString = localStorage.getItem(this.storageKey);
     if (formDataString) {
       const formData = JSON.parse(formDataString);

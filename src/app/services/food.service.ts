@@ -14,14 +14,16 @@ export class FoodService extends BaseService<IVoiageRestaurant>   {
   notifyService=inject(NotifyService);
   locationMarkService=inject(LocationMarkService);
 
-  private restaurantListSignal = signal<IVoiageRestaurant[]>(this.onGetDefaultVoiageRestaurant());
+  private restaurantListSignal = signal<IVoiageRestaurant[]>(this.onGetDefaultVoiageRestaurantList());
+
+  private storageKey = 'food';
 
   get restaurant$() {
     return this.restaurantListSignal;
   };
 
 
-  onGetDefaultVoiageRestaurant(){
+  onGetDefaultVoiageRestaurantList(){
 
       return [
         {
@@ -36,6 +38,21 @@ export class FoodService extends BaseService<IVoiageRestaurant>   {
         }
 
        ];
+    }
+
+  onGetDefaultVoiageRestaurant(){
+
+      const defaultValue:IVoiageRestaurant={
+        restaurant_id                 : 0,
+        name                          : '',
+        description                   : '',
+        average_price                 : 0,
+        location_mark                 : this.locationMarkService.onGetDefaultVoiageLocationMark(),
+        creation_datetime             : new Date(),
+        creation_responsible          : 0
+      }
+
+      return defaultValue;
     }
 
 
@@ -53,6 +70,32 @@ export class FoodService extends BaseService<IVoiageRestaurant>   {
       });
     };
 
+
+    saveVoiageFlightData(formData: IVoiageRestaurant[]): void {
+      localStorage.setItem(this.storageKey, JSON.stringify(formData));
+    }
+  
+    getFoodData(): IVoiageRestaurant[] {
+      const formDataString = localStorage.getItem(this.storageKey);
+      if (formDataString) {
+        const formData = JSON.parse(formDataString);
+        return formData;
+      } else {
+        return this.onGetDefaultVoiageRestaurantList();
+      }
+    }
+
+    addItem(item: any): void {
+      const items = this.getFoodData();
+      items.push(item);
+      localStorage.setItem(this.storageKey, JSON.stringify(items));
+    }
+  
+    removeItem(itemId: string): void {
+      let items = this.getFoodData();
+      items = items.filter(item => item.yelpId !== itemId);
+      localStorage.setItem(this.storageKey, JSON.stringify(items));
+    }
 
 
   };

@@ -36,6 +36,14 @@ export class NotifyService {
       icon: "success"
     });
   };
+
+  onCustomSimpleNotify=(title:string,text:string)=>{
+    Swal.fire({
+      title: title,
+      text: text,
+      icon: "success"
+    });
+  };
   
   onError=()=>{
     Swal.fire({

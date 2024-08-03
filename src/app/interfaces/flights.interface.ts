@@ -45,4 +45,5 @@ export interface IVoiageFlight{
     creation_responsible            : number;
     lastUpdate_datetime?            : Date;
     update_responsible?             : number;
+    operational                     : number;
 }

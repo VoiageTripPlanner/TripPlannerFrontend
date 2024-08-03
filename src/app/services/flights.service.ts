@@ -14,6 +14,8 @@ export class FlightService extends BaseService<IVoiageFlight>   {
 
   private flightsListSignal = signal<IVoiageFlight>(this.onGetDefaultVoiageFlight());
 
+  private storageKey = 'flight';
+
   get flights$() {
     return this.flightsListSignal;
   };
@@ -40,6 +42,7 @@ export class FlightService extends BaseService<IVoiageFlight>   {
       type                  : '',
       creation_datetime     : new Date(),
       creation_responsible  : 0, // aca debe de ir el id del usuario logueado
+      operational           : 1,  
     }
 
     return defaultValue;
@@ -59,4 +62,20 @@ export class FlightService extends BaseService<IVoiageFlight>   {
       }
     });
   };
+
+
+  saveVoiageFlightData(formData: IVoiageFlight): void {
+    localStorage.setItem(this.storageKey, JSON.stringify(formData));
+  }
+
+  getBudgetData(): IVoiageFlight {
+    const formDataString = localStorage.getItem(this.storageKey);
+    if (formDataString) {
+      const formData = JSON.parse(formDataString);
+
+      return formData;
+    } else {
+      return this.onGetDefaultVoiageFlight();
+    }
+  }
 }

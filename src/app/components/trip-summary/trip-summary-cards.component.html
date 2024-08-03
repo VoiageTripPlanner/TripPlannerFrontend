@@ -1,0 +1,212 @@
+<!-- Flight Card -->
+
+<div class="hotel-card align-boxes">
+
+    <div class="information-container">
+
+        <div class="align-boxes space-between">
+            <h1 class="bold-text font-size-title">Airline name</h1>
+            <h2 class="bold-text font-size-title move-to-right ">Price: Precio </h2>
+
+        </div>
+
+        <div class="align-boxes space-between">
+            <h1 class="bold-text font-size-subtitle">Departure airport</h1>
+            <h1 class="move-to-right  bold-text font-size-subtitle">Arrival airport</h1>
+        </div>
+
+
+        <div class="align-boxes space-between">
+            <h3>Departure: Departure time</h3>
+            <h3 class="right-aligned-text">Arrival: Arrival time</h3>
+        </div>
+
+        <div class="align-boxes space-between">
+            <h2 class="bold-text font-size-subtitle">Layouts: Layouts Quantity</h2>
+        </div>
+
+        <div class="width-100">
+            <h2>Included:</h2>
+            <ul class="circle-list">
+                <!-- @for (amenity of item.amenities ; track generateId) {
+                            <li>{{amenity}}</li>
+
+                            } -->
+
+                <li>Amenidad 1</li>
+                <li>Amenidad 2</li>
+                <li>Amenidad 3</li>
+                <li>Amenidad 4</li>
+                <li>Amenidad 5</li>
+
+
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <div class="image-container">
+        <!-- @if(item.images && item.images.length){
+            <img [src]="item.images[0].original_image" alt="ImageHotel" (error)="onImageError($event)">
+        }@else{
+            <img src="../../../../assets/img/No_image_available.png" alt="ImageHotel">
+        } -->
+        <img src="../../../../assets/img/No_image_available.png" alt="ImageHotel">
+    </div>
+
+</div>
+
+
+
+<!-- Lodge Card -->
+
+<div class="hotel-card align-boxes">
+
+    <div class="information-container">
+
+        <div class="align-boxes space-between">
+            <h1 class="bold-text font-size-title">Nombre del hotel</h1>
+            <h1 class="move-to-right  bold-text font-size-title ">Total: Precio</h1>
+        </div>
+
+        <div class="align-boxes space-between">
+            <h3>Stats: 5/5</h3>
+            <h3 class="move-to-right">Price per night: Precio por noche</h3>
+        </div>
+
+        <div class="width-100">
+            <h2>Amenities:</h2>
+            <ul class="circle-list">
+                <!-- @for (amenity of item.amenities ; track generateId) {
+                            <li>{{amenity}}</li>
+
+                            } -->
+
+                <li>Amenidad 1</li>
+                <li>Amenidad 2</li>
+                <li>Amenidad 3</li>
+                <li>Amenidad 4</li>
+                <li>Amenidad 5</li>
+
+
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="image-container">
+        <!-- @if(item.images && item.images.length){
+                    <img [src]="item.images[0].original_image" alt="ImageHotel" (error)="onImageError($event)">
+                    }@else{
+                    <img src="../../../../assets/img/No_image_available.png" alt="ImageHotel">
+                } -->
+        <img src="../../../../assets/img/No_image_available.png" alt="ImageHotel">
+    </div>
+
+</div>
+
+
+<!-- Food Resume -->
+
+<!-- @for (item of yelpFoodResponseList ; track item.id) { -->
+
+<div class="hotel-card align-boxes">
+
+    <div class="information-container">
+
+
+        <div class="align-boxes space-between">
+            <h1 class="bold-text font-size-title">Name </h1>
+            <h1 class="move-to-right font-size-price"> Rating: (Rating) </h1>
+        </div>
+
+        <div class="align-boxes space-between">
+            <h3>Address: (addres) </h3>
+            <h3 class="move-to-right">City: (city)</h3>
+        </div>
+
+        <div class="width-100">
+            <h2>Type:</h2>
+            <ul class="circle-list">
+                <!-- @for (amenity of item.amenities ; track generateId) {
+                            <li>{{amenity}}</li>
+
+                            } -->
+
+                <li>Amenidad 1</li>
+                <li>Amenidad 2</li>
+                <li>Amenidad 3</li>
+                <li>Amenidad 4</li>
+                <li>Amenidad 5</li>
+
+
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="image-container">
+        <!-- @if(item.images && item.images.length){
+                    <img [src]="item.images[0].original_image" alt="ImageHotel" (error)="onImageError($event)">
+                    }@else{
+                    <img src="../../../../assets/img/No_image_available.png" alt="ImageHotel">
+                } -->
+        <img src="../../../../assets/img/No_image_available.png" alt="ImageHotel">
+    </div>
+
+</div>
+
+
+<!-- } -->
+
+
+<!-- Activities Resume -->
+
+<div class="hotel-card align-boxes">
+
+    <div class="information-container">
+
+        <div class="align-boxes space-between">
+            <h1 class="bold-text font-size-title">Chosen Activities: </h1>
+            <h1 class="move-to-right font-size-price"> Chosen options </h1>
+        </div>
+
+        <div class="width-100">
+            <h2>Activities Chosen:</h2>
+            <ul class="circle-list">
+                <!-- @for (amenity of item.amenities ; track generateId) {
+                            <li>{{amenity}}</li>
+
+                            } -->
+
+                <li>Amenidad 1</li>
+                <li>Amenidad 2</li>
+                <li>Amenidad 3</li>
+                <li>Amenidad 4</li>
+                <li>Amenidad 5</li>
+
+
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="image-container">
+        <!-- @if(item.images && item.images.length){
+                    <img [src]="item.images[0].original_image" alt="ImageHotel" (error)="onImageError($event)">
+                    }@else{
+                    <img src="../../../../assets/img/No_image_available.png" alt="ImageHotel">
+                } -->
+        <img src="../../../../assets/img/No_image_available.png" alt="ImageHotel">
+    </div>
+
+</div>

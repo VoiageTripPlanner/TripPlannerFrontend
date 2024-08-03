@@ -1,1 +1,32 @@
-<p>trip-summary works!</p>
+<div class="padding-1 align-boxes background-color">
+
+    <img src="../../../../assets/icons/Round_Voiage.webp" alt="Logo" class="logo" (click)="navigateToDashboard()">
+    <h1 class="title yeseva-one-regular ">Trip Summary</h1>
+
+</div>
+
+<div class="container-box">
+
+    <div class="align-boxes">
+        <!-- <div class="col-md-8 options-container" *ngIf="!isLoading"> -->
+        <div class=" options-container">
+
+            <div class="width-100">
+                <app-trip-summary-cards></app-trip-summary-cards>
+
+            </div>
+
+        </div>
+
+        <div class="price-detail-container">
+
+            <app-price-details></app-price-details>
+
+        </div>
+
+
+
+    </div>
+
+
+</div>

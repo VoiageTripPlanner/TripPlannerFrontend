@@ -1,5 +1,4 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { OtherFlight, SearchParameters } from '../interfaces/google-flights-response.interface';
 import { BaseService } from './base-service';
 import { NotifyService } from '../shared/notify/notify.service';
 import { IVoiageLodge } from '../interfaces/lodge.interface';
@@ -13,6 +12,8 @@ export class LodgeService extends BaseService<IVoiageLodge>   {
   notifyService=inject(NotifyService);
 
   private lodgeListSignal = signal<IVoiageLodge>(this.onGetDefaultVoiageLodge());
+
+  private storageKey = 'lodge';
 
   get lodge$() {
     return this.lodgeListSignal;
@@ -60,4 +61,20 @@ export class LodgeService extends BaseService<IVoiageLodge>   {
       }
     });
   };
+
+
+  saveVoiageLodgeData(formData: IVoiageLodge): void {
+    localStorage.setItem(this.storageKey, JSON.stringify(formData));
+  }
+
+  getBudgetData(): IVoiageLodge {
+    const formDataString = localStorage.getItem(this.storageKey);
+    if (formDataString) {
+      const formData = JSON.parse(formDataString);
+
+      return formData;
+    } else {
+      return this.onGetDefaultVoiageLodge();
+    }
+  }
 }

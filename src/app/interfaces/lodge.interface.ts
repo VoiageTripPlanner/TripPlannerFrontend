@@ -12,10 +12,10 @@ export interface IVoiageLodge{
     images?                      : string;
     type                         : string;
     amenities?                   : string;
-    operational                  : boolean;
     total_price                  : number;
-
+    
     //Propiedades de auditoria
+    operational                   : boolean;
     creation_datetime             : Date;
     creation_responsible          : number;
     lastUpdate_datetime?          : Date;

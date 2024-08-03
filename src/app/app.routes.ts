@@ -19,6 +19,7 @@ import { FlightsComponent } from './pages/flights/flights.component';
 import { TripFormComponent } from './pages/trip-form/trip-form.component';
 import { UpdateUserComponent } from './pages/update-user/update-user.component';
 import { StepperComponent } from './components/stepper/stepper.component';
+import { TripSummaryComponent } from './pages/trip-summary/trip-summary.component';
 
 export const routes: Routes = [
   {
@@ -159,6 +160,18 @@ export const routes: Routes = [
             IRole.user
           ],
           name: 'Recomendation',
+          icon:'bi bi-duffle-fill'
+        }
+      },      
+      {
+        path: 'summary',
+        component: TripSummaryComponent,
+        data: { 
+          authorities: [
+            IRole.admin, 
+            IRole.user
+          ],
+          name: 'Trip Summary',
           icon:'bi bi-duffle-fill'
         }
       },      

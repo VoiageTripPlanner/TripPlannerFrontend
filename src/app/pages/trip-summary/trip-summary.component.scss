@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
+
+
+//variables de color 
+$background-color-white: #ffffff;
+$background-color-grey: #b4b4b4;
+$background-color-grey-light: #f9f9f9;
+$border-color: #775D68;
+$image-backgorund-color: #FADCD4;
+$title-color: #6D3652;
+
+
+// Contenedor general de todo
+.container-box {
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+}
+
+.align-boxes {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+
+.options-container {
+    width: 75%;
+    max-width: 90%;
+    height: 100vh;
+    max-height: 100%;
+    padding: 2%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow-y: auto;
+}
+
+
+.price-detail-container{
+    width: 25%;
+    height: 100vh;
+    padding: 1%;
+    margin: 0;
+}
+
+
+.width-100{
+    width: 100%;
+}
+
+
+.yeseva-one-regular {
+    font-family: "Yeseva One", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.title{
+    transform: translateY(30%);
+    padding-left: 1%;
+    font-size: 4vh;
+    // color: $image-backgorund-color;
+}
+
+.logo {
+    width: 2.5vw;
+    height: 5vh;
+}
+
+.padding-1 {
+    padding: 1%;
+}
+
+.align-boxes {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+// .background-color{
+//     background-color: $title-color;
+// }

@@ -4,7 +4,7 @@
 //variables de color 
 $background-color-white: #ffffff;
 $background-color-grey: #b4b4b4;
-$background-color-grey-light: #f9f9f9;
+$background-color-grey-light: #f7f7f7;
 $border-color: #775D68;
 $image-backgorund-color: #FADCD4;
 $title-color: #6D3652;
@@ -61,7 +61,7 @@ $title-color: #6D3652;
     transform: translateY(30%);
     padding-left: 1%;
     font-size: 4vh;
-    // color: $image-backgorund-color;
+    color: $background-color-white;
 }
 
 .logo {
@@ -79,6 +79,10 @@ $title-color: #6D3652;
     flex-wrap: nowrap;
 }
 
-// .background-color{
-//     background-color: $title-color;
-// }
+.background-color{
+    background-color: $title-color;
+}
+
+.body-background-color{
+    background-color: $background-color-grey-light;
+}

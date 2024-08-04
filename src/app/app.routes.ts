@@ -97,6 +97,18 @@ export const routes: Routes = [
     }
   },   
   {
+    path: 'summary',
+    component: TripSummaryComponent,
+    data: { 
+      authorities: [
+        IRole.admin, 
+        IRole.user
+      ],
+      name: 'Summary',
+      icon:'bi bi-duffle-fill'
+    }
+  },   
+  {
     path: 'app',
     component: AppLayoutComponent,
     canActivate: [AuthGuard],
@@ -163,18 +175,7 @@ export const routes: Routes = [
           icon:'bi bi-duffle-fill'
         }
       },      
-      {
-        path: 'summary',
-        component: TripSummaryComponent,
-        data: { 
-          authorities: [
-            IRole.admin, 
-            IRole.user
-          ],
-          name: 'Trip Summary',
-          icon:'bi bi-duffle-fill'
-        }
-      },      
+  
    
     ],
   },

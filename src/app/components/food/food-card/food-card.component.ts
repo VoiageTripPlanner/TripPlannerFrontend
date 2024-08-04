@@ -126,7 +126,7 @@ export class FoodCardComponent {
     } else {
 
       this.foodSelectedOption.yelpId ? this.foodService.removeItem(this.foodSelectedOption.yelpId)  : 0;
-      this.notifyService.onCustomSimpleNotify('Remove from the list', 'The restaurant has been removed of the list');
+      this.notifyService.onCustomSimpleNotify('Removed from the list', 'The restaurant has been removed of the list');
     }
   }
 
@@ -139,7 +139,7 @@ export class FoodCardComponent {
 
     this.foodSelectedOption.name                = yelpFood.name   || " ";
     this.foodSelectedOption.description         = yelpFood.alias  || " ";
-    // this.foodSelectedOption.average_price       = yelpFood.price || 0; //aca se debe de aplcar el precio promedioque se obtenga con la IA
+    // this.foodSelectedOption.average_price       = yelpFood.price || 0; //aca se debe de aplcar el precio promedio que se obtenga con la IA mas adelante
     this.foodSelectedOption.location_mark       = locationMark    || this.locationMark.onGetDefaultVoiageLocationMark();
 
     //Necesito un id para le manejo del array y una imagen que mostrar, uso este de la respuesta del API

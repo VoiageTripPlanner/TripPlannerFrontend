@@ -37,4 +37,8 @@ export class FoodComponent {
     this.router.navigateByUrl('app/dashboard')
   }
 
+  navigateToSummary() {
+    this.router.navigateByUrl('/summary')
+  }
+
 }

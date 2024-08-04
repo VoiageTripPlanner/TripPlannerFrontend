@@ -1,50 +1,50 @@
-<!-- Flight Card -->
+@if(dataAvailable){
 
+<!-- Flight Card -->
 <div class="hotel-card align-boxes">
 
     <div class="information-container">
 
         <div class="align-boxes space-between">
-            <h1 class="bold-text font-size-title">{{flightSelected.airline}}</h1>
-            <h2 class="bold-text font-size-title move-to-right ">Price: $ {{tripBudget.flightAmount}} </h2>
+            <h1 class="bold-text font-size-title">{{flightSelected?.airline || 'N/A'}}</h1>
+            <h2 class="bold-text font-size-title move-to-right ">Price: $ {{tripBudget?.flightAmount || 0}} </h2>
 
         </div>
 
         <div class="align-boxes space-between">
-            <h1 class="bold-text font-size-subtitle">{{flightSelected.departure_airport}}</h1>
-            <h1 class="move-to-right  bold-text font-size-subtitle">{{flightSelected.arrival_airport}}</h1>
+            <h1 class="bold-text font-size-subtitle">{{flightSelected?.departure_airport || 'N/A'}}</h1>
+            <h1 class="move-to-right  bold-text font-size-subtitle">{{flightSelected?.arrival_airport || 'N/A' }}</h1>
         </div>
 
 
         <div class="align-boxes space-between">
-            <h3>Departure: {{initialForm.outbound_date }}</h3>
-            <h3 class="right-aligned-text">Return: {{initialForm.return_date ? initialForm.return_date : 'No return trip
+            <h3>Departure: {{initialForm?.outbound_date || 'N/A' }}</h3>
+            <h3 class="right-aligned-text">Return: {{initialForm?.return_date ? initialForm?.return_date : 'No return trip
                 scheduled' }}</h3>
         </div>
 
         <div class="align-boxes space-between">
-            <h2 class="bold-text font-size-subtitle">Layouts: {{flightSelected.is_layover === true ? 'Yes' : 'No' }}
+            <h2 class="bold-text font-size-subtitle">Layouts: {{flightSelected?.is_layover === true ? 'Yes' : 'No' }}
             </h2>
         </div>
 
         <div class="align-boxes space-between">
-            <h1 class="bold-text font-size-subtitle">Travel class: {{flightSelected.travel_class}}</h1>
-            <h1 class="move-to-right  bold-text font-size-subtitle">Type: {{flightSelected.type}}</h1>
+            <h1 class="bold-text font-size-subtitle">Travel class: {{flightSelected?.travel_class || 'N/A'}}</h1>
+            <h1 class="move-to-right  bold-text font-size-subtitle">Type: {{flightSelected?.type || 'N/A'}}</h1>
         </div>
 
     </div>
 
 
     <div class="image-container">
-        @if(flightSelected.airline_logo ){
-        <img [src]="flightSelected.airline_logo" alt="airlineImage" (error)="onImageError($event)">
+        @if(flightSelected?.airline_logo ){
+        <img [src]="flightSelected?.airline_logo" alt="airlineImage" (error)="onImageError($event)">
         }@else{
         <img src="../../../../assets/img/No_image_available.png" alt="ImageHotel">
         }
     </div>
 
 </div>
-
 
 
 <!-- Lodge Card -->
@@ -54,13 +54,13 @@
     <div class="information-container">
 
         <div class="align-boxes space-between">
-            <h1 class="bold-text font-size-title">{{lodgeSelected.lodge_name}}</h1>
-            <h1 class="move-to-right  bold-text font-size-title ">Total: {{tripBudget.lodgeAmount}}</h1>
+            <h1 class="bold-text font-size-title">{{lodgeSelected?.lodge_name || 'N/A'}}</h1>
+            <h1 class="move-to-right  bold-text font-size-title ">Total: {{tripBudget?.lodgeAmount || 'N/A'}}</h1>
         </div>
 
         <div class="align-boxes space-between">
-            <h3>Stats: {{lodgeSelected.totalRate}}/5</h3>
-            <h3 class="move-to-right">Price per night: {{lodgeSelected.night_price}}</h3>
+            <h3>Stats: {{lodgeSelected?.totalRate || 'N/A'}}/5</h3>
+            <h3 class="move-to-right">Price per night: {{lodgeSelected?.night_price || 'N/A'}}</h3>
         </div>
 
         <div class="width-100">
@@ -68,18 +68,15 @@
             <ul class="circle-list">
                 @for (amenity of listArray; track generateId) {
                 <li>{{amenity}}</li>
-
                 }
-
             </ul>
-
         </div>
 
     </div>
 
     <div class="image-container">
-        @if(lodgeSelected.images ){
-        <img [src]="lodgeSelected.images" alt="ImageHotel" (error)="onImageError($event)">
+        @if(lodgeSelected?.images ){
+        <img [src]="lodgeSelected?.images" alt="ImageHotel" (error)="onImageError($event)">
         }@else{
         <img src="../../../../assets/img/No_image_available.png" alt="ImageHotel">
         }
@@ -96,7 +93,7 @@
 
         <div class="align-boxes space-between">
             <h1 class="bold-text font-size-title">Chosen Food Options </h1>
-            <h1 class="move-to-right font-size-price"> Total chosen: {{restaurantCount}}</h1>
+            <h1 class="move-to-right font-size-price"> Total chosen: {{restaurantCount || 'N/A'}}</h1>
         </div>
 
         <div class="width-100">
@@ -104,22 +101,18 @@
             <ul class="circle-list">
                 @for (restaurant of foodSelectedlist; track generateId) {
                 <li>{{restaurant.name}}</li>
-
                 }
-
             </ul>
-
         </div>
 
     </div>
 
     <div class="image-container">
-        <!-- @if(item.images && item.images.length){
-                    <img [src]="item.images[0].original_image" alt="ImageHotel" (error)="onImageError($event)">
-                    }@else{
-                    <img src="../../../../assets/img/No_image_available.png" alt="ImageHotel">
-                } -->
+        @if(foodSelectedlist && foodSelectedlist.length){
+        <img [src]="foodSelectedlist[0].restaurant_image" alt="ImageFood" (error)="onImageError($event)">
+        }@else{
         <img src="../../../../assets/img/No_image_available.png" alt="ImageHotel">
+        }
     </div>
 
 </div>
@@ -168,3 +161,9 @@
     </div>
 
 </div>
+
+
+}@else{
+
+    <h1>No data</h1>
+}

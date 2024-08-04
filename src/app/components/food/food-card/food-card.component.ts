@@ -7,15 +7,15 @@ import { ModalComponent } from '../../modal/modal.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NotifyService } from '../../../shared/notify/notify.service';
-import { TripService } from '../../../services/trip.service';
+import { TripService } from '../../../services/voiage-services/trip.service';
 import { ITripForm } from '../../../interfaces/trip.interface';
 import { BudgetService } from '../../../services/budged.service';
 import { Router } from '@angular/router';
 import { IBudgetPrices } from '../../../interfaces/budget.interface';
 import { IVoiageRestaurant } from '../../../interfaces/food.interface';
-import { FoodService } from '../../../services/food.service';
 import { LocationMarkService } from '../../../services/location-mark.service';
 import { ILocationMark } from '../../../interfaces/location-mark.interface';
+import { FoodService } from '../../../services/voiage-services/food.service';
 
 @Component({
   selector: 'app-food-card',
@@ -111,10 +111,6 @@ export class FoodCardComponent {
 
     this.budgetService.updateSpending(amount, classification);
 
-    // this.router.navigateByUrl('/summary);
-
-    //Esto temporalmente mientras se completan demas componentes y borrar bien el local storage cuando se completa el flujo 
-
   }
 
 
@@ -146,8 +142,9 @@ export class FoodCardComponent {
     // this.foodSelectedOption.average_price       = yelpFood.price || 0; //aca se debe de aplcar el precio promedioque se obtenga con la IA
     this.foodSelectedOption.location_mark       = locationMark    || this.locationMark.onGetDefaultVoiageLocationMark();
 
-    //Necesito un id para le manejo del array , uso este de la respuesta del API
+    //Necesito un id para le manejo del array y una imagen que mostrar, uso este de la respuesta del API
     this.foodSelectedOption.yelpId              = yelpFood.id     || " ";
+    this.foodSelectedOption.restaurant_image    = yelpFood.image_url || "./assets/img/No_image_available.png";
 
     return this.foodSelectedOption;
   };

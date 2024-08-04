@@ -12,6 +12,7 @@ export interface IVoiageRestaurant{
 
     //Atributo que no persite en la bd
     yelpId?                  : string;
+    restaurant_image?        : string;
 
 
     //Propiedades de auditoria

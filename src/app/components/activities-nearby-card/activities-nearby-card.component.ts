@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { IPlaceSearchResult } from '../../interfaces/placeSearch';
 import { CommonModule, NgIf } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
@@ -12,6 +12,7 @@ import { MapComponent } from '../map/map.component';
 import { PlaceAutocompleteComponent } from '../place-autocomplete/place-autocomplete.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { PlaceCardComponent } from '../place-autocomplete/place-card.componet';
+import { NotifyService } from '../../shared/notify/notify.service';
 
 @Component({
   selector: 'app-activities-nearby-card',
@@ -30,6 +31,7 @@ export class ActivitiesNearbyCardComponent implements OnInit {
 
   @Input() places: IPlaceSearchResult[] = [];
   @Output() onPlaceSelected = new EventEmitter<IPlaceSearchResult>();
+  notifyService = inject(NotifyService);
   tripFormService: any;
   inputField: any;
 
@@ -74,5 +76,13 @@ export class ActivitiesNearbyCardComponent implements OnInit {
       this.zoomToPlace = place; // Set the place to zoom to
     }
 
+
+    visitSite(url: string | undefined): void {
+      if (url) {
+        window.open(url, '_blank');
+      } else {
+        this.notifyService.onNoData();
+      }
+    };
 
 }

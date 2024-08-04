@@ -1,7 +1,7 @@
 export interface IPlaceSearchResult {
   id?: string;  
   address: string;
-    name?: string;
+  name?: string;
     imageUrl?: string;
     latitude?: number;
     longitude?: number;
@@ -10,6 +10,7 @@ export interface IPlaceSearchResult {
     rating?: number;
     types?: string[];
     pricelevel?: number;
+    website?: string;
   }
   export interface IOpenAIResponse {
     content?: string;

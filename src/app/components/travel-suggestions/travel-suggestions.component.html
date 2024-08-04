@@ -8,7 +8,6 @@
       <!-- Componente de autocompletado de lugar con margen derecho -->
       <app-place-autocomplete
         (placeChanged)="fromValue = $event"
-        (nearbyPlacesFound)="onNearbyPlacesFound($event)"
         placeholder="Enter from address..."
         class="mr-3"
       ></app-place-autocomplete>

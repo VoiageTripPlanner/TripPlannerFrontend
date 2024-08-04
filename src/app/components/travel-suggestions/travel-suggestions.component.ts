@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { IOpenAIResponse, IPlaceSearchResult } from '../../interfaces/placeSearch';
 import { GoogleService } from '../../services/google.service';
+import { IActivity } from '../../interfaces/activities.interface';
 
 @Component({
   selector: 'app-travel-suggestions',
@@ -26,7 +27,7 @@ import { GoogleService } from '../../services/google.service';
 })
 export class TravelSuggestionsComponent {
 
-  fromValue: IPlaceSearchResult = { address: '' };
+  fromValue: IActivity = { address: '' };
   public GoogleService: GoogleService = inject(GoogleService);
   public travelSuggestions!: IOpenAIResponse;
 
@@ -41,7 +42,7 @@ export class TravelSuggestionsComponent {
       this.GoogleService.suggestionsResponseSignal$();  
     }
       
-    const datos : IPlaceSearchResult = {
+    const datos : IActivity = {
       address: this.fromValue.address
     };
 
@@ -52,20 +53,6 @@ export class TravelSuggestionsComponent {
       console.log(this.travelSuggestions);
     });
 
-  }
-
-
- // fromNearbyPlaces: IPlaceSearchResult[] = [];
- // toNearbyPlaces: IPlaceSearchResult[] = [];
-  //allNearbyPlaces: IPlaceSearchResult[] = [];
-
-  onNearbyPlacesFound(places: IPlaceSearchResult[]) {
-    // Logic to update nearby places based on which field is being updated
-  //  if (this.fromValue.address) {
-   //   this.fromNearbyPlaces = places;
-   // }
-    // Merge all places to| display in the map
-   // this.allNearbyPlaces = [...this.fromNearbyPlaces, ...this.toNearbyPlaces];
   }
 
 }

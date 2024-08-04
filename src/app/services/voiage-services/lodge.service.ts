@@ -1,7 +1,7 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { BaseService } from './base-service';
-import { NotifyService } from '../shared/notify/notify.service';
-import { IVoiageLodge } from '../interfaces/lodge.interface';
+import { BaseService } from '../base-service';
+import { NotifyService } from '../../shared/notify/notify.service';
+import { IVoiageLodge } from '../../interfaces/lodge.interface';
 
 
 @Injectable({
@@ -46,7 +46,7 @@ export class LodgeService extends BaseService<IVoiageLodge>   {
 
     return defaultValue;
 
-  }
+  };
 
   getAllLodgeSignal() {
 
@@ -76,5 +76,6 @@ export class LodgeService extends BaseService<IVoiageLodge>   {
     } else {
       return this.onGetDefaultVoiageLodge();
     }
-  }
+  };
+  
 }

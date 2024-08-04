@@ -1,7 +1,7 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { BaseService } from './base-service';
-import { NotifyService } from '../shared/notify/notify.service';
-import { IVoiageActivities } from '../interfaces/activities.interface';
+import { BaseService } from '../base-service';
+import { NotifyService } from '../../shared/notify/notify.service';
+import { IVoiageActivities } from '../../interfaces/activities.interface';
 
 
 @Injectable({
@@ -44,4 +44,5 @@ getAllActivities() {
     }
   });
 };
+
 }

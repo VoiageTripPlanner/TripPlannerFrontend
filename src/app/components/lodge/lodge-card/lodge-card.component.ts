@@ -7,7 +7,7 @@ import { ModalComponent } from '../../modal/modal.component';
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NotifyService } from '../../../shared/notify/notify.service';
-import { TripService } from '../../../services/trip.service';
+import { TripService } from '../../../services/voiage-services/trip.service';
 import { ITripForm } from '../../../interfaces/trip.interface';
 import { formatDateToYYYYMMDD } from '../../../shared/utils/date-formatter';
 import { BudgetService } from '../../../services/budged.service';
@@ -15,7 +15,7 @@ import { BudgetBarComponent } from '../../budget-bar/budget-bar.component';
 import { Router } from '@angular/router';
 import { IBudgetPrices } from '../../../interfaces/budget.interface';
 import { IVoiageLodge } from '../../../interfaces/lodge.interface';
-import { LodgeService } from '../../../services/lodge.service';
+import { LodgeService } from '../../../services/voiage-services/lodge.service';
 import { MatStepperModule } from '@angular/material/stepper';
 
 @Component({

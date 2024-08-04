@@ -10,12 +10,12 @@ import { NotifyService } from '../../../shared/notify/notify.service';
 import { ITripForm } from '../../../interfaces/trip.interface';
 import { IBudgetPrices } from '../../../interfaces/budget.interface';
 import { BudgetService } from '../../../services/budged.service';
-import { TripService } from '../../../services/trip.service';
+import { TripService } from '../../../services/voiage-services/trip.service';
 import { Router } from '@angular/router';
 import { formatDateToYYYYMMDD, formatStringToDate } from '../../../shared/utils/date-formatter';
 import { IVoiageFlight } from '../../../interfaces/flights.interface';
-import { FlightService } from '../../../services/flights.service';
 import { MatStepperModule } from '@angular/material/stepper';
+import { FlightService } from '../../../services/voiage-services/flights.service';
 
 
 @Component({
@@ -119,11 +119,7 @@ export class FlightCardComponent {
 
 
   openLayouts(): void {
-    // if (url) {
-    //   window.open(url,'_blank') ;
-    // } else {
-    //   this.notifyService.onNoData();
-    // }
+
     console.log('implement layouts')
   };
 
@@ -134,18 +130,13 @@ export class FlightCardComponent {
     if (!amount) {
       amount = 0;
     }
-    debugger;
+
     const classification = 'flights';
+
     this.budgetService.updateSpending(amount, classification);
-    
     this.flightSelected=this.flghtFilterInfo(googleFlight);
     this.flightService.saveVoiageFlightData(this.flightSelected);       
-
-
     this.notifyService.onCustomSimpleNotify('Flight Selected','Go to the next step', );
-
-    // this.router.navigateByUrl('/lodge');
-
 
   }
 

@@ -1,9 +1,9 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { BaseService } from './base-service';
+import { BaseService } from '../base-service';
 import { Observable, catchError, tap, throwError } from 'rxjs';
-import { ICountry } from '../interfaces/country.interface';
-import { ITripForm,ITrip } from '../interfaces/trip.interface';
-import { IVoiageRestaurant } from '../interfaces/food.interface';
+import { ICountry } from '../../interfaces/country.interface';
+import { ITripForm,ITrip } from '../../interfaces/trip.interface';
+import { IVoiageRestaurant } from '../../interfaces/food.interface';
 import { LodgeService } from './lodge.service';
 import { FlightService } from './flights.service';
 import { FoodService } from './food.service';
@@ -27,7 +27,7 @@ export class TripService extends BaseService<ITripForm> {
 
   get tripForm$() {
     return this.tripFormSignal;
-  }
+  };
 
   onGetDefaultTripForm (){
 
@@ -59,12 +59,12 @@ export class TripService extends BaseService<ITripForm> {
 
     return defaultValue;
 
-  }
+  };
 
 
   setInitialForm(data:ITripForm){
     this.tripFormSignal.set(data);
-  }
+  };
 
 
   getAllSignal() {
@@ -82,7 +82,7 @@ export class TripService extends BaseService<ITripForm> {
 
   saveFormData(formData: ITripForm): void {
     localStorage.setItem(this.storageKey, JSON.stringify(formData));
-  }
+  };
 
   getFormData(): ITripForm {
     const formDataString = localStorage.getItem(this.storageKey);
@@ -98,7 +98,7 @@ export class TripService extends BaseService<ITripForm> {
     } else {
       return this.onGetDefaultTripForm();
     }
-  }
+  };
 
 
   //Valores por defecto para un trip
@@ -127,7 +127,6 @@ export class TripService extends BaseService<ITripForm> {
     }
 
     return defaultValue;
-  }
-
+  };
 
 }

@@ -1,9 +1,8 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { OtherFlight, SearchParameters } from '../interfaces/google-flights-response.interface';
-import { BaseService } from './base-service';
-import { NotifyService } from '../shared/notify/notify.service';
-import { IVoiageRestaurant } from '../interfaces/food.interface';
-import { LocationMarkService } from './location-mark.service';
+import { BaseService } from '../base-service';
+import { NotifyService } from '../../shared/notify/notify.service';
+import { LocationMarkService } from '../location-mark.service';
+import { IVoiageRestaurant } from '../../interfaces/food.interface';
 
 
 @Injectable({
@@ -34,11 +33,9 @@ export class FoodService extends BaseService<IVoiageRestaurant>   {
           location_mark                 : this.locationMarkService.onGetDefaultVoiageLocationMark(),
           creation_datetime             : new Date(),
           creation_responsible          : 0
-
         }
-
        ];
-    }
+    };
 
   onGetDefaultVoiageRestaurant(){
 
@@ -53,7 +50,7 @@ export class FoodService extends BaseService<IVoiageRestaurant>   {
       }
 
       return defaultValue;
-    }
+    };
 
 
     getAllRestauranSignal() {
@@ -73,7 +70,7 @@ export class FoodService extends BaseService<IVoiageRestaurant>   {
 
     saveVoiageFlightData(formData: IVoiageRestaurant[]): void {
       localStorage.setItem(this.storageKey, JSON.stringify(formData));
-    }
+    };
   
     getFoodData(): IVoiageRestaurant[] {
       const formDataString = localStorage.getItem(this.storageKey);
@@ -83,20 +80,19 @@ export class FoodService extends BaseService<IVoiageRestaurant>   {
       } else {
         return this.onGetDefaultVoiageRestaurantList();
       }
-    }
+    };
 
     addItem(item: any): void {
       const items = this.getFoodData();
       items.push(item);
       localStorage.setItem(this.storageKey, JSON.stringify(items));
-    }
+    };
   
     removeItem(itemId: string): void {
       let items = this.getFoodData();
       items = items.filter(item => item.yelpId !== itemId);
       localStorage.setItem(this.storageKey, JSON.stringify(items));
-    }
-
+    };
 
   };
 

@@ -7,7 +7,7 @@ import { LodgeCardComponent } from '../../components/lodge/lodge-card/lodge-card
 import { MapComponent } from '../../components/map/map.component';
 import { ITripForm } from '../../interfaces/trip.interface';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TripService } from '../../services/trip.service';
+import { TripService } from '../../services/voiage-services/trip.service';
 import { BudgetBarComponent } from '../../components/budget-bar/budget-bar.component';
 import { MatStepperModule } from '@angular/material/stepper';
 

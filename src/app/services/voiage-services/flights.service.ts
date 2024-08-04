@@ -1,8 +1,7 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { OtherFlight, SearchParameters } from '../interfaces/google-flights-response.interface';
-import { BaseService } from './base-service';
-import { IVoiageFlight } from '../interfaces/flights.interface';
-import { NotifyService } from '../shared/notify/notify.service';
+import { BaseService } from '../base-service';
+import { IVoiageFlight } from '../../interfaces/flights.interface';
+import { NotifyService } from '../../shared/notify/notify.service';
 
 
 @Injectable({
@@ -47,7 +46,7 @@ export class FlightService extends BaseService<IVoiageFlight>   {
 
     return defaultValue;
 
-  }
+  };
 
   getAllFlightsSignal() {
 
@@ -66,7 +65,7 @@ export class FlightService extends BaseService<IVoiageFlight>   {
 
   saveVoiageFlightData(formData: IVoiageFlight): void {
     localStorage.setItem(this.storageKey, JSON.stringify(formData));
-  }
+  };
 
   getFlightData(): IVoiageFlight {
     const formDataString = localStorage.getItem(this.storageKey);
@@ -80,5 +79,6 @@ export class FlightService extends BaseService<IVoiageFlight>   {
       return this.onGetDefaultVoiageFlight();
       
     }
-  }
+  };
+  
 }

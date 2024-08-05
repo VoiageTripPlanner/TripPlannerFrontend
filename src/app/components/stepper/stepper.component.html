@@ -1,0 +1,28 @@
+<div class="main-container">
+    <mat-stepper [linear]="isLinear" headerPosition="bottom" #stepper>
+
+        <div class="main-container">
+            <ng-template matStepperIcon="edit">
+                <mat-icon>card_travel</mat-icon>
+            </ng-template>
+
+            <mat-step label="Find your flight">
+                <app-flights></app-flights>
+
+            </mat-step>
+            <mat-step label="Choose your lodge">
+
+                <app-lodge></app-lodge>
+            </mat-step>
+            <mat-step label="Select you favorite food options">
+                <app-food></app-food>
+
+            </mat-step>
+
+        </div>
+
+
+
+    </mat-stepper>
+
+</div>

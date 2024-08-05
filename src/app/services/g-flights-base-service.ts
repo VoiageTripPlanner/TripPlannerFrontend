@@ -37,7 +37,7 @@ export class GFlightsBaseService<T> {
       alert('Invalid type value');
     }
 
-    debugger;
+    ;
     return this.http.get<IResponse<T[]>>(this.flightsBaseUrl, { params }).pipe(
     );
   }

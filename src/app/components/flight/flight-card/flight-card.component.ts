@@ -14,6 +14,7 @@ import { TripService } from '../../../services/trip.service';
 import { Router } from '@angular/router';
 import { formatDateToYYYYMMDD } from '../../../shared/utils/date-formatter';
 import { timeout } from 'rxjs';
+import { StepperComponent } from '../../stepper/stepper.component';
 
 @Component({
   selector: 'app-flight-card',
@@ -23,20 +24,12 @@ import { timeout } from 'rxjs';
     ModalComponent,
     CommonModule,
     MapComponent,
-    FormsModule
+    FormsModule,
   ],
   templateUrl: './flight-card.component.html',
   styleUrl: './flight-card.component.scss'
 })
 export class FlightCardComponent {
-
-  // type: string = '1';
-  // departure_id: string = 'PEK';
-  // arrival_id: string = 'AUS';
-  // outbound_date: String = "2024-07-30";
-  // return_date?: String = "2024-08-06";
-  // travel_class: number = 1;
-  // stops: number = 0;
 
   budgetService = inject(BudgetService);
   notifyService = inject(NotifyService);
@@ -52,7 +45,7 @@ export class FlightCardComponent {
     private router: Router,
   ) {
 
-    debugger
+    
     this.initialForm = this.tripFormService.getFormData();
     this.tripBudget = this.budgetService.getBudgetData();
 
@@ -62,7 +55,7 @@ export class FlightCardComponent {
   sendData() {
     this.isLoading = true;
   
-    debugger;
+    ;
     const datos: SearchParameters = {
       departure_id: this.initialForm.departure_id,
       arrival_id: this.initialForm.arrival_id,

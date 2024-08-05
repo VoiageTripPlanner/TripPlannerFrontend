@@ -1,18 +1,14 @@
 import { Component, ElementRef, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { IPlaceSearchResult } from '../../interfaces/placeSearch';
 import { CommonModule, NgIf } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
-import { ITripForm } from '../../interfaces/trip.interface';
-import { FormsModule } from '@angular/forms';
-import { ModalComponent } from '../modal/modal.component';
-import { LoaderComponent } from '../loader/loader.component';
 import { IGoogleResponse } from '../../interfaces/google-hotel-response.interface';
-import { MapDisplayComponent } from '../place-autocomplete/map-display.component';
 import { MapComponent } from '../map/map.component';
 import { PlaceAutocompleteComponent } from '../place-autocomplete/place-autocomplete.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { PlaceCardComponent } from '../place-autocomplete/place-card.componet';
 import { NotifyService } from '../../shared/notify/notify.service';
+import { BudgetService } from '../../services/budged.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-activities-nearby-card',
@@ -20,10 +16,9 @@ import { NotifyService } from '../../shared/notify/notify.service';
   imports: [
     MatToolbarModule,
     PlaceAutocompleteComponent,
-    PlaceCardComponent,
-    MapDisplayComponent,
     NgIf,
-    ActivitiesNearbyCardComponent],
+    ActivitiesNearbyCardComponent,
+    MapComponent],
   templateUrl: './activities-nearby-card.component.html',
   styleUrl: './activities-nearby-card.component.scss'
 })
@@ -32,10 +27,16 @@ export class ActivitiesNearbyCardComponent implements OnInit {
   @Input() places: IPlaceSearchResult[] = [];
   @Output() onPlaceSelected = new EventEmitter<IPlaceSearchResult>();
   notifyService = inject(NotifyService);
+  budgetService = inject(BudgetService);
+  
   tripFormService: any;
   inputField: any;
 
-  
+  constructor(
+    private router: Router,
+  ) {
+    
+  }
 
   trackByIndex(index: number, places: IGoogleResponse): number {
     return index;
@@ -56,7 +57,6 @@ export class ActivitiesNearbyCardComponent implements OnInit {
   zoomToPlace: IPlaceSearchResult = { address: '' };
 
   onNearbyPlacesFound(places: IPlaceSearchResult[]) {
-    // Logic to update nearby places based on which field is being updated
     if (this.fromValue.address) {
       this.fromNearbyPlaces = places;
 
@@ -64,25 +64,32 @@ export class ActivitiesNearbyCardComponent implements OnInit {
     if (this.toValue.address) {
       this.toNearbyPlaces = places;
     }
-
-    // Merge all places to display in the map
     this.allNearbyPlaces = [...this.fromNearbyPlaces, ...this.toNearbyPlaces];
-
     }
 
-    //Llama al componente de mapa para mostrar la ubicación de un lugar
-    viewInMap(place: IPlaceSearchResult) {
+  viewInMap(place: IPlaceSearchResult) {
 
-      this.zoomToPlace = place; // Set the place to zoom to
+      this.zoomToPlace = place; 
     }
 
-
-    visitSite(url: string | undefined): void {
+  visitSite(url: string | undefined): void {
       if (url) {
         window.open(url, '_blank');
       } else {
         this.notifyService.onNoData();
-      }
-    };
+        }
+  };
 
+    
+  selectOption(amount: number) {
+      if (!amount) {
+       amount = 0;
+        } 
+    const classification = 'food';
+    this.budgetService.updateSpending(amount, classification);
+    this.router.navigateByUrl('/app/dashboard');
+    //Esto temporalmente mientras se completan demas componentes y borrar bien el local storage cuando se salga 
+     localStorage.removeItem('budget');
+     localStorage.removeItem('tripFormData');
+  }
 }

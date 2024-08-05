@@ -47,7 +47,7 @@
                             <button type="button" class="btn btn-outline-info" (click)="viewInMap(item)" >View in map</button>
                             <button type="button" class="btn btn-outline-dark" (click)="visitSite(item.website)">Go to the
                                 Site</button>
-                            <button type="button" class="btn btn-outline-success">Select option </button>
+                             <button type="button" class="btn btn-outline-success"(click)="selectOption(0)">Select option </button>
     
                         </div>
     
@@ -64,12 +64,12 @@
             }
         </div>
              <div class="map-container">
-            <app-map-display
+            <app-maps
             [from]="fromValue"
             [to]="toValue"
             [pointsOfInterest]="allNearbyPlaces"
             [zoomPlace] = "zoomToPlace"
-            ></app-map-display>
+            ></app-maps>
 
         </div>
 

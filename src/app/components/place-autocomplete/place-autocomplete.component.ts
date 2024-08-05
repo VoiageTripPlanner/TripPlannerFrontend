@@ -66,7 +66,6 @@ export class PlaceAutocompleteComponent implements OnInit {
           name: place?.name,
           location: place?.geometry?.location,
           imageUrl: this.getPhotoUrl(place),
-          iconUrl: place?.icon,
           latitude: place?.geometry?.location?.lat() ?? 0,
           longitude: place?.geometry?.location?.lng() ?? 0, 
           rating: place?.rating,
@@ -77,6 +76,7 @@ export class PlaceAutocompleteComponent implements OnInit {
         this.placeChanged.emit(result);
         console.log(JSON.stringify(result, null, 4));
 
+        localStorage.setItem('destinationName', JSON.stringify(result.name));
         localStorage.setItem('latitudeDestination', JSON.stringify(result.latitude));
         localStorage.setItem('longitudeDestination', JSON.stringify(result.longitude));
 
@@ -108,7 +108,7 @@ export class PlaceAutocompleteComponent implements OnInit {
     const request = {
       location: location,
       radius: radiusNumber,
-      type: 'Tourist Attraction',
+      type: 'tourist_attraction',
     };
 
     this.placesService?.nearbySearch(request, (results, status) => {
@@ -127,7 +127,6 @@ export class PlaceAutocompleteComponent implements OnInit {
                   id: placeDetails.place_id,
                   location: placeDetails.geometry?.location,
                   imageUrl: this.getPhotoUrl(placeDetails),
-                  types: placeDetails.types,
                   rating: placeDetails?.rating,
                   pricelevel: placeDetails?.price_level,
                   website: placeDetails.website || ''

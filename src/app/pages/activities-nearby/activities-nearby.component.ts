@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IPlaceSearchResult } from '../../interfaces/placeSearch';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgIf } from '@angular/common';
-import { MapDisplayComponent } from '../../components/place-autocomplete/map-display.component';
 import { PlaceAutocompleteComponent } from '../../components/place-autocomplete/place-autocomplete.component';
 import { PlaceCardComponent } from '../../components/place-autocomplete/place-card.componet';
 import { ActivitiesNearbyCardComponent } from '../../components/activities-nearby-card/activities-nearby-card.component';
@@ -14,7 +13,6 @@ import { ActivitiesNearbyCardComponent } from '../../components/activities-nearb
     MatToolbarModule,
     PlaceAutocompleteComponent,
     PlaceCardComponent,
-    MapDisplayComponent,
     NgIf,
     ActivitiesNearbyCardComponent
   ],

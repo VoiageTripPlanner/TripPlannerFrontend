@@ -16,7 +16,7 @@ export class GFlightsResponseService extends GFlightsBaseService<OtherFlight>   
 
   getAllHotelsSignal(searchParams:SearchParameters) {
 
-    debugger;
+    ;
     this.searchFlights(searchParams).subscribe({
       next: (response: any) => {
         this.flightsListSignal.set(response.other_flights);
@@ -24,7 +24,7 @@ export class GFlightsResponseService extends GFlightsBaseService<OtherFlight>   
         response.reverse();
       },
       error: (error: any) => {
-        debugger;
+        ;
         console.error('Error fetching users', error);
       }
     });

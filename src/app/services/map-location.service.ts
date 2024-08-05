@@ -7,10 +7,6 @@ import { ILocation } from '../interfaces/location.interface';
 })
 export class MapLocationService extends BaseService<ILocation> {
 
-  constructor() {
-    super();
-  }
-
   private locationListSignal = signal<ILocation[]>([]);
   private locationSignal = signal<ILocation>({} as ILocation);
 

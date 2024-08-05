@@ -1,5 +1,5 @@
 import { Location } from './../../interfaces/yelp-food-response.interface';
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, OnChanges, OnInit } from '@angular/core';
 import { GoogleMapsModule, MapAdvancedMarker, MapGeocoder } from '@angular/google-maps';
 import { RouterOutlet } from '@angular/router';
 import { LoaderComponent } from '../loader/loader.component';

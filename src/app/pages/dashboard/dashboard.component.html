@@ -1,2 +1,8 @@
-
-<app-maps/>
+<div class="container my-5">
+  <p class="fs-5 pt-5 mb-5">Hello <span class="fw-bold">{{ userName }}</span>, this is an overview of your activity.</p>
+  <div class="d-flex justify-content-between">
+    <app-top-countries />
+    <app-trip-budget-chart />
+  </div>
+</div>
+<app-countries-heatmap />

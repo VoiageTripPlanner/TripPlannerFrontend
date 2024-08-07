@@ -13,6 +13,8 @@ export class AuthService {
   private userId!: number;
   private user: IUser = {email: '', authorities: []};
 
+  
+
   constructor(private http: HttpClient) {
     this.load();
   }
@@ -111,4 +113,16 @@ export class AuthService {
   public validateOtp(user: IUser): Observable<IUser> {
     return this.http.post('auth/validate-otp', user);
   }
+
+  getUserId(): number {
+    const formDataString = localStorage.getItem('auth_user');
+
+    if (formDataString) {
+      const formData = JSON.parse(formDataString);
+
+      return formData.user_id || 0;
+    } else {
+      return 0;
+    }
+  };
 }

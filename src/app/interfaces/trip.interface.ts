@@ -28,7 +28,7 @@ export interface ITrip{
     departure_city?:    string;
     departure_date:     Date;
     destination_city:   string;
-    return_date:        Date;
+    return_date?:        Date;
     budget? :           number;
     currency?:          ICurrency;
     lodge:              IVoiageLodge; 

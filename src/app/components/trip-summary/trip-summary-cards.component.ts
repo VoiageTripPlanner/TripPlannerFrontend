@@ -80,7 +80,6 @@ export class TripSummaryCardsComponent implements OnInit {
 
     }
 
-
   }
 
 

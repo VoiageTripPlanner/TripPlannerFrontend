@@ -23,41 +23,41 @@ export class PriceDetailsComponent {
     this.tripBudget = this.budgetService.getBudgetData();
   }
 
-  onSaveTrip() {
+  // onSaveTrip() {
 
-    this.NotifyService.onCustomConfirmation('Do you want to save this info ?', 'The trip info will be stored', 'Yes, sure!').then((result) => {
-      if (result.isConfirmed) {
+  //   this.NotifyService.onCustomConfirmation('Do you want to save this info ?', 'The trip info will be stored', 'Yes, sure!').then((result) => {
+  //     if (result.isConfirmed) {
     
-        console.log('Save Trip'); //aca hay que implementar el service para enviar la info al backend 
+  //       console.log('Save Trip'); //aca hay que implementar el service para enviar la info al backend 
     
-        this.removeLocalStorage()
-        this.router.navigateByUrl('/app/dashboard')
-      };
-    });
+  //       this.removeLocalStorage()
+  //       this.router.navigateByUrl('/app/dashboard')
+  //     };
+  //   });
     
-  }
+  // }
 
-  onStartAgain() {
+  // onStartAgain() {
 
-    this.NotifyService.onCustomConfirmation('Are you sure?', 'You will lose all the data', 'Yes, Start Again').then((result) => {
-      if (result.isConfirmed) {
-        this.removeLocalStorage()
-      };
+  //   this.NotifyService.onCustomConfirmation('Are you sure?', 'You will lose all the data', 'Yes, Start Again').then((result) => {
+  //     if (result.isConfirmed) {
+  //       this.removeLocalStorage()
+  //     };
 
-    });
-  };
+  //   });
+  // };
 
 
-  private removeLocalStorage() {
+  // private removeLocalStorage() {
 
-    localStorage.removeItem('tripFormData');
-    localStorage.removeItem('budget');
-    localStorage.removeItem('flight');
-    localStorage.removeItem('lodge');
-    localStorage.removeItem('food');
-    // localStorage.removeItem('activities');      //Para cuando se implemente activities 
+  //   localStorage.removeItem('tripFormData');
+  //   localStorage.removeItem('budget');
+  //   localStorage.removeItem('flight');
+  //   localStorage.removeItem('lodge');
+  //   localStorage.removeItem('food');
+  //   // localStorage.removeItem('activities');      //Para cuando se implemente activities 
 
-    this.router.navigateByUrl('/app/trip-form');
-  }
+  //   this.router.navigateByUrl('/app/trip-form');
+  // }
 
 }

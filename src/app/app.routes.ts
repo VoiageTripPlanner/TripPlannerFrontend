@@ -19,6 +19,7 @@ import { FlightsComponent } from './pages/flights/flights.component';
 import { TripFormComponent } from './pages/trip-form/trip-form.component';
 import { UpdateUserComponent } from './pages/update-user/update-user.component';
 import { ActivitiesNearbyComponent } from './pages/activities-nearby/activities-nearby.component';
+import { StepperComponent } from './components/stepper/stepper.component';
 
 export const routes: Routes = [
   {
@@ -83,6 +84,18 @@ export const routes: Routes = [
       name: 'Flight',
     }
   },
+  {
+    path: 'planning',
+    component: StepperComponent,
+    data: { 
+      authorities: [
+        IRole.admin, 
+        IRole.user
+      ],
+      name: 'Stepper',
+      icon:'bi bi-duffle-fill'
+    }
+  },   
   {
     path: 'app',
     component: AppLayoutComponent,

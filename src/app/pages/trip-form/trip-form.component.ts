@@ -64,8 +64,8 @@ export class TripFormComponent {
       
       this.notifyService.onSearchDisclaimer();
 
-      // this.router.navigateByUrl('/lodge');
-      this.router.navigateByUrl('/flight');
+      this.router.navigateByUrl('/planning');
+      // this.router.navigateByUrl('/flight');
 
     } else{
       this.notifyService.onNoFormData();

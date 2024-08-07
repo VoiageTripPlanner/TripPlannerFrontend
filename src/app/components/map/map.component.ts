@@ -65,7 +65,7 @@ export class MapComponent implements OnInit, OnChanges  {
     }
 
     //Clear the directions if the from or to location is changed
-    if (fromLocation || toLocation) {
+    if (fromLocation || toLocation || zoomPlace) {
       this.from = undefined;
       this.to = undefined;
       this.zoomPlace = undefined;

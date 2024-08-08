@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CountriesHeatmapComponent } from './countries-heatmap.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('CountriesHeatmapComponent', () => {
   let component: CountriesHeatmapComponent;
@@ -8,7 +9,7 @@ describe('CountriesHeatmapComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CountriesHeatmapComponent]
+      imports: [CountriesHeatmapComponent, HttpClientTestingModule]
     })
     .compileComponents();
     

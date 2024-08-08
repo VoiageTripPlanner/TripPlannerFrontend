@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TripBudgetChartComponent } from './trip-budget-chart.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { StatisticsService } from '../../services/statistics.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('TripBudgetChartComponent', () => {
   let component: TripBudgetChartComponent;
@@ -8,7 +11,8 @@ describe('TripBudgetChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TripBudgetChartComponent]
+      imports: [TripBudgetChartComponent, NgxChartsModule, HttpClientTestingModule],
+      providers: [StatisticsService]
     })
     .compileComponents();
     

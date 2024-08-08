@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TopCountriesComponent } from './top-countries.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('TopCountriesComponent', () => {
   let component: TopCountriesComponent;
@@ -8,12 +9,13 @@ describe('TopCountriesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TopCountriesComponent]
+      imports: [TopCountriesComponent, HttpClientTestingModule]
     })
     .compileComponents();
     
     fixture = TestBed.createComponent(TopCountriesComponent);
     component = fixture.componentInstance;
+    component.topCountries = [];
     fixture.detectChanges();
   });
 

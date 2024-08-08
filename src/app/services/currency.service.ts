@@ -12,6 +12,18 @@ export class CurrencyService extends BaseService<ICurrency> {
   public get currenciesSig(): Signal<ICurrency[]> {
     return this.currencyListSig;
   }
+
+  onGetDefaultCurrency() { 
+    const defaultValue:ICurrency = {
+      id: '',
+      name: 'Dolar',
+      code: 'USD',
+      currencySymbol: '$'
+    } 
+
+    return defaultValue;
+
+  }
   
   public getAllSignal(): void {
     this.findAll().subscribe({

@@ -42,4 +42,19 @@ $title-color: #6D3652;
 }
 
 
+.title-box {
+    width: 90%;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.stepper-button{
+    width: 10%;
+    align-items: center; 
+    display: flex;
+    justify-content: flex-end;
+    padding: 1%;
+}
+
+
 

@@ -1,12 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
 
+
 //variables de color 
 $background-color-white: #ffffff;
 $background-color-grey: #b4b4b4;
 $background-color-grey-light: #f9f9f9;
 $border-color: #775D68;
 $image-backgorund-color: #FADCD4;
+$title-color: #6D3652;
 
+
+// Contenedor general de todo
 
 .yeseva-one-regular {
     font-family: "Yeseva One", serif;
@@ -14,11 +18,17 @@ $image-backgorund-color: #FADCD4;
     font-style: normal;
 }
 
+.title{
+    transform: translateY(30%);
+    padding-left: 1%;
+    font-size: 4vh;
+    color: $image-backgorund-color;
+}
 
-// Contenedor general de todo
+
 .container-box {
-    padding: 0%;
-    margin: 0%;
+    padding: 0;
+    margin: 0;
     min-height: 100vh;
     display: flex;
 }
@@ -29,7 +39,13 @@ $image-backgorund-color: #FADCD4;
     flex-wrap: nowrap;
 }
 
-.lodge-container {
+.background-color{
+    background-color: $title-color;
+}
+
+
+
+.options-container {
     width: 60%;
     max-width: 90%;
     height: 100vh;
@@ -42,84 +58,43 @@ $image-backgorund-color: #FADCD4;
     overflow-y: auto;
 }
 
-.map-container {
-    width: 40%;
-    height: 100vh;
-    background: $background-color-grey;
-}
 
-
-//   Tarjetas de hoteles 
+//   Tarjetas de hotels
 
 .hotel-card {
     width: 100%;
     max-height: 100%;
     background: $background-color-white;
-    border-radius: 6px;
+    // border-radius: 6px;
+    border-color: transparent;
     border-width: 1px;
-    border-color: $border-color;
     border-style: solid;
     background-color: $background-color-white;
     margin: 2% 0;
-}
-
-//Generales 
-
-.padding-1 {
-    padding: 1%;
-}
-
-.image-container{
-    width: 35%;
-    max-width: 35%;
-    background: $background-color-white;
-    padding: 1%;
-    background-color: $image-backgorund-color;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    img {
-        max-width: 100%;
-        max-height: 100%;
-        width: auto;
-        height: auto;
-        object-fit: cover; 
-    }
+    border-radius: 5%;
 }
 
 .information-container{
-    width: 70%;
-    max-width: 70%;
+    width: 100%;
+    max-width: 100%;
     padding: 3%;
 }
 
-.move-to-right{
-    align-self: flex-end; 
-}
 
-.space-between{
-    justify-content: space-between;
-}
+//tarjetas para fligths
 
 
-.bold-text {
-    font-weight: 500; 
-}
+//Tarjetas para activies
 
-.font-size-title{
-    font-size: 2rem;  
-}
 
-.font-size-price{
-    font-size: 1.5rem;  
-}
+//Tarjetas para food
 
-.width-100{
-    width: 100%;
-}
 
-//Lista no ordenada 
+
+
+
+
+//Genrales 
 
 .circle-list {
     list-style-type: circle;
@@ -137,8 +112,73 @@ $image-backgorund-color: #FADCD4;
 
 }
 
-.custom-checkbox {
-    transform: scale(1.5); 
-    vertical-align: middle; 
-    margin-right: 0.5rem; 
+.image-container{
+    width: 35%;
+    max-width: 35%;
+    background: $background-color-white;
+    padding: 1%;
+    background-color: $image-backgorund-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5%;
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: cover; 
+    }
 }
+
+
+.move-to-right{
+    align-self: flex-end; 
+    text-align: right;
+}
+
+.space-between{
+    justify-content: space-between;
+}
+
+
+.bold-text {
+    font-weight: 500; 
+}
+
+.font-size-title{
+    font-size: 1.6rem;  
+}
+
+.font-size-subtitle{
+    font-size: 1.3rem;  
+}
+
+.font-size-price{
+    font-size: 1.5rem;  
+}
+
+.logo {
+    width: 2.5vw;
+    height: 5vh;
+}
+
+.padding-1 {
+    padding: 1%;
+}
+
+.right-aligned-text {
+    text-align: end;
+  }
+
+.space-between{
+    justify-content: space-between;
+}
+
+.width-100{
+    width: 100%;
+}
+
+
+

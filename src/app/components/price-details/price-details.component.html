@@ -1,0 +1,40 @@
+<div class="container">
+
+    <div class="price-detail-container">
+        <h1 class="tittle-text">Price details </h1>
+
+        <div class="line"></div>
+
+        <div class="details-container">
+            <div class="left-detail-text">Flight: </div>
+            <div class="right-detail-text">$ {{tripBudget.flightAmount}}</div>
+        </div>
+
+        <div class="details-container">
+            <div class="left-detail-text">Lodge: </div>
+            <div class="right-detail-text">$ {{tripBudget.lodgeAmount}}</div>
+        </div>
+
+        <div class="details-container">
+            <div class="left-detail-text">Food: </div>
+            <div class="right-detail-text">$ {{tripBudget.foodAmount ? tripBudget.foodAmount : 0}}</div>
+        </div>
+
+        <div class="details-container">
+            <div class="left-detail-text">Activities: </div>
+            <div class="right-detail-text">$ {{tripBudget.activitiesAmount ? tripBudget.activitiesAmount : 0}}</div>
+        </div>
+
+        <hr>
+
+        <div class="details-container">
+            <div class="left-detail-text total-text">Total: </div>
+            <div class="right-detail-text total-price">$ {{tripBudget.total}}</div>
+        </div>
+
+        <div class="d-grid gap-2">
+            <button class="btn btn-primary margin-top-2" type="button" (click)="onSaveTrip()">Confirm </button>
+            <button class="btn btn-secondary  margin-top-2" type="button" (click)="onStartAgain()" >Start Again</button>
+        </div>
+
+    </div>

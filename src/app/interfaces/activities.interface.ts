@@ -13,10 +13,3 @@ export interface IActivity{
       pricelevel?: number;
       website?: string;
 }
-
-export interface IReview{
-    rating: number;
-    review: string;
-    user: string;
-    date: string;
-}

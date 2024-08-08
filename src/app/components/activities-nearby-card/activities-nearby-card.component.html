@@ -1,25 +1,11 @@
 
 <div class="container">
-    <div class="input-area">
-        <h2>I want to go from</h2>
-        <app-place-autocomplete
-          (placeChanged)="fromValue = $event"
-          (nearbyPlacesFound)="onNearbyPlacesFound($event)"
-          placeholder="Enter from address..."
-        ></app-place-autocomplete>
-        <h2>to</h2>
-        <app-place-autocomplete
-          (placeChanged)="toValue = $event"
-          (nearbyPlacesFound)="onNearbyPlacesFound($event)"
-          placeholder="Enter to address..."
-        ></app-place-autocomplete>
-      </div>
-</div>
 <div class="container-box">
 
     <div class="align-boxes">
+        
         <div class="col-md-6 lodge-container">
-
+            <button type="button" class="btn btn-outline-success"(click)="ViewDestination()">View Destination in Map </button>
             
             @for (item of fromNearbyPlaces   ; track item) {
                 <div class="hotel-card align-boxes">
@@ -45,10 +31,9 @@
     
                         <div class="align-boxes space-between">
                             <button type="button" class="btn btn-outline-info" (click)="viewInMap(item)" >View in map</button>
-                            <button type="button" class="btn btn-outline-dark" (click)="visitSite(item.website)">Go to the
-                                Site</button>
-                             <button type="button" class="btn btn-outline-success"(click)="selectOption(0)">Select option </button>
-    
+                            <button type="button" class="btn btn-outline-dark" (click)="visitSite(item.website)">Go to theSite</button>
+                            <button type="button" class="btn btn-outline-success"(click)="selectOption(0)">Select option </button>
+                            
                         </div>
     
                     </div>
@@ -65,8 +50,7 @@
         </div>
              <div class="map-container">
             <app-maps
-            [from]="fromValue"
-            [to]="toValue"
+            [destination] = "fromValue"
             [pointsOfInterest]="allNearbyPlaces"
             [zoomPlace] = "zoomToPlace"
             ></app-maps>

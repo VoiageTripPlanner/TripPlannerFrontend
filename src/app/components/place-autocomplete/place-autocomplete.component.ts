@@ -79,14 +79,16 @@ export class PlaceAutocompleteComponent implements OnInit {
         localStorage.setItem('destinationName', JSON.stringify(result.name));
         localStorage.setItem('latitudeDestination', JSON.stringify(result.latitude));
         localStorage.setItem('longitudeDestination', JSON.stringify(result.longitude));
-
+        localStorage.setItem('destinationAddress', JSON.stringify(result.address));
+        localStorage.setItem('destination', JSON.stringify(result));
+        localStorage.setItem('destinationLocation', JSON.stringify(result));
        if (result.location) {
         this.findNearbyPlaces(result.location);
         }
       });
     });
 
-    const map = new google.maps.Map(this.inputField.nativeElement, { // Temporary map to initialize the PlacesService
+    const map = new google.maps.Map(this.inputField.nativeElement, { 
       center: new google.maps.LatLng(0, 0),
       zoom: 2,
     });
@@ -102,8 +104,8 @@ export class PlaceAutocompleteComponent implements OnInit {
   }
 
   findNearbyPlaces(location: google.maps.LatLng) {
-    const radiusString = "50000"; // Example dynamic or external radius value
-    const radiusNumber = parseInt(radiusString, 10); // Convert to number
+    const radiusString = "50000"; 
+    const radiusNumber = parseInt(radiusString, 10); 
 
     const request = {
       location: location,
@@ -140,17 +142,12 @@ export class PlaceAutocompleteComponent implements OnInit {
 
         Promise.all(nearbyPlacesPromises).then((nearbyPlaces) => {
           this.nearbyPlacesFound.emit(nearbyPlaces);
+          localStorage.setItem('nearbyPlaces', JSON.stringify(nearbyPlaces));
           console.log(JSON.stringify(nearbyPlaces, null, 4));
         }).catch((error) => {
           console.error(error);
         });
       }
     });
-  }
-
-  ngOnDestroy() {
-    if (this.autocomplete) {
-      google.maps.event.clearInstanceListeners(this.autocomplete);
-    }
   }
 }

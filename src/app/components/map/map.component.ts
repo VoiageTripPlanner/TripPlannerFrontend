@@ -24,10 +24,7 @@ export class MapComponent implements OnInit, OnChanges  {
   map!: GoogleMap;
 
   @Input()
-  from: IPlaceSearchResult | undefined;
-
-  @Input()
-  to: IPlaceSearchResult | undefined;
+  destination: IPlaceSearchResult | undefined;
 
   @Input()
   zoomPlace : IPlaceSearchResult | undefined;
@@ -37,38 +34,30 @@ export class MapComponent implements OnInit, OnChanges  {
 
   markerPositions: google.maps.LatLng[] = [];
 
-  zoomToPlace$ = new BehaviorSubject<IPlaceSearchResult | undefined>(undefined);
+  zoomToPlace$ = new BehaviorSubject<IPlaceSearchResult | undefined>(undefined); //
 
   zoom = 5;
 
-  directionsResult$ = new BehaviorSubject<
+  //Asignar un valor inicial a la variable directionsResult$ de tipo BehaviorSubject
+  
+  directionsResult$ = new BehaviorSubject< 
     google.maps.DirectionsResult | undefined
   >(undefined);
 
   constructor(private directionsService: MapDirectionsService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
 
-  ngOnChanges() { // This method is called when the component is initialized and whenever the input properties change.
-    const fromLocation = this.from?.location;
-    const toLocation = this.to?.location;
-    const zoomPlace = this.zoomPlace?.location;
-
-    if (fromLocation && toLocation && zoomPlace) {
-      this.getDirections(fromLocation, toLocation);
-    } else if (fromLocation && !toLocation && !zoomPlace) {
-      this.gotoLocation(fromLocation);
-    } else if (toLocation && !fromLocation && !zoomPlace) {
-      this.gotoLocation(toLocation);
-    }else if (zoomPlace) {
-      this.gotoLocationZoom(zoomPlace);
+    if (this.destination?.location) {
+      this.gotoLocation(this.destination.location);
     }
 
-    //Clear the directions if the from or to location is changed
-    if (fromLocation || toLocation || zoomPlace) {
-      this.from = undefined;
-      this.to = undefined;
-      this.zoomPlace = undefined;
+  }
+
+  ngOnChanges() {
+    const zoomPlace = this.zoomPlace?.location;
+    if (zoomPlace) {
+      this.gotoLocationZoom(zoomPlace);
     }
   }
 

@@ -13,7 +13,7 @@ import { BudgetService } from '../../../services/budged.service';
 import { TripService } from '../../../services/voiage-services/trip.service';
 import { Router } from '@angular/router';
 import { formatDateToYYYYMMDD, formatStringToDate } from '../../../shared/utils/date-formatter';
-import { IVoiageFlight } from '../../../interfaces/flights.interface';
+import { Airport, IVoiageFlight } from '../../../interfaces/flights.interface';
 import { MatStepperModule } from '@angular/material/stepper';
 import { FlightService } from '../../../services/voiage-services/flights.service';
 
@@ -45,7 +45,8 @@ export class FlightCardComponent {
   isLoading: boolean = false;
 
   flightSelected: IVoiageFlight;
-
+  flightDepartureAirport: Airport;
+  flightArrivalAirport: Airport;
   googleFlightsResponseList: OtherFlight[] = [];
 
 
@@ -54,6 +55,8 @@ export class FlightCardComponent {
   ) {
 
     this.flightSelected = this.flightService.onGetDefaultVoiageFlight();
+    this.flightDepartureAirport=this.flightService.onGetDefaultAirports();
+    this.flightArrivalAirport=this.flightService.onGetDefaultAirports();
 
     this.initialForm = this.tripFormService.getFormData();
     this.tripBudget = this.budgetService.getBudgetData();
@@ -142,8 +145,14 @@ export class FlightCardComponent {
 
   flghtFilterInfo( googleFlight: OtherFlight): IVoiageFlight {
 
-    this.flightSelected.departure_airport               = googleFlight.flights![0].departure_airport?.name || " ";
-    this.flightSelected.arrival_airport                 = googleFlight.flights![0].arrival_airport?.name || " ";
+   
+
+    this.airportFlightSelected(googleFlight);
+
+
+
+    this.flightSelected.departure_airport               = this.flightDepartureAirport;
+    this.flightSelected.arrival_airport                 = this.flightArrivalAirport;
     this.flightSelected.airline                         = googleFlight.flights![0].airline || " ";
     this.flightSelected.airline_logo                    = googleFlight.flights![0].airline_logo || "./assets/img/No_image_available.png";
     this.flightSelected.travel_class                    = googleFlight.flights![0].travel_class || " ";
@@ -161,6 +170,19 @@ export class FlightCardComponent {
 
 
     return this.flightSelected;
+  };
+
+
+  airportFlightSelected(googleFlight: OtherFlight): void {
+
+
+    this.flightDepartureAirport.name          = googleFlight.flights![0].departure_airport?.name || " ";
+    this.flightDepartureAirport.id            = googleFlight.flights![0].departure_airport?.id || " ";
+    this.flightDepartureAirport.time          = googleFlight.flights![0].departure_airport?.time || " ";
+    
+    this.flightArrivalAirport.name            = googleFlight.flights![0].arrival_airport?.name || " ";
+    this.flightArrivalAirport.id              = googleFlight.flights![0].arrival_airport?.id || " ";
+    this.flightArrivalAirport.time            = googleFlight.flights![0].arrival_airport?.time || " ";
   }
 
 }

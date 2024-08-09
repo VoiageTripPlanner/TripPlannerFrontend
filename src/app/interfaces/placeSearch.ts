@@ -1,3 +1,5 @@
+import { ILocation } from "./location.interface";
+
 export interface IPlaceSearchResult {
     address: string;
     name?: string;
@@ -5,8 +7,7 @@ export interface IPlaceSearchResult {
     latitude?: number;
     longitude?: number;
     iconUrl?: string;
-    //Cambiar a Location
-    location?: google.maps.LatLng;
+    location?: ILocation;
   }
   export interface IOpenAIResponse {
     content?: string;

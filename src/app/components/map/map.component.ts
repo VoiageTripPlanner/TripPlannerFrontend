@@ -1,12 +1,13 @@
-import { Location } from './../../interfaces/yelp-food-response.interface';
-import { Component, ViewChild, OnChanges, OnInit } from '@angular/core';
-import { GoogleMapsModule, MapAdvancedMarker, MapGeocoder } from '@angular/google-maps';
+import { ILocation } from './../../interfaces/location.interface';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { GoogleMapsModule, MapAdvancedMarker, MapDirectionsService } from '@angular/google-maps';
 import { RouterOutlet } from '@angular/router';
 import { LoaderComponent } from '../loader/loader.component';
 import { environment } from '../../../environments/environment';
 import { CommonModule } from '@angular/common';
-import { ILocation } from '../../interfaces/location.interface';
-
+import { IPlaceSearchResult } from '../../interfaces/placeSearch';
+import { BehaviorSubject, map } from 'rxjs';
+import { MapLocationService } from '../../services/map-location.service';
 
 @Component({
   selector: 'app-maps',
@@ -21,40 +22,55 @@ import { ILocation } from '../../interfaces/location.interface';
   styleUrl: './map.component.scss'
 })
 export class MapComponent implements OnInit {
+  @ViewChild('map', { static: true })
+
+  isLoading: boolean = true;
+  service = new MapLocationService();
+  markerOptions: google.maps.MarkerOptions = {draggable: false};
+  markerPositions: google.maps.LatLngLiteral[] = [];
+
+  address: string = '';
+  placeId: string = '';
+  latitude: number = 9.748917;
+  longitude: number = -83.753428;
+
+  loc: ILocation = {
+    address: this.address,
+    place_id: this.placeId,
+    latitude: this.latitude,
+    longitude: this.longitude
+  };
+
+  center: google.maps.LatLngLiteral = {
+    lat: this.latitude,
+    lng: this.longitude
+  }
+  zoom: number = 8;
+
+  @Input()
+  from: IPlaceSearchResult | undefined;
+
+  @Input()
+  pointsOfInterest: IPlaceSearchResult[] = [];
+
+  directionsResult$ = new BehaviorSubject<
+    google.maps.DirectionsResult | undefined
+  >(undefined);
+
+  constructor(private directionsService: MapDirectionsService){  }
+
   ngOnInit(): void {
     if (!this.isValidApiKey()) {
       throw new Error('Invalid API Key');
     }
   }
-  markerOptions: google.maps.MarkerOptions = {draggable: false};
-  markerPositions: google.maps.LatLngLiteral[] = [];
-  latitude: number = 9.748917;
-  longitude: number = -83.753428;
-  coordinates: { lat: number, lng: number } = {
-    lat: this.latitude ?? 0,
-    lng: this.longitude ?? 0
-  };
-  center: google.maps.LatLngLiteral = this.coordinates;
-  zoom: number = 8;
-  display: google.maps.LatLngLiteral = {
-    lat: this.latitude,
-    lng: this.longitude
-  };
 
-  //Default coordinates for the map
   moveMap(event: google.maps.MapMouseEvent) {
     if (event.latLng) {
       this.center = (event.latLng.toJSON());
     }
   }
-  //Update the display property with the new coordinates
-  move(event: google.maps.MapMouseEvent) {
-    if (event.latLng) {
-      this.display = event.latLng.toJSON();
-    }
-  }
 
-  isLoading: boolean = true;
   onMapReady() {
     this.isLoading = false;
   }
@@ -70,42 +86,57 @@ export class MapComponent implements OnInit {
   }
 
   addOneMarker(event: google.maps.MapMouseEvent) {
-    if (event.latLng) {
-      if (this.markerPositions.length === 1) {
-        this.markerPositions.pop();
-      }
-      this.markerPositions.push(event.latLng.toJSON());
-      const geocoder = new google.maps.Geocoder();
-      geocoder.geocode({ location: event.latLng }, (results, status) => {
-        if (status === "OK") {
-          if (results && results[0]) {
-            console.log(results[0]);
-            // Store the geocode object in a variable or use it as needed
-            const geocode = results[0];
-            const address = geocode.formatted_address;
-            const placeId = geocode.place_id;
-            this.latitude = geocode.geometry.location.lat();
-            this.longitude = geocode.geometry.location.lng();
-            const Location: ILocation = {
-              address: address,
-              place_id: placeId,
-              latitude: this.latitude,
-              longitude: this.longitude
-            };
-
-          } else {
-            console.log("No results found");
-          }
-        } else {
-          console.log("Geocoder failed due to: " + status);
+      if (event.latLng) {
+        if (this.markerPositions.length === 1) {
+          this.markerPositions.pop();
         }
-      });
+        this.markerPositions.push(event.latLng.toJSON());
+        const geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ location: event.latLng }, (results, status) => {
+          if (status === "OK") {
+            if (results && results[0]) {
+
+              console.log(results[0]);
+              const geocode = results[0];
+
+              this.address = geocode.formatted_address;
+              this.placeId = geocode.place_id;
+              this.latitude = geocode.geometry.location.lat();
+              this.longitude = geocode.geometry.location.lng();
+
+              this.loc = {
+                address: this.address,
+                place_id: this.placeId,
+                latitude: this.latitude,
+                longitude: this.longitude
+              };
+
+              this.saveLocation(this.loc);
+            } else {
+              console.log("No results found");
+            }
+          } else {
+            console.log("Geocoder failed due to: " + status);
+          }
+        });
+      }  
     }
-  }
+
+    saveLocation(location: ILocation) {
+      location = {
+        address: this.address,
+        place_id: this.placeId,
+        latitude: this.latitude,
+        longitude: this.longitude
+      }
+      this.service.saveLocation(location).subscribe(
+        (response) => {
+          console.log("Location saved successfully:", response);
+        },
+        (error) => {
+          console.error("Error saving location:", error);
+        }
+      );
+    }
 }
-
-
-
-
-
 

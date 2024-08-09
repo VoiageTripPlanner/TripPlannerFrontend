@@ -74,7 +74,10 @@ export class PlaceAutocompleteComponent implements OnInit {
         const result: IPlaceSearchResult = {
           address: this.inputField.nativeElement.value,
           name: place?.name,
-          location: place?.geometry?.location,
+          location: {
+            latitude: place?.geometry?.location?.lat() ?? 0,
+            longitude: place?.geometry?.location?.lng() ?? 0,
+          },
           imageUrl: this.getPhotoUrl(place),
           iconUrl: place?.icon,
           latitude: place?.geometry?.location?.lat() ?? 0,
@@ -120,7 +123,10 @@ export class PlaceAutocompleteComponent implements OnInit {
         const nearbyPlaces: IPlaceSearchResult[] = results.map((place) => ({
           address: place.vicinity || '',
           name: place.name,
-          location: place.geometry?.location,
+          location: {
+            latitude: place?.geometry?.location?.lat() ?? 0,
+            longitude: place?.geometry?.location?.lng() ?? 0,
+          },
           imageUrl: this.getPhotoUrl(place),
           iconUrl: place.icon,
           price: place.price_level,

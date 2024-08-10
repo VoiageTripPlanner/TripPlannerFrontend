@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { BaseService } from '../base-service';
 import { NotifyService } from '../../shared/notify/notify.service';
 import { IActivity } from '../../interfaces/activities.interface';
@@ -11,6 +11,9 @@ import { IActivity } from '../../interfaces/activities.interface';
    
     private storageKey = 'selectedActivities';
     notifyService = inject(NotifyService);
+
+
+    private activitiesListSignal = signal<IActivity[]>(this.onGetDefaultVoiageActivities());
   
     addItem(item: IActivity): void {
       const items = this.getActivities();
@@ -28,4 +31,23 @@ import { IActivity } from '../../interfaces/activities.interface';
       const storedItems = localStorage.getItem(this.storageKey);
       return storedItems ? JSON.parse(storedItems) : [];
     }
+
+    onGetDefaultVoiageActivities() {
+
+      return [
+        {
+          address: '',
+          id: '',
+          name: '',
+          location: undefined,
+          imageUrl: '',
+          latitude: 0,
+          longitude: 0,
+          rating: 0,
+          pricelevel: 0,
+          website: ''
+      }
+      ];  
+  };
+
     }

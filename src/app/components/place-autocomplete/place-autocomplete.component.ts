@@ -67,7 +67,6 @@ export class PlaceAutocompleteComponent implements OnInit {
           latitude: place?.geometry?.location?.lat() ?? 0,
           longitude: place?.geometry?.location?.lng() ?? 0, 
           rating: place?.rating,
-          types: place?.types,
           pricelevel: place?.price_level, 
           website: place?.website,          
         };
@@ -129,7 +128,6 @@ export class PlaceAutocompleteComponent implements OnInit {
                   rating: placeDetails?.rating,
                   pricelevel: placeDetails?.price_level,
                   website: placeDetails.website || '',
-                  types: placeDetails.types || [],
                 });
               } else {
                 reject(`Failed to get details for place ID ${place.place_id}`);

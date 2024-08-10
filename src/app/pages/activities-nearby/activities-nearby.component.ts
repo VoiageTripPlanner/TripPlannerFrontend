@@ -5,6 +5,7 @@ import { NgIf } from '@angular/common';
 import { PlaceAutocompleteComponent } from '../../components/place-autocomplete/place-autocomplete.component';
 import { PlaceCardComponent } from '../../components/place-autocomplete/place-card.componet';
 import { ActivitiesNearbyCardComponent } from '../../components/activities-nearby-card/activities-nearby-card.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 @Component({
   selector: 'app-activities-nearby',
@@ -14,7 +15,8 @@ import { ActivitiesNearbyCardComponent } from '../../components/activities-nearb
     PlaceAutocompleteComponent,
     PlaceCardComponent,
     NgIf,
-    ActivitiesNearbyCardComponent
+    ActivitiesNearbyCardComponent,
+    HttpClientTestingModule
   ],
   templateUrl: './activities-nearby.component.html',
   styleUrl: './activities-nearby.component.scss'

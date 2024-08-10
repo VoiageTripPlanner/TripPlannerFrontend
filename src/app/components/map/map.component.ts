@@ -64,6 +64,10 @@ export class MapComponent implements OnInit, OnChanges  {
     if (destinationZooom) {
       this.gotoLocation(destinationZooom);
     }
+
+    this.destination= undefined;
+    this.zoomPlace = undefined;
+
   }
 
   gotoLocation(location: google.maps.LatLng) {
@@ -76,7 +80,7 @@ export class MapComponent implements OnInit, OnChanges  {
   gotoLocationZoom(location: google.maps.LatLng) {
     this.markerPositions = [location];
     this.map.panTo(location);
-    this.zoom = 20;
+    this.zoom = 25;
     this.directionsResult$.next(undefined);
   }
 

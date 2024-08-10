@@ -104,6 +104,16 @@ export class AuthService {
     localStorage.removeItem('expiresIn');
     localStorage.removeItem('auth_user');
     localStorage.removeItem('userId');
+    localStorage.removeItem('longitudeDestination');
+    localStorage.removeItem('latitudeDestination');
+    localStorage.removeItem('destinationName');
+    localStorage.removeItem('destinatioLocation');
+    localStorage.removeItem('user_id');
+    localStorage.removeItem('nearbyPlaces');
+    localStorage.removeItem('destinationAddress');
+    localStorage.removeItem('destination');
+    localStorage.removeItem('destinationLocation');
+    localStorage.removeItem('selectedActivities');
   }
 
   public resetPassword(user: IUser): Observable<IUser> {

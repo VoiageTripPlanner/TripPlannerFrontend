@@ -1,6 +1,5 @@
 import { GoogleService } from './../../services/google.service';
 import { Router } from '@angular/router';
-import { routes } from './../../app.routes';
 import {
   Component,
   ElementRef,
@@ -15,25 +14,14 @@ import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import { IPlaceSearchResult } from '../../interfaces/placeSearch';
-
+import { IActivity } from '../../interfaces/activities.interface';
 
 @Component({
   selector: 'app-place-autocomplete',
   standalone: true,
   imports: [CommonModule, MatFormFieldModule, MatInputModule, FormsModule],
-  template: `
-    <mat-form-field appearance="outline">
-      <input [placeholder]="placeholder" #inputField matInput />
-    </mat-form-field>
-  `,
-  styles: [
-    `
-      .mat-form-field {
-        width: 100%;
-      }
-    `,
-  ],
+  templateUrl: './place-autocomplete.component.html',
+  styleUrls: ['./place-autocomplete.component.scss'],
 })
 export class PlaceAutocompleteComponent implements OnInit {
   @ViewChild('inputField')
@@ -41,12 +29,11 @@ export class PlaceAutocompleteComponent implements OnInit {
 
   @Input() placeholder = 'Enter address...';
 
-  @Output() placeChanged = new EventEmitter<IPlaceSearchResult>();
-  @Output() nearbyPlacesFound = new EventEmitter<IPlaceSearchResult[]>();
+  @Output() placeChanged = new EventEmitter<IActivity>();
+  @Output() nearbyPlacesFound = new EventEmitter<IActivity[]>();
 
   autocomplete: google.maps.places.Autocomplete | undefined;
   placesService: google.maps.places.PlacesService | undefined;
-
   listener: any;
 
   private ngZone: NgZone;
@@ -71,27 +58,37 @@ export class PlaceAutocompleteComponent implements OnInit {
     this.autocomplete.addListener('place_changed', () => {
       this.ngZone.run(() => {
         const place = this.autocomplete?.getPlace();
-        const result: IPlaceSearchResult = {
+        const result: IActivity = {
           address: this.inputField.nativeElement.value,
+          id: place?.place_id,
           name: place?.name,
           location: place?.geometry?.location,
           imageUrl: this.getPhotoUrl(place),
-          iconUrl: place?.icon,
           latitude: place?.geometry?.location?.lat() ?? 0,
-          longitude: place?.geometry?.location?.lng(),          
+          longitude: place?.geometry?.location?.lng() ?? 0, 
+          rating: place?.rating,
+          types: place?.types,
+          pricelevel: place?.price_level, 
+          website: place?.website,          
         };
         this.placeChanged.emit(result);
         console.log(JSON.stringify(result, null, 4));
 
-      // if (result.location) {
-      //  this.findNearbyPlaces(result.location);
-      //  }
+        localStorage.setItem('destinationName', JSON.stringify(result.name));
+        localStorage.setItem('latitudeDestination', JSON.stringify(result.latitude));
+        localStorage.setItem('longitudeDestination', JSON.stringify(result.longitude));
+        localStorage.setItem('destinationAddress', JSON.stringify(result.address));
+        localStorage.setItem('destination', JSON.stringify(result));
+        localStorage.setItem('destinationLocation', JSON.stringify(result));
+       if (result.location) {
+        this.findNearbyPlaces(result.location);
+        }
       });
     });
 
-    const map = new google.maps.Map(this.inputField.nativeElement, { // Temporary map to initialize the PlacesService
+    const map = new google.maps.Map(this.inputField.nativeElement, { 
       center: new google.maps.LatLng(0, 0),
-      zoom: 10,
+      zoom: 2,
     });
     this.placesService = new google.maps.places.PlacesService(map);
   }
@@ -105,36 +102,50 @@ export class PlaceAutocompleteComponent implements OnInit {
   }
 
   findNearbyPlaces(location: google.maps.LatLng) {
-    
-    const radiusString = "50000"; // Example dynamic or external radius value
-    const radiusNumber = parseInt(radiusString, 10); // Convert to number
+    const radiusString = "50000"; 
+    const radiusNumber = parseInt(radiusString, 10); 
 
     const request = {
       location: location,
       radius: radiusNumber,
-      type: 'tourist',
+      type: 'tourist_attraction',
     };
 
     this.placesService?.nearbySearch(request, (results, status) => {
       if (status === google.maps.places.PlacesServiceStatus.OK && results) {
-        const nearbyPlaces: IPlaceSearchResult[] = results.map((place) => ({
-          address: place.vicinity || '',
-          name: place.name,
-          location: place.geometry?.location,
-          imageUrl: this.getPhotoUrl(place),
-          iconUrl: place.icon,
-          price: place.price_level,
-        }));
+        const nearbyPlacesPromises = results.map((place) => {
+          if (!place.place_id) {
+            return Promise.reject(`Place ID is undefined for place: ${place.name}`);
+          }
 
-        this.nearbyPlacesFound.emit(nearbyPlaces);
-        console.log(JSON.stringify(nearbyPlaces, null, 4));
+          return new Promise<IActivity>((resolve, reject) => {
+            this.placesService?.getDetails({ placeId: place.place_id! }, (placeDetails, detailsStatus) => {
+              if (detailsStatus === google.maps.places.PlacesServiceStatus.OK && placeDetails) {
+                resolve({
+                  address: placeDetails.vicinity || '',
+                  name: placeDetails.name,
+                  id: placeDetails.place_id,
+                  location: placeDetails.geometry?.location,
+                  imageUrl: this.getPhotoUrl(placeDetails),
+                  rating: placeDetails?.rating,
+                  pricelevel: placeDetails?.price_level,
+                  website: placeDetails.website || ''
+                });
+              } else {
+                reject(`Failed to get details for place ID ${place.place_id}`);
+              }
+            });
+          });
+        });
+
+        Promise.all(nearbyPlacesPromises).then((nearbyPlaces) => {
+          this.nearbyPlacesFound.emit(nearbyPlaces);
+          localStorage.setItem('nearbyPlaces', JSON.stringify(nearbyPlaces));
+          console.log(JSON.stringify(nearbyPlaces, null, 4));
+        }).catch((error) => {
+          console.error(error);
+        });
       }
     });
-  }
-
-  ngOnDestroy() {
-    if (this.autocomplete) {
-      google.maps.event.clearInstanceListeners(this.autocomplete);
-    }
   }
 }

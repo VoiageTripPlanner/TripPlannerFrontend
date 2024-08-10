@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { IPlaceSearchResult } from '../../interfaces/placeSearch';
 
-
-
 @Component({
   selector: 'app-place-card',
   standalone: true,
@@ -45,4 +43,3 @@ export class PlaceCardComponent implements OnInit {
 
   ngOnInit(): void {}
 }
-

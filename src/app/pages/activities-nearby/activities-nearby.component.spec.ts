@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ActivitiesNearbyComponent } from './activities-nearby.component';
 
 describe('ActivitiesNearbyComponent', () => {
@@ -8,7 +7,7 @@ describe('ActivitiesNearbyComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ActivitiesNearbyComponent]
+      declarations: [ActivitiesNearbyComponent] // Changed from imports to declarations
     })
     .compileComponents();
     
@@ -21,3 +20,4 @@ describe('ActivitiesNearbyComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

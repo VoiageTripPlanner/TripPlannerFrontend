@@ -1,70 +1,76 @@
-
 <div class="container-box">
 
     <div class="align-boxes">
-        
+
         <div class="col-md-6 lodge-container">
-            
-            
-            @for (item of fromNearbyPlaces   ; track item) {
-                <div class="hotel-card align-boxes">
 
-                    <div class="information-container">
-    
-                        <div class="align-boxes space-between">
-                            <h1 class="bold-text font-size-title">{{item.name}}</h1>
-                        </div>
 
-                        <div class="form-check move-to-right ">
-                            <input class="form-check-input custom-checkbox " type="checkbox" value="" id="flexCheckDefault-{{item.id}}" (change)="checkboxChange(item, $event)">
-                            
-                            <label class="font-size-price" for="flexCheckDefault">
-                                Select Option  
-                            </label>
-                        </div>
-    
-                        <div class="align-boxes space-between">
-                            <h3>Address: {{item.address}}</h3>
-                            <h3 class="move-to-right">
-                                Rating:
-                                @if (item.rating) {
-                                    {{item.rating}}
-                                } @else{
-                                    Not available
-                                } 
-                            </h3>
-                        </div>
-    
-                        <div class="align-boxes space-between">
-                            <button type="button" class="btn btn-outline-info" (click)="viewInMap(item)" >View in map</button>
-                            <button type="button" class="btn btn-outline-dark" (click)="visitSite(item.website)">Go to theSite</button>
-                        </div>
-    
+            @for (item of fromNearbyPlaces ; track item) {
+            <div class="hotel-card align-boxes">
+
+                <div class="information-container">
+
+                    <div class="align-boxes space-between">
+                        <h1 class="bold-text font-size-title">{{item.name}}</h1>
                     </div>
-    
-                    <div class="image-container">
-                        @if(item.imageUrl && item.imageUrl.length){
-                            <img src={{item.imageUrl}} alt="Logo" class="">
-                        }@else{
-                            <img src="../../../../assets/img/no-image.jpg" alt="Logo" class="">
-                        }
+
+                    <div class="form-check move-to-right ">
+                        <input class="form-check-input custom-checkbox " type="checkbox" value=""
+                            id="flexCheckDefault-{{item.id}}" (change)="checkboxChange(item, $event)">
+
+                        <label class="font-size-price" for="flexCheckDefault">
+                            Select Option
+                        </label>
                     </div>
+
+                    <div class="align-boxes space-between">
+                        <h3>Address: {{item.address}}</h3>
+                        <h3 class="move-to-right">
+                            Rating:
+                            @if (item.rating) {
+                            {{item.rating}}
+                            } @else{
+                            Not available
+                            }
+                        </h3>
+                    </div>
+
+                    <div class="align-boxes space-between">
+                        <button type="button" class="btn btn-outline-info" (click)="viewInMap(item)">View in
+                            map</button>
+                        <button type="button" class="btn btn-outline-dark" (click)="visitSite(item.website)">Go to
+                            theSite</button>
+                    </div>
+
                 </div>
+
+                <div class="image-container">
+                    @if(item.imageUrl && item.imageUrl.length){
+                    <img src={{item.imageUrl}} alt="Logo" class="">
+                    }@else{
+                    <img src="../../../../assets/img/no-image.jpg" alt="Logo" class="">
+                    }
+                </div>
+            </div>
             }
-            
-        </div>
-             
-        <div>
-            <button type="button" class="btn btn-outline-success"(click)="ViewDestination()">View Destination in Map </button>
-        </div>
-        <div class="map-container">       
-            <app-maps
-            [destination] = "fromValue"
-            [pointsOfInterest]="allNearbyPlaces"
-            [zoomPlace] = "zoomToPlace"
-            ></app-maps>
 
         </div>
+
+        <div class="map-container" >
+            <button type="button" 
+                    class="btn  btn-warning position-absolute position-button" 
+                    (click)="ViewDestination()">
+                <i class="bi bi-compass"></i> 
+            </button>
+        
+            <app-maps 
+                class="z-index-1" 
+                [destination]="fromValue" 
+                [pointsOfInterest]="allNearbyPlaces" 
+                [zoomPlace]="zoomToPlace">
+            </app-maps>
+        </div>
+        
 
     </div>
 

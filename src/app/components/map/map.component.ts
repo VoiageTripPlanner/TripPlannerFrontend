@@ -110,10 +110,10 @@ export class MapComponent implements OnInit {
               };
 
             } else {
-              console.log("No results found");
+              throw new Error("No results found");
             }
           } else {
-            console.log("Geocoder failed due to: " + status);
+            throw new Error("Geocoder failed due to: " + status);
           }
         });
       }  

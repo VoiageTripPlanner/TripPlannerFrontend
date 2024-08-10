@@ -26,7 +26,7 @@ export class MapLocationService extends BaseService<ILocation> {
         response.reverse();
       },
       error: (error: any) => {
-        console.error('Error fetching locations', error);
+        throwError(error);
       }
     });
   };
@@ -37,7 +37,7 @@ export class MapLocationService extends BaseService<ILocation> {
         this.locationSignal.set(response);
       },
       error: (error: any) => {
-        console.error('Error fetching location', error);
+        throwError(error);
       }
     });
   };
@@ -49,7 +49,7 @@ export class MapLocationService extends BaseService<ILocation> {
         response.reverse();
       },
       error: (error: any) => {
-        console.error('Error fetching locations', error);
+        throwError(error);      
       }
     });
   };
@@ -58,11 +58,10 @@ export class MapLocationService extends BaseService<ILocation> {
     this.add(location)
     .subscribe({
       next: (response) => {
-        //this.locationListSignal.update(locations => [response, ...locations])
-        console.log("Location saved successfully:", response);
+        throw(response);
       },
       error: (error) => {
-        console.error("Error saving location:", error);
+        throwError(error);
       }
     });  
   };
@@ -71,11 +70,9 @@ export class MapLocationService extends BaseService<ILocation> {
     return this.logicDelete(location.id, location).pipe(
       tap((response: any) => {
         const deletedLocation = this.locationListSignal().map(loc => loc.id === location.id ? response : loc);
-        console.log(deletedLocation);
         this.locationListSignal.set(deletedLocation);
       }),
       catchError(error => {
-        console.error('Error deleting location', error);
         return throwError(error);
       })
     );

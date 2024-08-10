@@ -1,11 +1,10 @@
 
-<div class="container">
 <div class="container-box">
 
     <div class="align-boxes">
         
         <div class="col-md-6 lodge-container">
-            <button type="button" class="btn btn-outline-success"(click)="ViewDestination()">View Destination in Map </button>
+            
             
             @for (item of fromNearbyPlaces   ; track item) {
                 <div class="hotel-card align-boxes">
@@ -14,7 +13,14 @@
     
                         <div class="align-boxes space-between">
                             <h1 class="bold-text font-size-title">{{item.name}}</h1>
-                          
+                        </div>
+
+                        <div class="form-check move-to-right ">
+                            <input class="form-check-input custom-checkbox " type="checkbox" value="" id="flexCheckDefault-{{item.id}}" (change)="checkboxChange(item, $event)">
+                            
+                            <label class="font-size-price" for="flexCheckDefault">
+                                Select Option  
+                            </label>
                         </div>
     
                         <div class="align-boxes space-between">
@@ -32,8 +38,6 @@
                         <div class="align-boxes space-between">
                             <button type="button" class="btn btn-outline-info" (click)="viewInMap(item)" >View in map</button>
                             <button type="button" class="btn btn-outline-dark" (click)="visitSite(item.website)">Go to theSite</button>
-                            <button type="button" class="btn btn-outline-success"(click)="selectOption(0)">Select option </button>
-                            
                         </div>
     
                     </div>
@@ -47,8 +51,13 @@
                     </div>
                 </div>
             }
+            
         </div>
-             <div class="map-container">
+             
+        <div>
+            <button type="button" class="btn btn-outline-success"(click)="ViewDestination()">View Destination in Map </button>
+        </div>
+        <div class="map-container">       
             <app-maps
             [destination] = "fromValue"
             [pointsOfInterest]="allNearbyPlaces"

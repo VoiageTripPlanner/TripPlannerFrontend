@@ -1,6 +1,5 @@
 import { GoogleService } from './../../services/google.service';
 import { Router } from '@angular/router';
-import { routes } from './../../app.routes';
 import {
   Component,
   ElementRef,

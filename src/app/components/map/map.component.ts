@@ -59,6 +59,11 @@ export class MapComponent implements OnInit, OnChanges  {
     if (zoomPlace) {
       this.gotoLocationZoom(zoomPlace);
     }
+
+    const destinationZooom = this.destination?.location;
+    if (destinationZooom) {
+      this.gotoLocation(destinationZooom);
+    }
   }
 
   gotoLocation(location: google.maps.LatLng) {

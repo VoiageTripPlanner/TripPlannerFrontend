@@ -10,6 +10,7 @@ import { NotifyService } from '../../shared/notify/notify.service';
 import { BudgetService } from '../../services/budged.service';
 import { Router } from '@angular/router';
 import { IActivity } from '../../interfaces/activities.interface';
+import { ActivityService } from '../../services/api-request/activityService';
 
 @Component({
   selector: 'app-activities-nearby-card',
@@ -29,6 +30,7 @@ export class ActivitiesNearbyCardComponent implements OnInit {
   @Output() onPlaceSelected = new EventEmitter<IPlaceSearchResult>();
   notifyService = inject(NotifyService);
   budgetService = inject(BudgetService);
+  activityService = inject(ActivityService);  // Inyecta el servicio
 
   constructor(
     private router: Router,
@@ -76,7 +78,6 @@ export class ActivitiesNearbyCardComponent implements OnInit {
       const storedPlace = localStorage.getItem('destination');
       if (storedPlace) {
         this.fromValue = JSON.parse(storedPlace);
-        this.viewInMap(this.fromValue);
       }
     }
 
@@ -88,16 +89,13 @@ export class ActivitiesNearbyCardComponent implements OnInit {
         }
   };
 
-    
-  selectOption(amount: number) {
-      if (!amount) {
-       amount = 0;
-        } 
-    const classification = 'food';
-    this.budgetService.updateSpending(amount, classification);
-    this.router.navigateByUrl('/app/dashboard');
-    //Esto temporalmente mientras se completan demas componentes y borrar bien el local storage cuando se salga 
-     localStorage.removeItem('budget');
-     localStorage.removeItem('tripFormData');
+  checkboxChange(activityNearby: IActivity, event: any): void {
+    if (event.target.checked) {
+      this.activityService.addItem(activityNearby);  
+    } else {
+      if (activityNearby.id) {
+        this.activityService.removeItem(activityNearby.id);
+      }
+    }
   }
 }

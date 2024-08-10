@@ -13,6 +13,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { NotifyService } from '../../shared/notify/notify.service';
 import { timeout, timer } from 'rxjs';
+import { MapComponent } from "../../components/map/map.component";
 
 
 @Component({
@@ -25,8 +26,9 @@ import { timeout, timer } from 'rxjs';
     MatNativeDateModule,
     MatRadioModule,
     FormsModule,
-    CommonModule
-  ],
+    CommonModule,
+    MapComponent
+],
   providers: [provideNativeDateAdapter()],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './trip-form.component.html',

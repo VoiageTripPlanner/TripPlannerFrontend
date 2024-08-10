@@ -11,6 +11,26 @@ $light-color-main: #FADCD4;
 $light-color-second: #775D68;
 $line-gradient:linear-gradient(to right, rgba(255, 255, 255, 0.1), #FADCD4, rgba(255, 255, 255, 0.1)); 
 
+/**Added**/
+
+i:active {
+  color: $neutro-color-main ;
+}
+
+i:hover {
+  color: $light-color-main;
+}
+
+div .header-wrapper {
+  background-color: $neutro-color-second;
+}
+
+div .header-wrapper span {
+  color: $light-color-main;
+  font-family: 'Roboto', sans-serif;
+}
+
+/** Already here**/
 %sidebar-after {
   position: absolute;
   content: "";
@@ -18,6 +38,8 @@ $line-gradient:linear-gradient(to right, rgba(255, 255, 255, 0.1), #FADCD4, rgba
   width: 8px;
   border-top: 1px solid rgba($theme-body-sub-title-color, 0.4);
 }
+
+
 
 %sidebar-active-dot {
   position: absolute;
@@ -217,6 +239,7 @@ $line-gradient:linear-gradient(to right, rgba(255, 255, 255, 0.1), #FADCD4, rgba
                   font-size: 18px;
                   font-weight: 600;
                   transition: all 0.3s ease;
+                  color: $light-color-main;
                   
                   &.fa-lightbulb-o {
                     font-weight: 500;

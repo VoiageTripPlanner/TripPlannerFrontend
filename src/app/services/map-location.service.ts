@@ -2,11 +2,12 @@ import { Injectable, signal, Signal } from '@angular/core';
 import { BaseService } from './base-service';
 import { ILocation } from '../interfaces/location.interface';
 import { catchError, Observable, tap, throwError } from 'rxjs';
-import { HttpClientModule } from '@angular/common/http';
+
 @Injectable({
   providedIn: 'root'
 })
 export class MapLocationService extends BaseService<ILocation> {
+  protected override source = 'locations';
   private locationListSignal = signal<ILocation[]>([]);
   private locationSignal = signal<ILocation>({} as ILocation);
 
@@ -53,16 +54,17 @@ export class MapLocationService extends BaseService<ILocation> {
     });
   };
 
-  saveLocation(location: ILocation): Observable<any> {
-    return this.add(location).pipe(
-      tap((response: any) => {
-        this.locationListSignal.update(locations => [response, ...locations])
-    }),
-    catchError(error => {
-      console.error('Error saving location', error);
-      return throwError(error);
-      })
-    );
+  saveLocation(location: ILocation): void {
+    this.add(location)
+    .subscribe({
+      next: (response) => {
+        //this.locationListSignal.update(locations => [response, ...locations])
+        console.log("Location saved successfully:", response);
+      },
+      error: (error) => {
+        console.error("Error saving location:", error);
+      }
+    });  
   };
 
   deleteLocation(location: ILocation): Observable<any> {

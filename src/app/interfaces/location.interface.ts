@@ -5,6 +5,6 @@ id?: number;
 longitude?: number;
 latitude?: number;
 address?: string;
-place_id?: string;
+placeId?: string;
 audit?: IAudit;
 }

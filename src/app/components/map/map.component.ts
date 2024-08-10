@@ -36,7 +36,7 @@ export class MapComponent implements OnInit {
 
   loc: ILocation = {
     address: this.address,
-    place_id: this.placeId,
+    placeId: this.placeId,
     latitude: this.latitude,
     longitude: this.longitude
   };
@@ -95,8 +95,6 @@ export class MapComponent implements OnInit {
         geocoder.geocode({ location: event.latLng }, (results, status) => {
           if (status === "OK") {
             if (results && results[0]) {
-
-              console.log(results[0]);
               const geocode = results[0];
 
               this.address = geocode.formatted_address;
@@ -106,12 +104,11 @@ export class MapComponent implements OnInit {
 
               this.loc = {
                 address: this.address,
-                place_id: this.placeId,
+                placeId: this.placeId,
                 latitude: this.latitude,
                 longitude: this.longitude
               };
 
-              this.saveLocation(this.loc);
             } else {
               console.log("No results found");
             }
@@ -122,21 +119,8 @@ export class MapComponent implements OnInit {
       }  
     }
 
-    saveLocation(location: ILocation) {
-      location = {
-        address: this.address,
-        place_id: this.placeId,
-        latitude: this.latitude,
-        longitude: this.longitude
-      }
-      this.service.saveLocation(location).subscribe(
-        (response) => {
-          console.log("Location saved successfully:", response);
-        },
-        (error) => {
-          console.error("Error saving location:", error);
-        }
-      );
+    saveLocation() {
+      this.service.saveLocation(this.loc)
     }
 }
 

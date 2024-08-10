@@ -1,21 +1,33 @@
-import { Injectable, signal } from '@angular/core';
-import { BaseService } from './base-service';
+import { inject, Injectable, signal } from '@angular/core';
+import { BaseService } from '../base-service';
 import { Observable, catchError, tap, throwError } from 'rxjs';
-import { ICountry } from '../interfaces/country.interface';
-import { ITripForm } from '../interfaces/trip.interface';
+import { ICountry } from '../../interfaces/country.interface';
+import { ITripForm,ITrip } from '../../interfaces/trip.interface';
+import { IVoiageRestaurant } from '../../interfaces/food.interface';
+import { LodgeService } from './lodge.service';
+import { FlightService } from './flights.service';
+import { FoodService } from './food.service';
+import { ActivitiesService } from './activities.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TripService extends BaseService<ITripForm> {
+
   protected override source: string = 'trip';
-  private tripFormSignal = signal<ITripForm>(this.onGetDefaultTripForm());
   private storageKey = 'tripFormData';
+
+  private tripFormSignal = signal<ITripForm>(this.onGetDefaultTripForm());
+
+  lodgeService=inject(LodgeService);
+  flightService=inject(FlightService);
+  foodService=inject(FoodService);
+  activitiesService=inject(ActivitiesService);
 
 
   get tripForm$() {
     return this.tripFormSignal;
-  }
+  };
 
   onGetDefaultTripForm (){
 
@@ -47,11 +59,12 @@ export class TripService extends BaseService<ITripForm> {
 
     return defaultValue;
 
-  }
+  };
+
 
   setInitialForm(data:ITripForm){
     this.tripFormSignal.set(data);
-  }
+  };
 
   getLatitudeDestination(): number {
     const latitudeDestination = parseFloat(localStorage.getItem('latitudeDestination') ?? '0');
@@ -78,7 +91,7 @@ export class TripService extends BaseService<ITripForm> {
 
   saveFormData(formData: ITripForm): void {
     localStorage.setItem(this.storageKey, JSON.stringify(formData));
-  }
+  };
 
   getFormData(): ITripForm {
     const formDataString = localStorage.getItem(this.storageKey);
@@ -94,6 +107,35 @@ export class TripService extends BaseService<ITripForm> {
     } else {
       return this.onGetDefaultTripForm();
     }
-  }
+  };
+
+
+  //Valores por defecto para un trip
+    
+  onGetDefaultTrip(){
+    
+    const getNextDay = (): Date => {
+      const today = new Date();
+      return new Date(today.setDate(today.getDate() + 3));
+    };
+
+    const defaultValue:ITrip={
+      trip_id                         : 0,
+      trip_name                       : '',
+      trip_description                : '',
+      departure_date                  : getNextDay(),
+      destination_city                : '',
+      return_date                     : getNextDay(),
+      lodge                           : this.lodgeService.onGetDefaultVoiageLodge(),
+      flight                          : this.flightService.onGetDefaultVoiageFlight(),
+      food                            : this.foodService.onGetDefaultVoiageRestaurantList(),
+      activities                      : this.activitiesService.onGetDefaultVoiageActivities(),
+      user_id                         : 0,
+      creation_datetime               : getNextDay(),
+      creation_responsible            : 0
+    }
+
+    return defaultValue;
+  };
 
 }

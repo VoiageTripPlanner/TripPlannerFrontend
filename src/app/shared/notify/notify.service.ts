@@ -36,6 +36,37 @@ export class NotifyService {
       icon: "success"
     });
   };
+
+  onCustomConfirmation=( title:string,text:string,confirmButton:string )=>{
+
+    return Swal.fire({
+      title: title,
+      text: text,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: confirmButton
+    })
+    
+  };
+
+
+  onCustomSimpleNotify=(title:string,text:string)=>{
+    Swal.fire({
+      title: title,
+      text: text,
+      icon: "success"
+    });
+  };
+
+  onCustomErrorNotify=(title:string,text:string)=>{
+    Swal.fire({
+      title: title,
+      text: text,
+      icon: "error"
+    });
+  };
   
   onError=()=>{
     Swal.fire({
@@ -43,7 +74,7 @@ export class NotifyService {
       text: "Something went wrong!",
       icon: "error"
     });
-  }
+  };
 
   onNoData=()=>{
     Swal.fire({
@@ -51,8 +82,7 @@ export class NotifyService {
       text: "There is no info with these params!",
       icon: "info"
     });
-  }
-
+  };
 
   onSearchDisclaimer=()=>{
 
@@ -73,8 +103,6 @@ export class NotifyService {
       text: "Please complete the form",
       icon: "info"
     });
-  }
+  };
 
-
-  
 }

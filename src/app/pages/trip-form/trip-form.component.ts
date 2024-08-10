@@ -7,7 +7,7 @@ import {MatNativeDateModule, provideNativeDateAdapter} from '@angular/material/c
 import {MatRadioModule} from '@angular/material/radio';
 import { ITripForm } from '../../interfaces/trip.interface';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TripService } from '../../services/trip.service';
+import { TripService } from '../../services/voiage-services/trip.service';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
@@ -64,8 +64,8 @@ export class TripFormComponent {
       
       this.notifyService.onSearchDisclaimer();
 
-      // this.router.navigateByUrl('/lodge');
-      this.router.navigateByUrl('/flight');
+      this.router.navigateByUrl('/planning');
+      // this.router.navigateByUrl('/flight');
 
     } else{
       this.notifyService.onNoFormData();

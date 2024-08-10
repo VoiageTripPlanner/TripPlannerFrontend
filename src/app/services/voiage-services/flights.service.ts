@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { BaseService } from '../base-service';
-import { IVoiageFlight } from '../../interfaces/flights.interface';
+import { Airport, IVoiageFlight } from '../../interfaces/flights.interface';
 import { NotifyService } from '../../shared/notify/notify.service';
 
 
@@ -29,8 +29,8 @@ export class FlightService extends BaseService<IVoiageFlight>   {
 
     const defaultValue: IVoiageFlight = {
       flight_id             : 0,
-      departure_airport     : '',
-      arrival_airport       : '',
+      departure_airport     : this.onGetDefaultAirports(),
+      arrival_airport       : this.onGetDefaultAirports(),
       airline               : '',
       airline_logo          : '',
       travel_class          : '',
@@ -47,6 +47,17 @@ export class FlightService extends BaseService<IVoiageFlight>   {
     return defaultValue;
 
   };
+
+  onGetDefaultAirports(){
+      
+      const defaultValue:Airport = {
+          name: '',
+          id: '',
+          time: '',
+      }
+  
+      return defaultValue;
+  }
 
   getAllFlightsSignal() {
 

@@ -78,7 +78,6 @@ export class PlaceAutocompleteComponent implements OnInit {
         localStorage.setItem('latitudeDestination', JSON.stringify(result.latitude));
         localStorage.setItem('longitudeDestination', JSON.stringify(result.longitude));
         localStorage.setItem('destinationAddress', JSON.stringify(result.address));
-        localStorage.setItem('destination', JSON.stringify(result));
         localStorage.setItem('destinationLocation', JSON.stringify(result));
        if (result.location) {
         this.findNearbyPlaces(result.location);

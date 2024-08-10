@@ -3,7 +3,6 @@ import { IPlaceSearchResult } from '../../interfaces/placeSearch';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgIf } from '@angular/common';
 import { PlaceAutocompleteComponent } from '../../components/place-autocomplete/place-autocomplete.component';
-import { PlaceCardComponent } from '../../components/place-autocomplete/place-card.componet';
 import { ActivitiesNearbyCardComponent } from '../../components/activities-nearby-card/activities-nearby-card.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
@@ -13,7 +12,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
   imports: [
     MatToolbarModule,
     PlaceAutocompleteComponent,
-    PlaceCardComponent,
     NgIf,
     ActivitiesNearbyCardComponent,
     HttpClientTestingModule
@@ -30,7 +28,6 @@ export class ActivitiesNearbyComponent {
   allNearbyPlaces: IPlaceSearchResult[] = [];
 
   onNearbyPlacesFound(places: IPlaceSearchResult[]) {
-    // Logic to update nearby places based on which field is being updated
     if (this.fromValue.address) {
       this.fromNearbyPlaces = places;
     }

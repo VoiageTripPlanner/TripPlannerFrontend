@@ -1,6 +1,5 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { BaseService } from '../base-service';
-import { IGoogleResponse, ISearchParameters } from '../../interfaces/google-hotel-response.interface';
 import { NotifyService } from '../../shared/notify/notify.service';
 import { IActivity } from '../../interfaces/activities.interface';
 

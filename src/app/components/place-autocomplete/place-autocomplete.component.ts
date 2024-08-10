@@ -14,7 +14,6 @@ import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import { IPlaceSearchResult } from '../../interfaces/placeSearch';
 import { IActivity } from '../../interfaces/activities.interface';
 
 @Component({

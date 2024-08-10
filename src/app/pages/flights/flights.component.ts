@@ -8,18 +8,20 @@ import { MapComponent } from '../../components/map/map.component';
 import { FlightCardComponent } from "../../components/flight/flight-card/flight-card.component";
 import { Router } from '@angular/router';
 import { BudgetBarComponent } from '../../components/budget-bar/budget-bar.component';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-flights',
   standalone: true,
   imports: [
+    CommonModule,
+    FormsModule,
+    MatStepperModule,
+    BudgetBarComponent,
+    ModalComponent,
     LodgeCardComponent,
     MapComponent,
     LoaderComponent,
-    ModalComponent,
-    BudgetBarComponent,
-    CommonModule,
-    FormsModule,
     FlightCardComponent
 ],
   templateUrl: './flights.component.html',

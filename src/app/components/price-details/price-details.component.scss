@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
+
+//variables de color 
+$background-color-white: #ffffff;
+$background-color-grey: #b4b4b4;
+$background-color-grey-light: #f9f9f9;
+$border-color: #775D68;
+$image-backgorund-color: #FADCD4;
+$title-color: #6D3652;
+
+
+.price-detail-container {
+  top: 152px;
+  left: 980px;
+  width: 100%;
+  height: fit-content;
+  background: #FFFFFFFF;
+  /* white */
+  border-radius: 5%;
+  padding: 5%;
+}
+
+.details-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 4% 9%;
+}
+
+
+.tittle-text {
+  font-family: "Yeseva One", serif;
+  font-size: 1.6rem;
+  line-height: 30px;
+  font-weight: 700;
+  color: $title-color;
+}
+
+
+.left-detail-text {
+  font-size: 1.5rem;
+  line-height: 22px;
+  font-weight: 500;
+  color: #323842FF;
+}
+
+
+.right-detail-text {
+  font-size: 1.5rem;
+  line-height: 22px;
+  font-weight: 500;
+  color: #82758d;
+}
+
+.total-text{
+  font-size: 1.5rem;
+  line-height: 22px;
+  font-weight: 500;
+  font-weight: 700;
+  color: #323842FF;
+}
+
+.total-price{
+  font-size: 1.5rem;
+  line-height: 22px;
+  font-weight: 500;
+  font-weight: 700;
+  color: $border-color;
+}
+
+
+.line {
+
+  width: 100%;
+  border-width: 1px;
+  border-color: rgb(37, 4, 39);
+  border-style: solid;
+  transform: rotate(180deg);
+}
+
+
+.margin-top-2 {
+  margin-top: 2%;
+}

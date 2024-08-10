@@ -1,4 +1,4 @@
-import { Component, effect, inject } from '@angular/core';
+import { Component, effect, EventEmitter, inject, Output } from '@angular/core';
 import { LoaderComponent } from '../../loader/loader.component';
 import { ModalComponent } from '../../modal/modal.component';
 import { CommonModule } from '@angular/common';
@@ -10,21 +10,24 @@ import { NotifyService } from '../../../shared/notify/notify.service';
 import { ITripForm } from '../../../interfaces/trip.interface';
 import { IBudgetPrices } from '../../../interfaces/budget.interface';
 import { BudgetService } from '../../../services/budged.service';
-import { TripService } from '../../../services/trip.service';
+import { TripService } from '../../../services/voiage-services/trip.service';
 import { Router } from '@angular/router';
-import { formatDateToYYYYMMDD } from '../../../shared/utils/date-formatter';
-import { timeout } from 'rxjs';
-import { StepperComponent } from '../../stepper/stepper.component';
+import { formatDateToYYYYMMDD, formatStringToDate } from '../../../shared/utils/date-formatter';
+import { Airport, IVoiageFlight } from '../../../interfaces/flights.interface';
+import { MatStepperModule } from '@angular/material/stepper';
+import { FlightService } from '../../../services/voiage-services/flights.service';
+
 
 @Component({
   selector: 'app-flight-card',
   standalone: true,
   imports: [
+    CommonModule,
+    FormsModule,
+    MatStepperModule,
     LoaderComponent,
     ModalComponent,
-    CommonModule,
     MapComponent,
-    FormsModule,
   ],
   templateUrl: './flight-card.component.html',
   styleUrl: './flight-card.component.scss'
@@ -35,17 +38,26 @@ export class FlightCardComponent {
   notifyService = inject(NotifyService);
   service = inject(GoogleFlightsService);
   tripFormService = inject(TripService);
+  flightService=inject(FlightService);
 
   initialForm: ITripForm;
   tripBudget: IBudgetPrices;
   isLoading: boolean = false;
 
+  flightSelected: IVoiageFlight;
+  flightDepartureAirport: Airport;
+  flightArrivalAirport: Airport;
   googleFlightsResponseList: OtherFlight[] = [];
+
+
   constructor(
     private router: Router,
   ) {
 
-    
+    this.flightSelected = this.flightService.onGetDefaultVoiageFlight();
+    this.flightDepartureAirport=this.flightService.onGetDefaultAirports();
+    this.flightArrivalAirport=this.flightService.onGetDefaultAirports();
+
     this.initialForm = this.tripFormService.getFormData();
     this.tripBudget = this.budgetService.getBudgetData();
 
@@ -54,7 +66,7 @@ export class FlightCardComponent {
 
   sendData() {
     this.isLoading = true;
-  
+
     ;
     const datos: SearchParameters = {
       departure_id: this.initialForm.departure_id,
@@ -65,27 +77,27 @@ export class FlightCardComponent {
       travel_class: this.initialForm.travel_class ?? 1,
       stops: this.initialForm.stops ?? 0
     };
-  
+
     // Validar 'type'
     if (datos.type !== '1' && datos.type !== '2') {
       console.log('Invalid type value');
       return;
     }
-  
+
     this.service.getAllSignal(datos);
-  
+
     effect(() => {
-     
+
       this.googleFlightsResponseList = this.service.googleFlightsResponse$();
       if (this.googleFlightsResponseList.length > 0) {
-        this.isLoading=false;
-      }else if(this.googleFlightsResponseList.length = 0 ){
-        this.isLoading=false;
+        this.isLoading = false;
+      } else if (this.googleFlightsResponseList.length = 0) {
+        this.isLoading = false;
         this.notifyService.onError();
       }
     });
   }
-  
+
 
   trackByIndex(index: number, googleFlightsResponseList: OtherFlight): number {
     return index;
@@ -110,28 +122,67 @@ export class FlightCardComponent {
 
 
   openLayouts(): void {
-    // if (url) {
-    //   window.open(url,'_blank') ;
-    // } else {
-    //   this.notifyService.onNoData();
-    // }
+
     console.log('implement layouts')
   };
 
-  selectOption(amount:number | undefined){
+  selectOption(googleFlight: OtherFlight): void {
 
+    let amount = googleFlight.price;
 
     if (!amount) {
-      amount=0;
+      amount = 0;
     }
 
-    const classification = 'flights'; 
+    const classification = 'flights';
 
     this.budgetService.updateSpending(amount, classification);
+    this.flightSelected=this.flghtFilterInfo(googleFlight);
+    this.flightService.saveVoiageFlightData(this.flightSelected);       
+    this.notifyService.onCustomSimpleNotify('Flight Selected','Go to the next step', );
 
-    this.router.navigateByUrl('/lodge');
+  }
 
+  flghtFilterInfo( googleFlight: OtherFlight): IVoiageFlight {
+
+   
+
+    this.airportFlightSelected(googleFlight);
+
+
+
+    this.flightSelected.departure_airport               = this.flightDepartureAirport;
+    this.flightSelected.arrival_airport                 = this.flightArrivalAirport;
+    this.flightSelected.airline                         = googleFlight.flights![0].airline || " ";
+    this.flightSelected.airline_logo                    = googleFlight.flights![0].airline_logo || "./assets/img/No_image_available.png";
+    this.flightSelected.travel_class                    = googleFlight.flights![0].travel_class || " ";
+    this.flightSelected.flight_number                   = googleFlight.flights![0].flight_number || " ";
+
+    //Las fechas son sacadas del fomulario de busqueda
+    this.flightSelected.start_date                      = this.initialForm.outbound_date || new Date();
+    this.flightSelected.end_date                        = this.initialForm.return_date || new Date(); // Ver si hay que responder una fecha volada para que en el back se agarre y no se guarde essa fecha
+
+    this.flightSelected.booking_token                   = googleFlight.booking_token || "";  //A esta no le veo mucha utilidad guardarla
+    this.flightSelected.price                           = Number(googleFlight.price) || 0;
+    this.flightSelected.type                            = googleFlight.type || " ";
+    // this.flightSelected.is_layover                      =
+    this.flightSelected.total_duration                  =googleFlight.total_duration || 0;
+
+
+    return this.flightSelected;
+  };
+
+
+  airportFlightSelected(googleFlight: OtherFlight): void {
+
+
+    this.flightDepartureAirport.name          = googleFlight.flights![0].departure_airport?.name || " ";
+    this.flightDepartureAirport.id            = googleFlight.flights![0].departure_airport?.id || " ";
+    this.flightDepartureAirport.time          = googleFlight.flights![0].departure_airport?.time || " ";
     
+    this.flightArrivalAirport.name            = googleFlight.flights![0].arrival_airport?.name || " ";
+    this.flightArrivalAirport.id              = googleFlight.flights![0].arrival_airport?.id || " ";
+    this.flightArrivalAirport.time            = googleFlight.flights![0].arrival_airport?.time || " ";
   }
 
 }

@@ -129,7 +129,8 @@ export class PlaceAutocompleteComponent implements OnInit {
                   imageUrl: this.getPhotoUrl(placeDetails),
                   rating: placeDetails?.rating,
                   pricelevel: placeDetails?.price_level,
-                  website: placeDetails.website || ''
+                  website: placeDetails.website || '',
+                  types: placeDetails.types || [],
                 });
               } else {
                 reject(`Failed to get details for place ID ${place.place_id}`);

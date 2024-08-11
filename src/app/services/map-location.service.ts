@@ -58,7 +58,7 @@ export class MapLocationService extends BaseService<ILocation> {
     this.add(location)
     .subscribe({
       next: (response) => {
-        throw(response);
+        this.locationListSignal.set([...this.locationListSignal(), response.data]);
       },
       error: (error) => {
         throwError(error);
@@ -76,5 +76,5 @@ export class MapLocationService extends BaseService<ILocation> {
         return throwError(error);
       })
     );
-  }
+  };
 }

@@ -33,7 +33,6 @@ export class CalendarPlannerComponent implements OnInit {
     '2024-08-10': [{ time: '08:00 AM', title: 'Project Kickoff' }],
     '2024-08-11': [{ time: '11:00 AM', title: 'Happy Hour' }, { time: '01:00 PM', title: 'One-on-One' }],
     '2024-08-14': [{ time: '09:00 PM', title: 'Creative Workshop' }],
-    // Agrega más eventos según sea necesario
   };
 
   monthNames: string[] = [
@@ -56,67 +55,38 @@ export class CalendarPlannerComponent implements OnInit {
     this.generateCalendar(this.month, this.year);
   }
 
+  generateCalendar(month: number, year: number) {
+    this.weeks            = []; 
+    const daysInMonth     = new Date(year, month + 1, 0).getDate();
 
-//   generateCalendar(month: number, year: number) {
-//     this.weeks              = []; 
-//     const daysInMonth       = new Date(year, month + 1, 0).getDate();
-//     let startDay            = new Date(year, month, 1).getDay();
-//     startDay                = (startDay === 0) ? 6 : startDay - 1; 
-//     const totalDays         = Array.from({ length: daysInMonth }, (_, i) => i + 1);
-//     let week: number[]      = [];
+    let startDay          = new Date(year, month, 1).getDay();
+    startDay              = (startDay === 0) ? 6 : startDay - 1; 
+    
+    let week: { day: number, events: CalendarEvent[] }[] = [];
+    for (let i = 0; i < startDay; i++) {
+      week.push({ day: 0, events: [] });  
+    }
 
-//     for (let i = 0; i < startDay; i++) {
-//       week.push(0);  
-//     }
+    for (let day = 1; day <= daysInMonth; day++) {
+      const dateKey = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+      week.push({
+        day,
+        events: this.events[dateKey] || []
+      });
 
-//     totalDays.forEach(day => {
-//       week.push(day);
-//       if (week.length === 7) {
-//         this.weeks.push(week);
-//         week = [];
-//       }
-//     });
+      if (week.length === 7) {
+        this.weeks.push(week);
+        week = [];
+      }
+    }
 
-//     if (week.length) {
-//       while (week.length < 7) {
-//         week.push(0); 
-//       }
-//       this.weeks.push(week);
-//     }
-// }
-
-generateCalendar(month: number, year: number) {
-  this.weeks = []; // Limpiar el calendario anterior
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-  let startDay = new Date(year, month, 1).getDay();
-  startDay = (startDay === 0) ? 6 : startDay - 1; // Ajuste para que lunes sea 0, domingo sea 6
-  
-  let week: { day: number, events: CalendarEvent[] }[] = [];
-  for (let i = 0; i < startDay; i++) {
-    week.push({ day: 0, events: [] });  // Días vacíos al principio de la semana
-  }
-
-  for (let day = 1; day <= daysInMonth; day++) {
-    const dateKey = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-    week.push({
-      day,
-      events: this.events[dateKey] || []
-    });
-
-    if (week.length === 7) {
+    if (week.length) {
+      while (week.length < 7) {
+        week.push({ day: 0, events: [] });  
+      }
       this.weeks.push(week);
-      week = [];
     }
   }
-
-  if (week.length) {
-    while (week.length < 7) {
-      week.push({ day: 0, events: [] });  // Días vacíos al final de la semana
-    }
-    this.weeks.push(week);
-  }
-}
 
 
   previousMonth() {

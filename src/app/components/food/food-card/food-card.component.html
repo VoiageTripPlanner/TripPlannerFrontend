@@ -15,8 +15,18 @@
 
                     <div class="align-boxes space-between">
                         <h1 class="bold-text font-size-title">{{item.name}}</h1>
-                        <h1 class="move-to-right font-size-price">Rating: {{item.rating}}</h1>
+
+                        <div class="form-check move-to-right ">
+                            <input class="form-check-input custom-checkbox " type="checkbox" value="" id="flexCheckDefault-{{item.id}}" (change)="checkboxChange(item, $event)">
+                            
+                            <label class="font-size-price" for="flexCheckDefault">
+                                Select Option  
+                            </label>
+                        </div>
+
+
                     </div>
+                    <h1 class="font-size-price">Rating: {{item.rating}}</h1>
 
                     <div class="align-boxes space-between">
                         <h3>Address: {{item.location?.address1}}</h3>
@@ -38,8 +48,6 @@
                         <button type="button" class="btn btn-outline-info ">View in map</button>
                         <button type="button" class="btn btn-outline-dark" (click)="visitSite(item.url)">Go to the
                             Site</button>
-                        <button type="button" class="btn btn-outline-success"(click)="selectOption(0)">Select option </button>
-
                     </div>
 
                 </div>
@@ -52,11 +60,8 @@
                     }
                 </div>
 
-
-
             </div>
             }
-
 
         </div>
         <div class="map-container">

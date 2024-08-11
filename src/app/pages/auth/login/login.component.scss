@@ -1,3 +1,12 @@
+//variables de color 
+$neutro-color-main:#1D0F1C;
+$neutro-color-second: #2D2230;
+$middle-color-main:#4B2137;
+$middle-color-second:#6D3C52;
+$light-color-main: #FADCD4;
+$light-color-second: #775D68;
+$line-gradient:linear-gradient(to right, rgba(255, 255, 255, 0.1), #FADCD4, rgba(255, 255, 255, 0.1));
+
 .yeseva-one-regular {
   font-family: "Yeseva One", serif;
   font-weight: 400;
@@ -138,7 +147,7 @@ p {
 .custom-line {
   width: 100%; 
   height: 2px; 
-  background: linear-gradient(to right, rgba(255, 255, 255, 0.1), #FADCD4, rgba(255, 255, 255, 0.1)); 
+  background: $line-gradient;
   margin: 20px 0; 
 }
 

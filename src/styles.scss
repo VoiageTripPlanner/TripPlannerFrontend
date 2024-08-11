@@ -16,8 +16,7 @@ $demo-angular-front-accent: mat.define-palette(mat.$pink-palette, A200, A100, A4
 
 // The warn palette is optional (defaults to red).
 $demo-angular-front-warn: mat.define-palette(mat.$red-palette);
-//Gradient for Voiage background
-$custom-gradient: linear-gradient(to bottom, #2D2230, #1D0F1C, #4B2137,);
+
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
 $demo-angular-front-theme: mat.define-light-theme((
@@ -34,6 +33,9 @@ $demo-angular-front-theme: mat.define-light-theme((
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($demo-angular-front-theme);
+
+//Gradient for Voiage background
+$custom-gradient: linear-gradient(to bottom, #2D2230, #1D0F1C, #4B2137,);
 
 :root {
   --theme-default: #FADCD4;
@@ -89,7 +91,7 @@ body[class="dark-only"] {
 //end template styles
 
 body {
-  height: 100%;
+  overflow: hidden;
   background-image: $custom-gradient;
   background-size: cover;
   background-repeat: no-repeat;
@@ -116,3 +118,13 @@ html {
     background: #6D3052;
   }
 }
+
+// //Variables de color 
+// $neutro-color-main:#1D0F1C;
+// $neutro-color-second: #2D2230;
+// $middle-color-main:#4B2137;
+// $middle-color-second:#6D3C52;
+// $light-color-main: #FADCD4;
+// $light-color-second: #775D68;
+// //Line gradient
+// $line-gradient: linear-gradient(to right, rgba(255, 255, 255, 0.1), #FADCD4, rgba(255, 255, 255, 0.1));

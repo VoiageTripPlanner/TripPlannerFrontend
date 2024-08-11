@@ -1,3 +1,5 @@
+$line-gradient:linear-gradient(to right, rgba(255, 255, 255, 0.1), #FADCD4, rgba(255, 255, 255, 0.1));
+
 /*======= Page Header css Start ======= */
 .left-header {
   .d-flex {
@@ -39,6 +41,7 @@
 .offcanvas-bookmark {
   .page-wrapper {
     .page-body-wrapper {
+        background-color: $line-gradient !important;
       .page-body {
         position: relative;
         filter: blur(5px) grayscale(100%);

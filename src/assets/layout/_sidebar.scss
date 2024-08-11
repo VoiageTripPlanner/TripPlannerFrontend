@@ -9,26 +9,34 @@ $middle-color-main:#4B2137;
 $middle-color-second:#6D3C52;
 $light-color-main: #FADCD4;
 $light-color-second: #775D68;
-$line-gradient:linear-gradient(to right, rgba(255, 255, 255, 0.1), #FADCD4, rgba(255, 255, 255, 0.1)); 
+$line-gradient:linear-gradient(to right, rgba(255, 255, 255, 0.1), #FADCD4, rgba(255, 255, 255, 0.1));
 
 /**Added**/
+ i {
+   color: $light-color-main;
+ }
 
-i:active {
-  color: $neutro-color-main ;
-}
+ .sidebar-link  .active {
+   background-color: $middle-color-second !important;
+   color: $middle-color-main !important;
+ }
 
-i:hover {
-  color: $light-color-main;
-}
+ .sidebar-title .color-white .active {
+   color: $middle-color-main !important;
+ }
+
+// i:hover {
+//   color: $light-color-main;
+// }
 
 div .header-wrapper {
   background-color: $neutro-color-second;
 }
 
-div .header-wrapper span {
-  color: $light-color-main;
-  font-family: 'Roboto', sans-serif;
-}
+// div .header-wrapper span {
+//   color: $light-color-main;
+//   font-family: 'Roboto', sans-serif;
+// }
 
 /** Already here**/
 %sidebar-after {
@@ -38,8 +46,6 @@ div .header-wrapper span {
   width: 8px;
   border-top: 1px solid rgba($theme-body-sub-title-color, 0.4);
 }
-
-
 
 %sidebar-active-dot {
   position: absolute;

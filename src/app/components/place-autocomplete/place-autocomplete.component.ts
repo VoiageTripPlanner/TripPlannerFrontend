@@ -138,7 +138,7 @@ export class PlaceAutocompleteComponent implements OnInit {
         Promise.all(nearbyPlacesPromises).then((nearbyPlaces) => {
           this.nearbyPlacesFound.emit(nearbyPlaces);
           localStorage.setItem('nearbyPlaces', JSON.stringify(nearbyPlaces));
-          console.log(JSON.stringify(nearbyPlaces, null, 4));
+          // console.log(JSON.stringify(nearbyPlaces, null, 4));
         }).catch((error) => {
           console.error(error);
         });

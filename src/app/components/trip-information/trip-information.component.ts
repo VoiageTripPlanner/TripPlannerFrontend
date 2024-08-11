@@ -124,6 +124,7 @@ export class TripInformationComponent {
     localStorage.removeItem('flight');
     localStorage.removeItem('lodge');
     localStorage.removeItem('food');
+    localStorage.removeItem('selectedActivities');      
     localStorage.removeItem('destinationLocation');      
 
     this.router.navigateByUrl('/app/trip-form');

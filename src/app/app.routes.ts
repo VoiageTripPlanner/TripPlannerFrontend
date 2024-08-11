@@ -21,6 +21,7 @@ import { UpdateUserComponent } from './pages/update-user/update-user.component';
 import { ActivitiesNearbyComponent } from './pages/activities-nearby/activities-nearby.component';
 import { StepperComponent } from './components/stepper/stepper.component';
 import { TripSummaryComponent } from './pages/trip-summary/trip-summary.component';
+import { CalendarComponent } from './pages/calendar/calendar.component';
 
 export const routes: Routes = [
   {
@@ -185,6 +186,18 @@ export const routes: Routes = [
             IRole.user
           ],
           name: 'Travel Suggestions',
+          icon:'bi bi-duffle-fill'
+        }
+      },
+      {
+        path: 'calendar',
+        component: CalendarComponent,
+        data: { 
+          authorities: [
+            IRole.admin, 
+            IRole.user
+          ],
+          name: 'Calendar',
           icon:'bi bi-duffle-fill'
         }
       },

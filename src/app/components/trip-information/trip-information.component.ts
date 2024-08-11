@@ -15,6 +15,10 @@ import { LodgeService } from '../../services/voiage-services/lodge.service';
 import { FoodService } from '../../services/voiage-services/food.service';
 import { LocationMarkService } from '../../services/location-mark.service';
 import { AuthService } from '../../services/auth.service';
+import { IActivity } from '../../interfaces/activities.interface';
+import { ActivityService } from '../../services/voiage-services/activity.service';
+import { CurrencyService } from '../../services/currency.service';
+import { ICurrency } from '../../interfaces/currency.interface';
 
 @Component({
   selector: 'app-trip-information',
@@ -31,7 +35,9 @@ import { AuthService } from '../../services/auth.service';
 export class TripInformationComponent {
 
   authService         = inject (AuthService);
+  activitiesService   = inject (ActivityService);
   budgetService       = inject (BudgetService);
+  currencyService     = inject (CurrencyService);
   flightService       = inject (FlightService);
   foodService         = inject (FoodService);
   locationMark        = inject (LocationMarkService);
@@ -41,11 +47,13 @@ export class TripInformationComponent {
   tripService         = inject (TripService);
 
 
-  initialForm         : ITripForm ;
-  tripBudget          : IBudgetPrices ;
-  flightSelected      : IVoiageFlight ;
-  lodgeSelected       : IVoiageLodge ;
-  foodSelectedlist    : IVoiageRestaurant[] ;
+  activitiesSelectedList        : IActivity[] ; 
+  flightSelected                : IVoiageFlight ;
+  foodSelectedlist              : IVoiageRestaurant[] ;
+  initialForm                   : ITripForm ;
+  lodgeSelected                 : IVoiageLodge ;
+  tripBudget                    : IBudgetPrices ;
+  // userCurrency                  : ICurrency[];
 
   tripNgModel         : ITrip;
   userId              :number;
@@ -60,11 +68,15 @@ export class TripInformationComponent {
     this.tripBudget             = this.budgetService.getBudgetData();
 
     //Data seleccionada por el usuario
-    this.flightSelected         = this.flightService.getFlightData();
-    this.lodgeSelected          = this.lodgeService.getLodgeData();
-    this.foodSelectedlist       = this.foodService.getFoodData();
-    this.foodSelectedlist       = this.foodSelectedlist.filter(food => food.name !== '');
-    //Falta la data de activities
+    this.flightSelected           = this.flightService.getFlightData();
+    this.lodgeSelected            = this.lodgeService.getLodgeData();
+    this.foodSelectedlist         = this.foodService.getFoodData();
+    this.foodSelectedlist         = this.foodSelectedlist.filter(food => food.name !== '');
+    this.activitiesSelectedList   = this.activitiesService.getActivities();
+    this.activitiesSelectedList   = this.activitiesSelectedList.filter(activity => activity.address !== '');
+
+    //Data del perfil del usuario
+    // this.userCurrency             = this.currencyService.currenciesSig();
 
   }
 
@@ -112,7 +124,7 @@ export class TripInformationComponent {
     localStorage.removeItem('flight');
     localStorage.removeItem('lodge');
     localStorage.removeItem('food');
-    // localStorage.removeItem('activities');      //Para cuando se implemente activities 
+    localStorage.removeItem('destinationLocation');      
 
     this.router.navigateByUrl('/app/trip-form');
   };
@@ -124,11 +136,11 @@ export class TripInformationComponent {
     this.tripNgModel.destination_city               = this.initialForm.q;
     this.tripNgModel.return_date                    = this.initialForm.return_date;
     this.tripNgModel.budget                         = this.tripBudget.total;
-    // this.tripNgModel.currency                      = this.tripBudget.currency; //Falta implementar el servicio de currency
+    // this.tripNgModel.currency                       = this.userCurrency[0]; //Falta implementar el servicio de currency
     this.tripNgModel.lodge                          = this.lodgeSelected;
     this.tripNgModel.flight                         = this.flightSelected;
     this.tripNgModel.food                           = this.foodSelectedlist;
-    // this.tripNgModel.activities                          = this.activitiesSelectedlist; //Para cuando se implemente activities
+    this.tripNgModel.activities                     = this.activitiesSelectedList; 
     this.tripNgModel.user_id                        = this.userId;
     // this.tripNgModel.ai_suggestions               =this.aiSuggestions; //Para cuando se implemente AI
     this.tripNgModel.creation_datetime              = new Date(); 

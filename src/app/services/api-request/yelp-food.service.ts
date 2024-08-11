@@ -32,7 +32,6 @@ export class YelpFoodService extends BaseService<IFoodBusiness> {
           return this.notifyService.onNoData();
           
         }
-        console.log(response.businesses);
         this.yelpFoodResponseSignal.set(response.businesses);
 
 

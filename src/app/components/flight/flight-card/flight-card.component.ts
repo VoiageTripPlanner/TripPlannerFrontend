@@ -80,7 +80,6 @@ export class FlightCardComponent {
 
     // Validar 'type'
     if (datos.type !== '1' && datos.type !== '2') {
-      console.log('Invalid type value');
       return;
     }
 
@@ -123,7 +122,6 @@ export class FlightCardComponent {
 
   openLayouts(): void {
 
-    console.log('implement layouts')
   };
 
   selectOption(googleFlight: OtherFlight): void {

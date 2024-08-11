@@ -86,6 +86,18 @@ export const routes: Routes = [
     }
   },
   {
+    path: 'activitiesNearby',
+    component: ActivitiesNearbyComponent,
+    data: { 
+      authorities: [
+        IRole.admin, 
+        IRole.user
+      ],
+      name: 'Activities Nearby',
+      icon:'bi bi-duffle-fill'
+    }
+  },
+  {
     path: 'planning',
     component: StepperComponent,
     data: { 
@@ -176,19 +188,6 @@ export const routes: Routes = [
           icon:'bi bi-duffle-fill'
         }
       },
-      {
-        path: 'activitiesNearby',
-        component: ActivitiesNearbyComponent,
-        data: { 
-          authorities: [
-            IRole.admin, 
-            IRole.user
-          ],
-          name: 'Activities Nearby',
-          icon:'bi bi-duffle-fill'
-        }
-      },
-
     ],
   },
 ];

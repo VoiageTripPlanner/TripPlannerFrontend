@@ -72,7 +72,6 @@ export class PlaceAutocompleteComponent implements OnInit {
           website: place?.website,          
         };
         this.placeChanged.emit(result);
-        console.log(JSON.stringify(result, null, 4));
 
         localStorage.setItem('destinationName', JSON.stringify(result.name));
         localStorage.setItem('latitudeDestination', JSON.stringify(result.latitude));

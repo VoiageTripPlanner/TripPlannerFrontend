@@ -5,10 +5,8 @@ export interface IPlaceSearchResult {
     imageUrl?: string;
     latitude?: number;
     longitude?: number;
-    iconUrl?: string;
     location?: google.maps.LatLng;
     rating?: number;
-    types?: string[];
     pricelevel?: number;
     website?: string;
   }

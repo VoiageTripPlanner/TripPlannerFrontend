@@ -13,8 +13,8 @@ import { BudgetService } from '../../../services/budged.service';
 import { Router } from '@angular/router';
 import { IBudgetPrices } from '../../../interfaces/budget.interface';
 import { IVoiageRestaurant } from '../../../interfaces/food.interface';
-import { LocationMarkService } from '../../../services/location-mark.service';
-import { ILocationMark } from '../../../interfaces/location-mark.interface';
+import { MapLocationService } from '../../../services/map-location.service';
+import { ILocation} from '../../../interfaces/location.interface';
 import { FoodService } from '../../../services/voiage-services/food.service';
 
 @Component({
@@ -38,7 +38,7 @@ export class FoodCardComponent {
   notifyService           = inject(NotifyService);
   tripFormService         = inject(TripService);
   foodService             = inject(FoodService);
-  locationMark            = inject(LocationMarkService);
+  location                = inject(MapLocationService);
 
   initialForm: ITripForm;
   tripBudget:IBudgetPrices;
@@ -71,8 +71,12 @@ export class FoodCardComponent {
     this.isLoading = true;
     
     const data: IYelpApiSearchParams = {
-      latitude: this.initialForm.latitude,
-      longitude: this.initialForm.longitude,
+      location:{
+        LatLng: {
+          latitude: this.initialForm.location.LatLng?.latitude ?? 0,
+          longitude: this.initialForm.location.LatLng?.longitude ?? 0,
+        }
+      }
     };
     
     this.service.getAllSignal(data);
@@ -133,14 +137,17 @@ export class FoodCardComponent {
 
   foodFilterInfo(yelpFood:IFoodBusiness): IVoiageRestaurant {  
 
-    let locationMark:ILocationMark              = this.locationMark.onGetDefaultVoiageLocationMark();
-    locationMark.latitude                       = yelpFood?.coordinates?.latitude ?? 0;
-    locationMark.longitude                      = yelpFood?.coordinates?.longitude ?? 0;
+    let loc:ILocation = {
+      LatLng: {
+        latitude: yelpFood?.coordinates?.latitude || 0,
+        longitude: yelpFood?.coordinates?.longitude || 0,
+      }
+    };
 
     this.foodSelectedOption.name                = yelpFood.name   || " ";
     this.foodSelectedOption.description         = yelpFood.alias  || " ";
-    // this.foodSelectedOption.average_price       = yelpFood.price || 0; //aca se debe de aplcar el precio promedio que se obtenga con la IA mas adelante
-    this.foodSelectedOption.location_mark       = locationMark    || this.locationMark.onGetDefaultVoiageLocationMark();
+    // this.foodSelectedOption.average_price    = yelpFood.price || 0; //aca se debe de aplcar el precio promedio que se obtenga con la IA mas adelante
+    this.foodSelectedOption.location            = loc   || this.location.onGetDefaultVoiageLocationMark();
 
     //Necesito un id para le manejo del array y una imagen que mostrar, uso este de la respuesta del API
     this.foodSelectedOption.yelpId              = yelpFood.id     || " ";

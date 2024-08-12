@@ -3,7 +3,6 @@ import { BudgetService } from '../../services/budged.service';
 import { NotifyService } from '../../shared/notify/notify.service';
 import { TripService } from '../../services/voiage-services/trip.service';
 import { LodgeService } from '../../services/voiage-services/lodge.service';
-import { LocationMarkService } from '../../services/location-mark.service';
 import { ITripForm } from '../../interfaces/trip.interface';
 import { IBudgetPrices } from '../../interfaces/budget.interface';
 import { IVoiageFlight } from '../../interfaces/flights.interface';
@@ -12,6 +11,7 @@ import { IVoiageRestaurant } from '../../interfaces/food.interface';
 import { Router } from '@angular/router';
 import { FlightService } from '../../services/voiage-services/flights.service';
 import { FoodService } from '../../services/voiage-services/food.service';
+import { MapLocationService } from '../../services/map-location.service';
 
 @Component({
   selector: 'app-trip-summary-cards',
@@ -28,7 +28,7 @@ export class TripSummaryCardsComponent implements OnInit {
   flightService       = inject (FlightService);
   lodgeService        = inject (LodgeService);
   foodService         = inject (FoodService);
-  locationMark        = inject (LocationMarkService);
+  location            = inject (MapLocationService);
 
   initialForm         : ITripForm | undefined;
   tripBudget          : IBudgetPrices | undefined;

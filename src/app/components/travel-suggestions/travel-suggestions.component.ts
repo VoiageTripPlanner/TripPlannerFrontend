@@ -6,7 +6,7 @@ import { ModalComponent } from '../modal/modal.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { IOpenAIResponse, IPlaceSearchResult } from '../../interfaces/placeSearch';
+import { IOpenAIResponse} from '../../interfaces/placeSearch';
 import { GoogleService } from '../../services/google.service';
 import { IActivity } from '../../interfaces/activities.interface';
 
@@ -27,7 +27,7 @@ import { IActivity } from '../../interfaces/activities.interface';
 })
 export class TravelSuggestionsComponent {
 
-  fromValue: IActivity = { address: '' };
+  fromValue: IActivity = { location: { address: '' } };
   public GoogleService: GoogleService = inject(GoogleService);
   public travelSuggestions!: IOpenAIResponse;
 
@@ -36,24 +36,28 @@ export class TravelSuggestionsComponent {
   }
   
   getTravelSuggestions() {
-
+  
     let destinationName = localStorage.getItem('destinationName');
-
+  
     if (!destinationName) {
       this.GoogleService.suggestionsResponseSignal$();  
     }
       
     const datos : IActivity = {
-      address: destinationName || ''
+      location: { address: destinationName || '' }
     };
-
-    this.GoogleService.getPlaceSuggestions(datos.address);
-
+  
+    if (datos.location && datos.location.address) {
+      this.GoogleService.getPlaceSuggestions(datos.location.address);
+    }else {
+      console.log('No address found');
+    }
+  
     effect(() => {
       this.travelSuggestions = this.GoogleService.suggestionsResponseSignal$();
       console.log(this.travelSuggestions);
     });
-
+  
   }
 
 }

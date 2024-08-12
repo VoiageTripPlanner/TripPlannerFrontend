@@ -1,17 +1,16 @@
 import { ICurrency } from "./currency.interface";
-import { IFlights, IVoiageFlight } from "./flights.interface";
-import { Flight } from './google-flights-response.interface';
+import { IVoiageFlight } from "./flights.interface";
 import { IVoiageLodge } from "./lodge.interface";
-import { IFoodBusiness } from "./yelp-food-response.interface";
 import { IActivity } from './activities.interface';
 import { IVoiageRestaurant } from "./food.interface";
+import { ILocation } from "./location.interface";
+import { IAudit } from "./audit.interface";
 
 export interface ITripForm{
     q:                  string;
     check_in_date:      Date;
     check_out_date:     Date;
-    latitude:           number;
-    longitude:          number;
+    location:           ILocation;
     departure_id:       string;
     arrival_id:         string;
     outbound_date:      Date;
@@ -38,11 +37,6 @@ export interface ITrip{
     user_id:            number;
     ai_suggestions?:    string;
 
-
     //Propiedades de auditoria
-    creation_datetime             : Date;
-    creation_responsible          : number;
-    lastUpdate_datetime?          : Date;
-    update_responsible?           : number;
-
+    audit?: IAudit;
 }

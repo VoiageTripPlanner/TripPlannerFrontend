@@ -1,10 +1,12 @@
 import { IAudit } from "./audit.interface";
 
 export interface ILocation {
-id?: number;
-longitude?: number;
-latitude?: number;
-address?: string;
-placeId?: string;
-audit?: IAudit;
+  id?: number;
+  LatLng?: {
+    longitude?: number;
+    latitude?: number;
+  };
+  address?: string;
+  placeId?: string;
+  audit?: IAudit;
 }

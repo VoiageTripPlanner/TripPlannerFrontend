@@ -1,8 +1,8 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { BaseService } from '../base-service';
 import { NotifyService } from '../../shared/notify/notify.service';
-import { LocationMarkService } from '../location-mark.service';
 import { IVoiageRestaurant } from '../../interfaces/food.interface';
+import { MapLocationService } from '../map-location.service';
 
 
 @Injectable({
@@ -11,7 +11,7 @@ import { IVoiageRestaurant } from '../../interfaces/food.interface';
 export class FoodService extends BaseService<IVoiageRestaurant>   {
 
   notifyService=inject(NotifyService);
-  locationMarkService=inject(LocationMarkService);
+  mapLocationService=inject(MapLocationService);
 
   private restaurantListSignal = signal<IVoiageRestaurant[]>(this.onGetDefaultVoiageRestaurantList());
 
@@ -30,7 +30,7 @@ export class FoodService extends BaseService<IVoiageRestaurant>   {
           name                          : '',
           description                   : '',
           average_price                 : 0,
-          location_mark                 : this.locationMarkService.onGetDefaultVoiageLocationMark(),
+          location                      : this.mapLocationService.onGetDefaultVoiageLocationMark(),
           creation_datetime             : new Date(),
           creation_responsible          : 0
         }
@@ -44,7 +44,7 @@ export class FoodService extends BaseService<IVoiageRestaurant>   {
         name                          : '',
         description                   : '',
         average_price                 : 0,
-        location_mark                 : this.locationMarkService.onGetDefaultVoiageLocationMark(),
+        location                      : this.mapLocationService.onGetDefaultVoiageLocationMark(),
         creation_datetime             : new Date(),
         creation_responsible          : 0
       }

@@ -50,31 +50,36 @@ export class PlaceAutocompleteComponent implements OnInit {
       this.ngZone.run(() => {
         const place = this.autocomplete?.getPlace();
         const result: IActivity = {
-          address: this.inputField.nativeElement.value,
           id: place?.place_id,
           name: place?.name,
           location: {
-            latitude: place?.geometry?.location?.lat() ?? 0,
-            longitude: place?.geometry?.location?.lng() ?? 0,
+            address: this.inputField.nativeElement.value,
+            LatLng: {
+              latitude: place?.geometry?.location?.lat(),
+              longitude: place?.geometry?.location?.lng(),
+            }
           },
           imageUrl: this.getPhotoUrl(place),
-          latitude: place?.geometry?.location?.lat() ?? 0,
-          longitude: place?.geometry?.location?.lng() ?? 0, 
           rating: place?.rating,
-          pricelevel: place?.price_level, 
-          website: place?.website,          
+          pricelevel: place?.price_level,
+          website: place?.website,
         };
         this.placeChanged.emit(result);
         console.log(JSON.stringify(result, null, 4));
 
         localStorage.setItem('destinationName', JSON.stringify(result.name));
-        localStorage.setItem('latitudeDestination', JSON.stringify(result.latitude));
-        localStorage.setItem('longitudeDestination', JSON.stringify(result.longitude));
-        localStorage.setItem('destinationAddress', JSON.stringify(result.address));
-        localStorage.setItem('destinationLocation', JSON.stringify(result));
-       if (result.location) {
-        this.findNearbyPlaces(result.location);
+        if (result.location && result.location.LatLng) {
+          localStorage.setItem('latitudeDestination', JSON.stringify(result.location.LatLng.latitude));
+          localStorage.setItem('longitudeDestination', JSON.stringify(result.location.LatLng.longitude));
+        }else {
+          console.log('No location found');
         }
+        localStorage.setItem('destinationAddress', JSON.stringify(result.location?.address));
+        localStorage.setItem('destinationLocation', JSON.stringify(result));
+      if (result.location && result.location.LatLng) {
+        const locationLatLng = new google.maps.LatLng(result.location.LatLng?.latitude || 0, result.location.LatLng?.longitude || 0);
+        this.findNearbyPlaces(locationLatLng);
+      }
       });
     });
 
@@ -114,10 +119,15 @@ export class PlaceAutocompleteComponent implements OnInit {
             this.placesService?.getDetails({ placeId: place.place_id! }, (placeDetails, detailsStatus) => {
               if (detailsStatus === google.maps.places.PlacesServiceStatus.OK && placeDetails) {
                 resolve({
-                  address: placeDetails.vicinity || '',
                   name: placeDetails.name,
                   id: placeDetails.place_id,
-                  location: placeDetails.geometry?.location,
+                  location: {
+                    address: placeDetails.vicinity || '',
+                    LatLng:{
+                      latitude: placeDetails.geometry?.location?.lat(),
+                      longitude: placeDetails.geometry?.location?.lng(),
+                    }
+                  }, 
                   imageUrl: this.getPhotoUrl(placeDetails),
                   rating: placeDetails?.rating,
                   pricelevel: placeDetails?.price_level,

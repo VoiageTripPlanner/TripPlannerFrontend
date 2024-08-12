@@ -5,8 +5,6 @@ export interface IPlaceSearchResult {
   address: string;
   name?: string;
     imageUrl?: string;
-    latitude?: number;
-    longitude?: number;
     location?: ILocation;
     rating?: number;
     pricelevel?: number;

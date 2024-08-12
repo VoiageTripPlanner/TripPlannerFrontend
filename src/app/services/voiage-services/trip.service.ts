@@ -46,8 +46,12 @@ export class TripService extends BaseService<ITripForm> {
       q:                '',
       check_in_date:    getNextDay(),
       check_out_date:   getTowDaysAhead(),
-      latitude:         this.getLatitudeDestination(),
-      longitude:        this.getLongitudeDestination(),
+      location: {
+        LatLng: {
+          latitude:         this.getLatitudeDestination(),
+          longitude:        this.getLongitudeDestination(),
+        }
+      },
       departure_id:     '',
       arrival_id:       '',
       outbound_date:    getNextDay(),
@@ -131,8 +135,12 @@ export class TripService extends BaseService<ITripForm> {
       food                            : this.foodService.onGetDefaultVoiageRestaurantList(),
       activities                      : this.activitiesService.onGetDefaultVoiageActivities(),
       user_id                         : 0,
-      creation_datetime               : getNextDay(),
-      creation_responsible            : 0
+      audit: {
+        creation_datetime:  getNextDay(),
+        creation_responsible: { id: 0 },
+        lastUpdate_datetime:  getNextDay(),
+        update_responsible: { id: 0 },
+      }
     }
 
     return defaultValue;

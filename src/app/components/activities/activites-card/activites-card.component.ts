@@ -35,11 +35,13 @@ export class ActivitesCardComponent {
 
   sendData() {
     const datos: IYelpApiSearchParams = {
-      latitude: this.latitude,
-      longitude: this.longitude,
+      location: {
+        LatLng: {
+          latitude: this.latitude,
+          longitude: this.longitude
+        }
+      }
     };
-
-
 
     this.service.getAllSignal(datos);
     effect(() => {

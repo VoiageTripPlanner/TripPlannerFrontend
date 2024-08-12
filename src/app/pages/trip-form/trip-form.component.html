@@ -73,7 +73,7 @@
                     <div class="form-group width-45">
                         <label for="latitude" class="margin-bottom-6 font-size-label">Latitude</label>
                         <input type="number" class="form-control" id="latitude" aria-describedby="airportHelp"
-                            placeholder= {{latitude}} [(ngModel)]="tripFormNgModel.latitude" [ngClass]="{
+                            [placeholder]="tripFormNgModel.location.LatLng?.latitude" [ngModel]="tripFormNgModel.location.LatLng?.latitude" [ngClass]="{
                                 'is-invalid': latitude.invalid && latitude.touched,
                                 'is-valid': latitude.valid && latitude.touched
                               }" name="latitude" #latitude="ngModel" required>
@@ -85,10 +85,10 @@
                     <div class="form-group width-45">
                         <label for="longitude" class="margin-bottom-6 font-size-label">Longitude</label>
                         <input type="number" class="form-control" id="longitude" aria-describedby="airportDestinyHelp"
-                            placeholder={{tripFormNgModel.longitude}}  maxlength="3" [(ngModel)]="tripFormNgModel.longitude" [ngClass]="{
+                            [placeholder]="tripFormNgModel.location.LatLng?.longitude"  maxlength="3" [ngModel]="tripFormNgModel.location.LatLng?.longitude" [ngClass]="{
                                 'is-invalid': longitude.invalid && longitude.touched,
                                 'is-valid': longitude.valid && longitude.touched
-                              }" name="longitude" #longitude="ngModel" required>
+                            }" name="longitude" #longitude="ngModel" required>
                         <div *ngIf="longitude.invalid" class="invalid-feedback">
                             Please enter a longitude
                         </div>

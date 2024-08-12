@@ -23,7 +23,8 @@ import { environment } from '../../../environments/environment';
 })
 export class MapComponent implements OnInit {
   @ViewChild('map', { static: true })
-
+  map!: GoogleMap;
+  
   isLoading: boolean = true;
   service = new MapLocationService();
   markerOptions: google.maps.MarkerOptions = {draggable: false};
@@ -40,8 +41,10 @@ export class MapComponent implements OnInit {
   loc: ILocation = {
     address: this.address,
     placeId: this.placeId,
-    latitude: this.latitude,
-    longitude: this.longitude
+    LatLng: {
+      latitude: this.latitude,
+      longitude: this.longitude
+    }
   };
 
   center: google.maps.LatLngLiteral = {
@@ -68,18 +71,28 @@ export class MapComponent implements OnInit {
     if (!this.isValidApiKey()) {
       throw new Error('Invalid API Key');
     }
-    if (this.destination?.location) {
-      this.gotoLocation(this.destination.location);
+    if (this.destination?.location?.address) {
+      const destinationLatLng: google.maps.LatLngLiteral = {
+        lat: this.destination?.location?.LatLng?.latitude || 0,
+        lng: this.destination?.location?.LatLng?.longitude || 0
+      };
+      this.gotoLocation(destinationLatLng);
     }
   }
 
   ngOnChanges() {
-    const zoomPlace = this.zoomPlace?.location;
+    const zoomPlace: google.maps.LatLngLiteral = {
+      lat: this.zoomPlace?.location?.LatLng?.latitude || 0,
+      lng: this.zoomPlace?.location?.LatLng?.longitude || 0
+    };
     if (zoomPlace) {
       this.gotoLocationZoom(zoomPlace);
     }
 
-    const destinationZooom = this.destination?.location;
+    const destinationZooom: google.maps.LatLngLiteral = {
+      lat: this.zoomPlace?.location?.LatLng?.latitude || 0,
+      lng: this.zoomPlace?.location?.LatLng?.longitude || 0
+    };
     if (destinationZooom) {
       this.gotoLocation(destinationZooom);
     }
@@ -89,18 +102,18 @@ export class MapComponent implements OnInit {
 
   }
 
-  gotoLocation(location: google.maps.LatLng) {
-    this.markerPositions = [location];
-    this.map.panTo(location);
-    this.zoom = 10;
-    this.directionsResult$.next(undefined);
+  gotoLocation(location: google.maps.LatLngLiteral) {
+      this.markerPositions = [location];
+      this.map.panTo(location);
+      this.zoom = 10;
+      this.directionsResult$.next(undefined);
   }
-
-  gotoLocationZoom(location: google.maps.LatLng) {
-    this.markerPositions = [location];
-    this.map.panTo(location);
-    this.zoom = 25;
-    this.directionsResult$.next(undefined);
+  
+  gotoLocationZoom(location: google.maps.LatLngLiteral) {
+      this.markerPositions = [location];
+      this.map.panTo(location);
+      this.zoom = 25;
+      this.directionsResult$.next(undefined);
   }
 
   getDirections(
@@ -123,8 +136,13 @@ export class MapComponent implements OnInit {
   }
 
   zoomToPlace(place: IPlaceSearchResult) {
-    if (place.location) {
-      this.gotoLocation(place.location);
+    const loc = place.location?.LatLng;
+    if (place.location && place.location.LatLng && loc?.latitude && loc?.longitude) {
+      const latLng: google.maps.LatLngLiteral = {
+        lat: loc.latitude,
+        lng: loc.longitude
+      };
+      this.gotoLocation(latLng);
     }
   }
 
@@ -168,8 +186,10 @@ export class MapComponent implements OnInit {
               this.loc = {
                 address: this.address,
                 placeId: this.placeId,
-                latitude: this.latitude,
-                longitude: this.longitude
+                LatLng:{
+                  latitude: this.latitude,
+                  longitude: this.longitude,
+                },
               };
 
             } else {

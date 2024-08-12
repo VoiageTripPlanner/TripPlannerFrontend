@@ -1,4 +1,4 @@
-import { ILocationMark } from "./location-mark.interface";
+import { ILocation } from "./location.interface";
 
 export interface IVoiageRestaurant{
 
@@ -8,7 +8,7 @@ export interface IVoiageRestaurant{
     description              : string;
     date?                    : Date;
     average_price            : number;
-    location_mark            : ILocationMark;
+    location                 : ILocation;
 
     //Atributo que no persite en la bd
     yelpId?                  : string;

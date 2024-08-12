@@ -1,3 +1,5 @@
+import { ILocation } from "./location.interface";
+
 export interface IYelpFood {
     businesses: IFoodBusiness[];
     total:      number;
@@ -85,6 +87,5 @@ export interface Region {
 }
 
 export interface IYelpApiSearchParams{
-    latitude?:      number;
-    longitude?:     number;
+    location: ILocation;
 }

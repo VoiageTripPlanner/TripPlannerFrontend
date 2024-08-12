@@ -1,13 +1,13 @@
+import { Component, Input, OnInit, ViewChild, OnChanges } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { GoogleMap, GoogleMapsModule, MapDirectionsService, MapAdvancedMarker} from '@angular/google-maps';
+import { BehaviorSubject, map } from 'rxjs';
+import { IPlaceSearchResult } from '../../interfaces/placeSearch';
 import { ILocation } from './../../interfaces/location.interface';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { GoogleMapsModule, MapAdvancedMarker, MapDirectionsService } from '@angular/google-maps';
 import { RouterOutlet } from '@angular/router';
 import { LoaderComponent } from '../loader/loader.component';
-import { environment } from '../../../environments/environment';
-import { CommonModule } from '@angular/common';
-import { IPlaceSearchResult } from '../../interfaces/placeSearch';
-import { BehaviorSubject, map } from 'rxjs';
 import { MapLocationService } from '../../services/map-location.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-maps',
@@ -29,6 +29,9 @@ export class MapComponent implements OnInit {
   markerOptions: google.maps.MarkerOptions = {draggable: false};
   markerPositions: google.maps.LatLngLiteral[] = [];
 
+  zoomToPlace$ = new BehaviorSubject<IPlaceSearchResult | undefined>(undefined);
+  zoom: number = 8;
+
   address: string = '';
   placeId: string = '';
   latitude: number = 9.748917;
@@ -45,10 +48,12 @@ export class MapComponent implements OnInit {
     lat: this.latitude,
     lng: this.longitude
   }
-  zoom: number = 8;
+  
+  @Input()
+  destination: IPlaceSearchResult | undefined;
 
   @Input()
-  from: IPlaceSearchResult | undefined;
+  zoomPlace : IPlaceSearchResult | undefined;
 
   @Input()
   pointsOfInterest: IPlaceSearchResult[] = [];
@@ -62,6 +67,64 @@ export class MapComponent implements OnInit {
   ngOnInit(): void {
     if (!this.isValidApiKey()) {
       throw new Error('Invalid API Key');
+    }
+    if (this.destination?.location) {
+      this.gotoLocation(this.destination.location);
+    }
+  }
+
+  ngOnChanges() {
+    const zoomPlace = this.zoomPlace?.location;
+    if (zoomPlace) {
+      this.gotoLocationZoom(zoomPlace);
+    }
+
+    const destinationZooom = this.destination?.location;
+    if (destinationZooom) {
+      this.gotoLocation(destinationZooom);
+    }
+
+    this.destination= undefined;
+    this.zoomPlace = undefined;
+
+  }
+
+  gotoLocation(location: google.maps.LatLng) {
+    this.markerPositions = [location];
+    this.map.panTo(location);
+    this.zoom = 10;
+    this.directionsResult$.next(undefined);
+  }
+
+  gotoLocationZoom(location: google.maps.LatLng) {
+    this.markerPositions = [location];
+    this.map.panTo(location);
+    this.zoom = 25;
+    this.directionsResult$.next(undefined);
+  }
+
+  getDirections(
+    fromLocation: google.maps.LatLng,
+    toLocation: google.maps.LatLng
+  ) {
+    const request: google.maps.DirectionsRequest = {
+      destination: toLocation,
+      origin: fromLocation,
+      travelMode: google.maps.TravelMode.DRIVING,
+    };
+
+    this.directionsService
+      .route(request)
+      .pipe(map((response) => response.result))
+      .subscribe((res) => {
+        this.directionsResult$.next(res);
+        this.markerPositions = [];
+      });
+  }
+
+  zoomToPlace(place: IPlaceSearchResult) {
+    if (place.location) {
+      this.gotoLocation(place.location);
     }
   }
 

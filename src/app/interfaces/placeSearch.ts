@@ -1,13 +1,16 @@
 import { ILocation } from "./location.interface";
 
 export interface IPlaceSearchResult {
-    address: string;
-    name?: string;
+  id?: string;  
+  address: string;
+  name?: string;
     imageUrl?: string;
     latitude?: number;
     longitude?: number;
-    iconUrl?: string;
     location?: ILocation;
+    rating?: number;
+    pricelevel?: number;
+    website?: string;
   }
   export interface IOpenAIResponse {
     content?: string;

@@ -18,6 +18,7 @@ import { BudgetBarComponent } from './components/budget-bar/budget-bar.component
 import { FlightsComponent } from './pages/flights/flights.component';
 import { TripFormComponent } from './pages/trip-form/trip-form.component';
 import { UpdateUserComponent } from './pages/update-user/update-user.component';
+import { ActivitiesNearbyComponent } from './pages/activities-nearby/activities-nearby.component';
 import { StepperComponent } from './components/stepper/stepper.component';
 import { TripSummaryComponent } from './pages/trip-summary/trip-summary.component';
 
@@ -171,12 +172,23 @@ export const routes: Routes = [
             IRole.admin, 
             IRole.user
           ],
-          name: 'Recomendation',
+          name: 'Travel Suggestions',
           icon:'bi bi-duffle-fill'
         }
-      },      
-  
-   
+      },
+      {
+        path: 'activitiesNearby',
+        component: ActivitiesNearbyComponent,
+        data: { 
+          authorities: [
+            IRole.admin, 
+            IRole.user
+          ],
+          name: 'Activities Nearby',
+          icon:'bi bi-duffle-fill'
+        }
+      },
+
     ],
   },
 ];

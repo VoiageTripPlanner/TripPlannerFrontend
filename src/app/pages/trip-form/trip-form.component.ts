@@ -13,6 +13,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { NotifyService } from '../../shared/notify/notify.service';
 import { timeout, timer } from 'rxjs';
+import { PlaceAutocompleteComponent } from '../../components/place-autocomplete/place-autocomplete.component';
 
 
 @Component({
@@ -25,7 +26,8 @@ import { timeout, timer } from 'rxjs';
     MatNativeDateModule,
     MatRadioModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    PlaceAutocompleteComponent
   ],
   providers: [provideNativeDateAdapter()],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -53,7 +53,9 @@ export class UserListComponent {
   };
 
   loadData () {
-    this.service.getAllSignal();
+    const userIdString = localStorage.getItem('userId');
+    const userId = userIdString ? parseInt(userIdString, 10) : null;
+    this.service.getAllSignal(userId);
     effect(() => {
       this.userList = this.service.users$();
     });

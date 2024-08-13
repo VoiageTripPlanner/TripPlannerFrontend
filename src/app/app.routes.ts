@@ -177,18 +177,18 @@ export const routes: Routes = [
           icon:'bi bi-duffle-fill'
         }
       },
-      {
-        path: 'recomendation',
-        component: RecomendationComponent,
-        data: { 
-          authorities: [
-            IRole.admin, 
-            IRole.user
-          ],
-          name: 'Travel Suggestions',
-          icon:'bi bi-duffle-fill'
-        }
-      },
+      // {
+      //   path: 'recomendation',
+      //   component: RecomendationComponent,
+      //   data: { 
+      //     authorities: [
+      //       IRole.admin, 
+      //       IRole.user
+      //     ],
+      //     name: 'Travel Suggestions',
+      //     icon:'bi bi-duffle-fill'
+      //   }
+      // },
       {
         path: 'calendar',
         component: CalendarComponent,

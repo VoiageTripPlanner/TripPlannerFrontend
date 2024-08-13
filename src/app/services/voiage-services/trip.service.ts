@@ -123,14 +123,14 @@ export class TripService extends BaseService<ITripForm> {
       trip_id                         : 0,
       trip_name                       : '',
       trip_description                : '',
-      departure_date                  : getNextDay(),
+      departureDate                   : getNextDay(),
       destination_city                : '',
-      return_date                     : getNextDay(),
+      returnDate                      : getNextDay(),
       lodge                           : this.lodgeService.onGetDefaultVoiageLodge(),
       flight                          : this.flightService.onGetDefaultVoiageFlight(),
-      food                            : this.foodService.onGetDefaultVoiageRestaurantList(),
+      restaurants                      : this.foodService.onGetDefaultVoiageRestaurantList(),
       activities                      : this.activitiesService.onGetDefaultVoiageActivities(),
-      user_id                         : 0,
+      user                         : 0,
       creation_datetime               : getNextDay(),
       creation_responsible            : 0
     }

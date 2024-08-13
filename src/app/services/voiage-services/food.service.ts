@@ -45,8 +45,8 @@ export class FoodService extends BaseService<IVoiageRestaurant>   {
         description                   : '',
         average_price                 : 0,
         location_mark                 : this.locationMarkService.onGetDefaultVoiageLocationMark(),
-        creation_datetime             : new Date(),
-        creation_responsible          : 0
+        creationDatetime             : new Date(),
+        creationResponsible          : 0
       }
 
       return defaultValue;

@@ -33,17 +33,22 @@ export interface IVoiageFlight{
     travel_class                    : string;
     flight_number                   : string;
     start_date                      : Date;
-    end_date?                       : Date;
+    end_date                        : Date;
     booking_token                   : string;
     price                           : number;
     type                            : string;
-    is_layover?                     : boolean;
-    total_duration?                 : number; 
+    isLayover                       : boolean;
+    duration                        : number;
+    outbound_date                   : Date;
+    return_date?                    : Date;
+    google_flights_link             : string;
+    total_duration                  : number;
+    layovers                        : IFlights[];
 
     //Propiedades de auditoria
-    creation_datetime               : Date;
-    creation_responsible            : number;
-    lastUpdate_datetime?            : Date;
-    update_responsible?             : number;
-    operational                     : number;
+    created_at                      : Date;
+    // creation_responsible            : number;
+    // lastUpdate_datetime?            : Date;
+    // update_responsible?             : number;
+    // operational                     : number;
 }

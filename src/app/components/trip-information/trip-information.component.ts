@@ -19,6 +19,8 @@ import { IActivity } from '../../interfaces/activities.interface';
 import { ActivityService } from '../../services/voiage-services/activity.service';
 import { CurrencyService } from '../../services/currency.service';
 import { ICurrency } from '../../interfaces/currency.interface';
+import { UserService } from '../../services/user.service';
+import { IUser } from '../../interfaces/user.interface';
 
 @Component({
   selector: 'app-trip-information',
@@ -45,6 +47,7 @@ export class TripInformationComponent {
   notifyService       = inject (NotifyService);
   tripFormService     = inject (TripService);
   tripService         = inject (TripService);
+  userService         = inject (UserService);
 
 
   activitiesSelectedList        : IActivity[] ; 
@@ -53,10 +56,10 @@ export class TripInformationComponent {
   initialForm                   : ITripForm ;
   lodgeSelected                 : IVoiageLodge ;
   tripBudget                    : IBudgetPrices ;
-  // userCurrency                  : ICurrency[];
+  userInfo                      : IUser;
 
-  tripNgModel         : ITrip;
-  userId              :number;
+  tripNgModel                   : ITrip;
+  userId                        : number;
 
   constructor( 
     private router: Router,
@@ -76,7 +79,7 @@ export class TripInformationComponent {
     this.activitiesSelectedList   = this.activitiesSelectedList.filter(activity => activity.address !== '');
 
     //Data del perfil del usuario
-    // this.userCurrency             = this.currencyService.currenciesSig();
+    this.userInfo             = this.userService.userSig();
 
   }
 
@@ -124,6 +127,7 @@ export class TripInformationComponent {
     localStorage.removeItem('flight');
     localStorage.removeItem('lodge');
     localStorage.removeItem('food');
+    localStorage.removeItem('selectedActivities');      
     localStorage.removeItem('destinationLocation');      
 
     this.router.navigateByUrl('/app/trip-form');
@@ -132,16 +136,17 @@ export class TripInformationComponent {
 
   assignTripData(){
 
-    this.tripNgModel.departure_date                 = this.initialForm.outbound_date;
-    this.tripNgModel.destination_city               = this.initialForm.q;
-    this.tripNgModel.return_date                    = this.initialForm.return_date;
+    this.tripNgModel.departureDate                  = this.initialForm.outbound_date;
+    this.tripNgModel.destination_city               = this.initialForm.q;  
+    this.tripNgModel.returnDate                     = this.initialForm.return_date;
     this.tripNgModel.budget                         = this.tripBudget.total;
-    // this.tripNgModel.currency                       = this.userCurrency[0]; //Falta implementar el servicio de currency
+    this.tripNgModel.currency                       = Number(this.userInfo.currencyId ?? 0);; //Falta implementar el servicio de currency
     this.tripNgModel.lodge                          = this.lodgeSelected;
     this.tripNgModel.flight                         = this.flightSelected;
-    this.tripNgModel.food                           = this.foodSelectedlist;
+    this.tripNgModel.restaurants                    = this.foodSelectedlist;
     this.tripNgModel.activities                     = this.activitiesSelectedList; 
-    this.tripNgModel.user_id                        = this.userId;
+    this.tripNgModel.user                           = this.userId;
+    this.tripNgModel.ai_suggestions                 = ''; //Para cuando se implemente AI
     // this.tripNgModel.ai_suggestions               =this.aiSuggestions; //Para cuando se implemente AI
     this.tripNgModel.creation_datetime              = new Date(); 
     this.tripNgModel.creation_responsible           = this.userId;

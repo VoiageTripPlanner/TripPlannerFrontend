@@ -8,9 +8,10 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
   template: `
     <ng-template #modal>
       <div class="d-flex align-item-center justify-content-end p-2">
+        <div class="modal-title h5 text-center w-100">{{ title }}</div>
         <button type="button" (click)="hide()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body px-0">
+      <div class="modal-body px-3">
         <ng-content></ng-content>
       </div>
     </ng-template>

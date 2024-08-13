@@ -65,7 +65,6 @@ export class PlaceAutocompleteComponent implements OnInit {
           website: place?.website,
         };
         this.placeChanged.emit(result);
-        console.log(JSON.stringify(result, null, 4));
 
         localStorage.setItem('destinationName', JSON.stringify(result.name));
         if (result.location && result.location.LatLng) {
@@ -143,7 +142,7 @@ export class PlaceAutocompleteComponent implements OnInit {
         Promise.all(nearbyPlacesPromises).then((nearbyPlaces) => {
           this.nearbyPlacesFound.emit(nearbyPlaces);
           localStorage.setItem('nearbyPlaces', JSON.stringify(nearbyPlaces));
-          console.log(JSON.stringify(nearbyPlaces, null, 4));
+          // console.log(JSON.stringify(nearbyPlaces, null, 4));
         }).catch((error) => {
           console.error(error);
         });

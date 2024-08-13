@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NotifyService } from '../../shared/notify/notify.service';
 import { PlaceAutocompleteComponent } from '../../components/place-autocomplete/place-autocomplete.component';
+import { AutoCompleteService } from '../../services/auto-complete.service';
+import { IAutoComplete } from '../../interfaces/auto-complete.interface';
 
 
 @Component({
@@ -33,18 +35,27 @@ import { PlaceAutocompleteComponent } from '../../components/place-autocomplete/
 })
 export class TripFormComponent {
 
-  tripService=inject(TripService);
-  notifyService=inject(NotifyService);
-  tripFormNgModel :ITripForm 
-  formGeneralInfoSubmitted = false;
-  formFlightSubmitted = false;
+  tripService                   = inject(TripService);
+  notifyService                 = inject(NotifyService);
+  autoCompleteService           = inject(AutoCompleteService);
 
+
+  formGeneralInfoSubmitted      = false;
+  formFlightSubmitted           = false;
+  
+  destinationData :IAutoComplete;
+  tripFormNgModel :ITripForm 
 
   constructor(
+
     private router: Router, 
     private route:ActivatedRoute
+
   ){
-    this.tripFormNgModel=this.tripService.onGetDefaultTripForm();    
+
+    this.tripFormNgModel  =this.tripService.onGetDefaultTripForm();   
+    ;  
+    this.destinationData  =this.autoCompleteService.onGetDefaultAutoComplete();
   }
   
 
@@ -53,16 +64,16 @@ export class TripFormComponent {
     
     if (formGeneralInfo.valid && formFlightInfo.valid) {
 
+      this.setDestinationData();
+
+      ;
       this.tripService.setInitialForm(this.tripFormNgModel);
       this.tripService.saveFormData(this.tripFormNgModel);
-
-      
-
-      
+    
       this.notifyService.onSearchDisclaimer();
+      ;
 
       this.router.navigateByUrl('/planning');
-      // this.router.navigateByUrl('/flight');
 
     } else{
       this.notifyService.onNoFormData();
@@ -71,12 +82,27 @@ export class TripFormComponent {
   };
 
   dateFilter = (d: Date | null): boolean => {
-    const today = new Date();
+
+    const today     = new Date();
     today.setHours(0, 0, 0, 0);
-    const tomorrow = new Date(today);
+
+    const tomorrow  = new Date(today);
     tomorrow.setDate(today.getDate() + 3);
+
     return d !== null && d >= tomorrow;
   };
+
+
+  setDestinationData(){
+
+    this.destinationData              = this.autoCompleteService.getAutocompleteData();
+
+    this.tripFormNgModel.q            = this.destinationData.address;
+    this.tripFormNgModel.longitude    = this.destinationData.location.lng;
+    this.tripFormNgModel.latitude     = this.destinationData.location.lat;
+
+  }
+
 
 
 

@@ -24,7 +24,6 @@ export class GoogleFlightsService extends BaseService<IGFlightsResponse> {
 
     this.bringInfoWithParams(searchParams).subscribe({
       next: (response: any) => {
-        console.log(response.other_flights);
         this.gFlightsResponseSignal.set(response.other_flights);
       },
       error: (error: HttpErrorResponse) => {

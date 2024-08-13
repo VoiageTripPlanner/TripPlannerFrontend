@@ -11,6 +11,8 @@ import { IVoiageRestaurant } from '../../interfaces/food.interface';
 import { Router } from '@angular/router';
 import { FlightService } from '../../services/voiage-services/flights.service';
 import { FoodService } from '../../services/voiage-services/food.service';
+import { ActivityService } from '../../services/voiage-services/activity.service';
+import { IActivity } from '../../interfaces/activities.interface';
 import { MapLocationService } from '../../services/map-location.service';
 
 @Component({
@@ -29,16 +31,19 @@ export class TripSummaryCardsComponent implements OnInit {
   lodgeService        = inject (LodgeService);
   foodService         = inject (FoodService);
   location            = inject (MapLocationService);
+  activitiesService   = inject (ActivityService);
 
-  initialForm         : ITripForm | undefined;
-  tripBudget          : IBudgetPrices | undefined;
-  flightSelected      : IVoiageFlight | undefined;
-  lodgeSelected       : IVoiageLodge | undefined;
-  foodSelectedlist    : IVoiageRestaurant[] | undefined;
+  initialForm               : ITripForm | undefined;
+  tripBudget                : IBudgetPrices | undefined;
+  flightSelected            : IVoiageFlight | undefined;
+  lodgeSelected             : IVoiageLodge | undefined;
+  foodSelectedlist          : IVoiageRestaurant[] | undefined;
+  activitiesSelectedList    : IActivity[] | undefined;
 
   isLoading           : boolean = false;
   listArray           : string[]= [];
   restaurantCount     : number = 0;
+  activitiesCount     : number = 0;
   dataAvailable       : boolean = false;
 
 
@@ -55,31 +60,37 @@ export class TripSummaryCardsComponent implements OnInit {
 
   private initializaData(){
     try {
-      this.initialForm            = this.tripFormService.getFormData();
-      this.tripBudget             = this.budgetService.getBudgetData();
+      this.initialForm              = this.tripFormService.getFormData();
+      this.tripBudget               = this.budgetService.getBudgetData();
   
       //Data seleccionada por el usuario
-      this.flightSelected         = this.flightService.getFlightData();
-      this.lodgeSelected          = this.lodgeService.getLodgeData();
-      this.foodSelectedlist       = this.foodService.getFoodData();
-      this.foodSelectedlist       = this.foodSelectedlist.filter(food => food.name !== '');
+      this.flightSelected           = this.flightService.getFlightData();
+      this.lodgeSelected            = this.lodgeService.getLodgeData();
+      this.foodSelectedlist         = this.foodService.getFoodData();
+      this.foodSelectedlist         = this.foodSelectedlist.filter(food => food.name !== '');
+      this.activitiesSelectedList   = this.activitiesService.getActivities();
+      this.activitiesSelectedList   = this.activitiesSelectedList.filter(activity => activity.address !== '');
 
       this.dataAvailable = !!(this.initialForm && this.tripBudget && this.flightSelected && this.lodgeSelected && this.foodSelectedlist.length);
 
       if (this.dataAvailable) {
+        
         this.onListAmenities();
-        this.restaurantCount = this.foodSelectedlist.length;
+
+        this.restaurantCount    = this.foodSelectedlist.length;
+        this.activitiesCount    = this.activitiesSelectedList.length;
       } else {
         throw new Error('Please complete the initial form');
       }
-
+      
+      this.activitiesCount    = this.activitiesSelectedList.length;
       this.restaurantCount=this.foodSelectedlist.length; 
+      
     } catch (error) {
       this.router.navigateByUrl('/app/trip-form');
       this.notifyService.onCustomErrorNotify('Error', 'Please try again');
 
     }
-
 
   }
 

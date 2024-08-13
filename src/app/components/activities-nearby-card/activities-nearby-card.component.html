@@ -12,16 +12,18 @@
 
                     <div class="align-boxes space-between">
                         <h1 class="bold-text font-size-title">{{item.name}}</h1>
+
+                        <div class="form-check move-to-right margin-bottom-2">
+                            <input class="form-check-input custom-checkbox " type="checkbox" value=""
+                                id="flexCheckDefault-{{item.id}}" (change)="checkboxChange(item, $event)">
+
+                            <label class="font-size-price" for="flexCheckDefault">
+                                Select Option
+                            </label>
+                        </div>
                     </div>
 
-                    <div class="form-check move-to-right ">
-                        <input class="form-check-input custom-checkbox " type="checkbox" value=""
-                            id="flexCheckDefault-{{item.id}}" (change)="checkboxChange(item, $event)">
-
-                        <label class="font-size-price" for="flexCheckDefault">
-                            Select Option
-                        </label>
-                    </div>
+                    <br>
 
                     <div class="align-boxes space-between">
                         <h3>Address: {{item.address}}</h3>
@@ -56,21 +58,17 @@
 
         </div>
 
-        <div class="map-container" >
-            <button type="button" 
-                    class="btn  btn-warning position-absolute position-button" 
-                    (click)="ViewDestination()">
-                <i class="bi bi-compass"></i> 
+        <div class="map-container">
+            <button type="button" class="btn  btn-warning position-absolute position-button"
+                (click)="ViewDestination()">
+                <i class="bi bi-compass"></i>
             </button>
-        
-            <app-maps 
-                class="z-index-1" 
-                [destination]="fromValue" 
-                [pointsOfInterest]="allNearbyPlaces" 
+
+            <app-maps class="z-index-1" [destination]="fromValue" [pointsOfInterest]="allNearbyPlaces"
                 [zoomPlace]="zoomToPlace">
             </app-maps>
         </div>
-        
+
 
     </div>
 

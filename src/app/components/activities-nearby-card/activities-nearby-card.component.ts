@@ -3,22 +3,19 @@ import { IPlaceSearchResult } from '../../interfaces/placeSearch';
 import { CommonModule, NgIf } from '@angular/common';
 import { IGoogleResponse } from '../../interfaces/google-hotel-response.interface';
 import { MapComponent } from '../map/map.component';
-import { PlaceAutocompleteComponent } from '../place-autocomplete/place-autocomplete.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NotifyService } from '../../shared/notify/notify.service';
 import { BudgetService } from '../../services/budged.service';
 import { Router } from '@angular/router';
 import { IActivity } from '../../interfaces/activities.interface';
-import { ActivityService } from '../../services/voiage-services/activityService';
+import { ActivityService } from '../../services/voiage-services/activity.service';
 
 @Component({
   selector: 'app-activities-nearby-card',
   standalone: true,
   imports: [
     MatToolbarModule,
-    PlaceAutocompleteComponent,
     NgIf,
-    ActivitiesNearbyCardComponent,
     MapComponent],
   templateUrl: './activities-nearby-card.component.html',
   styleUrl: './activities-nearby-card.component.scss'
@@ -89,11 +86,16 @@ export class ActivitiesNearbyCardComponent implements OnInit {
   };
 
   checkboxChange(activityNearby: IActivity, event: any): void {
+
     if (event.target.checked) {
       this.activityService.addItem(activityNearby);  
+      this.notifyService.onCustomSimpleNotify('Added to the list', 'The activity has been added to the list');
+
     } else {
       if (activityNearby.id) {
+
         this.activityService.removeItem(activityNearby.id);
+        this.notifyService.onCustomSimpleNotify('Removed from the list', 'The restaurant has been removed of the list');
       }
     }
   }

@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { ActivitesCardComponent } from '../../components/activities/activites-card/activites-card.component';
 import { MapComponent } from '../../components/map/map.component';
 import { LoaderComponent } from '../../components/loader/loader.component';
 import { ModalComponent } from '../../components/modal/modal.component';

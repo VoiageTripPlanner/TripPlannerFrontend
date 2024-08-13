@@ -88,7 +88,6 @@ export class UserService extends BaseService<IUser> {
     return this.logicDelete(user.id,user).pipe(
       tap((response: any) => {
         const deletedUsers = this.userListSignal().map(u => u.id === user.id ? response : u);
-        console.log(deletedUsers);
         this.userListSignal.set(deletedUsers);
       }),
       catchError(error => {

@@ -93,7 +93,7 @@
 
         <div class="align-boxes space-between">
             <h1 class="bold-text font-size-title">Chosen Food Options </h1>
-            <h1 class="move-to-right font-size-price"> Total chosen: {{restaurantCount || 'N/A'}}</h1>
+            <h1 class="move-to-right font-size-price"> Total chosen: {{restaurantCount || 'Not Selected'}}</h1>
         </div>
 
         <div class="width-100">
@@ -125,42 +125,33 @@
     <div class="information-container">
 
         <div class="align-boxes space-between">
-            <h1 class="bold-text font-size-title">Chosen Activities: </h1>
-            <h1 class="move-to-right font-size-price"> Chosen options </h1>
+            <h1 class="bold-text font-size-title">Chosen Activities </h1>
+            <h1 class="move-to-right font-size-price"> Total chosen: {{activitiesCount || 'Not Selected'}}</h1>
         </div>
 
         <div class="width-100">
-            <h2>Activities Chosen:</h2>
+            <h2>Activities Options:</h2>
             <ul class="circle-list">
-                <!-- @for (amenity of item.amenities ; track generateId) {
-                            <li>{{amenity}}</li>
-
-                            } -->
-
-                <li>Amenidad 1</li>
-                <li>Amenidad 2</li>
-                <li>Amenidad 3</li>
-                <li>Amenidad 4</li>
-                <li>Amenidad 5</li>
-
-
-
+                @for (activities of activitiesSelectedList; track generateId) {
+                <li>{{activities.address}}</li>
+                }
             </ul>
-
         </div>
 
     </div>
 
     <div class="image-container">
-        <!-- @if(item.images && item.images.length){
-                    <img [src]="item.images[0].original_image" alt="ImageHotel" (error)="onImageError($event)">
-                    }@else{
-                    <img src="../../../../assets/img/No_image_available.png" alt="ImageHotel">
-                } -->
+        @if(activitiesSelectedList && activitiesSelectedList.length){
+        <img [src]="activitiesSelectedList[0].imageUrl" alt="ImageActivity" (error)="onImageError($event)">
+        }@else{
         <img src="../../../../assets/img/No_image_available.png" alt="ImageHotel">
+        }
     </div>
 
 </div>
+
+
+
 
 
 }@else{

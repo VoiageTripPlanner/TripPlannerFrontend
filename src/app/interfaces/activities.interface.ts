@@ -12,3 +12,7 @@ export interface IActivity{
     pricelevel?: number;
     website?: string;
 }
+
+
+// export interface IVoigeActivity{
+// }

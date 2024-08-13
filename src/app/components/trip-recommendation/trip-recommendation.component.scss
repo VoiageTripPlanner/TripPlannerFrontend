@@ -1,0 +1,17 @@
+.card {
+  width: 420px;
+  height: 379px;
+  background: url('/assets/img/ai-icon.png') no-repeat top right / 100px;
+
+  .content {
+    height: 300px;
+  }
+
+  .country-name, .total-label {
+    margin-right: auto;
+  }
+
+  .total {
+    margin-top: auto;
+  }
+}

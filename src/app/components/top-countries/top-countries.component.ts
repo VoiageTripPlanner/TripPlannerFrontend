@@ -18,6 +18,7 @@ export class TopCountriesComponent {
 
   constructor() {
     this.getCountryFlagCodes();
+    this.statisticsService.getTopCountries();
   }
 
   public getCountryFlag(country: string): string {
@@ -29,7 +30,7 @@ export class TopCountriesComponent {
   }
 
   private getCountryFlagCodes(): void {
-    combineLatest([this.statisticsService.getTopCountries(), this.statisticsService.getCountryFlagCodeJson()]).subscribe(([countries, flagCodes]) => {
+    combineLatest([this.statisticsService.topCountries$, this.statisticsService.getCountryFlagCodeJson()]).subscribe(([countries, flagCodes]) => {
       this.topCountries = countries;
       this.countryFlags = flagCodes;
     });

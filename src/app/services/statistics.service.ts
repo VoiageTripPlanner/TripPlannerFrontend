@@ -1,14 +1,30 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, Signal, signal } from '@angular/core';
 import { from, map, Observable, of } from 'rxjs';
 import { CountryVisit } from '../interfaces/country-visit.interface';
 import { IBudgetPrices } from '../interfaces/budget.interface';
+import { toObservable } from '@angular/core/rxjs-interop';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StatisticsService {
   private httpService: HttpClient = inject(HttpClient);
+  private topCountries = signal<CountryVisit[]>([]);
+  private countryVisitsList = signal<CountryVisit[]>([]);
+  private budgetOverview = signal<IBudgetPrices | null>(null);
+
+  public get topCountries$(): Observable<CountryVisit[]> {
+    return toObservable(this.topCountries);
+  }
+
+  public get countryVisitsList$(): Observable<CountryVisit[]> {
+    return toObservable(this.countryVisitsList);
+  }
+
+  public get budgetOverviewSig(): Signal<IBudgetPrices | null> {
+    return this.budgetOverview.asReadonly();
+  }
 
   public getCountryTopoJson(): Observable<any> {
     return this.httpService.get<any>('https://unpkg.com/world-atlas/countries-50m.json');
@@ -18,24 +34,51 @@ export class StatisticsService {
     return this.httpService.get<any>('https://flagcdn.com/en/codes.json');
   }
 
-  public getTopCountries(): Observable<CountryVisit[]> {
-    const countries: CountryVisit[] = [
-      { id: 1, name: 'United States', visits: 100 },
-      { id: 2, name: 'Germany', visits: 50 },
-      { id: 3, name: 'Costa Rica', visits: 30 },
-    ];
-    return from([countries]);
+  public getTopCountries(): void {
+    this.httpService.get<CountryVisit[]>('statistics/topCountryVisits')
+      .subscribe({
+        next: (data) => {
+          if (data) {
+            this.topCountries.set(data);
+          } else {
+            this.topCountries.set([]);
+          }
+        },
+        error: (error) => {
+          console.error('Error fetching recommendations', error);
+        }
+      })
   }
 
-  public getTripBudgetOverview(): Observable<IBudgetPrices> {
-    const budget: IBudgetPrices = {
-      flightAmount: 10000,
-      lodgeAmount: 5000,
-      foodAmount: 30000,
-      activitiesAmount: 1000,
-      otherAmount: 5000,
-      total: 12000500,
-    };
-    return of(budget);
+  public getCountryVisitsList(): void {
+    this.httpService.get<CountryVisit[]>('statistics/countryVisits')
+      .subscribe({
+        next: (data) => {
+          if (data) {
+            this.countryVisitsList.set(data);
+          } else {
+            this.countryVisitsList.set([]);
+          }
+        },
+        error: (error) => {
+          console.error('Error fetching recommendations', error);
+        }
+      })
+  }
+
+  public getTripBudgetOverview(): void {
+    this.httpService.get<IBudgetPrices>('statistics/budgetOverview')
+      .subscribe({
+        next: (data) => {
+          if (data) {
+            this.budgetOverview.set(data);
+          } else {
+            this.budgetOverview.set(null);
+          }
+        },
+        error: (error) => {
+          console.error('Error fetching recommendations', error);
+        }
+      });
   }
 }

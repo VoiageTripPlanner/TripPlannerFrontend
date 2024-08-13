@@ -17,7 +17,7 @@
       } @empty {
         <p>No data available</p>
       }
-      @if (topCountries.length > 0) {
+      @if (topCountries && topCountries.length > 0) {
         <div class="total d-flex pt-2 border-top">
           <span class="total-label">Total country visited:</span>
           <span>{{totalCountryVisited}}</span>

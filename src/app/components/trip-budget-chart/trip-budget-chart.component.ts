@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { LegendPosition, NgxChartsModule } from '@swimlane/ngx-charts';
 import { IBudgetPrices } from '../../interfaces/budget.interface';
 import { StatisticsService } from '../../services/statistics.service';
@@ -11,9 +11,9 @@ import { StatisticsService } from '../../services/statistics.service';
   styleUrl: './trip-budget-chart.component.scss'
 })
 export class TripBudgetChartComponent {
-  public chartData!: { name: string, value: number }[];
+  public chartData: { name: string, value: number }[] = [];
   public totalInvestment!: number;
-  public view: [number, number] = [400, 200];
+  public view: [number, number] = [385, 200];
   public gradient: boolean = true;
   public showLegend: boolean = true;
   public showLabels: boolean = false;
@@ -21,16 +21,15 @@ export class TripBudgetChartComponent {
   public legendPosition: LegendPosition = LegendPosition.Below;
   private statisticsService: StatisticsService = inject(StatisticsService);
 
-  public colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
-  };
-
   constructor() {
-    this.getChartData();
+    this.statisticsService.getTripBudgetOverview();
+    effect(() => {
+      this.getChartData(this.statisticsService.budgetOverviewSig());
+    });
   }
 
-  private getChartData(): void {
-    this.statisticsService.getTripBudgetOverview().subscribe((budgetData: IBudgetPrices) => {
+  private getChartData(budgetData: IBudgetPrices|null): void {
+    if (budgetData) {
       this.chartData = [
         { name: 'Flights', value: budgetData.flightAmount },
         { name: 'Lodge', value: budgetData.lodgeAmount },
@@ -39,7 +38,7 @@ export class TripBudgetChartComponent {
         { name: 'Other', value: budgetData.otherAmount! }
       ];
       this.totalInvestment = budgetData.total;
-    });
+    }
   }
 
 }

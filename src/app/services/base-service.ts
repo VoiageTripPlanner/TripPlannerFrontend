@@ -19,6 +19,10 @@ export class BaseService<T> {
     return this.http.get<IResponse<T[]>>(this.source, { params: { s } });
   }
 
+  public findAllExceptCurrent(id: number | null): Observable<IResponse<T[]>> {
+    return this.http.get<IResponse<T[]>>(this.source + '/req/' + id);
+  }
+
   public bringInfoWithParams(params: { [key: string]: any } = {}): Observable<IResponse<T[]>> {
     return this.http.get<IResponse<T[]>>(this.source, { params });
   }

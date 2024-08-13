@@ -7,12 +7,13 @@ import {MatNativeDateModule, provideNativeDateAdapter} from '@angular/material/c
 import {MatRadioModule} from '@angular/material/radio';
 import { ITripForm } from '../../interfaces/trip.interface';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TripService } from '../../services/trip.service';
+import { TripService } from '../../services/voiage-services/trip.service';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { NotifyService } from '../../shared/notify/notify.service';
 import { timeout, timer } from 'rxjs';
+import { PlaceAutocompleteComponent } from '../../components/place-autocomplete/place-autocomplete.component';
 
 
 @Component({
@@ -25,7 +26,8 @@ import { timeout, timer } from 'rxjs';
     MatNativeDateModule,
     MatRadioModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    PlaceAutocompleteComponent
   ],
   providers: [provideNativeDateAdapter()],
   changeDetection: ChangeDetectionStrategy.OnPush,

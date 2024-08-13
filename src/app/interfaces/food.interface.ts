@@ -1,3 +1,4 @@
+import { IAudit } from "./audit.interface";
 import { ILocation } from "./location.interface";
 
 export interface IVoiageRestaurant{
@@ -14,10 +15,6 @@ export interface IVoiageRestaurant{
     yelpId?                  : string;
     restaurant_image?        : string;
 
-
     //Propiedades de auditoria
-    creation_datetime         : Date;
-    creation_responsible      : number;
-    lastUpdate_datetime?      : Date;
-    update_responsible?       : number;
+    audit: IAudit;
 }

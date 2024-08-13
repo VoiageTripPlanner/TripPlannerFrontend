@@ -69,7 +69,7 @@ export class TripSummaryCardsComponent implements OnInit {
       this.foodSelectedlist         = this.foodService.getFoodData();
       this.foodSelectedlist         = this.foodSelectedlist.filter(food => food.name !== '');
       this.activitiesSelectedList   = this.activitiesService.getActivities();
-      this.activitiesSelectedList   = this.activitiesSelectedList.filter(activity => activity.address !== '');
+      this.activitiesSelectedList   = this.activitiesSelectedList.filter(activity => activity.location && activity.location.address !== '');
 
       this.dataAvailable = !!(this.initialForm && this.tripBudget && this.flightSelected && this.lodgeSelected && this.foodSelectedlist.length);
 

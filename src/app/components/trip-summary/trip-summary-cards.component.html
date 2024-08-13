@@ -133,7 +133,7 @@
             <h2>Activities Options:</h2>
             <ul class="circle-list">
                 @for (activities of activitiesSelectedList; track generateId) {
-                <li>{{activities.address}}</li>
+                <li>{{activities.location?.address}}</li>
                 }
             </ul>
         </div>

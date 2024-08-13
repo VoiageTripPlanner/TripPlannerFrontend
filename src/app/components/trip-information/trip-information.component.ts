@@ -13,19 +13,18 @@ import { BudgetService } from '../../services/budged.service';
 import { FlightService } from '../../services/voiage-services/flights.service';
 import { LodgeService } from '../../services/voiage-services/lodge.service';
 import { FoodService } from '../../services/voiage-services/food.service';
-import { LocationMarkService } from '../../services/location-mark.service';
+import { MapLocationService } from '../../services/map-location.service';
 import { AuthService } from '../../services/auth.service';
 import { IActivity } from '../../interfaces/activities.interface';
 import { ActivityService } from '../../services/voiage-services/activity.service';
 import { CurrencyService } from '../../services/currency.service';
-import { ICurrency } from '../../interfaces/currency.interface';
 
 @Component({
   selector: 'app-trip-information',
   standalone: true,
   imports: [
     FormsModule,
-    CommonModule
+    CommonModule,
   ],
   templateUrl: './trip-information.component.html',
   styleUrl: './trip-information.component.scss'
@@ -40,7 +39,7 @@ export class TripInformationComponent {
   currencyService     = inject (CurrencyService);
   flightService       = inject (FlightService);
   foodService         = inject (FoodService);
-  locationMark        = inject (LocationMarkService);
+  location            = inject (MapLocationService);
   lodgeService        = inject (LodgeService);
   notifyService       = inject (NotifyService);
   tripFormService     = inject (TripService);
@@ -73,7 +72,7 @@ export class TripInformationComponent {
     this.foodSelectedlist         = this.foodService.getFoodData();
     this.foodSelectedlist         = this.foodSelectedlist.filter(food => food.name !== '');
     this.activitiesSelectedList   = this.activitiesService.getActivities();
-    this.activitiesSelectedList   = this.activitiesSelectedList.filter(activity => activity.address !== '');
+    this.activitiesSelectedList   = this.activitiesSelectedList.filter(activity => activity.location?.address !== '');
 
     //Data del perfil del usuario
     // this.userCurrency             = this.currencyService.currenciesSig();
@@ -144,10 +143,10 @@ export class TripInformationComponent {
     this.tripNgModel.activities                     = this.activitiesSelectedList; 
     this.tripNgModel.user_id                        = this.userId;
     // this.tripNgModel.ai_suggestions               =this.aiSuggestions; //Para cuando se implemente AI
-    this.tripNgModel.creation_datetime              = new Date(); 
-    this.tripNgModel.creation_responsible           = this.userId;
 
+    this.tripNgModel.audit || {
+      creation_datetime: new Date(),
+      creation_responsible: { id: 0 }
+    };
   }
-
-
 }

@@ -98,12 +98,12 @@ export class TripFormComponent {
     this.destinationData              = this.autoCompleteService.getAutocompleteData();
 
     this.tripFormNgModel.q            = this.destinationData.address;
-    this.tripFormNgModel.longitude    = this.destinationData.location.lng;
-    this.tripFormNgModel.latitude     = this.destinationData.location.lat;
-
+    this.tripFormNgModel.location = {
+      address: this.destinationData.address,
+      LatLng: {
+        longitude: this.destinationData.location.lng,
+        latitude: this.destinationData.location.lat
+      }
+    };
   }
-
-
-
-
 }

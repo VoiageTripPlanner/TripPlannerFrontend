@@ -31,8 +31,12 @@ export class FoodService extends BaseService<IVoiageRestaurant>   {
           description                   : '',
           average_price                 : 0,
           location                      : this.mapLocationService.onGetDefaultVoiageLocationMark(),
-          creation_datetime             : new Date(),
-          creation_responsible          : 0
+          audit: {
+            creation_datetime: new Date(),
+            creation_responsible: { id: 0 },
+            lastUpdate_datetime: new Date(),
+            update_responsible: { id: 0 },
+          }
         }
        ];
     };
@@ -45,8 +49,12 @@ export class FoodService extends BaseService<IVoiageRestaurant>   {
         description                   : '',
         average_price                 : 0,
         location                      : this.mapLocationService.onGetDefaultVoiageLocationMark(),
-        creation_datetime             : new Date(),
-        creation_responsible          : 0
+        audit: {
+          creation_datetime: new Date(),
+          creation_responsible: { id: 0 },
+          lastUpdate_datetime: new Date(),
+          update_responsible: { id: 0 },
+        }
       }
 
       return defaultValue;

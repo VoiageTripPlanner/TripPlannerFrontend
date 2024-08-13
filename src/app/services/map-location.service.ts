@@ -25,10 +25,10 @@ export class MapLocationService extends BaseService<ILocation> {
         address                 : '',
         placeId                 : '',
         audit                   : {
-          creation_datetime     : new Date(),
-          creation_responsible  : {id: 0},
-          lastUpdate_datetime   : new Date(),
-          update_responsible    : {id: 0},
+          creationDatetime     : new Date(),
+          creationResponsible  : {id: 0},
+          lastUpdateDatetime   : new Date(),
+          updateResponsible    : {id: 0},
         }
       };
       return defaultValue;

@@ -136,10 +136,10 @@ export class TripService extends BaseService<ITripForm> {
       activities                      : this.activitiesService.onGetDefaultVoiageActivities(),
       user_id                         : 0,
       audit: {
-        creation_datetime:  getNextDay(),
-        creation_responsible: { id: 0 },
-        lastUpdate_datetime:  getNextDay(),
-        update_responsible: { id: 0 },
+        creationDatetime:  getNextDay(),
+        creationResponsible: { id: 0 },
+        lastUpdateDatetime:  getNextDay(),
+        updateResponsible: { id: 0 },
       }
     }
 

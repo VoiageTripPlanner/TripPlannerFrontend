@@ -20,14 +20,18 @@
             </div>
 
             <form class="needs-validation"  #formGeneralInfo="ngForm" novalidate>
-
+                
                 <div class="form-group margin-bottom-10">
+                    
                     <label for="destinyCountry" class="margin-bottom-3 font-size-label">Destination</label>
-                    <input type="text" class="form-control" aria-describedby="countryHelp"
+                    
+                    <app-place-autocomplete type="text" class="form-control " aria-describedby="countryHelp"
                         placeholder="Tell us your destination" [(ngModel)]="tripFormNgModel.q" [ngClass]="{
                             'is-invalid': q.invalid && q.touched,
                             'is-valid': q.valid && q.touched
                           }" name="q" id="q" #q="ngModel" required>
+                    </app-place-autocomplete>
+
                     <div *ngIf="q.invalid" class="invalid-feedback">
                         Please enter a destination
                     </div>
@@ -64,12 +68,12 @@
                     </div>
                 </div>
 
-                <div class="display-flex space-between margin-bottom-10">
+                <!-- <div class="display-flex space-between margin-bottom-10">
 
                     <div class="form-group width-45">
                         <label for="latitude" class="margin-bottom-6 font-size-label">Latitude</label>
                         <input type="number" class="form-control" id="latitude" aria-describedby="airportHelp"
-                            placeholder="Latitude" [(ngModel)]="tripFormNgModel.latitude" [ngClass]="{
+                            placeholder= {{latitude}} [(ngModel)]="tripFormNgModel.latitude" [ngClass]="{
                                 'is-invalid': latitude.invalid && latitude.touched,
                                 'is-valid': latitude.valid && latitude.touched
                               }" name="latitude" #latitude="ngModel" required>
@@ -81,7 +85,7 @@
                     <div class="form-group width-45">
                         <label for="longitude" class="margin-bottom-6 font-size-label">Longitude</label>
                         <input type="number" class="form-control" id="longitude" aria-describedby="airportDestinyHelp"
-                            placeholder="Longitude" maxlength="3" [(ngModel)]="tripFormNgModel.longitude" [ngClass]="{
+                            placeholder={{tripFormNgModel.longitude}}  maxlength="3" [(ngModel)]="tripFormNgModel.longitude" [ngClass]="{
                                 'is-invalid': longitude.invalid && longitude.touched,
                                 'is-valid': longitude.valid && longitude.touched
                               }" name="longitude" #longitude="ngModel" required>
@@ -89,7 +93,9 @@
                             Please enter a longitude
                         </div>
                     </div>
-                </div>
+
+
+                </div> -->
             </form>
         </div>
 
@@ -110,12 +116,12 @@
 
                     <div class="form-group width-45">
                         <label for="departure_id" class="margin-bottom-6 font-size-label">Departure Airport</label>
-                        <input type="text" class="form-control" id="departure_id" aria-describedby="airportHelp"
+                         <input type="text" class="form-control" id="departure_id" aria-describedby="airportHelp"
                             placeholder="Indicate an airport" maxlength="3" [(ngModel)]="tripFormNgModel.departure_id"
-                            [ngClass]="{
-                                'is-invalid': departure_id.invalid && departure_id.touched,
-                                'is-valid': departure_id.valid && departure_id.touched
-                              }" name="departure_id" #departure_id="ngModel" required>
+                                [ngClass]="{
+                                  'is-invalid': departure_id.invalid && departure_id.touched,
+                                  'is-valid': departure_id.valid && departure_id.touched
+                                  }" name="departure_id" #departure_id="ngModel" required>
                         <div *ngIf="departure_id.invalid" class="invalid-feedback">
                             Please enter an airport of departure
                         </div>

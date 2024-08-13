@@ -1,7 +1,15 @@
-
-<div class="maps">
-
-        <google-map class="maps" height="85vh" width="100%" [options]="options" (mapReady)="onMapReady()"></google-map>
-
-</div>
-
+<google-map #map [zoom]="zoom" width="100%" height="100%">
+ 
+    <map-marker
+      *ngFor="let markerPosition of markerPositions"
+      [position]="markerPosition"
+    >
+    </map-marker>
+    <map-marker
+      *ngFor="let place of pointsOfInterest"
+      [position]="place.location!"
+      [title]="place.name!"
+      [label]="place.name!"
+    >
+    </map-marker>
+  </google-map>

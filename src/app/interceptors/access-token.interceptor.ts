@@ -7,7 +7,7 @@ export const accessTokenInterceptor: HttpInterceptorFn = (req, next) => {
   let headers = {};
 
   if (!authService.check()) return next(req);
-  if (!req.url.includes('auth')) {
+  if (!req.url.includes('auth') && !req.url.includes('unpkg') && !req.url.includes('flagcdn')) {
     headers = {
         setHeaders: {
           Authorization: `Bearer ${authService.getAccessToken()?.replace(/"/g, '')}`,

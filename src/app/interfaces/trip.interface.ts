@@ -3,7 +3,7 @@ import { IFlights, IVoiageFlight } from "./flights.interface";
 import { Flight } from './google-flights-response.interface';
 import { IVoiageLodge } from "./lodge.interface";
 import { IFoodBusiness } from "./yelp-food-response.interface";
-import { IActivities } from './activities.interface';
+import { IActivity } from './activities.interface';
 import { IVoiageRestaurant } from "./food.interface";
 
 export interface ITripForm{
@@ -28,13 +28,13 @@ export interface ITrip{
     departure_city?:    string;
     departure_date:     Date;
     destination_city:   string;
-    return_date:        Date;
+    return_date?:        Date;
     budget? :           number;
     currency?:          ICurrency;
     lodge:              IVoiageLodge; 
     flight:             IVoiageFlight; // IFlights: ver lo de separarlo en departure y return flight
     food:               IVoiageRestaurant[]; 
-    activities:         IActivities[] 
+    activities:         IActivity[] 
     user_id:            number;
     ai_suggestions?:    string;
 

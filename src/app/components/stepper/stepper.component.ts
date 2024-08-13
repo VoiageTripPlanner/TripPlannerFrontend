@@ -8,6 +8,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { FoodComponent } from '../../pages/food/food.component';
 import { FlightsComponent } from '../../pages/flights/flights.component';
 import { LodgeComponent } from '../../pages/lodge/lodge.component';
+import { ActivitiesNearbyCardComponent } from '../activities-nearby-card/activities-nearby-card.component';
+import { PlaceAutocompleteComponent } from '../place-autocomplete/place-autocomplete.component';
+import { ActivitiesNearbyComponent } from '../../pages/activities-nearby/activities-nearby.component';
 
 @Component({
   selector: 'app-stepper',
@@ -22,13 +25,14 @@ import { LodgeComponent } from '../../pages/lodge/lodge.component';
     MatIconModule,
     FlightsComponent,
     LodgeComponent,
-    FoodComponent
+    FoodComponent,
+    ActivitiesNearbyComponent,
+    PlaceAutocompleteComponent
   ],
   templateUrl: './stepper.component.html',
   styleUrl: './stepper.component.scss'
 })
 export class StepperComponent {
-//TODO: Ver el tama de si vamos a por ejemplo decidir la comida basado en las coordenadas del hotel o de donde se vana sacar esas coordenadas, en ese caso debemos bloquear el stepper hasta que se tengan las coordenadas
 
   isLinear = false;
 

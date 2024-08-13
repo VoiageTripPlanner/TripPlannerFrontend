@@ -5,16 +5,18 @@ import { PriceDetailsComponent } from '../../components/price-details/price-deta
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from '../../components/modal/modal.component';
+import { TripInformationComponent } from '../../components/trip-information/trip-information.component';
 
 @Component({
   selector: 'app-trip-summary',
   standalone: true,
   imports: [
-    TripSummaryCardsComponent,
-    PriceDetailsComponent,
     CommonModule,
     FormsModule,
     ModalComponent,
+    PriceDetailsComponent,
+    TripSummaryCardsComponent,
+    TripInformationComponent
   ],
   templateUrl: './trip-summary.component.html',
   styleUrl: './trip-summary.component.scss'

@@ -10,7 +10,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { PlaceAutocompleteComponent } from '../place-autocomplete/place-autocomplete.component';
 
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { NotifyService } from '../../shared/notify/notify.service';
 
 @Component({
@@ -34,21 +34,22 @@ export class CalendarEventComponent {
   dialogTitle: string = '';
   isEdit: boolean = false;
 
-  calendarEventService      = inject(CalendarEventService);
-  notifyService             = inject(NotifyService);
+  calendarEventService = inject(CalendarEventService);
+  notifyService = inject(NotifyService);
 
   eventNgmodel: ICalendarEvent;
 
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private _dialogRef: MatDialogRef<CalendarEventComponent>,
   ) {
     this.isEdit = data.edit;
     this.dialogTitle = this.isEdit ? 'Edit Event' : 'Add Event';
 
     this.eventNgmodel = this.isEdit ? data.calendarEvent : this.calendarEventService.onGetDefaultCalendarEvent();
 
-    console.log(this.dialogTitle)
+    console.log(this.eventNgmodel)
 
   }
 
@@ -61,9 +62,27 @@ export class CalendarEventComponent {
       } else {
         this.calendarEventService.saveCalendarEvent(this.eventNgmodel);
       }
-    }else{
+    } else {
       this.notifyService.onError();
     }
+
+    this.onClose();
   }
+
+  deleteCalendarEvent() {
+
+    this.notifyService.onDeleteConfirmation().then((result) => {
+
+      if (result.value) {
+
+        this.calendarEventService.deleteCalendarEvent(this.eventNgmodel);
+      }
+    });
+    this.onClose();
+  };
+
+  onClose = () => {
+    this._dialogRef.close();
+  };
 
 }

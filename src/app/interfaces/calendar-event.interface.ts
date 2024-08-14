@@ -4,7 +4,9 @@ export interface ICalendarEvent{
     description        : string;
     eventDate          : Date;
     userId             : number; 
-    eventType          : eventCategory; 
+    eventType          : eventCategory;
+    operational        : boolean;
+    
     
 }
 

@@ -215,6 +215,7 @@ main {
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: 0.8rem;
+  cursor: pointer;
 }
 
 .event__time {
@@ -224,4 +225,26 @@ main {
 
 .event__title {
   margin-top: 2px;
+}
+
+.calendar-header{
+  display: flex;
+  justify-content: inherit;
+  
+}
+
+.button-header{
+  display: flex;
+  justify-content: end;
+
+}
+
+
+
+// Calendar event dialog
+
+
+.mat-dialog-container-medium {
+  height: 60vh;
+  width: 60vw;
 }

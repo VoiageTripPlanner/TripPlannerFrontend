@@ -67,7 +67,6 @@ export class PlaceAutocompleteComponent implements OnInit {
           latitude: place?.geometry?.location?.lat() ?? 0,
           longitude: place?.geometry?.location?.lng() ?? 0, 
           rating: place?.rating,
-          types: place?.types,
           pricelevel: place?.price_level, 
           website: place?.website,          
         };
@@ -77,7 +76,6 @@ export class PlaceAutocompleteComponent implements OnInit {
         localStorage.setItem('latitudeDestination', JSON.stringify(result.latitude));
         localStorage.setItem('longitudeDestination', JSON.stringify(result.longitude));
         localStorage.setItem('destinationAddress', JSON.stringify(result.address));
-        localStorage.setItem('destination', JSON.stringify(result));
         localStorage.setItem('destinationLocation', JSON.stringify(result));
        if (result.location) {
         this.findNearbyPlaces(result.location);
@@ -128,7 +126,7 @@ export class PlaceAutocompleteComponent implements OnInit {
                   imageUrl: this.getPhotoUrl(placeDetails),
                   rating: placeDetails?.rating,
                   pricelevel: placeDetails?.price_level,
-                  website: placeDetails.website || ''
+                  website: placeDetails.website || '',
                 });
               } else {
                 reject(`Failed to get details for place ID ${place.place_id}`);
@@ -140,7 +138,7 @@ export class PlaceAutocompleteComponent implements OnInit {
         Promise.all(nearbyPlacesPromises).then((nearbyPlaces) => {
           this.nearbyPlacesFound.emit(nearbyPlaces);
           localStorage.setItem('nearbyPlaces', JSON.stringify(nearbyPlaces));
-          console.log(JSON.stringify(nearbyPlaces, null, 4));
+          // console.log(JSON.stringify(nearbyPlaces, null, 4));
         }).catch((error) => {
           console.error(error);
         });

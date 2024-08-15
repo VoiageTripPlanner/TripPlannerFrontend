@@ -20,9 +20,9 @@ export class UserService extends BaseService<IUser> {
     return this.userSignal;
   };
 
-  getAllSignal() {
+  getAllSignal(id: number | null):void {
 
-    this.findAll().subscribe({
+    this.findAllExceptCurrent(id).subscribe({
       next: (response: any) => {
         this.userListSignal.set(response);
         response.reverse();

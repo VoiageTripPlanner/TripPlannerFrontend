@@ -4,7 +4,6 @@ import { CommonModule, NgIf } from '@angular/common';
 import { IGoogleResponse } from '../../interfaces/google-hotel-response.interface';
 import { MapComponent } from '../map/map.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { PlaceCardComponent } from '../place-autocomplete/place-card.componet';
 import { NotifyService } from '../../shared/notify/notify.service';
 import { BudgetService } from '../../services/budged.service';
 import { Router } from '@angular/router';
@@ -72,7 +71,7 @@ export class ActivitiesNearbyCardComponent implements OnInit {
     }
 
     ViewDestination(){
-      const storedPlace = localStorage.getItem('destination');
+      const storedPlace = localStorage.getItem('destinationLocation');
       if (storedPlace) {
         this.fromValue = JSON.parse(storedPlace);
       }

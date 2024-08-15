@@ -7,7 +7,7 @@ import { IVoiageRestaurant } from '../../interfaces/food.interface';
 import { LodgeService } from './lodge.service';
 import { FlightService } from './flights.service';
 import { FoodService } from './food.service';
-import { ActivitiesService } from './activities.service';
+import { ActivityService } from './activityService';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +22,7 @@ export class TripService extends BaseService<ITripForm> {
   lodgeService=inject(LodgeService);
   flightService=inject(FlightService);
   foodService=inject(FoodService);
-  activitiesService=inject(ActivitiesService);
+  activitiesService=inject(ActivityService);
 
 
   get tripForm$() {

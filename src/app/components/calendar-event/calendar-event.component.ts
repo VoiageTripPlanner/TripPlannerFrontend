@@ -65,7 +65,7 @@ export class CalendarEventComponent {
         );
         
       } else {
-        debugger
+        
         this.eventNgmodel.creation_responsible = this.userInformation.getUserId();
         this.calendarEventService.saveCalendarEvent(this.eventNgmodel).subscribe(() =>
           this.notifyService.onSuccess()

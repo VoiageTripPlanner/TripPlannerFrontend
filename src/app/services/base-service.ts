@@ -28,7 +28,7 @@ export class BaseService<T> {
   }
 
   public edit(id: number | undefined, data: {}): Observable<IResponse<T>> {
-    debugger
+    
     return this.http.put<IResponse<T>>(this.source + '/' + id, data);
   }
 

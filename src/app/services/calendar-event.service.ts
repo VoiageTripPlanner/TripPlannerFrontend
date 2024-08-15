@@ -67,7 +67,7 @@ export class CalendarEventService extends BaseService<ICalendarEvent> {
 
 
     saveCalendarEvent(event: ICalendarEvent): Observable<any> {
-        debugger
+        
         return this.add(event).pipe(
             tap((response: any) => {
                 this.calendarEventSignal.update(event => [response, ...event]);
@@ -80,7 +80,7 @@ export class CalendarEventService extends BaseService<ICalendarEvent> {
     };
     
     updateCalendarEvent(event: ICalendarEvent): Observable<any> {
-        debugger
+        
         return this.edit(event.eventId, event).pipe(
             tap((response: any) => {
                 const updatedUsers = this.calendarEventSignal().map(u => u.eventId === event.eventId ? response : u);

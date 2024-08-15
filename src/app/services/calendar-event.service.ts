@@ -3,6 +3,7 @@ import { BaseService } from './base-service';
 import { Observable, catchError, forkJoin, tap, throwError } from 'rxjs';
 import { ICountry } from '../interfaces/country.interface';
 import { ICalendarEvent } from '../interfaces/calendar-event.interface';
+import { IUserId } from '../interfaces/user.interface';
 
 @Injectable({
     providedIn: 'root',
@@ -22,27 +23,30 @@ export class CalendarEventService extends BaseService<ICalendarEvent> {
     onGetDefaultCalendarEvent() {
 
         const defaultValue: ICalendarEvent = {
-            eventId         : 0,
-            title           : '',
-            description     : '',
-            eventDate       : new Date(),
-            userId          : 0,
-            eventType       : 'Other',
-            operational     : false
+            eventId                     : 0,
+            title                       : '',
+            description                 : '',
+            eventDate                   : new Date(),
+            eventType                   : 'Other',
+            operational                 : false,
+            creation_datetime           : new Date(),
+            creation_responsible        : 0
         }
 
         return defaultValue;
     };
 
 
-    getAllSignal() {
-
-        this.findAll().subscribe({
+    getAllSignal(userId:IUserId) {
+        
+        this.bringInfoWithParams(userId).subscribe({
             next: (response: any) => {
+                
                 this.calendarEventSignal.set(response);
-                response.reverse();
+                console.log(response);
             },
             error: (error: any) => {
+                
                 console.error('Error fetching users', error);
             }
         });
@@ -89,8 +93,9 @@ export class CalendarEventService extends BaseService<ICalendarEvent> {
         );
     };
     
+    
     deleteCalendarEvent(event: ICalendarEvent): Observable<any> {
-        debugger
+        
         return this.logicDelete(event.eventId, event).pipe(
             tap((response: any) => {
                 const deletedUsers = this.calendarEventSignal().map(u => u.eventId === event.eventId ? response : u);

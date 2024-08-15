@@ -12,6 +12,7 @@ import { PlaceAutocompleteComponent } from '../place-autocomplete/place-autocomp
 
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { NotifyService } from '../../shared/notify/notify.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-calendar-event',
@@ -34,11 +35,12 @@ export class CalendarEventComponent {
   dialogTitle: string = '';
   isEdit: boolean = false;
 
-  calendarEventService = inject(CalendarEventService);
-  notifyService = inject(NotifyService);
+  calendarEventService    = inject(CalendarEventService);
+  notifyService           = inject(NotifyService);
+  userInformation         = inject(AuthService);
 
   eventNgmodel: ICalendarEvent;
-
+  userId: number = 0;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -58,9 +60,16 @@ export class CalendarEventComponent {
 
     if (form.valid) {
       if (this.isEdit) {
-        this.calendarEventService.updateCalendarEvent(this.eventNgmodel);
+        this.calendarEventService.updateCalendarEvent(this.eventNgmodel).subscribe(
+          () => this.notifyService.onSuccess()
+        );
+        
       } else {
-        this.calendarEventService.saveCalendarEvent(this.eventNgmodel);
+        debugger
+        this.eventNgmodel.creation_responsible = this.userInformation.getUserId();
+        this.calendarEventService.saveCalendarEvent(this.eventNgmodel).subscribe(() =>
+          this.notifyService.onSuccess()
+        );
       }
     } else {
       this.notifyService.onError();
@@ -75,7 +84,9 @@ export class CalendarEventComponent {
 
       if (result.value) {
 
-        this.calendarEventService.deleteCalendarEvent(this.eventNgmodel);
+        this.calendarEventService.deleteCalendarEvent(this.eventNgmodel).subscribe(() =>
+          this.notifyService.onSuccess()
+        );
       }
     });
     this.onClose();

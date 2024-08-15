@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, effect, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -18,6 +18,8 @@ import {
 import { CalendarEventComponent } from '../calendar-event/calendar-event.component';
 import { CalendarEventService } from '../../services/calendar-event.service';
 import { ICalendarEvent } from '../../interfaces/calendar-event.interface';
+import { AuthService } from '../../services/auth.service';
+import { IUserId } from '../../interfaces/user.interface';
 
 
 @Component({
@@ -38,39 +40,19 @@ import { ICalendarEvent } from '../../interfaces/calendar-event.interface';
 
 export class CalendarPlannerComponent implements OnInit {
 
-  dialog = inject(MatDialog);
-  calendarEventService = inject(CalendarEventService);
+  dialog                  = inject(MatDialog);
+  calendarEventService    = inject(CalendarEventService);
+  userInformation         = inject(AuthService);
 
   weeks: { day: number, events: ICalendarEvent[] }[][] = [];
-  month: number = new Date().getMonth();
-  year: number = new Date().getFullYear();
+  month: number           = new Date().getMonth();
+  year: number            = new Date().getFullYear();
 
-  eventsStore :ICalendarEvent[] = [
-    {
-      eventId: 1,
-      title               : 'Project Kickoff',
-      description         : 'Project Desc',
-      eventDate           : new Date('2024-08-03'),
-      userId              : 2, 
-      eventType           : 'Flight',
-      operational         : true,
-
-    },
-    {
-      eventId: 2,
-      title               : 'Weekly Meeting',
-      description         : 'Weekly Desc',
-      eventDate           : new Date('2024-08-07'),
-      userId              : 2, 
-      eventType           : 'Activity',
-      operational         : true,
-
-    }
-  ];
-
+  userId: IUserId           = { userId: 0 };
+  showCalendar : boolean    = false;
 
   calendarEvent:ICalendarEvent;
-  allCalendarEvents:ICalendarEvent [];
+  allCalendarEvents:ICalendarEvent []=[];
 
   monthNames: string[] = [
     'January',
@@ -89,13 +71,29 @@ export class CalendarPlannerComponent implements OnInit {
 
 
   constructor() {
+    this.userId.userId = this.userInformation.getUserId();
+    this.loadEvents()
     this.calendarEvent        =this.calendarEventService.onGetDefaultCalendarEvent();
-    this.allCalendarEvents    =this.calendarEventService.calendarEvent$();
   }
 
   ngOnInit(): void {
-    this.generateCalendar(this.month, this.year);
+    console.log('Calendar Planner Component');
   }
+
+  loadEvents () {
+
+    this.calendarEventService.getAllSignal(this.userId);
+    effect(() => {
+      
+      this.allCalendarEvents = this.calendarEventService.calendarEvent$();
+      
+      if (this.allCalendarEvents.length > 0 ) {
+        this.showCalendar = true;
+        this.generateCalendar(this.month, this.year);
+      }
+    });
+  };
+
 
 
 
@@ -113,10 +111,13 @@ export class CalendarPlannerComponent implements OnInit {
   
     for (let day = 1; day <= daysInMonth; day++) {
       const dateKey = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-      
-
-      const events = this.eventsStore.filter(event => {
-        const eventDateKey = event.eventDate.toISOString().split('T')[0];
+  
+      const events = this.allCalendarEvents.filter(event => {
+        if (!event || !event.eventDate) {
+          return false;
+        }
+        const eventDate = new Date(event.eventDate); 
+        const eventDateKey = eventDate.toISOString().split('T')[0];
         return eventDateKey === dateKey;
       });
   

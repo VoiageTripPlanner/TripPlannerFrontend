@@ -140,7 +140,7 @@ export class TripInformationComponent {
     this.tripNgModel.destination_city               = this.initialForm.q;  
     this.tripNgModel.returnDate                     = this.initialForm.return_date;
     this.tripNgModel.budget                         = this.tripBudget.total;
-    this.tripNgModel.currency                       = Number(this.userInfo.currencyId ?? 0);; //Falta implementar el servicio de currency
+    this.tripNgModel.currency                       = Number(this.userInfo.currencyId ); //Falta implementar el servicio de currency
     this.tripNgModel.lodge                          = this.lodgeSelected;
     this.tripNgModel.flight                         = this.flightSelected;
     this.tripNgModel.restaurants                    = this.foodSelectedlist;

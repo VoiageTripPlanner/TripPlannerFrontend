@@ -43,7 +43,6 @@ export class CalendarEventService extends BaseService<ICalendarEvent> {
             next: (response: any) => {
                 
                 this.calendarEventSignal.set(response);
-                console.log(response);
             },
             error: (error: any) => {
                 

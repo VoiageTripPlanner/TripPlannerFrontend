@@ -77,7 +77,6 @@ export class CalendarPlannerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('Calendar Planner Component');
   }
 
   loadEvents () {

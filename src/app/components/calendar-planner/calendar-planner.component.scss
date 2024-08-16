@@ -1,11 +1,16 @@
 /**
- * ALL the UI design credit goes to:
- * https://www.sketchappsources.com/free-source/2676-calendar-template-sketch-freebie-resource.html
- */
+* ALL the UI design credit goes to:
+* https://www.sketchappsources.com/free-source/2676-calendar-template-sketch-freebie-resource.html
+*/
 
 
 /* WRAPPER */
 
+body {
+  font-family: Montserrat;
+  font-weight: 100;
+  color: #A8B2B9;
+}
 
 //variables de color 
 $background-color-white: #ffffff;
@@ -68,11 +73,6 @@ $title-color: #6D3652;
   --red: #ED5454;
 }
 
-body {
-  font-family: Montserrat;
-  font-weight: 100;
-  color: #A8B2B9;
-}
 
 sidebar {
   background-color: white;

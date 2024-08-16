@@ -51,7 +51,6 @@ export class CalendarEventComponent {
 
     this.eventNgmodel = this.isEdit ? data.calendarEvent : this.calendarEventService.onGetDefaultCalendarEvent();
 
-    console.log(this.eventNgmodel)
 
   }
 

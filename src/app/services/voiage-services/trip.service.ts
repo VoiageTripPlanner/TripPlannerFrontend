@@ -8,6 +8,7 @@ import { LodgeService } from './lodge.service';
 import { FlightService } from './flights.service';
 import { FoodService } from './food.service';
 import { ActivityService } from './activityService';
+import { NotifyService } from '../../shared/notify/notify.service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,8 @@ export class TripService extends BaseService<ITripForm> {
   flightService           = inject(FlightService);
   foodService             = inject(FoodService);
   activitiesService       = inject(ActivityService);
-  
+  notifyService           = inject(NotifyService);
+
   protected override source: string = 'trip';
   private storageKey      = 'tripFormData';
 
@@ -105,9 +107,11 @@ export class TripService extends BaseService<ITripForm> {
     return this.add(event).pipe(
       tap((response: any) => {
         this.tripSignal.update(() => response );
+        this.notifyService.onCustomSimpleNotify('All good...', 'Trip Saved !'); 
       }),
       catchError(error => {
         console.error('Error saving user', error);
+        this.notifyService.onCustomErrorNotify('Something goes wrong !', 'Error !'); 
         return throwError(error);
       })
     );

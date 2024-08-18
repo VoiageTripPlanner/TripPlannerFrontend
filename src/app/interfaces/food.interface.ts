@@ -2,16 +2,17 @@ import { ILocationMark } from "./location-mark.interface";
 
 export interface IVoiageRestaurant{
 
-    restaurant_id            : number;
-    trip_id?                 : number;  //revisar si lo espera o no en el backend
+
+    restaurantId             : number;
     name                     : string;
     description              : string;
-    average_price            : number;
-    location_mark            : ILocationMark;   //TODO: REVISAR ESTO CON Ilocation
+    tripId?                  : number;  //revisar si lo espera o no en el backend
+    averagePrice             : number;
+    locationMark             : ILocationMark;   //TODO: REVISAR ESTO CON Ilocation
 
     //Atributo que no persite en la bd
     yelpId?                  : string;
-    restaurant_image?        : string;
+    restaurantImage?         : string;
 
 
     //Propiedades de auditoria

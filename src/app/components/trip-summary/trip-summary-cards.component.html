@@ -54,13 +54,13 @@
     <div class="information-container">
 
         <div class="align-boxes space-between">
-            <h1 class="bold-text font-size-title">{{lodgeSelected?.lodge_name || 'No info'}}</h1>
+            <h1 class="bold-text font-size-title">{{lodgeSelected?.lodgeName || 'No info'}}</h1>
             <h1 class="move-to-right  bold-text font-size-title ">Total: {{tripBudget?.lodgeAmount || 'No info'}}</h1>
         </div>
 
         <div class="align-boxes space-between">
             <h3>Stats: {{lodgeSelected?.totalRate || 'No info'}}/5</h3>
-            <h3 class="move-to-right">Price per night: {{lodgeSelected?.night_price || 'No info'}}</h3>
+            <h3 class="move-to-right">Price per night: {{lodgeSelected?.nightPrice || 'No info'}}</h3>
         </div>
 
         <div class="width-100">
@@ -109,7 +109,7 @@
 
     <div class="image-container">
         @if(foodSelectedlist && foodSelectedlist.length){
-        <img [src]="foodSelectedlist[0].restaurant_image" alt="ImageFood" (error)="onImageError($event)">
+        <img [src]="foodSelectedlist[0].restaurantImage" alt="ImageFood" (error)="onImageError($event)">
         }@else{
         <img src="../../../../assets/img/No_image_available.png" alt="ImageHotel">
         }

@@ -1,7 +1,5 @@
 //Ordenar y comparar con los datos que necesito el backend
 export interface IFlights{
-    departure_airport?              : Airport;
-    arrival_airport?                : Airport;
     duration?                       : number;
     airline?                        : string;
     airline_logo?                   : string;
@@ -9,12 +7,15 @@ export interface IFlights{
     flight_number?                  : string;
     outbound_date?                  : Date;
     return_date?                    : Date;
+    created_at?                     : string;
+    booking_token?                  : string;
+    google_flights_link?            : string;
+    isLayover                       : boolean;
     total_duration?                 : number;
     price?                          : number;
     type?                           : string;
-    booking_token?                  : string;
-    google_flights_url?             : string;
-    created_at?                     : string;
+    departure_airport?              : Airport;
+    arrival_airport?                : Airport;
 }
 
 export interface Airport {  
@@ -26,24 +27,24 @@ export interface Airport {
 
 export interface IVoiageFlight{
     flight_id                       : number;
-    departure_airport               : Airport;
-    arrival_airport                 : Airport;
+    duration                        : number;
     airline                         : string;
     airline_logo                    : string;
     travel_class                    : string;
     flight_number                   : string;
-    start_date                      : Date;
-    end_date                        : Date;
-    booking_token                   : string;
-    price                           : number;
-    type                            : string;
-    isLayover                       : boolean;
-    duration                        : number;
     outbound_date                   : Date;
     return_date?                    : Date;
+    booking_token                   : string;
     google_flights_link             : string;
+    isLayover                       : boolean;
     total_duration                  : number;
+    price                           : number;
+    type                            : string;
+    departure_airport               : Airport;
+    arrival_airport                 : Airport;
     layovers                        : IFlights[];
+    start_date                      : Date;
+    end_date                        : Date;
 
     //Propiedades de auditoria
     created_at                      : Date;

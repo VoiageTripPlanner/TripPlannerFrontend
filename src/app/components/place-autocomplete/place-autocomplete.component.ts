@@ -67,7 +67,7 @@ export class PlaceAutocompleteComponent implements OnInit {
           latitude: place?.geometry?.location?.lat() ?? 0,
           longitude: place?.geometry?.location?.lng() ?? 0, 
           rating: place?.rating,
-          pricelevel: place?.price_level, 
+          priceLevel: place?.price_level, 
           website: place?.website,          
         };
         this.placeChanged.emit(result);
@@ -125,7 +125,7 @@ export class PlaceAutocompleteComponent implements OnInit {
                   location: placeDetails.geometry?.location,
                   imageUrl: this.getPhotoUrl(placeDetails),
                   rating: placeDetails?.rating,
-                  pricelevel: placeDetails?.price_level,
+                  priceLevel: placeDetails?.price_level,
                   website: placeDetails.website || '',
                 });
               } else {

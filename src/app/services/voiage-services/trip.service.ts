@@ -2,7 +2,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { BaseService } from '../base-service';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { ICountry } from '../../interfaces/country.interface';
-import { ITripForm,ITrip } from '../../interfaces/trip.interface';
+import { ITripForm, ITrip } from '../../interfaces/trip.interface';
 import { IVoiageRestaurant } from '../../interfaces/food.interface';
 import { LodgeService } from './lodge.service';
 import { FlightService } from './flights.service';
@@ -13,23 +13,30 @@ import { ActivityService } from './activityService';
   providedIn: 'root',
 })
 export class TripService extends BaseService<ITripForm> {
-
+  lodgeService            = inject(LodgeService);
+  flightService           = inject(FlightService);
+  foodService             = inject(FoodService);
+  activitiesService       = inject(ActivityService);
+  
   protected override source: string = 'trip';
-  private storageKey = 'tripFormData';
+  private storageKey      = 'tripFormData';
 
+  
+  
   private tripFormSignal = signal<ITripForm>(this.onGetDefaultTripForm());
-
-  lodgeService=inject(LodgeService);
-  flightService=inject(FlightService);
-  foodService=inject(FoodService);
-  activitiesService=inject(ActivityService);
-
+  private tripSignal = signal<ITrip>(this.onGetDefaultTrip());
 
   get tripForm$() {
     return this.tripFormSignal;
   };
 
-  onGetDefaultTripForm (){
+  get trip$() {
+    return this.tripSignal;
+  };
+
+
+
+  onGetDefaultTripForm() {
 
     const getNextDay = (): Date => {
       const today = new Date();
@@ -42,19 +49,19 @@ export class TripService extends BaseService<ITripForm> {
     };
 
 
-    const defaultValue:ITripForm={
-      q:                '',
-      check_in_date:    getNextDay(),
-      check_out_date:   getTowDaysAhead(),
-      latitude:         this.getLatitudeDestination(),
-      longitude:        this.getLongitudeDestination(),
-      departure_id:     '',
-      arrival_id:       '',
-      outbound_date:    getNextDay(),
-      return_date:      getNextDay(),
-      stops:            0,
-      type:             1,
-      travel_class:     1,
+    const defaultValue: ITripForm = {
+      q: '',
+      check_in_date: getNextDay(),
+      check_out_date: getTowDaysAhead(),
+      latitude: this.getLatitudeDestination(),
+      longitude: this.getLongitudeDestination(),
+      departure_id: '',
+      arrival_id: '',
+      outbound_date: getNextDay(),
+      return_date: getNextDay(),
+      stops: 0,
+      type: 1,
+      travel_class: 1,
     }
 
     return defaultValue;
@@ -62,7 +69,7 @@ export class TripService extends BaseService<ITripForm> {
   };
 
 
-  setInitialForm(data:ITripForm){
+  setInitialForm(data: ITripForm) {
     this.tripFormSignal.set(data);
   };
 
@@ -93,11 +100,24 @@ export class TripService extends BaseService<ITripForm> {
     localStorage.setItem(this.storageKey, JSON.stringify(formData));
   };
 
+  saveTrip(event: ITrip): Observable<any> {
+    
+    return this.add(event).pipe(
+      tap((response: any) => {
+        this.tripSignal.update(() => response );
+      }),
+      catchError(error => {
+        console.error('Error saving user', error);
+        return throwError(error);
+      })
+    );
+  };
+
   getFormData(): ITripForm {
     const formDataString = localStorage.getItem(this.storageKey);
     if (formDataString) {
       const formData = JSON.parse(formDataString);
-      
+
       // Convertir los Dates
       formData.check_in_date = new Date(formData.check_in_date);
       formData.check_out_date = new Date(formData.check_out_date);
@@ -111,31 +131,35 @@ export class TripService extends BaseService<ITripForm> {
 
 
   //Valores por defecto para un trip
-    
-  onGetDefaultTrip(){
-    
+
+  onGetDefaultTrip() {
+
     const getNextDay = (): Date => {
       const today = new Date();
       return new Date(today.setDate(today.getDate() + 3));
     };
 
-    const defaultValue:ITrip={
-      trip_id                         : 0,
-      trip_name                       : '',
-      trip_description                : '',
-      departureDate                   : getNextDay(),
-      destination_city                : '',
-      returnDate                      : getNextDay(),
-      lodge                           : this.lodgeService.onGetDefaultVoiageLodge(),
-      flight                          : this.flightService.onGetDefaultVoiageFlight(),
-      restaurants                      : this.foodService.onGetDefaultVoiageRestaurantList(),
-      activities                      : this.activitiesService.onGetDefaultVoiageActivities(),
-      user                         : 0,
-      creation_datetime               : getNextDay(),
-      creation_responsible            : 0
+    const defaultValue: ITrip = {
+      tripId: 0,
+      name: '',
+      description: '',
+      departureDate: getNextDay(),
+      destinationCity: '',
+      returnDate: getNextDay(),
+      lodge: this.lodgeService.onGetDefaultVoiageLodge(),
+      flight: this.flightService.onGetDefaultVoiageFlight(),
+      restaurants: this.foodService.onGetDefaultVoiageRestaurantList(),
+      activities: this.activitiesService.onGetDefaultVoiageActivities(),
+      user: 0,
+      creationDatetime: getNextDay(),
+      creationResponsible: 0
+
+
+
     }
 
     return defaultValue;
   };
 
 }
+

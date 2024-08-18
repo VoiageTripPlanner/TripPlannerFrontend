@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { BaseService } from '../base-service';
-import { Airport, IVoiageFlight } from '../../interfaces/flights.interface';
+import { Airport, IFlights, IVoiageFlight } from '../../interfaces/flights.interface';
 import { NotifyService } from '../../shared/notify/notify.service';
 
 
@@ -32,6 +32,7 @@ export class FlightService extends BaseService<IVoiageFlight>   {
       flight_id               : 0,
       departure_airport       : this.onGetDefaultAirports(),
       arrival_airport         : this.onGetDefaultAirports(),
+      return_date             : new Date('1900-01-01'),
       airline                 : '',
       airline_logo            : '',
       travel_class            : '',
@@ -46,14 +47,44 @@ export class FlightService extends BaseService<IVoiageFlight>   {
       outbound_date           : getNextDay(),
       google_flights_link     : '',
       total_duration          : 0,
-      layovers                : [],
+      layovers                : this.onGetDefaultLayoversList(),
       created_at              : new Date()
+      
 
     }
 
     return defaultValue;
 
   };
+
+
+  onGetDefaultLayover(){
+
+  const defaultLayover:IFlights = {
+    duration                       : 0,
+    airline                        : '',
+    airline_logo                   : '',
+    travel_class                   : '',
+    flight_number                  : '',
+    return_date                    : new Date('1900-01-01'),
+    outbound_date                  : new Date('1900-01-01'),
+    created_at                     : '',
+    booking_token                  : '',
+    google_flights_link            : '',
+    isLayover                       : false,
+    total_duration                 : 0,
+    price                          : 0,
+    type                           : '',
+    departure_airport              : this.onGetDefaultAirports(),
+    arrival_airport                : this.onGetDefaultAirports(),
+  }
+
+  return defaultLayover;
+}
+
+onGetDefaultLayoversList(){
+  return [this.onGetDefaultLayover()];
+}
 
   onGetDefaultAirports(){
       

@@ -23,7 +23,7 @@ import { IActivity } from '../../interfaces/activities.interface';
   
     removeItem(itemId: string): void {
       let items = this.getActivities();
-      items = items.filter(item => item.id !== itemId);
+      items = items.filter(item => item.id!== itemId);
       localStorage.setItem(this.storageKey, JSON.stringify(items));
     }
   

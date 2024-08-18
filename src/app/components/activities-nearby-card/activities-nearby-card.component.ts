@@ -24,14 +24,19 @@ export class ActivitiesNearbyCardComponent implements OnInit {
 
   @Input() places: IPlaceSearchResult[] = [];
   @Output() onPlaceSelected = new EventEmitter<IPlaceSearchResult>();
+
+
   notifyService = inject(NotifyService);
   budgetService = inject(BudgetService);
   activityService = inject(ActivityService);  // Inyecta el servicio
+
+  activitySelected:IActivity[];
 
   constructor(
     private router: Router,
   ) {
     this.onNearbyPlacesFound(this.places);
+    this.activitySelected = this.activityService.onGetDefaultVoiageActivitiesList();
   }
 
   trackByIndex(index: number, places: IGoogleResponse): number {
@@ -87,6 +92,21 @@ export class ActivitiesNearbyCardComponent implements OnInit {
 
   checkboxChange(activityNearby: IActivity, event: any): void {
 
+    activityNearby.iconUrl = '';
+    
+    const lat = (activityNearby.location as any).lat;
+    const lng = (activityNearby.location as any).lng;
+    
+    if (typeof lat === 'number' && typeof lng === 'number') {
+      activityNearby.latitude = lat;
+      activityNearby.longitude = lng;
+    } else {
+      activityNearby.latitude = 0;
+      activityNearby.longitude = 0;
+    }
+
+    activityNearby.priceLevel = 0;
+
     if (event.target.checked) {
       this.activityService.addItem(activityNearby);  
       this.notifyService.onCustomSimpleNotify('Added to the list', 'The activity has been added to the list');
@@ -99,4 +119,6 @@ export class ActivitiesNearbyCardComponent implements OnInit {
       }
     }
   }
+
+
 }

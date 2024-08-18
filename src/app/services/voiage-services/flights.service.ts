@@ -68,7 +68,7 @@ export class FlightService extends BaseService<IVoiageFlight>   {
     flight_number                  : '',
     return_date                    : new Date('1900-01-01'),
     outbound_date                  : new Date('1900-01-01'),
-    created_at                     : '',
+    created_at                     : new Date(),
     booking_token                  : '',
     google_flights_link            : '',
     isLayover                       : false,
@@ -77,6 +77,7 @@ export class FlightService extends BaseService<IVoiageFlight>   {
     type                           : '',
     departure_airport              : this.onGetDefaultAirports(),
     arrival_airport                : this.onGetDefaultAirports(),
+    
   }
 
   return defaultLayover;

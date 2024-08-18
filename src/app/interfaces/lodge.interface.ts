@@ -12,7 +12,7 @@ export interface IVoiageLodge{
     images?                      : string;
     type                         : string;
     amenities?                   : string;
-    total_price                  : number;
+    totalPrice                  : number;
     
     //Propiedades de auditoria
     operational                  : boolean;

@@ -7,7 +7,7 @@ export interface IFlights{
     flight_number?                  : string;
     outbound_date?                  : Date;
     return_date?                    : Date;
-    created_at?                     : string;
+    created_at?                     : Date;
     booking_token?                  : string;
     google_flights_link?            : string;
     isLayover                       : boolean;

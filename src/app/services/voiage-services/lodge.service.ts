@@ -38,7 +38,7 @@ export class LodgeService extends BaseService<IVoiageLodge>   {
       totalRate                    : 0,
       type                         : '',
       operational                  : true,
-      total_price                  : 0,
+      totalPrice                  : 0,
       creationDatetime             : new Date(),
       creationResponsible          : 0,
       lastUpdateDatetime           : new Date('1900-01-01'),

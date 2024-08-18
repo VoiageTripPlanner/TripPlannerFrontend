@@ -147,7 +147,7 @@ export class LodgeCardComponent {
     this.lodgeSelected.images                       = googleLodge.images![0]?.original_image|| "./assets/img/No_image_available.png";
     this.lodgeSelected.type                         = googleLodge.type|| '';
     this.lodgeSelected.amenities                    = googleLodge.amenities?.join(', ')|| '';
-    this.lodgeSelected.total_price                  = googleLodge.total_rate?.extracted_lowest|| 0 ;
+    this.lodgeSelected.totalPrice                  = googleLodge.total_rate?.extracted_lowest|| 0 ;
     this.lodgeSelected.creationResponsible          = this.userId;
     this.lodgeSelected.creationDatetime             = new Date();
     this.lodgeSelected.operational                  = true;

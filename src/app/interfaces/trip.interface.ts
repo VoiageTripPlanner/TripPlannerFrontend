@@ -6,7 +6,7 @@ import { IFoodBusiness } from "./yelp-food-response.interface";
 import { IActivity } from './activities.interface';
 import { IVoiageRestaurant } from "./food.interface";
 
-export interface ITripForm{
+export interface ITripForm {
     q:                  string;
     check_in_date:      Date;
     check_out_date:     Date;
@@ -26,16 +26,16 @@ export interface ITrip{
     trip_name:          string;
     trip_description:   string;
     departure_city?:    string;
-    departure_date:     Date;
+    departureDate:      Date;
     destination_city:   string;
-    return_date?:        Date;
+    returnDate?:        Date;
     budget? :           number;
-    currency?:          ICurrency;
+    currency?:          number;
     lodge:              IVoiageLodge; 
     flight:             IVoiageFlight; // IFlights: ver lo de separarlo en departure y return flight
-    food:               IVoiageRestaurant[]; 
+    restaurants:        IVoiageRestaurant[]; 
     activities:         IActivity[] 
-    user_id:            number;
+    user:               number;
     ai_suggestions?:    string;
 
 

@@ -164,7 +164,7 @@ export class FlightCardComponent {
     this.flightSelected.price                           = Number(googleFlight.price) || 0;
     this.flightSelected.type                            = googleFlight.type || " ";
     // this.flightSelected.is_layover                      =
-    this.flightSelected.total_duration                  =googleFlight.total_duration || 0;
+    this.flightSelected.duration                  =googleFlight.total_duration || 0;
 
 
     return this.flightSelected;

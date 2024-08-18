@@ -13,6 +13,3 @@ export interface IActivity{
     website?: string;
 }
 
-
-// export interface IVoigeActivity{
-// }

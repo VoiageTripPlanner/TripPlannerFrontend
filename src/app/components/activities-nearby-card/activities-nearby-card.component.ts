@@ -61,8 +61,6 @@ export class ActivitiesNearbyCardComponent implements OnInit {
 
   onNearbyPlacesFound(places: IPlaceSearchResult[]) {
     
-    
-
     this.fromNearbyPlaces = places;
 
     this.allNearbyPlaces = [...this.fromNearbyPlaces];
@@ -78,7 +76,7 @@ export class ActivitiesNearbyCardComponent implements OnInit {
       if (storedPlace) {
         this.fromValue = JSON.parse(storedPlace);
       }
-    }
+     }
 
   visitSite(url: string | undefined): void {
       if (url) {

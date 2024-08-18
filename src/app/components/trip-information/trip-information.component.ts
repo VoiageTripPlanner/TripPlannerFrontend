@@ -105,8 +105,8 @@ export class TripInformationComponent {
           console.log(this.tripNgModel); 
           
           
-          this.removeLocalStorage()  //descomentar luego de implmentar el servicio de guardar trip 
-          this.router.navigateByUrl('/app/dashboard')
+          // this.removeLocalStorage()  //descomentar luego de implmentar el servicio de guardar trip 
+          // this.router.navigateByUrl('/app/dashboard')
         };
       });
     }else{

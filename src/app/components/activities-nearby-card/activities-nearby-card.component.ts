@@ -90,12 +90,32 @@ export class ActivitiesNearbyCardComponent implements OnInit {
         }
   };
 
-  checkboxChange(activityNearby: IActivity, event: any): void {
+  checkboxChange(placeNearby: IPlaceSearchResult, event: any): void {
 
-    activityNearby.iconUrl = '';
+    const activitySelected=this.activityFilterInfo(placeNearby);
+
+
+
+    if (event.target.checked) {
+      this.activityService.addItem(activitySelected);  
+      this.notifyService.onCustomSimpleNotify('Added to the list', 'The activity has been added to the list');
+
+    } else {
+      if (activitySelected.googleId) {
+
+        this.activityService.removeItem(activitySelected.googleId);
+        this.notifyService.onCustomSimpleNotify('Removed from the list', 'The restaurant has been removed of the list');
+      }
+    }
+  }
+
+  activityFilterInfo(placeNearby: IPlaceSearchResult): IActivity {
+
+    const activityNearby: IActivity=this.activityService.onGetDefaultVoiageActivities();
+
     
-    const lat = (activityNearby.location as any).lat;
-    const lng = (activityNearby.location as any).lng;
+    const lat = (placeNearby.location as any).lat;
+    const lng = (placeNearby.location as any).lng;
     
     if (typeof lat === 'number' && typeof lng === 'number') {
       activityNearby.latitude = lat;
@@ -104,20 +124,20 @@ export class ActivitiesNearbyCardComponent implements OnInit {
       activityNearby.latitude = 0;
       activityNearby.longitude = 0;
     }
+    
 
-    activityNearby.priceLevel = 0;
+    activityNearby.address      = placeNearby.address;
+    activityNearby.imageUrl     = placeNearby.imageUrl;
+    activityNearby.googleId     = placeNearby.id;
+    activityNearby.name         = placeNearby.name;
+    activityNearby.rating       = placeNearby.rating;
+    activityNearby.website      = placeNearby.website;
+    activityNearby.priceLevel   = placeNearby.pricelevel;
 
-    if (event.target.checked) {
-      this.activityService.addItem(activityNearby);  
-      this.notifyService.onCustomSimpleNotify('Added to the list', 'The activity has been added to the list');
+    activityNearby.iconUrl      = '';
 
-    } else {
-      if (activityNearby.id) {
 
-        this.activityService.removeItem(activityNearby.id);
-        this.notifyService.onCustomSimpleNotify('Removed from the list', 'The restaurant has been removed of the list');
-      }
-    }
+    return activityNearby;
   }
 
 

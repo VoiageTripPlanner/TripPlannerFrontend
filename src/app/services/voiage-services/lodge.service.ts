@@ -28,7 +28,6 @@ export class LodgeService extends BaseService<IVoiageLodge>   {
     };
 
     const defaultValue: IVoiageLodge = {
-      lodgeId                      : 0,
       lodgeName                    : '',
       description                  : '',
       checkIn                      : getNextDay(),

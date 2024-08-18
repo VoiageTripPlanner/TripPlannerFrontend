@@ -24,7 +24,7 @@ export class ActivityService extends BaseService<IActivity> {
 
   removeItem(itemId: string): void {
     let items = this.getActivities();
-    items = items.filter(item => item.id !== itemId);
+    items = items.filter(item => item.googleId !== itemId);
     localStorage.setItem(this.storageKey, JSON.stringify(items));
   }
 
@@ -36,7 +36,7 @@ export class ActivityService extends BaseService<IActivity> {
   onGetDefaultVoiageActivities() {
     const defaultValue: IActivity = {
       address: '',
-      id: '',
+      googleId: '',
       name: '',
       location: undefined,
       imageUrl: '',
@@ -45,7 +45,6 @@ export class ActivityService extends BaseService<IActivity> {
       rating: 0,
       priceLevel: 0,
       website: '',
-      activityId: 0
     };
     return defaultValue;
   }

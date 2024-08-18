@@ -1,9 +1,8 @@
 export interface IActivity{
-
-    activityId?             : number;
-
+    
+    id?                     : number;
     address                 : string;
-    id?                     : string;  
+    googleId?               : string;  
     imageUrl?               : string;
     latitude?               : number;
     longitude?              : number;

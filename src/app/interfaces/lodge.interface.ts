@@ -1,5 +1,5 @@
 export interface IVoiageLodge{
-    lodgeId                      : number;
+    lodgeId?                     : number;
     lodgeName                    : string;
     description                  : string;
     checkIn                      : Date;

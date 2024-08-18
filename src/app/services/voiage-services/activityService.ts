@@ -23,7 +23,7 @@ import { IActivity } from '../../interfaces/activities.interface';
   
     removeItem(itemId: string): void {
       let items = this.getActivities();
-      items = items.filter(item => item.id!== itemId);
+      items = items.filter(item => item.googleId!== itemId);
       localStorage.setItem(this.storageKey, JSON.stringify(items));
     }
   
@@ -37,7 +37,7 @@ import { IActivity } from '../../interfaces/activities.interface';
       return [
         {
           address: '',
-          id: '',
+          id: 0,
           name: '',
           location: undefined,
           imageUrl: '',
@@ -45,7 +45,8 @@ import { IActivity } from '../../interfaces/activities.interface';
           longitude: 0,
           rating: 0,
           pricelevel: 0,
-          website: ''
+          website: '',
+          googleId: ''
       }
       ];  
   };

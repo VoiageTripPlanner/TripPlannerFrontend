@@ -32,7 +32,6 @@ export class FoodService extends BaseService<IVoiageRestaurant>   {
   onGetDefaultVoiageRestaurant(){
 
       const defaultValue:IVoiageRestaurant={
-        restaurantId                 : 0,
         name                          : '',
         description                   : '',
         averagePrice                 : 0,

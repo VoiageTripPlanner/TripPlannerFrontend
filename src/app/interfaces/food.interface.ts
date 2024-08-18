@@ -3,7 +3,7 @@ import { ILocationMark } from "./location-mark.interface";
 export interface IVoiageRestaurant{
 
 
-    restaurantId             : number;
+    restaurantId?            : number;
     name                     : string;
     description              : string;
     tripId?                  : number;  //revisar si lo espera o no en el backend

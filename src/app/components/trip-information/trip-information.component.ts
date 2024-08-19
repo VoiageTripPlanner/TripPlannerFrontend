@@ -96,10 +96,17 @@ export class TripInformationComponent {
       
           
           this.assignTripData();
+          this.tripService.saveTrip(this.tripNgModel).subscribe(
+            () => {
+              this.notifyService.onCustomSimpleNotify('Trip Saved', 'The trip information has been saved successfully');
+            }
+          )
+          
           console.log(this.tripNgModel); 
-      
-          // this.removeLocalStorage()  //descomentar luego de implmentar el servicio de guardar trip 
-          // this.router.navigateByUrl('/app/dashboard')
+          
+          
+          this.removeLocalStorage() 
+          this.router.navigateByUrl('/app/dashboard')
         };
       });
     }else{
@@ -137,19 +144,19 @@ export class TripInformationComponent {
   assignTripData(){
 
     this.tripNgModel.departureDate                  = this.initialForm.outbound_date;
-    this.tripNgModel.destination_city               = this.initialForm.q;  
+    this.tripNgModel.destinationCity                = this.initialForm.q;  
     this.tripNgModel.returnDate                     = this.initialForm.return_date;
     this.tripNgModel.budget                         = this.tripBudget.total;
-    this.tripNgModel.currency                       = Number(this.userInfo.currencyId ); //Falta implementar el servicio de currency
+    this.tripNgModel.currency                       = Number(this.userInfo.currencyId ); 
     this.tripNgModel.lodge                          = this.lodgeSelected;
     this.tripNgModel.flight                         = this.flightSelected;
     this.tripNgModel.restaurants                    = this.foodSelectedlist;
     this.tripNgModel.activities                     = this.activitiesSelectedList; 
     this.tripNgModel.user                           = this.userId;
-    this.tripNgModel.ai_suggestions                 = ''; //Para cuando se implemente AI
+    this.tripNgModel.aiSuggestion                   = ''; //Para cuando se implemente AI
     // this.tripNgModel.ai_suggestions               =this.aiSuggestions; //Para cuando se implemente AI
-    this.tripNgModel.creation_datetime              = new Date(); 
-    this.tripNgModel.creation_responsible           = this.userId;
+    this.tripNgModel.creationDatetime               = new Date(); 
+    this.tripNgModel.creationResponsible            = this.userId;
 
   }
 

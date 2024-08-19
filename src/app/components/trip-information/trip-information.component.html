@@ -7,11 +7,11 @@
         <div class="form-group margin-bottom-10">
             <label for="tripName" class="margin-bottom-3 font-size-label">Trip Name</label>
             <input type="text" class="form-control" aria-describedby="tripName"
-                placeholder="Write the name of your trip" [(ngModel)]="tripNgModel.trip_name" [ngClass]="{
-                'is-invalid': trip_name.invalid && trip_name.touched,
-                'is-valid': trip_name.valid && trip_name.touched
-            }" name="trip_name" id="trip_name" #trip_name="ngModel" maxlength="100" required>
-            <div *ngIf="trip_name.invalid" class="invalid-feedback">
+                placeholder="Write the name of your trip" [(ngModel)]="tripNgModel.name" [ngClass]="{
+                'is-invalid': name.invalid && name.touched,
+                'is-valid': name.valid && name.touched
+            }" name="name" id="name" #name="ngModel" maxlength="100" required>
+            <div *ngIf="name.invalid" class="invalid-feedback">
                 Please enter a trip name
             </div>
         </div>
@@ -20,12 +20,12 @@
         <div class="form-group margin-bottom-10">
             <label for="tripDescription" class="margin-bottom-3 font-size-label">Trip Description</label>
             <textarea class="form-control" aria-label="With textarea" placeholder="Write the description of your trip"
-                [(ngModel)]="tripNgModel.trip_description" [ngClass]="{
-                'is-invalid': trip_description.invalid && trip_description.touched,
-                'is-valid': trip_description.valid && trip_description.touched
-            }" name="trip_description" id="trip_description" #trip_description="ngModel" maxlength="300" required></textarea>
+                [(ngModel)]="tripNgModel.description" [ngClass]="{
+                'is-invalid': description.invalid && description.touched,
+                'is-valid': description.valid && description.touched
+            }" name="description" id="description" #description="ngModel" maxlength="300" required></textarea>
 
-            <div *ngIf="trip_description.invalid" class="invalid-feedback">
+            <div *ngIf="description.invalid" class="invalid-feedback">
                 Please enter a trip description
             </div>
         </div>

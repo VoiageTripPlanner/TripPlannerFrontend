@@ -38,7 +38,7 @@ $demo-angular-front-theme: mat.define-light-theme((
 $custom-gradient: linear-gradient(to bottom, #2D2230, #1D0F1C, #4B2137,);
 
 :root {
-  --theme-default: #FADCD4;
+  --theme-default: #775D68;
   --theme-secondary: #4B2137;
   --light-background: rgba(242, 243, 247, 0.7);
   --body-font-color: #2f2f3b;
@@ -91,16 +91,14 @@ body[class="dark-only"] {
 //end template styles
 
 body {
-  overflow: hidden;
-  background-image: $custom-gradient;
+  background-image: $custom-gradient !important;
   background-size: cover;
   background-repeat: no-repeat;
+  margin: 0; font-family: "Roboto Flex", sans-serif;
 }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 html {
   height: 100%;
-  background-image: $custom-gradient;
 }	
 
 .error-snackbar .mdc-snackbar__surface{

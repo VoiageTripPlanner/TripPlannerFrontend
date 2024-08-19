@@ -142,7 +142,7 @@ div .header-wrapper {
     top: $main-header-top;
     z-index: $main-header-z-index;
     transition: $sidebar-transition;
-    background-color: $white;
+    //background-color: $white;
     box-shadow: $main-header-shadow-1;
     .header-wrapper {
       width: 100%;
@@ -153,7 +153,7 @@ div .header-wrapper {
         padding: 22px 20px;
       }
       .search-full {
-        background-color: $white;
+        //background-color: $white;
         position: absolute;
         right: 0;
         z-index: 3;
@@ -164,7 +164,7 @@ div .header-wrapper {
         top: 0;
         .Typeahead-menu {
           top: 90%;
-          background: $white;
+          //background: $white;
           width: calc(100% - 20px);
           left: 50%;
           transform: translateX(-50%);
@@ -296,7 +296,7 @@ div .header-wrapper {
               padding: 2px 4px;
               font-size: 11px;
               font-weight: 700;
-              font-family: work-Sans, sans-serif;
+              font-family: "Roboto Flex", sans-serif;
             }
 
             span {
@@ -405,7 +405,7 @@ div .header-wrapper {
             }
 
             .front {
-              background-color: $white;
+              //background-color: $white;
               transition: 0.3s;
 
               svg {
@@ -420,7 +420,7 @@ div .header-wrapper {
             }
 
             .back {
-              background-color: $white;
+              //background-color: $white;
               transform: rotateY(180deg);
               .Typeahead-menu {
                 max-height: 150px;
@@ -609,7 +609,7 @@ div .header-wrapper {
               }
               .btn {
                 padding: 0px 7px;
-                background-color: $off-white !important;
+                //background-color: $off-white !important;
                 border-color: $off-white !important;
                 border-radius: 100%;
                 font-size: 14px;
@@ -620,7 +620,7 @@ div .header-wrapper {
           .total {
             margin: 0;
             padding: 15px;
-            background-color: #f9f9f9;
+            //background-color: #f9f9f9;
             border: none;
             h6 {
               font-family: $font-roboto, $font-serif;
@@ -652,7 +652,7 @@ div .header-wrapper {
             width: calc(100vw - 30px);
           }
           li {
-            background-color: #f9f9f9;
+            //background-color: #f9f9f9;
             border-radius: 5px;
             &:last-child {
               text-align: center;
@@ -732,7 +732,7 @@ div .header-wrapper {
   }
 
   .page-body-wrapper {
-    background-color: $main-body-color;
+    background-color: $line-gradient;
 
     .page-body {
       $extra-height: $header-size + $footer-height;

@@ -6,13 +6,26 @@ $sidebar-color:#4B2137;
 $text-color: #ffffff; 
 $hover-background-color: #FADCD4; 
 $hover-background-color2: #775D68; 
-$active-background-color: #6D3C52; 
+$active-background-color: #6D3C52;
+//Variables de color 
+$neutro-color-main:#1D0F1C;
+$neutro-color-second: #2D2230;
+$middle-color-main:#4B2137;
+$middle-color-second:#6D3C52;
+$light-color-main: #FADCD4;
+$light-color-second: #775D68;
+//Line gradient
+$line-gradient: linear-gradient(to right, rgba(255, 255, 255, 0.1), #FADCD4, rgba(255, 255, 255, 0.1));
 
 .yeseva-one-regular {
   font-family: "Yeseva One", serif;
   font-weight: 400;
   font-style: normal;
+  color: white;
+  text-align: center;
+  font-size: 8vh !important;
 }
+
 
 .font-size-4{
     font-size: 4vh;
@@ -24,7 +37,11 @@ $active-background-color: #6D3C52;
 
 .button{
   background-color: $background-color;
-  border:#FADCD4
+  border:#FADCD4;
 }
 
-.button:hover {background-color: $hover-background-color2}
+.button:hover {
+  background-color: #FADCD4;
+  color: $background-color;
+  font-weight: bold;
+}

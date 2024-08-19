@@ -6,31 +6,31 @@
     <div class="information-container">
 
         <div class="align-boxes space-between">
-            <h1 class="bold-text font-size-title">{{flightSelected?.airline || 'N/A'}}</h1>
+            <h1 class="bold-text font-size-title">{{flightSelected?.airline || 'No info'}}</h1>
             <h2 class="bold-text font-size-title move-to-right ">Price: $ {{tripBudget?.flightAmount || 0}} </h2>
 
         </div>
 
         <div class="align-boxes space-between">
-            <h1 class="bold-text font-size-subtitle">{{flightSelected?.departure_airport || 'N/A'}}</h1>
-            <h1 class="move-to-right  bold-text font-size-subtitle">{{flightSelected?.arrival_airport || 'N/A' }}</h1>
+            <h1 class="bold-text font-size-subtitle">{{flightSelected?.departure_airport?.name || 'No info'}}</h1>
+            <h1 class="move-to-right  bold-text font-size-subtitle">{{flightSelected?.arrival_airport?.name || 'No info' }}</h1>
         </div>
 
 
         <div class="align-boxes space-between">
-            <h3>Departure: {{initialForm?.outbound_date || 'N/A' }}</h3>
+            <h3>Departure: {{initialForm?.outbound_date || 'No info' }}</h3>
             <h3 class="right-aligned-text">Return: {{initialForm?.return_date ? initialForm?.return_date : 'No return trip
                 scheduled' }}</h3>
         </div>
 
         <div class="align-boxes space-between">
-            <h2 class="bold-text font-size-subtitle">Layouts: {{flightSelected?.is_layover === true ? 'Yes' : 'No' }}
+            <h2 class="bold-text font-size-subtitle">Layouts: {{flightSelected?.isLayover === true ? 'Yes' : 'No' }}
             </h2>
         </div>
 
         <div class="align-boxes space-between">
-            <h1 class="bold-text font-size-subtitle">Travel class: {{flightSelected?.travel_class || 'N/A'}}</h1>
-            <h1 class="move-to-right  bold-text font-size-subtitle">Type: {{flightSelected?.type || 'N/A'}}</h1>
+            <h1 class="bold-text font-size-subtitle">Travel class: {{flightSelected?.travel_class || 'No info'}}</h1>
+            <h1 class="move-to-right  bold-text font-size-subtitle">Type: {{flightSelected?.type || 'No info'}}</h1>
         </div>
 
     </div>
@@ -54,13 +54,13 @@
     <div class="information-container">
 
         <div class="align-boxes space-between">
-            <h1 class="bold-text font-size-title">{{lodgeSelected?.lodge_name || 'N/A'}}</h1>
-            <h1 class="move-to-right  bold-text font-size-title ">Total: {{tripBudget?.lodgeAmount || 'N/A'}}</h1>
+            <h1 class="bold-text font-size-title">{{lodgeSelected?.lodge_name || 'No info'}}</h1>
+            <h1 class="move-to-right  bold-text font-size-title ">Total: {{tripBudget?.lodgeAmount || 'No info'}}</h1>
         </div>
 
         <div class="align-boxes space-between">
-            <h3>Stats: {{lodgeSelected?.totalRate || 'N/A'}}/5</h3>
-            <h3 class="move-to-right">Price per night: {{lodgeSelected?.night_price || 'N/A'}}</h3>
+            <h3>Stats: {{lodgeSelected?.totalRate || 'No info'}}/5</h3>
+            <h3 class="move-to-right">Price per night: {{lodgeSelected?.night_price || 'No info'}}</h3>
         </div>
 
         <div class="width-100">

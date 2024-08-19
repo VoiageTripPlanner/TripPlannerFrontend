@@ -7,3 +7,5 @@ export interface ILocationMark{
     user_id?      : number;
 
 }
+
+//sustituir esto por el de i lo

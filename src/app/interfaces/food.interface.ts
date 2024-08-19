@@ -3,12 +3,11 @@ import { ILocationMark } from "./location-mark.interface";
 export interface IVoiageRestaurant{
 
     restaurant_id            : number;
-    trip_id?                 : number;
+    trip_id?                 : number;  //revisar si lo espera o no en el backend
     name                     : string;
     description              : string;
-    date?                    : Date;
     average_price            : number;
-    location_mark            : ILocationMark;
+    location_mark            : ILocationMark;   //TODO: REVISAR ESTO CON Ilocation
 
     //Atributo que no persite en la bd
     yelpId?                  : string;
@@ -16,8 +15,28 @@ export interface IVoiageRestaurant{
 
 
     //Propiedades de auditoria
-    creation_datetime         : Date;
-    creation_responsible      : number;
-    lastUpdate_datetime?      : Date;
-    update_responsible?       : number;
+    creationDatetime?        : Date;
+    creationResponsible?     : number;
+    lastUpdateDatetime?      : Date;
+    updateResponsible?       : number;
+}
+
+export interface IRestaurantCategory{
+    alias: string;
+    title : string;
+
+}
+
+export interface IRestaurant{
+    name        : string;
+    categories  : IRestaurantCategory[];
+
+}
+
+export interface IEstimatedPrice{
+    city                : string;
+    chosenRestaurant    : IRestaurant[];
+    startDate           : Date;
+    endDate             : Date;
+    currencyId          : number;
 }

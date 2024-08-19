@@ -28,20 +28,27 @@ export class FlightService extends BaseService<IVoiageFlight>   {
     };
 
     const defaultValue: IVoiageFlight = {
-      flight_id             : 0,
-      departure_airport     : this.onGetDefaultAirports(),
-      arrival_airport       : this.onGetDefaultAirports(),
-      airline               : '',
-      airline_logo          : '',
-      travel_class          : '',
-      flight_number         : '',
-      start_date            : getNextDay(),
-      booking_token         : '',
-      price                 : 0,
-      type                  : '',
-      creation_datetime     : new Date(),
-      creation_responsible  : 0, // aca debe de ir el id del usuario logueado
-      operational           : 1,  
+
+      flight_id               : 0,
+      departure_airport       : this.onGetDefaultAirports(),
+      arrival_airport         : this.onGetDefaultAirports(),
+      airline                 : '',
+      airline_logo            : '',
+      travel_class            : '',
+      flight_number           : '',
+      start_date              : getNextDay(),
+      end_date                : getNextDay(),
+      booking_token           : '',
+      price                   : 0,
+      type                    : '',
+      isLayover               : false,
+      duration                : 0,
+      outbound_date           : getNextDay(),
+      google_flights_link     : '',
+      total_duration          : 0,
+      layovers                : [],
+      created_at              : new Date()
+
     }
 
     return defaultValue;

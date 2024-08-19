@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 import { IBudgetPrices } from '../../../interfaces/budget.interface';
 import { IVoiageRestaurant } from '../../../interfaces/food.interface';
 import { LocationMarkService } from '../../../services/location-mark.service';
-import { ILocationMark } from '../../../interfaces/location-mark.interface';
+import { ILocation } from '../../../interfaces/location.interface';
 import { FoodService } from '../../../services/voiage-services/food.service';
 
 @Component({
@@ -133,14 +133,14 @@ export class FoodCardComponent {
 
   foodFilterInfo(yelpFood:IFoodBusiness): IVoiageRestaurant {  
 
-    let locationMark:ILocationMark              = this.locationMark.onGetDefaultVoiageLocationMark();
-    locationMark.latitude                       = yelpFood?.coordinates?.latitude ?? 0;
-    locationMark.longitude                      = yelpFood?.coordinates?.longitude ?? 0;
+    let locationMark:ILocation             = this.locationMark.onGetDefaultVoiageLocationMark();
+    locationMark.LatLng.latitude                       = yelpFood?.coordinates?.latitude ?? 0;
+    locationMark.LatLng.longitude                      = yelpFood?.coordinates?.longitude ?? 0;
 
     this.foodSelectedOption.name                = yelpFood.name   || " ";
     this.foodSelectedOption.description         = yelpFood.alias  || " ";
     // this.foodSelectedOption.average_price       = yelpFood.price || 0; //aca se debe de aplcar el precio promedio que se obtenga con la IA mas adelante
-    this.foodSelectedOption.location_mark       = locationMark    || this.locationMark.onGetDefaultVoiageLocationMark();
+    this.foodSelectedOption.location     = locationMark    || this.locationMark.onGetDefaultVoiageLocationMark();
 
     //Necesito un id para le manejo del array y una imagen que mostrar, uso este de la respuesta del API
     this.foodSelectedOption.yelpId              = yelpFood.id     || " ";

@@ -1,11 +1,11 @@
+import { ILocation } from "./location.interface";
+
 export interface IPlaceSearchResult {
   id?: string;  
   address: string;
   name?: string;
     imageUrl?: string;
-    latitude?: number;
-    longitude?: number;
-    location?: google.maps.LatLng;
+    location?: ILocation;
     rating?: number;
     pricelevel?: number;
     website?: string;

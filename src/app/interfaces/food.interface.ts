@@ -1,4 +1,5 @@
-import { ILocationMark } from "./location-mark.interface";
+import { IAudit } from "./audit.interface";
+import { ILocation } from "./location.interface";
 
 export interface IVoiageRestaurant{
 
@@ -8,16 +9,11 @@ export interface IVoiageRestaurant{
     description              : string;
     date?                    : Date;
     average_price            : number;
-    location_mark            : ILocationMark;
+    location                 : ILocation;
 
     //Atributo que no persite en la bd
     yelpId?                  : string;
     restaurant_image?        : string;
 
-
-    //Propiedades de auditoria
-    creation_datetime         : Date;
-    creation_responsible      : number;
-    lastUpdate_datetime?      : Date;
-    update_responsible?       : number;
+    audit                    : IAudit;
 }

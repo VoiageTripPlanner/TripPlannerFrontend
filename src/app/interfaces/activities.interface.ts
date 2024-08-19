@@ -1,3 +1,5 @@
+import { ILocation } from "./location.interface";
+
 export interface IActivity{
 
     id?: string;  
@@ -6,7 +8,7 @@ export interface IActivity{
     imageUrl?: string;
     latitude?: number;
     longitude?: number;
-    location?: google.maps.LatLng;
+    location?: ILocation;
     rating?: number;
     types?: string;
     pricelevel?: number;

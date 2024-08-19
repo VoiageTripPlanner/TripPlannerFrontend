@@ -1,6 +1,6 @@
 import { Component, ElementRef, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { IPlaceSearchResult } from '../../interfaces/placeSearch';
-import { CommonModule, NgIf } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { IGoogleResponse } from '../../interfaces/google-hotel-response.interface';
 import { MapComponent } from '../map/map.component';
 import { MatToolbarModule } from '@angular/material/toolbar';

@@ -1,9 +1,9 @@
 import { ILocation } from "./location.interface";
 
-export interface IPlaceSearchResult {
-  id?: string;  
-  address: string;
-  name?: string;
+  export interface IPlaceSearchResult {
+    id?: string;  
+    address: string;
+    name?: string;
     imageUrl?: string;
     location?: ILocation;
     rating?: number;

@@ -83,8 +83,6 @@ export interface ISearchParameters {
     currency?:          string;
     check_in_date?:     String;
     check_out_date?:    String;
-    // check_in_date?:     Date;
-    // check_out_date?:    Date;
     adults?:            number;
     children?:          number;
     api_key?:           string;

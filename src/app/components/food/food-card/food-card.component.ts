@@ -144,7 +144,7 @@ export class FoodCardComponent {
 
     //Necesito un id para le manejo del array y una imagen que mostrar, uso este de la respuesta del API
     this.foodSelectedOption.yelpId              = yelpFood.id     || " ";
-    this.foodSelectedOption.restaurant_image    = yelpFood.image_url || "./assets/img/No_image_available.png";
+    this.foodSelectedOption.restaurantImage    = yelpFood.image_url || "./assets/img/No_image_available.png";
 
     return this.foodSelectedOption;
   };

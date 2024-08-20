@@ -42,15 +42,14 @@ export class FoodService extends BaseService<IVoiageRestaurant>   {
   onGetDefaultVoiageRestaurant(){
 
       const defaultValue:IVoiageRestaurant={
-        restaurant_id                 : 0,
         name                          : '',
         description                   : '',
         average_price                 : 0,
         location : this.locationMarkService.onGetDefaultVoiageLocationMark(),
-        audit :{
-          creation_datetime             : new Date(),
-          creation_responsible          : 0,
-        },
+        creationDatetime             : new Date(),
+        creationResponsible          : 0,
+        lastUpdateDatetime           : new Date('1900-01-01'),
+        updateResponsible            : 0,
       }
 
       return defaultValue;

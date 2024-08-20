@@ -1,0 +1,249 @@
+/**
+* ALL the UI design credit goes to:
+* https://www.sketchappsources.com/free-source/2676-calendar-template-sketch-freebie-resource.html
+*/
+
+
+/* WRAPPER */
+
+body {
+  font-family: Montserrat;
+  font-weight: 100;
+  color: #A8B2B9;
+}
+
+//variables de color 
+$background-color-white: #ffffff;
+$background-color-grey: #b4b4b4;
+$background-color-grey-light: #f9f9f9;
+$border-color: #775D68;
+$image-backgorund-color: #FADCD4;
+$title-color: #6D3652;
+
+
+.wrapper {
+  display: grid;
+  grid-template-rows: 70px 1fr 70px;
+  grid-template-columns: 1fr;
+  grid-template-areas: "content";
+  width: 100%;
+  height: 100%;
+  padding: 2%
+}
+
+
+/* MAIN */
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.calendar {
+  height: calc(100vh - 300px); 
+  display: flex;
+  flex-direction: column;
+}
+
+
+.calendar__header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 1px;
+  grid-auto-rows: 50px;
+  align-items: center;
+  text-align: center;
+}
+
+.calendar__week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); 
+  grid-auto-rows: 1fr; 
+  flex: 1;
+}
+
+
+
+
+/* COSMETIC STYLING */
+
+:root {
+  --red: #ED5454;
+}
+
+
+sidebar {
+  background-color: white;
+  box-shadow: 5px 0px 20px rgba(0, 0, 0, 0.2);
+}
+
+main {
+  background-color: #FCFBFC;
+}
+
+.avatar__name {
+  font-size: 0.8rem;
+}
+
+.menu__item {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 16px 16px 16px 14px;
+  border-left: 4px solid transparent;
+  color: inherit;
+  text-decoration: none;
+  transition: color ease 0.3s;
+}
+
+.menu__item--active .menu__icon {
+  color: var(--red);
+}
+
+.menu__item--active .menu__text {
+  color: black;
+}
+
+.menu__item:hover {
+  color: black;
+}
+
+
+.menu__icon {
+  font-size: 1.3rem;
+}
+
+@media screen and (min-width: 850px) {
+  .menu__icon {
+    font-size: 0.9rem;
+    padding-right: 16px;
+  }
+
+  .menu__item--active {
+    border-left: 4px solid var(--red);
+    box-shadow: inset 10px 0px 17px -13px var(--red);
+  }
+}
+
+.copyright {
+  font-size: 0.7rem;
+  font-weight: 400;
+}
+
+.calendar {
+  background-color: white;
+  border: 1px solid #e1e1e1;
+}
+
+.calendar__header>div {
+  text-transform: uppercase;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+
+.toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  text-align: center;
+  font-size: 0.9em;
+}
+
+.toggle__option {
+  padding: 16px;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.toggle__option:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.toggle__option:last-child {
+  border-left: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.toggle__option--selected {
+  border-color: white;
+  background-color: white;
+  color: var(--red);
+  font-weight: 500;
+  box-shadow: 1px 2px 30px -5px var(--red);
+}
+
+.month-tittle{
+  font-family: "Yeseva One", serif;
+  font-weight: 600;
+  font-style: normal;
+  color: $title-color ;
+  font-size: 1.6rem;
+}
+
+.calendar__day {
+  padding: 2%;
+  box-sizing: border-box;
+  background-color: white; 
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border-right: 1px solid #e1e1e1;
+  border-top: 1px solid #e1e1e1;
+}
+
+.calendar__day:last-child {
+  border-right: 0;
+}
+
+
+.event {
+  margin-top: 5px;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-size: 12px;
+  background-color: $border-color;
+  color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.event__time {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.event__title {
+  margin-top: 2px;
+}
+
+.calendar-header{
+  display: flex;
+  justify-content: inherit;
+  
+}
+
+.button-header{
+  display: flex;
+  justify-content: end;
+
+}
+
+
+
+// Calendar event dialog
+
+
+.mat-dialog-container-medium {
+  height: 60vh;
+  width: 60vw;
+}

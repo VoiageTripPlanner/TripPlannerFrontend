@@ -28,7 +28,7 @@ export class CalendarEventService extends BaseService<ICalendarEvent> {
             description                 : '',
             eventDate                   : new Date(),
             eventType                   : 'Other',
-            operational                 : false,
+            operational                 : true,
             creation_datetime           : new Date(),
             creation_responsible        : 0
         }

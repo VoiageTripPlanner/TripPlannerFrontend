@@ -38,7 +38,7 @@ import { MapComponent } from "../../components/map/map.component";
   styleUrl: './trip-form.component.scss'
 })
 export class TripFormComponent {
-
+  
   tripService                   = inject(TripService);
   notifyService                 = inject(NotifyService);
   autoCompleteService           = inject(AutoCompleteService);
@@ -57,8 +57,8 @@ export class TripFormComponent {
 
   ){
 
+    
     this.tripFormNgModel  =this.tripService.onGetDefaultTripForm();   
-    ;  
     this.destinationData  =this.autoCompleteService.onGetDefaultAutoComplete();
   }
   

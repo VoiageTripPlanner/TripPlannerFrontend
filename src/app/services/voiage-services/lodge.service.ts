@@ -28,20 +28,21 @@ export class LodgeService extends BaseService<IVoiageLodge>   {
     };
 
     const defaultValue: IVoiageLodge = {
-      lodge_id                      : 0,
-      lodge_name                    : '',
-      description                   : '',
-      check_in                      : getNextDay(),
-      check_out                     : getNextDay(),
-      night_price                   : 0,
-      latitude                      : 0,
-      longitude                     : 0,
-      totalRate                     : 0,
-      type                          : '',
-      operational                   : false,
-      total_price                   : 0,
-      creation_datetime             : new Date(),
-      creation_responsible          : 0
+      lodgeName                    : '',
+      description                  : '',
+      checkIn                      : getNextDay(),
+      checkOut                     : getNextDay(),
+      nightPrice                   : 0,
+      latitude                     : 0,
+      longitude                    : 0,
+      totalRate                    : 0,
+      type                         : '',
+      operational                  : true,
+      totalPrice                  : 0,
+      creationDatetime             : new Date(),
+      creationResponsible          : 0,
+      lastUpdateDatetime           : new Date('1900-01-01'),
+      updateResponsible            : 0,
     }
 
     return defaultValue;

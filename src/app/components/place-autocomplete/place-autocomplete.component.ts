@@ -60,14 +60,14 @@ export class PlaceAutocompleteComponent implements OnInit {
         const place = this.autocomplete?.getPlace();
         const result: IActivity = {
           address: this.inputField.nativeElement.value,
-          id: place?.place_id,
+          googleId: place?.place_id,
           name: place?.name,
           location: place?.geometry?.location,
           imageUrl: this.getPhotoUrl(place),
           latitude: place?.geometry?.location?.lat() ?? 0,
           longitude: place?.geometry?.location?.lng() ?? 0, 
           rating: place?.rating,
-          pricelevel: place?.price_level, 
+          priceLevel: place?.price_level, 
           website: place?.website,          
         };
         this.placeChanged.emit(result);
@@ -121,11 +121,11 @@ export class PlaceAutocompleteComponent implements OnInit {
                 resolve({
                   address: placeDetails.vicinity || '',
                   name: placeDetails.name,
-                  id: placeDetails.place_id,
+                  googleId: placeDetails.place_id,
                   location: placeDetails.geometry?.location,
                   imageUrl: this.getPhotoUrl(placeDetails),
                   rating: placeDetails?.rating,
-                  pricelevel: placeDetails?.price_level,
+                  priceLevel: placeDetails?.price_level,
                   website: placeDetails.website || '',
                 });
               } else {

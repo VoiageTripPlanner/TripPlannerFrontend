@@ -22,27 +22,27 @@ export interface ITripForm {
 }
 
 export interface ITrip{
-    trip_id:            number;
-    trip_name:          string;
-    trip_description:   string;
-    departure_city?:    string;
+    tripId:             number;
+    name:               string;
+    description:        string;
     departureDate:      Date;
-    destination_city:   string;
     returnDate?:        Date;
     budget? :           number;
-    currency?:          number;
+    user:               number;
+    currency?:          number;  
     lodge:              IVoiageLodge; 
+    aiSuggestion?:      string;
     flight:             IVoiageFlight; // IFlights: ver lo de separarlo en departure y return flight
+    departureCity?:     string;
     restaurants:        IVoiageRestaurant[]; 
     activities:         IActivity[] 
-    user:               number;
-    ai_suggestions?:    string;
+    destinationCity:    string;
 
 
     //Propiedades de auditoria
-    creation_datetime             : Date;
-    creation_responsible          : number;
-    lastUpdate_datetime?          : Date;
-    update_responsible?           : number;
+    creationDatetime             : Date;
+    creationResponsible          : number;
+    lastUpdateDatetime?          : Date;
+    updateResponsible?           : number;
 
 }

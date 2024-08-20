@@ -79,7 +79,7 @@ export class TripInformationComponent {
     this.activitiesSelectedList   = this.activitiesSelectedList.filter(activity => activity.address !== '');
 
     //Data del perfil del usuario
-    this.userInfo             = this.userService.userSig();
+    this.userInfo                 = this.userService.userSig();
 
   }
 
@@ -121,6 +121,7 @@ export class TripInformationComponent {
     this.notifyService.onCustomConfirmation('Are you sure?', 'You will lose all the data', 'Yes, Start Again').then((result) => {
       if (result.isConfirmed) {
         this.removeLocalStorage()
+        this.router.navigateByUrl('/app/trip-form');
       };
 
     });
@@ -140,7 +141,7 @@ export class TripInformationComponent {
     localStorage.removeItem('latitudeDestination');      
     localStorage.removeItem('destinationName');      
 
-    this.router.navigateByUrl('/app/trip-form');
+
   };
 
 

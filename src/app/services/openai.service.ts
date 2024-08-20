@@ -19,12 +19,12 @@ export class OpenAIService extends BaseService<IAISuggestion> {
   // flightService           = inject(FlightService);
   // foodService             = inject(FoodService);
   // activitiesService       = inject(ActivityService);
-  // notifyService           = inject(NotifyService);
+  notifyService = inject(NotifyService);
 
   protected override source: string = 'openai/priceEstimation';
 
-  
-  
+
+
   private openaiPriceEstimationSignal = signal<IAISuggestion>(this.onGetDefaultAISuggestion());
 
   get tripForm$() {
@@ -34,12 +34,12 @@ export class OpenAIService extends BaseService<IAISuggestion> {
   onGetDefaultAISuggestion() {
 
     const defaultValue: IAISuggestion = {
-      startDate           : new Date('1900-01-01'),
-      endDate             : new Date('1900-01-01'),
-      currency            : 'USD',
-      totalEstimate       : 0,
-      destination         : '',
-      activityEstimates   : [this.onGetDefaultActivityEstimate()]
+      startDate: new Date('1900-01-01'),
+      endDate: new Date('1900-01-01'),
+      currency: 'USD',
+      totalEstimate: 0,
+      destination: '',
+      activityEstimates: [this.onGetDefaultActivityEstimate()]
     }
 
     return defaultValue;
@@ -49,10 +49,10 @@ export class OpenAIService extends BaseService<IAISuggestion> {
   onGetDefaultActivityEstimate() {
 
     const defaultValue: IActivityEstimate = {
-      name              : '',
-      address           : '',
-      location          : '',
-      priceEstimate     : 0
+      name: '',
+      address: '',
+      location: '',
+      priceEstimate: 0
     }
 
     return defaultValue;
@@ -79,9 +79,18 @@ export class OpenAIService extends BaseService<IAISuggestion> {
   };
 
 
-   getPriceEstimate(priceRequest:IAISuggestion): Observable<IAISuggestion> {
-    return this.http.post<IAISuggestion>(this.source, priceRequest);
-  }
+  getPriceEstimate(priceRequest: IAISuggestion): Observable<IAISuggestion> {
+    debugger
+    return this.http.post<IAISuggestion>(this.source, priceRequest).pipe(
+      catchError((error: any) => {
+        console.error('Error fetching users', error);
+        this.notifyService.onError()
+        return throwError(error);
+      }
+      )
+    )
+  };
+
 
 }
 

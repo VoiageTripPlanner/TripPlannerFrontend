@@ -1,4 +1,3 @@
-import { IAudit } from "./audit.interface";
 import { ILocation } from "./location.interface";
 
 export interface IVoiageRestaurant{

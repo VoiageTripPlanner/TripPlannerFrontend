@@ -22,7 +22,7 @@ export interface ITripForm {
 }
 
 export interface ITrip{
-    tripId:             number;
+    tripId?:             number;
     name:               string;
     description:        string;
     departureDate:      Date;

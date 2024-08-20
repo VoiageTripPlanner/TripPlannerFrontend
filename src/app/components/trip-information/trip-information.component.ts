@@ -134,8 +134,11 @@ export class TripInformationComponent {
     localStorage.removeItem('flight');
     localStorage.removeItem('lodge');
     localStorage.removeItem('food');
-    localStorage.removeItem('selectedActivities');      
-    localStorage.removeItem('destinationLocation');      
+    localStorage.removeItem('nearbyPlaces');      
+    localStorage.removeItem('destinationAddress');      
+    localStorage.removeItem('longitudeDestination');      
+    localStorage.removeItem('latitudeDestination');      
+    localStorage.removeItem('destinationName');      
 
     this.router.navigateByUrl('/app/trip-form');
   };

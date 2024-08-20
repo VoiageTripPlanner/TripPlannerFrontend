@@ -39,6 +39,8 @@ export class AutoCompleteService extends BaseService<IAutoComplete>   {
         name                : '',
         id                  : '',
         location            : this.onGetDefaultLocation(),
+        latitude            : 0.0,
+        longitude           : 0.0,
         imageUrl            : '',
         rating              : 0,
         website             : ''

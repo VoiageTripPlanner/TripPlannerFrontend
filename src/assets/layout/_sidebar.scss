@@ -1,15 +1,7 @@
 /**=====================
     78. Sidebar CSS Start
 ==========================**/
-
-//variables de color 
-$neutro-color-main:#1D0F1C;
-$neutro-color-second: #2D2230;
-$middle-color-main:#4B2137;
-$middle-color-second:#6D3C52;
-$light-color-main: #FADCD4;
-$light-color-second: #775D68;
-$line-gradient:linear-gradient(to right, rgba(255, 255, 255, 0.1), #FADCD4, rgba(255, 255, 255, 0.1));
+@import "../utils/variables";
 
 /**Added**/
  i {
@@ -732,7 +724,7 @@ div .header-wrapper {
   }
 
   .page-body-wrapper {
-    background-color: $line-gradient;
+    background: $custom-gradient;
 
     .page-body {
       $extra-height: $header-size + $footer-height;
@@ -2677,9 +2669,9 @@ div .header-wrapper {
 
   // only body css
   &.only-body {
-    background-color: #f2f0fa;
+    background: $custom-gradient;
     .page-body-wrapper {
-      background-color: #f2f0fa;
+      background: $custom-gradient;
     }
     .page-header {
       position: relative;
@@ -2951,7 +2943,7 @@ div .header-wrapper {
 
     .page-body-wrapper {
       background-blend-mode: overlay;
-      background-color: rgba($white, 0.5);
+      background-color: $custom-gradient;
 
       .sidebar-wrapper {
         position: relative;
@@ -2964,7 +2956,7 @@ div .header-wrapper {
       .page-body {
         margin: 0 auto;
         max-width: 1560px;
-        background-color: $body-color;
+        background-color: $custom-gradient;
         box-shadow: 0 0 20px 7px rgba(8, 21, 66, 0.05);
         border-radius: 0 0 15px 15px;
       }
@@ -3548,7 +3540,7 @@ div .header-wrapper {
   .page-wrapper {
     &.material-icon {
       &::before {
-        height: 240px;
+        height: 100%;
       }
     }
   }

@@ -1,4 +1,15 @@
+@import '../../../assets/utils/variables.scss';
+
 .chart-container {
   width: clamp(1320px, 100%, 2000px);
   margin: 0 auto;
 }
+
+.container-fluid p {
+  font-size: 1.5rem;
+  font-family: "Roboto", sans-serif;
+  color: $light-color-main;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}	

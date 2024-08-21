@@ -140,11 +140,11 @@ export class FoodCardComponent {
     this.foodSelectedOption.name                = yelpFood.name   || " ";
     this.foodSelectedOption.description         = yelpFood.alias  || " ";
     // this.foodSelectedOption.average_price       = yelpFood.price || 0; //aca se debe de aplcar el precio promedio que se obtenga con la IA mas adelante
-    this.foodSelectedOption.location_mark       = locationMark    || this.locationMark.onGetDefaultVoiageLocationMark();
+    this.foodSelectedOption.locationMark       = locationMark    || this.locationMark.onGetDefaultVoiageLocationMark();
 
     //Necesito un id para le manejo del array y una imagen que mostrar, uso este de la respuesta del API
     this.foodSelectedOption.yelpId              = yelpFood.id     || " ";
-    this.foodSelectedOption.restaurant_image    = yelpFood.image_url || "./assets/img/No_image_available.png";
+    this.foodSelectedOption.restaurantImage    = yelpFood.image_url || "./assets/img/No_image_available.png";
 
     return this.foodSelectedOption;
   };

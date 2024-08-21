@@ -22,6 +22,7 @@ import { ActivitiesNearbyComponent } from './pages/activities-nearby/activities-
 import { StepperComponent } from './components/stepper/stepper.component';
 import { TripSummaryComponent } from './pages/trip-summary/trip-summary.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { CalendarComponent } from './pages/calendar/calendar.component';
 
 export const routes: Routes = [
   {
@@ -178,14 +179,14 @@ export const routes: Routes = [
         }
       },
       {
-        path: 'recomendation',
-        component: RecomendationComponent,
+        path: 'calendar',
+        component: CalendarComponent,
         data: { 
           authorities: [
             IRole.admin, 
             IRole.user
           ],
-          name: 'Travel Suggestions',
+          name: 'Calendar',
           icon:'bi bi-duffle-fill'
         }
       },

@@ -6,7 +6,7 @@ import { IFoodBusiness } from "./yelp-food-response.interface";
 import { IActivity } from './activities.interface';
 import { IVoiageRestaurant } from "./food.interface";
 
-export interface ITripForm{
+export interface ITripForm {
     q:                  string;
     check_in_date:      Date;
     check_out_date:     Date;
@@ -22,27 +22,27 @@ export interface ITripForm{
 }
 
 export interface ITrip{
-    trip_id:            number;
-    trip_name:          string;
-    trip_description:   string;
-    departure_city?:    string;
-    departure_date:     Date;
-    destination_city:   string;
-    return_date?:        Date;
+    tripId:             number;
+    name:               string;
+    description:        string;
+    departureDate:      Date;
+    returnDate?:        Date;
     budget? :           number;
-    currency?:          ICurrency;
+    user:               number;
+    currency?:          number;  
     lodge:              IVoiageLodge; 
+    aiSuggestion?:      string;
     flight:             IVoiageFlight; // IFlights: ver lo de separarlo en departure y return flight
-    food:               IVoiageRestaurant[]; 
+    departureCity?:     string;
+    restaurants:        IVoiageRestaurant[]; 
     activities:         IActivity[] 
-    user_id:            number;
-    ai_suggestions?:    string;
+    destinationCity:    string;
 
 
     //Propiedades de auditoria
-    creation_datetime             : Date;
-    creation_responsible          : number;
-    lastUpdate_datetime?          : Date;
-    update_responsible?           : number;
+    creationDatetime             : Date;
+    creationResponsible          : number;
+    lastUpdateDatetime?          : Date;
+    updateResponsible?           : number;
 
 }

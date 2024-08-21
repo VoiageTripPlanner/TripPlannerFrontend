@@ -24,14 +24,19 @@ export class ActivitiesNearbyCardComponent implements OnInit {
 
   @Input() places: IPlaceSearchResult[] = [];
   @Output() onPlaceSelected = new EventEmitter<IPlaceSearchResult>();
+
+
   notifyService = inject(NotifyService);
   budgetService = inject(BudgetService);
   activityService = inject(ActivityService);  // Inyecta el servicio
+
+  activitySelected:IActivity[];
 
   constructor(
     private router: Router,
   ) {
     this.onNearbyPlacesFound(this.places);
+    this.activitySelected = this.activityService.onGetDefaultVoiageActivitiesList();
   }
 
   trackByIndex(index: number, places: IGoogleResponse): number {
@@ -85,18 +90,55 @@ export class ActivitiesNearbyCardComponent implements OnInit {
         }
   };
 
-  checkboxChange(activityNearby: IActivity, event: any): void {
+  checkboxChange(placeNearby: IPlaceSearchResult, event: any): void {
+
+    const activitySelected=this.activityFilterInfo(placeNearby);
+
+
 
     if (event.target.checked) {
-      this.activityService.addItem(activityNearby);  
+      this.activityService.addItem(activitySelected);  
       this.notifyService.onCustomSimpleNotify('Added to the list', 'The activity has been added to the list');
 
     } else {
-      if (activityNearby.id) {
+      if (activitySelected.googleId) {
 
-        this.activityService.removeItem(activityNearby.id);
+        this.activityService.removeItem(activitySelected.googleId);
         this.notifyService.onCustomSimpleNotify('Removed from the list', 'The restaurant has been removed of the list');
       }
     }
   }
+
+  activityFilterInfo(placeNearby: IPlaceSearchResult): IActivity {
+
+    const activityNearby: IActivity=this.activityService.onGetDefaultVoiageActivities();
+
+    
+    const lat = (placeNearby.location as any).lat;
+    const lng = (placeNearby.location as any).lng;
+    
+    if (typeof lat === 'number' && typeof lng === 'number') {
+      activityNearby.latitude = lat;
+      activityNearby.longitude = lng;
+    } else {
+      activityNearby.latitude = 0;
+      activityNearby.longitude = 0;
+    }
+    
+
+    activityNearby.address      = placeNearby.address;
+    activityNearby.imageUrl     = placeNearby.imageUrl;
+    activityNearby.googleId     = placeNearby.id;
+    activityNearby.name         = placeNearby.name;
+    activityNearby.rating       = placeNearby.rating;
+    activityNearby.website      = placeNearby.website;
+    activityNearby.priceLevel   = placeNearby.pricelevel;
+
+    activityNearby.iconUrl      = '';
+
+
+    return activityNearby;
+  }
+
+
 }

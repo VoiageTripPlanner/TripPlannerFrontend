@@ -17,6 +17,7 @@ import { IBudgetPrices } from '../../../interfaces/budget.interface';
 import { IVoiageLodge } from '../../../interfaces/lodge.interface';
 import { LodgeService } from '../../../services/voiage-services/lodge.service';
 import { MatStepperModule } from '@angular/material/stepper';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-lodge-card',
@@ -38,11 +39,12 @@ import { MatStepperModule } from '@angular/material/stepper';
 
 export class LodgeCardComponent {
 
-  service = inject(GoogleHotelService);
-  budgetService=inject(BudgetService);
-  notifyService = inject(NotifyService);
-  tripFormService=inject(TripService);
-  lodgeService=inject(LodgeService);
+  authService           = inject (AuthService);
+  budgetService         = inject(BudgetService);
+  lodgeService          = inject(LodgeService);
+  notifyService         = inject(NotifyService);
+  service               = inject(GoogleHotelService);
+  tripFormService       = inject(TripService);
   
   googleHotelResponseList: IGoogleResponse[] = []
   initialForm:ITripForm;
@@ -51,14 +53,16 @@ export class LodgeCardComponent {
 
   lodgeSelected: IVoiageLodge;
 
+  userId                        : number;
+
   constructor(
     private router: Router,
   ) {
 
-    this.lodgeSelected=this.lodgeService.onGetDefaultVoiageLodge();
-    this.initialForm = this.tripFormService.getFormData();
-    this.tripBudget=this.budgetService.getBudgetData();
-
+    this.lodgeSelected        = this.lodgeService.onGetDefaultVoiageLodge();
+    this.initialForm          = this.tripFormService.getFormData();
+    this.tripBudget           = this.budgetService.getBudgetData();
+    this.userId               = this.authService.getUserId();
     this.sendData();
 
   };
@@ -131,19 +135,22 @@ export class LodgeCardComponent {
 
   lodgeFilterInfo( googleLodge: IGoogleResponse): IVoiageLodge {
 
-    this.lodgeSelected.lodge_name                    = googleLodge.name || '';
-    this.lodgeSelected.description                   = googleLodge.description || '';
-    this.lodgeSelected.check_in                      = this.initialForm.check_in_date || new Date();
-    this.lodgeSelected.check_out                     = this.initialForm.check_out_date || new Date();
-    this.lodgeSelected.night_price                   = googleLodge.rate_per_night?.extracted_lowest|| 0;
-    this.lodgeSelected.latitude                      = googleLodge.gps_coordinates?.latitude|| 0;
-    this.lodgeSelected.longitude                     = googleLodge.gps_coordinates?.longitude|| 0;
-    this.lodgeSelected.totalRate                     = googleLodge.overall_rating || 0;
-    this.lodgeSelected.external_link                 = googleLodge.link|| '';
-    this.lodgeSelected.images                        = googleLodge.images![0]?.original_image|| "./assets/img/No_image_available.png";
-    this.lodgeSelected.type                          = googleLodge.type|| '';
-    this.lodgeSelected.amenities                     = googleLodge.amenities?.join(', ')|| '';
-    this.lodgeSelected.total_price                   = googleLodge.total_rate?.extracted_lowest|| 0 ;
+    this.lodgeSelected.lodgeName                    = googleLodge.name || '';
+    this.lodgeSelected.description                  = googleLodge.description || '';
+    this.lodgeSelected.checkIn                      = this.initialForm.check_in_date || new Date();
+    this.lodgeSelected.checkOut                     = this.initialForm.check_out_date || new Date();
+    this.lodgeSelected.nightPrice                   = googleLodge.rate_per_night?.extracted_lowest|| 0;
+    this.lodgeSelected.latitude                     = googleLodge.gps_coordinates?.latitude|| 0;
+    this.lodgeSelected.longitude                    = googleLodge.gps_coordinates?.longitude|| 0;
+    this.lodgeSelected.totalRate                    = googleLodge.overall_rating || 0;
+    this.lodgeSelected.externalLink                 = googleLodge.link|| '';
+    this.lodgeSelected.images                       = googleLodge.images![0]?.original_image|| "./assets/img/No_image_available.png";
+    this.lodgeSelected.type                         = googleLodge.type|| '';
+    this.lodgeSelected.amenities                    = googleLodge.amenities?.join(', ')|| '';
+    this.lodgeSelected.totalPrice                  = googleLodge.total_rate?.extracted_lowest|| 0 ;
+    this.lodgeSelected.creationResponsible          = this.userId;
+    this.lodgeSelected.creationDatetime             = new Date();
+    this.lodgeSelected.operational                  = true;
 
     return this.lodgeSelected;
 

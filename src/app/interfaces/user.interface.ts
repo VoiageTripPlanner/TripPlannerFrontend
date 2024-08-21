@@ -20,3 +20,7 @@ export interface IUser {
   otp?: string;
 }
   
+
+export interface IUserId {
+  userId: number;
+}

@@ -21,6 +21,7 @@ import { UpdateUserComponent } from './pages/update-user/update-user.component';
 import { ActivitiesNearbyComponent } from './pages/activities-nearby/activities-nearby.component';
 import { StepperComponent } from './components/stepper/stepper.component';
 import { TripSummaryComponent } from './pages/trip-summary/trip-summary.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 
 export const routes: Routes = [
   {
@@ -145,7 +146,7 @@ export const routes: Routes = [
       },
       {
         path: 'update-user',
-        component: UpdateUserComponent,
+        component: UserProfileComponent,
         data: { 
           authorities: [],
           name: 'Update User',

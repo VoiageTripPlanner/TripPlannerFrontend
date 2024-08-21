@@ -140,6 +140,8 @@ export class TripInformationComponent {
     localStorage.removeItem('longitudeDestination');      
     localStorage.removeItem('latitudeDestination');      
     localStorage.removeItem('destinationName');      
+    localStorage.removeItem('destinationLocation');      
+    localStorage.removeItem('selectedActivities');      
 
 
   };

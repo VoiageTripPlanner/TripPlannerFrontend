@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { IPlaceSearchResult } from '../../interfaces/placeSearch';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgIf } from '@angular/common';
@@ -7,7 +7,7 @@ import { ActivitiesNearbyCardComponent } from '../../components/activities-nearb
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BudgetBarComponent } from '../../components/budget-bar/budget-bar.component';
 import { Router } from '@angular/router';
-import { MatStepperModule } from '@angular/material/stepper';
+import { MatStepper, MatStepperModule } from '@angular/material/stepper';
 import { BudgetService } from '../../services/budged.service';
 import { OpenAIService } from '../../services/openai.service';
 import { FoodService } from '../../services/voiage-services/food.service';
@@ -100,7 +100,7 @@ export class ActivitiesNearbyComponent {
         },
         error: (err) => {
           console.error('Error occurred:', err);
-          this.notifyService.onError();
+          this.notifyService.onCustomErrorNotify('No price estimated', 'Could not estimate the price of the activities');
         },
         complete: () => {
           console.log('Request completed');

@@ -62,7 +62,6 @@ export class FoodComponent implements OnInit {
 
     this.restaurantPriceEstimate();
 
-    this.router.navigateByUrl('/summary')
   }
 
   restaurantPriceEstimate() { 
@@ -85,10 +84,14 @@ export class FoodComponent implements OnInit {
         const classification = 'food';
 
         this.budgetService.updateSpending(amount, classification);
+        this.router.navigateByUrl('/summary')
+
       },
       error: (err) => {
         console.error('Error occurred:', err);
-        this.notifyService.onError();
+        this.notifyService.onCustomErrorNotify('No price estimated', 'Could not estimate the price of the food');
+        this.router.navigateByUrl('/summary')
+
       },
       complete: () => {
         console.log('Request completed');

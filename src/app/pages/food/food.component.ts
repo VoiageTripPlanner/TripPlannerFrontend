@@ -12,11 +12,9 @@ import { OpenAIService } from '../../services/openai.service';
 import { BudgetService } from '../../services/budged.service';
 import { IActivityEstimate, IAISuggestion } from '../../interfaces/openai.interface';
 import { FoodService } from '../../services/voiage-services/food.service';
-import { ActivityService } from '../../services/voiage-services/activity.service';
 import { IVoiageRestaurant } from '../../interfaces/food.interface';
 import { TripService } from '../../services/voiage-services/trip.service';
 import { ITripForm } from '../../interfaces/trip.interface';
-import { IActivity } from '../../interfaces/activities.interface';
 import { NotifyService } from '../../shared/notify/notify.service';
 
 
@@ -41,19 +39,16 @@ export class FoodComponent implements OnInit {
   budgetService         = inject(BudgetService);
   openAIService         = inject(OpenAIService);
   foodService           = inject(FoodService);
-  activitiesService     = inject(ActivityService);
   tripService           = inject(TripService);
   notifyService         = inject(NotifyService);
 
   foodPriceEstimate         : IAISuggestion;
-  activitiesPriceEstimate   : IAISuggestion;
   storedFormData            : ITripForm 
 
   constructor(
     private router: Router, 
   ){
     this.foodPriceEstimate          = this.openAIService.onGetDefaultAISuggestion();
-    this.activitiesPriceEstimate    = this.openAIService.onGetDefaultAISuggestion();
     this.storedFormData             = this.tripService.getFormData() ? this.tripService.getFormData() : this.tripService.onGetDefaultTripForm();
   }
   ngOnInit(): void {
@@ -85,7 +80,7 @@ export class FoodComponent implements OnInit {
 
     this.openAIService.getPriceEstimate(this.foodPriceEstimate).subscribe({
       next: (response) => {
-        debugger
+        
         const amount = response.totalEstimate
         const classification = 'food';
 

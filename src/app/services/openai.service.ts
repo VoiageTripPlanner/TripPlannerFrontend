@@ -80,7 +80,7 @@ export class OpenAIService extends BaseService<IAISuggestion> {
 
 
   getPriceEstimate(priceRequest: IAISuggestion): Observable<IAISuggestion> {
-    debugger
+    
     return this.http.post<IAISuggestion>(this.source, priceRequest).pipe(
       catchError((error: any) => {
         console.error('Error fetching users', error);

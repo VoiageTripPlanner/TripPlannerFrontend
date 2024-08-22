@@ -148,21 +148,25 @@ export class TripInformationComponent {
 
 
   assignTripData(){
-
-    this.tripNgModel.departureDate                  = this.initialForm.outbound_date;
-    this.tripNgModel.destinationCity                = this.initialForm.q;  
-    this.tripNgModel.returnDate                     = this.initialForm.return_date;
-    this.tripNgModel.budget                         = this.tripBudget.total;
-    this.tripNgModel.currency                       = Number(this.userInfo.currencyId ); 
-    this.tripNgModel.lodge                          = this.lodgeSelected;
-    this.tripNgModel.flight                         = this.flightSelected;
-    this.tripNgModel.restaurants                    = this.foodSelectedlist;
-    this.tripNgModel.activities                     = this.activitiesSelectedList; 
-    this.tripNgModel.user                           = this.userId;
-    this.tripNgModel.aiSuggestion                   = ''; //Para cuando se implemente AI
+    debugger;
+    this.tripNgModel.departureDate                      = this.initialForm.outbound_date;
+    this.tripNgModel.destinationCity                    = this.initialForm.q;  
+    this.tripNgModel.returnDate                         = this.initialForm.return_date;
+    this.tripNgModel.budget                             = this.tripBudget.total;
+    this.tripNgModel.currency                           = Number(this.userInfo.currencyId ); 
+    this.tripNgModel.lodge                              = this.lodgeSelected;
+    this.tripNgModel.flight                             = this.flightSelected;
+    this.tripNgModel.restaurants                        = this.foodSelectedlist;
+    this.tripNgModel.activities                         = this.activitiesSelectedList; 
+    this.tripNgModel.user                               = this.userId;
+    this.tripNgModel.aiSuggestion                       = ''; //Para cuando se implemente AI
     // this.tripNgModel.ai_suggestions               =this.aiSuggestions; //Para cuando se implemente AI
-    this.tripNgModel.creationDatetime               = new Date(); 
-    this.tripNgModel.creationResponsible            = this.userId;
+    this.tripNgModel.creationDatetime                   = new Date(); 
+    this.tripNgModel.creationResponsible                = this.userId;
+
+    this.tripNgModel.activitiesEstimatedCost            = this.tripBudget.activitiesAmount;
+    this.tripNgModel.restaurantsEstimatedCost           = this.tripBudget.foodAmount;
+    this.tripNgModel.destinationCountry.countryName     = this.initialForm.q;
 
   }
 

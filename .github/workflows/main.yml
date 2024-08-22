@@ -1,0 +1,49 @@
+name: Deploy Angular Application
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20.12.2'
+
+    - name: Install dependencies
+      run: |
+        npm install
+        npm install dotenv chart.js @types/chart.js
+
+    - name: Set up environment variables
+      run: |
+        echo "MAPS_KEY=${{ secrets.MAPS_KEY }}" > .env
+
+    - name: Build Angular application
+      run: |
+        # Ensure `dotenv` is available and build the project
+        npx dotenv ng build --configuration production
+
+    - name: Deploy to Ubuntu Server
+      env:
+        HOST: ${{ secrets.SERVER_HOST }}
+        USER: ${{ secrets.SERVER_USER }}
+        SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
+      run: |
+        # Write the private key to a file
+        echo "${SSH_KEY}" > id_rsa
+        chmod 600 id_rsa
+
+        # Copy the build files to the server
+        scp -i id_rsa -r dist/demo-angular-front/browser/* ${USER}@${HOST}:/var/www/html/
+
+        # Clean up
+        rm id_rsa

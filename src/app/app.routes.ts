@@ -163,7 +163,7 @@ export const routes: Routes = [
             IRole.user
           ],
           name: 'Dashboard',
-          icon:'bi bi-duffle-fill'
+          icon:'fa-solid fa-gauge'
         }
       },
       {
@@ -175,7 +175,7 @@ export const routes: Routes = [
             IRole.user
           ],
           name: 'Trip Form',
-          icon:'bi bi-duffle-fill'
+          icon:'fa-solid fa-plane'
         }
       },
       {
@@ -187,7 +187,7 @@ export const routes: Routes = [
             IRole.user
           ],
           name: 'Calendar',
-          icon:'bi bi-duffle-fill'
+          icon:'fa-solid fa-calendar'
         }
       },
     ],

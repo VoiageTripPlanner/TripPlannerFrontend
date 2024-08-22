@@ -2,7 +2,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { BaseService } from '../base-service';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { ICountry } from '../../interfaces/country.interface';
-import { ITripForm, ITrip } from '../../interfaces/trip.interface';
+import { ITripForm, ITrip, ITripDestinationCountry } from '../../interfaces/trip.interface';
 import { IVoiageRestaurant } from '../../interfaces/food.interface';
 import { LodgeService } from './lodge.service';
 import { FlightService } from './flights.service';
@@ -156,14 +156,26 @@ export class TripService extends BaseService<ITripForm> {
       activities: this.activitiesService.onGetDefaultVoiageActivities(),
       user: 0,
       creationDatetime: getNextDay(),
-      creationResponsible: 0
-
-
-
+      creationResponsible: 0,
+      activitiesEstimatedCost: 0,
+      restaurantsEstimatedCost: 0,
+      destinationCountry: this.onGetDefaultDestinatonCountry()
     }
 
     return defaultValue;
   };
+
+
+  onGetDefaultDestinatonCountry() {
+    
+    const defaultValue: ITripDestinationCountry = {
+      countryName: '',
+      countryCode: 'N/A'
+    }
+
+    return defaultValue
+  };
+
 
 }
 

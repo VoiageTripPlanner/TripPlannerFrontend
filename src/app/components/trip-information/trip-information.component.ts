@@ -176,6 +176,11 @@ export class TripInformationComponent  implements OnInit {
     this.tripNgModel.creationDatetime               = new Date(); 
     this.tripNgModel.creationResponsible            = this.userId;
 
+    this.tripNgModel.activitiesEstimatedCost            = this.tripBudget.activitiesAmount;
+    this.tripNgModel.restaurantsEstimatedCost           = this.tripBudget.foodAmount;
+    this.tripNgModel.destinationCountry.countryName     = this.initialForm.q;
+
+
   }
 
   cutStringCharacters(data: string) {

@@ -9,6 +9,8 @@ import { BehaviorSubject, map } from 'rxjs';
 import { IPlaceSearchResult } from '../../interfaces/placeSearch';
 import { RouterOutlet } from '@angular/router';
 import { LoaderComponent } from '../loader/loader.component';
+import { I } from '@angular/cdk/keycodes';
+import { IGoogleResponse } from '../../interfaces/google-hotel-response.interface';
 
 
 @Component({
@@ -24,10 +26,13 @@ export class MapComponent implements OnInit, OnChanges  {
   map!: GoogleMap;
 
   @Input()
-  destination: IPlaceSearchResult | undefined;
+  destination: any | undefined;
 
   @Input()
   zoomPlace : IPlaceSearchResult | undefined;
+
+  @Input()
+  zoomLodge : IGoogleResponse | undefined;
 
   @Input()
   pointsOfInterest: IPlaceSearchResult[] = [];
@@ -35,6 +40,8 @@ export class MapComponent implements OnInit, OnChanges  {
   markerPositions: google.maps.LatLng[] = [];
 
   zoomToPlace$ = new BehaviorSubject<IPlaceSearchResult | undefined>(undefined); //
+
+  zoomToLodge$ = new BehaviorSubject<IGoogleResponse | undefined>(undefined); //
 
   zoom = 5;
 
@@ -60,6 +67,12 @@ export class MapComponent implements OnInit, OnChanges  {
       this.gotoLocationZoom(zoomPlace);
     }
 
+    const zoomLodge = this.zoomLodge?.gps_coordinates;
+    if (zoomLodge) {
+      const latLng = new google.maps.LatLng(zoomLodge.latitude, zoomLodge.longitude);
+      this.gotoLodgeZoom(latLng);
+    }
+
     const destinationZooom = this.destination?.location;
     if (destinationZooom) {
       this.gotoLocation(destinationZooom);
@@ -78,6 +91,13 @@ export class MapComponent implements OnInit, OnChanges  {
   }
 
   gotoLocationZoom(location: google.maps.LatLng) {
+    this.markerPositions = [location];
+    this.map.panTo(location);
+    this.zoom = 25;
+    this.directionsResult$.next(undefined);
+  }
+
+  gotoLodgeZoom(location: google.maps.LatLng) {
     this.markerPositions = [location];
     this.map.panTo(location);
     this.zoom = 25;

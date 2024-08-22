@@ -149,4 +149,5 @@ export class FoodCardComponent {
     return this.foodSelectedOption;
   };
 
+
 }

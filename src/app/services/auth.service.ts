@@ -114,6 +114,10 @@ export class AuthService {
     localStorage.removeItem('destination');
     localStorage.removeItem('destinationLocation');
     localStorage.removeItem('selectedActivities');
+    localStorage.removeItem('flight');
+    localStorage.removeItem('lodge');
+    localStorage.removeItem('tripFormData');
+    localStorage.removeItem('budget');
   }
 
   public resetPassword(user: IUser): Observable<IUser> {

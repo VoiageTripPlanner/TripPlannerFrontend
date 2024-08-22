@@ -17,10 +17,11 @@
                         <h1 class="bold-text font-size-title">{{item.name}}</h1>
 
                         <div class="form-check move-to-right ">
-                            <input class="form-check-input custom-checkbox " type="checkbox" value="" id="flexCheckDefault-{{item.id}}" (change)="checkboxChange(item, $event)">
-                            
+                            <input class="form-check-input custom-checkbox " type="checkbox" value=""
+                                id="flexCheckDefault-{{item.id}}" (change)="checkboxChange(item, $event)">
+
                             <label class="font-size-price" for="flexCheckDefault">
-                                Select Option  
+                                Select Option
                             </label>
                         </div>
 
@@ -45,7 +46,8 @@
                     </div>
 
                     <div class="align-boxes space-between">
-                        <button type="button" class="btn btn-outline-info ">View in map</button>
+                        <button type="button" class="btn btn-outline-info " (click)="viewInMap(item)">View in
+                            map</button>
                         <button type="button" class="btn btn-outline-dark" (click)="visitSite(item.url)">Go to the
                             Site</button>
                     </div>
@@ -65,7 +67,16 @@
 
         </div>
         <div class="map-container">
-            <app-maps></app-maps>
+
+            <button type="button" class="btn  btn-warning position-absolute position-button"
+                (click)="ViewDestination()">
+                <i class="bi bi-compass"></i>
+            </button>
+
+            <app-maps class="z-index-1" [destination]="fromValue" [pointsOfInterest]="foodLocalsNerby"
+                [zoomPlace]="zoomToPlace">
+            </app-maps>
+
 
         </div>
 

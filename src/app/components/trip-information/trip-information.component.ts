@@ -79,7 +79,7 @@ export class TripInformationComponent {
     this.activitiesSelectedList   = this.activitiesSelectedList.filter(activity => activity.address !== '');
 
     //Data del perfil del usuario
-    this.userInfo             = this.userService.userSig();
+    this.userInfo                 = this.userService.userSig();
 
   }
 
@@ -121,6 +121,7 @@ export class TripInformationComponent {
     this.notifyService.onCustomConfirmation('Are you sure?', 'You will lose all the data', 'Yes, Start Again').then((result) => {
       if (result.isConfirmed) {
         this.removeLocalStorage()
+        this.router.navigateByUrl('/app/trip-form');
       };
 
     });
@@ -134,10 +135,15 @@ export class TripInformationComponent {
     localStorage.removeItem('flight');
     localStorage.removeItem('lodge');
     localStorage.removeItem('food');
-    localStorage.removeItem('selectedActivities');      
+    localStorage.removeItem('nearbyPlaces');      
+    localStorage.removeItem('destinationAddress');      
+    localStorage.removeItem('longitudeDestination');      
+    localStorage.removeItem('latitudeDestination');      
+    localStorage.removeItem('destinationName');      
     localStorage.removeItem('destinationLocation');      
+    localStorage.removeItem('selectedActivities');      
 
-    this.router.navigateByUrl('/app/trip-form');
+
   };
 
 

@@ -31,7 +31,7 @@ $active-background-color: #6D3C52;
 }
 
 .progress-bar-height {
-    height: 1.5vh;
+    height: 2.5vh;
 }
 
 
@@ -57,4 +57,9 @@ $active-background-color: #6D3C52;
 .custom-progress-bar-others {
     background-color: $background-color-grey;
     color: black;
+}
+
+.font-progress-bar {
+    font-weight: 600;
+    font-size: 1.1rem;
 }

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotifyService } from '../../shared/notify/notify.service';
 import { ITrip, ITripForm } from '../../interfaces/trip.interface';
@@ -21,6 +21,8 @@ import { CurrencyService } from '../../services/currency.service';
 import { ICurrency } from '../../interfaces/currency.interface';
 import { UserService } from '../../services/user.service';
 import { IUser } from '../../interfaces/user.interface';
+import { GoogleService } from '../../services/google.service';
+import { IOpenAIResponse } from '../../interfaces/placeSearch';
 
 @Component({
   selector: 'app-trip-information',
@@ -34,14 +36,15 @@ import { IUser } from '../../interfaces/user.interface';
 })
 
 
-export class TripInformationComponent {
+export class TripInformationComponent  implements OnInit {
 
-  authService         = inject (AuthService);
   activitiesService   = inject (ActivityService);
+  authService         = inject (AuthService);
   budgetService       = inject (BudgetService);
   currencyService     = inject (CurrencyService);
   flightService       = inject (FlightService);
   foodService         = inject (FoodService);
+  googleService       = inject (GoogleService);
   locationMark        = inject (LocationMarkService);
   lodgeService        = inject (LodgeService);
   notifyService       = inject (NotifyService);
@@ -60,6 +63,7 @@ export class TripInformationComponent {
 
   tripNgModel                   : ITrip;
   userId                        : number;
+  travelSuggestionAI            : string = '';
 
   constructor( 
     private router: Router,
@@ -80,6 +84,9 @@ export class TripInformationComponent {
 
     //Data del perfil del usuario
     this.userInfo                 = this.userService.userSig();
+
+  }
+  ngOnInit(): void {
 
   }
 
@@ -148,24 +155,37 @@ export class TripInformationComponent {
 
 
   assignTripData(){
-    this.tripNgModel.departureDate                      = this.initialForm.outbound_date;
-    this.tripNgModel.destinationCity                    = this.initialForm.q;  
-    this.tripNgModel.returnDate                         = this.initialForm.return_date;
-    this.tripNgModel.budget                             = this.tripBudget.total;
-    this.tripNgModel.currency                           = Number(this.userInfo.currencyId ); 
-    this.tripNgModel.lodge                              = this.lodgeSelected;
-    this.tripNgModel.flight                             = this.flightSelected;
-    this.tripNgModel.restaurants                        = this.foodSelectedlist;
-    this.tripNgModel.activities                         = this.activitiesSelectedList; 
-    this.tripNgModel.user                               = this.userId;
-    this.tripNgModel.aiSuggestion                       = ''; //Para cuando se implemente AI
-    // this.tripNgModel.ai_suggestions               =this.aiSuggestions; //Para cuando se implemente AI
-    this.tripNgModel.creationDatetime                   = new Date(); 
-    this.tripNgModel.creationResponsible                = this.userId;
+
+    const data : IOpenAIResponse = this.googleService.suggestionsResponseSignal$();
+    
+    
+    this.travelSuggestionAI =this.cutStringCharacters( data.content ?? '');
+    
+
+    this.tripNgModel.departureDate                  = this.initialForm.outbound_date;
+    this.tripNgModel.destinationCity                = this.initialForm.q;  
+    this.tripNgModel.returnDate                     = this.initialForm.return_date;
+    this.tripNgModel.budget                         = this.tripBudget.total;
+    this.tripNgModel.currency                       = Number(this.userInfo.currencyId ); 
+    this.tripNgModel.lodge                          = this.lodgeSelected;
+    this.tripNgModel.flight                         = this.flightSelected;
+    this.tripNgModel.restaurants                    = this.foodSelectedlist;
+    this.tripNgModel.activities                     = this.activitiesSelectedList; 
+    this.tripNgModel.user                           = this.userId;
+    this.tripNgModel.aiSuggestion                   =this.travelSuggestionAI; 
+    this.tripNgModel.creationDatetime               = new Date(); 
+    this.tripNgModel.creationResponsible            = this.userId;
 
     this.tripNgModel.activitiesEstimatedCost            = this.tripBudget.activitiesAmount;
     this.tripNgModel.restaurantsEstimatedCost           = this.tripBudget.foodAmount;
     this.tripNgModel.destinationCountry.countryName     = this.initialForm.q;
+
+
+  }
+
+  cutStringCharacters(data: string) {
+
+   return data.length > 250 ? data.substring(0, 250) + '...' : data;
 
   }
 

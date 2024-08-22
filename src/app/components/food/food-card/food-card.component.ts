@@ -16,6 +16,8 @@ import { IVoiageRestaurant } from '../../../interfaces/food.interface';
 import { LocationMarkService } from '../../../services/location-mark.service';
 import { ILocationMark } from '../../../interfaces/location-mark.interface';
 import { FoodService } from '../../../services/voiage-services/food.service';
+import { IPlaceSearchResult } from '../../../interfaces/placeSearch';
+import { MapsService } from '../../../services/map.service';
 
 @Component({
   selector: 'app-food-card',
@@ -39,28 +41,32 @@ export class FoodCardComponent {
   tripFormService         = inject(TripService);
   foodService             = inject(FoodService);
   locationMark            = inject(LocationMarkService);
+  mapsService             = inject(MapsService);
 
-  initialForm: ITripForm;
-  tripBudget:IBudgetPrices;
-  isLoading: boolean = false;
+  initialForm             : ITripForm;
+  tripBudget              : IBudgetPrices;
+  isLoading               : boolean = false;
 
-  foodSelectedOption: IVoiageRestaurant; 
-  foodSelectedList : IVoiageRestaurant[]; 
+  foodSelectedOption      : IVoiageRestaurant; 
+  foodSelectedList        : IVoiageRestaurant[]; 
 
 
-  yelpFoodResponseList: IFoodBusiness[] = []
-  
+  yelpFoodResponseList    : IFoodBusiness[] = []
+  foodLocalsNerby         : IPlaceSearchResult[]
+  fromValue               : IPlaceSearchResult = { address: '' };
+  zoomToPlace             : IPlaceSearchResult = { address: '' };
   
   constructor(
     private router: Router,
     
   ) {
 
-    this.foodSelectedOption   =this.foodService.onGetDefaultVoiageRestaurant();
-    this.foodSelectedList     =this.foodService.onGetDefaultVoiageRestaurantList();  
+    this.foodSelectedOption   = this.foodService.onGetDefaultVoiageRestaurant();
+    this.foodSelectedList     = this.foodService.onGetDefaultVoiageRestaurantList();  
+    this.foodLocalsNerby      = this.mapsService.onGetDefaultSearchResultList();    
 
-    this.initialForm          =this.tripFormService.getFormData();
-    this.tripBudget           =this.budgetService.getBudgetData();
+    this.initialForm          = this.tripFormService.getFormData();
+    this.tripBudget           = this.budgetService.getBudgetData();
 
     this.sendData();
 
@@ -80,6 +86,8 @@ export class FoodCardComponent {
     effect(() => {
       this.yelpFoodResponseList = this.service.yelpFoodResponse$();
       if (this.yelpFoodResponseList.length > 0) {
+        debugger
+        this.assingfoodLocalsNerby(this.yelpFoodResponseList);
         this.isLoading=false;
       }
     })
@@ -101,7 +109,7 @@ export class FoodCardComponent {
 
   selectOption(yelpFood:IFoodBusiness, event: any): void {
 
-    let amount=0; //esto mientras se implementa la IA para determinar el precio 
+    let amount=0; 
 
     if (!amount) {
       amount = 0;
@@ -133,21 +141,55 @@ export class FoodCardComponent {
 
   foodFilterInfo(yelpFood:IFoodBusiness): IVoiageRestaurant {  
 
-    let locationMark:ILocationMark              = this.locationMark.onGetDefaultVoiageLocationMark();
-    locationMark.latitude                       = yelpFood?.coordinates?.latitude ?? 0;
-    locationMark.longitude                      = yelpFood?.coordinates?.longitude ?? 0;
+    let locationMark:ILocationMark                = this.locationMark.onGetDefaultVoiageLocationMark();
+    locationMark.latitude                         = yelpFood?.coordinates?.latitude ?? 0;
+    locationMark.longitude                        = yelpFood?.coordinates?.longitude ?? 0;
 
-    this.foodSelectedOption.name                = yelpFood.name   || " ";
-    this.foodSelectedOption.description         = yelpFood.alias  || " ";
-    // this.foodSelectedOption.average_price       = yelpFood.price || 0; //aca se debe de aplcar el precio promedio que se obtenga con la IA mas adelante
-    this.foodSelectedOption.locationMark       = locationMark    || this.locationMark.onGetDefaultVoiageLocationMark();
+    this.foodSelectedOption.name                  = yelpFood.name   || " ";
+    this.foodSelectedOption.description           = yelpFood.alias  || " ";
+    this.foodSelectedOption.locationMark          = locationMark    || this.locationMark.onGetDefaultVoiageLocationMark();
 
-    //Necesito un id para le manejo del array y una imagen que mostrar, uso este de la respuesta del API
-    this.foodSelectedOption.yelpId              = yelpFood.id     || " ";
-    this.foodSelectedOption.restaurantImage    = yelpFood.image_url || "./assets/img/No_image_available.png";
+    //Datos que no persisten en la BD 
+    this.foodSelectedOption.yelpId                = yelpFood.id     || " ";
+    this.foodSelectedOption.restaurantImage       = yelpFood.image_url || "./assets/img/No_image_available.png";
+    this.foodSelectedOption.addressLocation       = yelpFood?.location?.display_address?.join(", ") || " ";
+    this.foodSelectedOption.locationCityCountry   = yelpFood?.location?.city + ", " + yelpFood?.location?.country || " ";
 
     return this.foodSelectedOption;
   };
 
+  assingfoodLocalsNerby(yelpFoodResponseList: IFoodBusiness[]): void {
+
+    this.foodLocalsNerby = yelpFoodResponseList.map((foodBusiness: IFoodBusiness) => ({
+      address: foodBusiness.location?.address1 || '', 
+      name: foodBusiness.name,
+      latitude: foodBusiness.coordinates?.latitude,
+      longitude: foodBusiness.coordinates?.longitude,
+      location: new google.maps.LatLng(foodBusiness.coordinates?.latitude || 0, foodBusiness.coordinates?.longitude || 0),
+    }));
+    debugger
+  }
+
+  ViewDestination() {
+    const storedPlace = localStorage.getItem('destinationLocation');
+    if (storedPlace) {
+      this.fromValue = JSON.parse(storedPlace);
+    }
+  }
+
+  viewInMap(yelpFood:IFoodBusiness) {
+
+    const place: IPlaceSearchResult = {
+      address: yelpFood.location?.address1 || '',
+      name: yelpFood.name,
+      latitude: yelpFood.coordinates?.latitude || 0,
+      longitude: yelpFood.coordinates?.longitude || 0,
+      location: new google.maps.LatLng(yelpFood.coordinates?.latitude || 0, yelpFood.coordinates?.longitude || 0),
+    };
+
+    this.zoomToPlace = place; 
+  }
+
+  
 
 }

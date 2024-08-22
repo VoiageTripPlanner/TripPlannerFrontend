@@ -26,9 +26,9 @@ export class ActivitiesNearbyCardComponent implements OnInit {
   @Output() onPlaceSelected = new EventEmitter<IPlaceSearchResult>();
 
 
-  notifyService = inject(NotifyService);
-  budgetService = inject(BudgetService);
-  activityService = inject(ActivityService);  // Inyecta el servicio
+  notifyService     = inject(NotifyService);
+  budgetService     = inject(BudgetService);
+  activityService   = inject(ActivityService);  // Inyecta el servicio
 
   activitySelected:IActivity[];
 

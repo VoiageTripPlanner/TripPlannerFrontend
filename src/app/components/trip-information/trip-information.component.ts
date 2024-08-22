@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotifyService } from '../../shared/notify/notify.service';
 import { ITrip, ITripForm } from '../../interfaces/trip.interface';
@@ -21,6 +21,8 @@ import { CurrencyService } from '../../services/currency.service';
 import { ICurrency } from '../../interfaces/currency.interface';
 import { UserService } from '../../services/user.service';
 import { IUser } from '../../interfaces/user.interface';
+import { GoogleService } from '../../services/google.service';
+import { IOpenAIResponse } from '../../interfaces/placeSearch';
 
 @Component({
   selector: 'app-trip-information',
@@ -34,14 +36,15 @@ import { IUser } from '../../interfaces/user.interface';
 })
 
 
-export class TripInformationComponent {
+export class TripInformationComponent  implements OnInit {
 
-  authService         = inject (AuthService);
   activitiesService   = inject (ActivityService);
+  authService         = inject (AuthService);
   budgetService       = inject (BudgetService);
   currencyService     = inject (CurrencyService);
   flightService       = inject (FlightService);
   foodService         = inject (FoodService);
+  googleService       = inject (GoogleService);
   locationMark        = inject (LocationMarkService);
   lodgeService        = inject (LodgeService);
   notifyService       = inject (NotifyService);
@@ -60,6 +63,7 @@ export class TripInformationComponent {
 
   tripNgModel                   : ITrip;
   userId                        : number;
+  travelSuggestionAI            : string = '';
 
   constructor( 
     private router: Router,
@@ -79,7 +83,10 @@ export class TripInformationComponent {
     this.activitiesSelectedList   = this.activitiesSelectedList.filter(activity => activity.address !== '');
 
     //Data del perfil del usuario
-    this.userInfo             = this.userService.userSig();
+    this.userInfo                 = this.userService.userSig();
+
+  }
+  ngOnInit(): void {
 
   }
 
@@ -121,6 +128,7 @@ export class TripInformationComponent {
     this.notifyService.onCustomConfirmation('Are you sure?', 'You will lose all the data', 'Yes, Start Again').then((result) => {
       if (result.isConfirmed) {
         this.removeLocalStorage()
+        this.router.navigateByUrl('/app/trip-form');
       };
 
     });
@@ -134,14 +142,25 @@ export class TripInformationComponent {
     localStorage.removeItem('flight');
     localStorage.removeItem('lodge');
     localStorage.removeItem('food');
-    localStorage.removeItem('selectedActivities');      
+    localStorage.removeItem('nearbyPlaces');      
+    localStorage.removeItem('destinationAddress');      
+    localStorage.removeItem('longitudeDestination');      
+    localStorage.removeItem('latitudeDestination');      
+    localStorage.removeItem('destinationName');      
     localStorage.removeItem('destinationLocation');      
+    localStorage.removeItem('selectedActivities');      
 
-    this.router.navigateByUrl('/app/trip-form');
+
   };
 
 
   assignTripData(){
+
+    const data : IOpenAIResponse = this.googleService.suggestionsResponseSignal$();
+    
+    
+    this.travelSuggestionAI =this.cutStringCharacters( data.content ?? '');
+    
 
     this.tripNgModel.departureDate                  = this.initialForm.outbound_date;
     this.tripNgModel.destinationCity                = this.initialForm.q;  
@@ -153,10 +172,15 @@ export class TripInformationComponent {
     this.tripNgModel.restaurants                    = this.foodSelectedlist;
     this.tripNgModel.activities                     = this.activitiesSelectedList; 
     this.tripNgModel.user                           = this.userId;
-    this.tripNgModel.aiSuggestion                   = ''; //Para cuando se implemente AI
-    // this.tripNgModel.ai_suggestions               =this.aiSuggestions; //Para cuando se implemente AI
+    this.tripNgModel.aiSuggestion                   =this.travelSuggestionAI; 
     this.tripNgModel.creationDatetime               = new Date(); 
     this.tripNgModel.creationResponsible            = this.userId;
+
+  }
+
+  cutStringCharacters(data: string) {
+
+   return data.length > 250 ? data.substring(0, 250) + '...' : data;
 
   }
 

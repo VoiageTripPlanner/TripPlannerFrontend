@@ -3,7 +3,7 @@ import { ICountry } from "./country.interface";
 import { IRoleDefine } from "./role.interface";
 
 export interface IUser {
-  id?: number;
+  id? : number;
   name?: string;
   lastname?: string;
   secondLastname?: string;

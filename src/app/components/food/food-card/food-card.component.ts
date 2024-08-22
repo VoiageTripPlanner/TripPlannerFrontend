@@ -133,18 +133,20 @@ export class FoodCardComponent {
 
   foodFilterInfo(yelpFood:IFoodBusiness): IVoiageRestaurant {  
 
-    let locationMark:ILocationMark              = this.locationMark.onGetDefaultVoiageLocationMark();
-    locationMark.latitude                       = yelpFood?.coordinates?.latitude ?? 0;
-    locationMark.longitude                      = yelpFood?.coordinates?.longitude ?? 0;
+    let locationMark:ILocationMark                = this.locationMark.onGetDefaultVoiageLocationMark();
+    locationMark.latitude                         = yelpFood?.coordinates?.latitude ?? 0;
+    locationMark.longitude                        = yelpFood?.coordinates?.longitude ?? 0;
 
-    this.foodSelectedOption.name                = yelpFood.name   || " ";
-    this.foodSelectedOption.description         = yelpFood.alias  || " ";
+    this.foodSelectedOption.name                  = yelpFood.name   || " ";
+    this.foodSelectedOption.description           = yelpFood.alias  || " ";
     // this.foodSelectedOption.average_price       = yelpFood.price || 0; //aca se debe de aplcar el precio promedio que se obtenga con la IA mas adelante
-    this.foodSelectedOption.locationMark       = locationMark    || this.locationMark.onGetDefaultVoiageLocationMark();
+    this.foodSelectedOption.locationMark          = locationMark    || this.locationMark.onGetDefaultVoiageLocationMark();
 
-    //Necesito un id para le manejo del array y una imagen que mostrar, uso este de la respuesta del API
-    this.foodSelectedOption.yelpId              = yelpFood.id     || " ";
-    this.foodSelectedOption.restaurantImage    = yelpFood.image_url || "./assets/img/No_image_available.png";
+    //Datos que no persisten en la BD 
+    this.foodSelectedOption.yelpId                = yelpFood.id     || " ";
+    this.foodSelectedOption.restaurantImage       = yelpFood.image_url || "./assets/img/No_image_available.png";
+    this.foodSelectedOption.addressLocation       = yelpFood?.location?.display_address?.join(", ") || " ";
+    this.foodSelectedOption.locationCityCountry   = yelpFood?.location?.city + ", " + yelpFood?.location?.country || " ";
 
     return this.foodSelectedOption;
   };

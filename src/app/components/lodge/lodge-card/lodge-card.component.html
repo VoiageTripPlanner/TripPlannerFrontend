@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="align-boxes space-between">
-                        <button type="button" class="btn btn-outline-info ">View in map</button>
+                        <button type="button" class="btn btn-outline-info " (click)="viewInMap(item)">View in map</button>
                         <button type="button" class="btn btn-outline-dark" (click)="visitSite(item.link)" >Go to the
                             Site</button>
                         <button type="button" class="btn btn-outline-success"
@@ -64,8 +64,14 @@
         </div>
         <div class="map-container">
 
-            
-            <app-maps />
+            <button type="button" class="btn  btn-warning position-absolute position-button"
+            (click)="ViewDestination()">
+            <i class="bi bi-compass"></i>
+        </button>
+
+        <app-maps class="z-index-1" 
+            [zoomLodge]="zoomToLodge">
+        </app-maps>
 
         </div>
 

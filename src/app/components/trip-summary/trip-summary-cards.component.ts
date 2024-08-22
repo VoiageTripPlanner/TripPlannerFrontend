@@ -14,11 +14,14 @@ import { FlightService } from '../../services/voiage-services/flights.service';
 import { FoodService } from '../../services/voiage-services/food.service';
 import { ActivityService } from '../../services/voiage-services/activity.service';
 import { IActivity } from '../../interfaces/activities.interface';
+import { TravelSuggestionsComponent } from '../travel-suggestions/travel-suggestions.component';
 
 @Component({
   selector: 'app-trip-summary-cards',
   standalone: true,
-  imports: [],
+  imports: [
+    TravelSuggestionsComponent
+  ],
   templateUrl: './trip-summary-cards.component.html',
   styleUrl: './trip-summary-cards.component.scss'
 })
@@ -32,6 +35,7 @@ export class TripSummaryCardsComponent implements OnInit {
   foodService         = inject (FoodService);
   locationMark        = inject (LocationMarkService);
   activitiesService   = inject (ActivityService);
+  
 
   initialForm               : ITripForm | undefined;
   tripBudget                : IBudgetPrices | undefined;

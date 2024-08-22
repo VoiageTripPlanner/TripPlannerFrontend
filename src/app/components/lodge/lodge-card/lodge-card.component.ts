@@ -1,4 +1,4 @@
-import { Component, effect, inject, NgModule } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { MapComponent } from '../../map/map.component';
 import { GoogleHotelService } from '../../../services/api-request/google-hotel.service';
 import { IGoogleResponse, ISearchParameters } from '../../../interfaces/google-hotel-response.interface';
@@ -11,7 +11,6 @@ import { TripService } from '../../../services/voiage-services/trip.service';
 import { ITripForm } from '../../../interfaces/trip.interface';
 import { formatDateToYYYYMMDD } from '../../../shared/utils/date-formatter';
 import { BudgetService } from '../../../services/budged.service';
-import { BudgetBarComponent } from '../../budget-bar/budget-bar.component';
 import { Router } from '@angular/router';
 import { IBudgetPrices } from '../../../interfaces/budget.interface';
 import { IVoiageLodge } from '../../../interfaces/lodge.interface';
@@ -39,40 +38,34 @@ import { IPlaceSearchResult } from '../../../interfaces/placeSearch';
 })
 
 export class LodgeCardComponent {
-
   authService           = inject (AuthService);
   budgetService         = inject(BudgetService);
   lodgeService          = inject(LodgeService);
   notifyService         = inject(NotifyService);
   service               = inject(GoogleHotelService);
   tripFormService       = inject(TripService);
-  
+
   googleHotelResponseList: IGoogleResponse[] = []
   initialForm:ITripForm;
   tripBudget:IBudgetPrices;
   isLoading: boolean = false;
-
   lodgeSelected: IVoiageLodge;
-
   userId                        : number;
 
   constructor(
     private router: Router,
   ) {
-
     this.lodgeSelected        = this.lodgeService.onGetDefaultVoiageLodge();
     this.initialForm          = this.tripFormService.getFormData();
     this.tripBudget           = this.budgetService.getBudgetData();
     this.userId               = this.authService.getUserId();
     this.sendData();
-
   };
 
 
   sendData() {
     this.isLoading = true;
     const data: ISearchParameters = {
-    
       q: this.initialForm.q,
       check_in_date: formatDateToYYYYMMDD(this.initialForm.check_in_date),
       check_out_date: formatDateToYYYYMMDD(this.initialForm.check_out_date)
@@ -81,15 +74,12 @@ export class LodgeCardComponent {
     this.service.getAllSignal(data);
     
     effect(() => {
-      
       this.googleHotelResponseList = this.service.googleHotelResponse$();
       if (this.googleHotelResponseList.length > 0) {
         this.isLoading=false;
       }
     })
   };
-
-
 
   trackByIndex(index: number, googleHotelResponseList: IGoogleResponse): number {
     return index;
@@ -112,10 +102,7 @@ export class LodgeCardComponent {
     target.src = '../../../../assets/img/No_image_available.png';
   }
 
-
   selectOption(googleLodge:IGoogleResponse){
-
-
 
     let amount= googleLodge.total_rate?.extracted_lowest ;
 
@@ -125,17 +112,12 @@ export class LodgeCardComponent {
 
     const classification = 'lodge'; 
     this.budgetService.updateSpending(amount, classification);
-
     this.lodgeSelected=this.lodgeFilterInfo(googleLodge);
     this.lodgeService.saveVoiageLodgeData( this.lodgeSelected);
-
-    this.notifyService.onCustomSimpleNotify('Lodge Selected','Go to the next step', );
-
-    
+    this.notifyService.onCustomSimpleNotify('Lodge Selected','Go to the next step', );    
   }
 
   lodgeFilterInfo( googleLodge: IGoogleResponse): IVoiageLodge {
-
     this.lodgeSelected.lodgeName                    = googleLodge.name || '';
     this.lodgeSelected.description                  = googleLodge.description || '';
     this.lodgeSelected.checkIn                      = this.initialForm.check_in_date || new Date();
@@ -152,9 +134,7 @@ export class LodgeCardComponent {
     this.lodgeSelected.creationResponsible          = this.userId;
     this.lodgeSelected.creationDatetime             = new Date();
     this.lodgeSelected.operational                  = true;
-
     return this.lodgeSelected;
-
   }
   
   zoomToLodge : IGoogleResponse = {};
@@ -172,7 +152,4 @@ export class LodgeCardComponent {
       this.fromValue = JSON.parse(storedPlace);
     }
   }
-
 }
-
-

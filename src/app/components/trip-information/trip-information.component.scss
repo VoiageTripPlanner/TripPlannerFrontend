@@ -1,22 +1,10 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
-
-//variables de color 
-$background-color-white: #ffffff;
-$background-color-grey: #b4b4b4;
-$background-color-grey-light: #f9f9f9;
-$border-color: #775D68;
-$image-backgorund-color: #FADCD4;
-$title-color: #6D3652;
-
-
+@import "../../../assets/utils/_variables";
 
 .yeseva-one-regular {
     font-family: "Yeseva One", serif;
     font-weight: 400;
     font-style: normal;
 }
-
 
 .margin-bottom-10 {
     margin-bottom: 10%;

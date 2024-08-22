@@ -6,7 +6,6 @@ import { DOCUMENT } from '@angular/common';
 import { combineLatest } from 'rxjs';
 
 ChoroplethChart.register([Tooltip]);
-
 @Component({
   selector: 'app-countries-heatmap',
   standalone: true,

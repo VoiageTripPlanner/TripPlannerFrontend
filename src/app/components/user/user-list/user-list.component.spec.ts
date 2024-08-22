@@ -8,11 +8,8 @@ import { UserListComponent } from './user-list.component';
 import { ModalComponent } from '../../modal/modal.component';
 import { UserFormComponent } from '../user-from/user-form.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { By } from '@angular/platform-browser';
-import Swal, { SweetAlertResult } from 'sweetalert2';
 import { NotifyService } from '../../../shared/notify/notify.service';
 import { UserService } from '../../../services/user.service';
-import { signal } from '@angular/core';
 import { IUser } from '../../../interfaces/user.interface';
 
 describe('UserListComponent', () => {
@@ -29,14 +26,10 @@ describe('UserListComponent', () => {
     });
 
     beforeEach(() => {
-
-
         fixture = TestBed.createComponent(UserListComponent);
         component = fixture.componentInstance;
         notifyService = TestBed.inject(NotifyService);
         userService = TestBed.inject(UserService);
-
-
         fixture.detectChanges();
     });
 
@@ -45,17 +38,12 @@ describe('UserListComponent', () => {
     });
 
     it('should call the delete method after confirming SweetAlert', async () => {
- 
         const deleteSpy=jest.spyOn(component['service'],'deleteUserSignal').mockReturnValue(of({}));
         const onSuccessSpy=jest.spyOn(component['notifyService'],'onSuccess');
         const userToDelete=component.userList[0];
-
         component.deleteUser(userToDelete);
-
         expect(deleteSpy).toHaveBeenCalledWith(userToDelete);
         expect(onSuccessSpy).toHaveBeenCalled();
-
-
     });
 
     

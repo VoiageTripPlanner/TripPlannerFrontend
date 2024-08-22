@@ -5,69 +5,58 @@
             <app-loader></app-loader>
         </div>
 
-
         <div class="col-md-6 flight-container" *ngIf="!isLoading">
             @for (item of googleFlightsResponseList ; track trackByIndex) {
 
-            @for (flight of item.flights ; track trackByIndex) {
+                @for (flight of item.flights ; track trackByIndex) {
 
-            <div class="flight-card align-boxes">
+                <div class="flight-card align-boxes">
 
-                <div class="information-container">
-                    <div class="align-boxes space-between">
-                        <h2 class="bold-text font-size-title">{{flight.departure_airport?.name}}</h2>
-                        <h2 class="bold-text font-size-title right-aligned-text">{{flight.arrival_airport?.name}}</h2>
+                    <div class="information-container">
+                        <div class="align-boxes space-between">
+                            <h2 class="bold-text font-size-title">{{flight.departure_airport?.name}}</h2>
+                            <h2 class="bold-text font-size-title right-aligned-text">{{flight.arrival_airport?.name}}</h2>
+                        </div>
+
+                        <div class="align-boxes space-between">
+                            <h2 class="bold-text font-size-title">Flight Price: $ {{item.price}}</h2>
+                        </div>
+
+                        <div class="align-boxes space-between">
+                            <h3>Departure: {{flight.departure_airport?.time}}</h3>
+                            <h3 class="right-aligned-text">Arrival: {{flight.arrival_airport?.time}}</h3>
+                        </div>
+
+                        <div class="width-100">
+                            <h2>Included:</h2>
+                            <ul class="circle-list">
+                                @for (amenity of flight.extensions ; track generateId) {
+                                    <li>{{amenity}}</li>
+                                }
+                            </ul>
+                        </div>
+
+                        <div class="align-boxes space-between">
+                            <button type="button" class="btn btn-outline-info ">View in map</button>
+                            <button type="button" class="btn btn-outline-dark" (click)="openLayouts()">Open Layouts</button>
+                            <button type="button" class="btn btn-outline-success" (click)="selectOption(item)" mat-button matStepperNext>Select option </button>
+                        </div>
                     </div>
 
-                    <div class="align-boxes space-between">
-                        <h2 class="bold-text font-size-title">Flight Price: $ {{item.price}}</h2>
+                    <div class="image-container">
+                        @if(item.airline_logo && item.airline_logo.length){
+                        <img src={{item.airline_logo}} alt="Logo" class="">
+                        }@else{
+                        <img src="../../../../assets/img/no-image.jpg" alt="Logo" class="">
+                        }
                     </div>
-
-
-                    <div class="align-boxes space-between">
-                        <h3>Departure: {{flight.departure_airport?.time}}</h3>
-                        <h3 class="right-aligned-text">Arrival: {{flight.arrival_airport?.time}}</h3>
-                    </div>
-
-                    <div class="width-100">
-                        <h2>Included:</h2>
-                        <ul class="circle-list">
-                            @for (amenity of flight.extensions ; track generateId) {
-                                <li>{{amenity}}</li>
-
-                            }
-
-                        </ul>
-
-                    </div>
-
-                    <div class="align-boxes space-between">
-                        <button type="button" class="btn btn-outline-info ">View in map</button>
-                        <button type="button" class="btn btn-outline-dark" (click)="openLayouts()">Open Layouts</button>
-                        <button type="button" class="btn btn-outline-success" (click)="selectOption(item)" mat-button matStepperNext>Select option </button>
-                    </div>
-
                 </div>
-
-                <div class="image-container">
-                    @if(item.airline_logo && item.airline_logo.length){
-                    <img src={{item.airline_logo}} alt="Logo" class="">
-                    }@else{
-                    <img src="../../../../assets/img/no-image.jpg" alt="Logo" class="">
-                    }
-                </div>
-
-            </div>
-            }
-
+                }
             }
         </div>
 
         <div class="map-container">
             <app-maps></app-maps>
-
         </div>
-
     </div>
-
 </div>

@@ -1,17 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
-
-
-//variables de color 
-$background-color-white: #ffffff;
-$background-color-grey: #b4b4b4;
-$background-color-grey-light: #f9f9f9;
-$border-color: #775D68;
-$image-backgorund-color: #FADCD4;
-$title-color: #6D3652;
-
+@import "../../../assets/utils/_variables";
 
 // Contenedor general de todo
-
 .yeseva-one-regular {
     font-family: "Yeseva One", serif;
     font-weight: 400;
@@ -24,7 +13,6 @@ $title-color: #6D3652;
     font-size: 4vh;
     color: $image-backgorund-color;
 }
-
 
 .container-box {
     padding: 0;
@@ -43,8 +31,6 @@ $title-color: #6D3652;
     background-color: $title-color;
 }
 
-
-
 .options-container {
     width: 60%;
     max-width: 90%;
@@ -58,9 +44,7 @@ $title-color: #6D3652;
     overflow-y: auto;
 }
 
-
 //   Tarjetas de hotels
-
 .hotel-card {
     width: 100%;
     max-height: 100%;
@@ -80,22 +64,7 @@ $title-color: #6D3652;
     padding: 3%;
 }
 
-
-//tarjetas para fligths
-
-
-//Tarjetas para activies
-
-
-//Tarjetas para food
-
-
-
-
-
-
-//Genrales 
-
+//Generales 
 .circle-list {
     list-style-type: circle;
     list-style-type: disc;
@@ -103,6 +72,7 @@ $title-color: #6D3652;
     column-count: 3; 
     column-gap: 20px; 
 }
+
 .circle-list li {
     break-inside: avoid; 
 }
@@ -132,7 +102,6 @@ $title-color: #6D3652;
     }
 }
 
-
 .move-to-right{
     align-self: flex-end; 
     text-align: right;
@@ -141,7 +110,6 @@ $title-color: #6D3652;
 .space-between{
     justify-content: space-between;
 }
-
 
 .bold-text {
     font-weight: 500; 
@@ -179,6 +147,3 @@ $title-color: #6D3652;
 .width-100{
     width: 100%;
 }
-
-
-

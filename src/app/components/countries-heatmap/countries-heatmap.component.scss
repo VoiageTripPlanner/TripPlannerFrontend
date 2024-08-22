@@ -1,14 +1,4 @@
-//Gradient for Voiage background
-$custom-gradient: linear-gradient(to bottom, #2D2230, #1D0F1C, #4B2137,);
-//Variables de color 
-$neutro-color-main:#1D0F1C;
-$neutro-color-second: #2D2230;
-$middle-color-main:#4B2137;
-$middle-color-second:#6D3C52;
-$light-color-main: #FADCD4;
-$light-color-second: #775D68;
-//Line gradient
-$line-gradient: linear-gradient(to right, rgba(255, 255, 255, 0.1), #FADCD4, rgba(255, 255, 255, 0.1));
+@import "../../../assets/utils/_variables.scss";
 
 :host {
   display: block;

@@ -258,6 +258,7 @@ div .header-wrapper {
 
                   span {
                     font-weight: 500;
+                    color: $light-color-main;
                   }
 
                   p {
@@ -1346,7 +1347,7 @@ div .header-wrapper {
           z-index: 9;
           height: auto;
           line-height: inherit;
-          background: $white;
+          background: $neutro-color-second;
           width: $sidebar-compact-width;
           text-align: left;
           transition: 0.3s;

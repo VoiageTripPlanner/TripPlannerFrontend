@@ -6,9 +6,8 @@
   <div class="container">
     <!-- Contenedor de las sugerencias de viaje -->
     <div>
-      <h1>Travel Suggestions:</h1>
       <div>
-        <p class="expanded-text">{{GoogleService.suggestionsResponseSignal$()}}</p>
+        <p class="expanded-text">{{GoogleService.suggestionsResponseSignal$().content}}</p>
       </div>
     </div>
   </div>

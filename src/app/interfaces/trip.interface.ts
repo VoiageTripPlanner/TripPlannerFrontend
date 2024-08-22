@@ -32,7 +32,7 @@ export interface ITrip{
     currency?:          number;  
     lodge:              IVoiageLodge; 
     aiSuggestion?:      string;
-    flight:             IVoiageFlight; // IFlights: ver lo de separarlo en departure y return flight
+    flight:             IVoiageFlight; 
     departureCity?:     string;
     restaurants:        IVoiageRestaurant[]; 
     activities:         IActivity[] 

@@ -172,7 +172,7 @@ export const routes: Routes = [
             IRole.user
           ],
           name: 'Trip Form',
-          icon:'fa-solid fa-plane'
+          icon:'bi bi-luggage-fill'
         }
       },
       {

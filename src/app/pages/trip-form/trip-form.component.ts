@@ -30,8 +30,9 @@ import { MapComponent } from "../../components/map/map.component";
     MatRadioModule,
     FormsModule,
     CommonModule,
-    PlaceAutocompleteComponent
-  ],
+    PlaceAutocompleteComponent,
+    MapComponent
+],
   providers: [provideNativeDateAdapter()],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './trip-form.component.html',

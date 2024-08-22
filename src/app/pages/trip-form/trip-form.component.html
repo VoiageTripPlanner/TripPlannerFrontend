@@ -1,7 +1,7 @@
 <div class="padding-1 align-boxes">
     <div class="width-100 display-flex">
         <div class="width-80 display-flex">
-           <h1 class="title yeseva-one-regular">Trip Planning </h1>
+           <h1 class="title">Trip Planning </h1>
         </div>
         <div class="button-container width-20">
             <button type="button" class="btn btn-secondary move-to-right " (click)="setTripInfo(formGeneralInfo, formFlightInfo, $event)">Start Planning</button>
@@ -21,7 +21,7 @@
 
             <form class="needs-validation"  #formGeneralInfo="ngForm" novalidate>
                 
-                <div class="form-group margin-bottom-10">
+                <div class="form-group margin-bottom-6">
                     
                     <label for="destinyCountry" class="margin-bottom-3 font-size-label">Destination</label>
                     
@@ -40,7 +40,7 @@
 
                 <label class="margin-bottom-3 font-size-label" for="lodgeDates">Lodge Dates</label>
 
-                <div class="margin-bottom-10 display-flex space-between">
+                <div class="margin-bottom-3 display-flex space-between">
 
                     <div class=" width-45 ">
                         <mat-form-field class="width-100">
@@ -70,122 +70,127 @@
 
 
             </form>
-        </div>
 
+            <div class="width-100">
+                <!-- <div class="display-flex">
+                    <i class="bi bi-airplane-engines-fill"></i>
+                    <h1 class="box-title yeseva-one-regular padding-1 class-title-color">Flights</h1>
+                </div> -->
+            <div class="width-100">
+                <form class="needs-validation"  #formFlightInfo="ngForm" novalidate>
+
+                    <div class="display-flex space-between margin-bottom-3">
+    
+                        <div class="form-group width-45">
+                            <label for="departure_id" class="margin-bottom-3 font-size-label">Departure Airport</label>
+                             <input type="text" class="form-control" id="departure_id" aria-describedby="airportHelp"
+                                placeholder="Indicate an airport" maxlength="3" [(ngModel)]="tripFormNgModel.departure_id"
+                                    [ngClass]="{
+                                      'is-invalid': departure_id.invalid && departure_id.touched,
+                                      'is-valid': departure_id.valid && departure_id.touched
+                                      }" name="departure_id" #departure_id="ngModel" required>
+                            <div *ngIf="departure_id.invalid" class="invalid-feedback">
+                                Please enter an airport of departure
+                            </div>
+                        </div>
+    
+                        <div class="form-group width-45">
+                            <label for="arrival_id" class="margin-bottom-3 font-size-label">Destination Airport</label>
+                            <input type="text" class="form-control" id="arrival_id" aria-describedby="airportDestinyHelp"
+                                placeholder="Indicate an airport" maxlength="3" [(ngModel)]="tripFormNgModel.arrival_id"
+                                [ngClass]="{
+                                    'is-invalid': arrival_id.invalid && arrival_id.touched,
+                                    'is-valid': arrival_id.valid && arrival_id.touched
+                                  }" name="arrival_id" #arrival_id="ngModel" required>
+    
+                            <div *ngIf="arrival_id.invalid" class="invalid-feedback">
+                                Please enter an airport of arrival
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                    <div class="margin-bottom-3">
+    
+                        <label for="flightType" class="margin-bottom-3 font-size-label">Select your type of Flight</label>
+                        <select class="form-select" aria-label="Default select example" [(ngModel)]="tripFormNgModel.type"
+                            [ngClass]="{
+                            'is-invalid': type.invalid && type.touched,
+                            'is-valid': type.valid && type.touched
+                          }" name="type" id="type" #type="ngModel" required>
+                            <option selected [ngValue]="1">Round Trip</option>
+                            <option [ngValue]="2">One Way</option>
+                        </select>
+    
+    
+                        <div *ngIf="type.invalid" class="invalid-feedback">
+                            Please enter a type
+                        </div>
+                    </div>
+    
+                    <label class="margin-bottom-3 font-size-label" for="lodgeDates">Flight Dates</label>
+    
+                    <div class="margin-bottom-2 display-flex space-between">
+    
+                        <div class=" width-45 ">
+                            <mat-form-field class="width-100">
+                                <mat-label>Departure Date</mat-label>
+                                <input matInput [matDatepicker]="pickerDeparture"
+                                    [(ngModel)]="tripFormNgModel.outbound_date" name="outbound_date"
+                                    [matDatepickerFilter]="dateFilter" id="outbound_date" #outbound_date="ngModel" >
+                                <mat-datepicker-toggle matIconSuffix [for]="pickerDeparture"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerDeparture></mat-datepicker>
+                            </mat-form-field>
+    
+    
+                        </div>
+    
+    
+                        <div class="width-45 ">
+                            <mat-form-field class="width-100">
+                                <mat-label>Return Date</mat-label>
+                                <input matInput [matDatepicker]="pickerReturn" [(ngModel)]="tripFormNgModel.return_date"
+                                    name="return_date" [disabled]="tripFormNgModel.type === 2"
+                                    [matDatepickerFilter]="dateFilter" id="return_date" #return_date="ngModel">
+                                <mat-datepicker-toggle matIconSuffix [for]="pickerReturn"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerReturn></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+    
+                    <div class="margin-bottom-3">
+    
+                        <label for="stops" class="margin-bottom-3 font-size-label">Select number of stops</label>
+                        <select class="form-select" aria-label="Select number of stops" [(ngModel)]="tripFormNgModel.stops"
+                            [ngClass]="{
+                            'is-invalid': stops.invalid && stops.touched,
+                            'is-valid': stops.valid && stops.touched
+                          }" name="stops" id="stops" #stops="ngModel" required>
+                            <option selected [ngValue]="0">Any number of stops</option>
+                            <option [ngValue]="1">Nonstop only</option>
+                            <option [ngValue]="2">1 stop or fewer</option>
+                            <option [ngValue]="3">2 stops or fewer</option>
+                        </select>
+    
+                        <div *ngIf="stops.invalid" class="invalid-feedback">
+                            Please enter a the quantity of stops desire
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+    
+                </form>
+            </div>
+
+            </div>
+        </div>
     </div>
 
 
     <div class="inputs-card align-boxes card-container">
-        
         <div class="width-100">
-            <div class="display-flex">
-                <i class="bi bi-airplane-engines-fill"></i>
-                <h1 class="box-title yeseva-one-regular padding-1 class-title-color">Flights</h1>
-            </div>
-
-            <form class="needs-validation"  #formFlightInfo="ngForm" novalidate>
-
-                <div class="display-flex space-between margin-bottom-10">
-
-                    <div class="form-group width-45">
-                        <label for="departure_id" class="margin-bottom-6 font-size-label">Departure Airport</label>
-                         <input type="text" class="form-control" id="departure_id" aria-describedby="airportHelp"
-                            placeholder="Indicate an airport" maxlength="3" [(ngModel)]="tripFormNgModel.departure_id"
-                                [ngClass]="{
-                                  'is-invalid': departure_id.invalid && departure_id.touched,
-                                  'is-valid': departure_id.valid && departure_id.touched
-                                  }" name="departure_id" #departure_id="ngModel" required>
-                        <div *ngIf="departure_id.invalid" class="invalid-feedback">
-                            Please enter an airport of departure
-                        </div>
-                    </div>
-
-                    <div class="form-group width-45">
-                        <label for="arrival_id" class="margin-bottom-6 font-size-label">Destination Airport</label>
-                        <input type="text" class="form-control" id="arrival_id" aria-describedby="airportDestinyHelp"
-                            placeholder="Indicate an airport" maxlength="3" [(ngModel)]="tripFormNgModel.arrival_id"
-                            [ngClass]="{
-                                'is-invalid': arrival_id.invalid && arrival_id.touched,
-                                'is-valid': arrival_id.valid && arrival_id.touched
-                              }" name="arrival_id" #arrival_id="ngModel" required>
-
-                        <div *ngIf="arrival_id.invalid" class="invalid-feedback">
-                            Please enter an airport of arrival
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="margin-bottom-10">
-
-                    <label for="flightType" class="margin-bottom-3 font-size-label">Select your type of Flight</label>
-                    <select class="form-select" aria-label="Default select example" [(ngModel)]="tripFormNgModel.type"
-                        [ngClass]="{
-                        'is-invalid': type.invalid && type.touched,
-                        'is-valid': type.valid && type.touched
-                      }" name="type" id="type" #type="ngModel" required>
-                        <option selected [ngValue]="1">Round Trip</option>
-                        <option [ngValue]="2">One Way</option>
-                    </select>
-
-
-                    <div *ngIf="type.invalid" class="invalid-feedback">
-                        Please enter a type
-                    </div>
-                </div>
-
-                <label class="margin-bottom-3 font-size-label" for="lodgeDates">Flight Dates</label>
-
-                <div class="margin-bottom-10 display-flex space-between">
-
-                    <div class=" width-45 ">
-                        <mat-form-field class="width-100">
-                            <mat-label>Departure Date</mat-label>
-                            <input matInput [matDatepicker]="pickerDeparture"
-                                [(ngModel)]="tripFormNgModel.outbound_date" name="outbound_date"
-                                [matDatepickerFilter]="dateFilter" id="outbound_date" #outbound_date="ngModel" >
-                            <mat-datepicker-toggle matIconSuffix [for]="pickerDeparture"></mat-datepicker-toggle>
-                            <mat-datepicker #pickerDeparture></mat-datepicker>
-                        </mat-form-field>
-
-
-                    </div>
-
-
-                    <div class="width-45 ">
-                        <mat-form-field class="width-100">
-                            <mat-label>Return Date</mat-label>
-                            <input matInput [matDatepicker]="pickerReturn" [(ngModel)]="tripFormNgModel.return_date"
-                                name="return_date" [disabled]="tripFormNgModel.type === 2"
-                                [matDatepickerFilter]="dateFilter" id="return_date" #return_date="ngModel">
-                            <mat-datepicker-toggle matIconSuffix [for]="pickerReturn"></mat-datepicker-toggle>
-                            <mat-datepicker #pickerReturn></mat-datepicker>
-                        </mat-form-field>
-                    </div>
-                </div>
-
-                <div class="margin-bottom-10">
-
-                    <label for="stops" class="margin-bottom-3 font-size-label">Select number of stops</label>
-                    <select class="form-select" aria-label="Select number of stops" [(ngModel)]="tripFormNgModel.stops"
-                        [ngClass]="{
-                        'is-invalid': stops.invalid && stops.touched,
-                        'is-valid': stops.valid && stops.touched
-                      }" name="stops" id="stops" #stops="ngModel" required>
-                        <option selected [ngValue]="0">Any number of stops</option>
-                        <option [ngValue]="1">Nonstop only</option>
-                        <option [ngValue]="2">1 stop or fewer</option>
-                        <option [ngValue]="3">2 stops or fewer</option>
-                    </select>
-
-                    <div *ngIf="stops.invalid" class="invalid-feedback">
-                        Please enter a the quantity of stops desire
-                    </div>
-                </div>
-
-            </form>
+            <app-maps></app-maps>
         </div>
-
     </div>
 
 </div>

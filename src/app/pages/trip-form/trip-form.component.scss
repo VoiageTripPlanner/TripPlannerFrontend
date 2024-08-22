@@ -12,12 +12,24 @@ $title-color: #6D3652;
     font-family: "Yeseva One", serif;
     font-weight: 400;
     font-style: normal;
+    font-size: 1.8rem;
+}
+
+label{
+    font-family: "Roboto Flex";
+    font-size: 1rem;
+    font-weight: 300;
+    color: $middle-color-main;
 }
 
 .title {
     transform: translateY(30%);
     padding-left: 1%;
-    font-size: 4vh;
+    font-size: 2.5rem;
+    font-family: 'Yeseva One', serif;
+    color: $light-color-main;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .logo {
@@ -130,7 +142,18 @@ $title-color: #6D3652;
 
 .button-container {
     display: flex;
-    justify-content: flex-end; 
+    justify-content: flex-end;
+}
+
+.button-container button{
+    color: $light-color-main;
+    background-color: $middle-color-main;
+    border: none;
+}
+
+.button-container button:hover {
+    background-color: $light-color-main;
+    color: $middle-color-main;
 }
 
 .input-no-border {

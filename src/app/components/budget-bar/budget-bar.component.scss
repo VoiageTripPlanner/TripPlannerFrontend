@@ -1,13 +1,16 @@
 $background-color-white: #ffffff;
 $background-color-grey: #b4b4b4;
 $background-color-grey-light: #f9f9f9;
-
-
 $hover-background-color: #FADCD4;
 $hover-background-color2: #775D68;
 $sidebar-color: #4B2137;
 $active-background-color: #6D3C52;
 
+@import '../../../assets/utils/variables.scss';
+
+.bar-container{
+    background:$custom-gradient;
+}
 
 .width-100 {
     width: 100%;
@@ -20,8 +23,14 @@ $active-background-color: #6D3C52;
 .title {
     font-weight: 600;
     font-size: 1.6rem;
+    color: $light-color-main;
 }
 
+p{
+    color: $middle-color-second;
+    font-size: 1.1rem;
+    font-weight: 400;
+}
 .margin-1 {
     margin: 0 1% 1% 1%;
 }
@@ -34,29 +43,31 @@ $active-background-color: #6D3C52;
     height: 2.5vh;
 }
 
-
 //Colores barra 
 
 .custom-progress-bar-lodge {
     background-color: $hover-background-color2;
+    color: $light-color-main;
 }
 
 .custom-progress-bar-flight {
     background-color: $sidebar-color;
+    color: $light-color-main;
 }
 
 .custom-progress-bar-food {
     background-color: $active-background-color;
+    color: $light-color-main;
 }
 
 .custom-progress-bar-activities {
     background-color: $hover-background-color;
-    color: black;
+    color: $neutro-color-main;
 }
 
 .custom-progress-bar-others {
     background-color: $background-color-grey;
-    color: black;
+    color: $neutro-color-main;
 }
 
 .font-progress-bar {

@@ -1345,7 +1345,7 @@ div .header-wrapper {
           position: fixed;
           top: 0;
           z-index: 9;
-          height: auto;
+          height: 100%;
           line-height: inherit;
           background: $neutro-color-second;
           width: $sidebar-compact-width;

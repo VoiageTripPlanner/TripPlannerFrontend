@@ -148,7 +148,6 @@ export class TripInformationComponent {
 
 
   assignTripData(){
-    debugger;
     this.tripNgModel.departureDate                      = this.initialForm.outbound_date;
     this.tripNgModel.destinationCity                    = this.initialForm.q;  
     this.tripNgModel.returnDate                         = this.initialForm.return_date;

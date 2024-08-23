@@ -13,7 +13,8 @@ export interface IVoiageRestaurant{
     //Atributo que no persite en la bd
     yelpId?                  : string;
     restaurantImage?         : string;
-
+    addressLocation?         : string;
+    locationCityCountry?     : string;   
 
     //Propiedades de auditoria
     creationDatetime?        : Date;

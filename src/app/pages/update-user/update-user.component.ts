@@ -68,8 +68,6 @@ export class UpdateUserComponent {
         countryId: ['', Validators.required],
         currencyId: ['', Validators.required]
       });
-      this.countryService.getAllSignal();
-      this.currencyService.getAllSignal();
       this.userService.getUserById(this.userId);
       this.updateUserForm.get('email')?.disable();
       this.updateUserForm.get('birthDate')?.disable();

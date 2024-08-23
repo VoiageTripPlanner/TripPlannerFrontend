@@ -22,8 +22,12 @@ import { IResponse } from "../interfaces/index.interface";
     public getPlaceSuggestions (input: string) {
       this.getSuggestions(input).subscribe({
         next: (response: any) => {
+          
           console.log(response.choices[0].message.content);
-          this.suggestionsResponseSignal.set(response.choices[0].message.content);
+
+          const data : string = response.choices[0].message.content;
+
+          this.suggestionsResponseSignal.set({content : data});
         },
         error: (error: any) => {
           console.error('Error fetching Travel suggestions', error);

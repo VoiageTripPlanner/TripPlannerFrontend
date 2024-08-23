@@ -27,15 +27,15 @@ h3{
 }
 
 .trip-information dt{
- color: $light-color-main;
+    color: $white;
 }
 
 .trip-information dd{
-    color: $light-color-main;
+    color: $white
 }
 
 h4{
-    color: $middle-color-main;
+    color: $neutro-color-second;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -45,31 +45,29 @@ h4{
 }
 
 dl{
-    color: $light-color-main;
     font-family: "Roboto Flex", sans-serif;
 }
 
 dt{
-    color: $neutro-color-main;
+    color:  $middle-color-main;
     font-family: "Roboto Flex", sans-serif;
 }
 
 dd{
-    color: $neutro-color-main;
+    color: $neutro-color-second;
     font-family: "Roboto Flex", sans-serif;
 }
 
 .trip-details{
     border-radius: 1.5rem;
     background: $white;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding: 1rem;
+
 }
 
 .trip-details dl{
     display: flex;
     justify-content: space-between;
-    color: $neutro-color-main;
 }
 
 .trip-category{

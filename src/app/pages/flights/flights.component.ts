@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { LoaderComponent } from '../../components/loader/loader.component';
 import { ModalComponent } from '../../components/modal/modal.component';
 import { CommonModule } from '@angular/common';

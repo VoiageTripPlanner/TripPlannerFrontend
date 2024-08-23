@@ -22,7 +22,7 @@ import { environment } from '../../../environments/environment';
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss'
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, OnChanges  {
   @ViewChild('map', { static: true })
   map!: GoogleMap;
   
@@ -56,16 +56,12 @@ export class MapComponent implements OnInit {
   
   @Input()
   destination: any | undefined;
-
   @Input()
   zoomPlace : IPlaceSearchResult | undefined;
-
   @Input()
   zoomLodge : IGoogleResponse | undefined;
-
   @Input()
   pointsOfInterest: IPlaceSearchResult[] = [];
-  
   directionsResult$ = new BehaviorSubject< 
     google.maps.DirectionsResult | undefined
   >(undefined);

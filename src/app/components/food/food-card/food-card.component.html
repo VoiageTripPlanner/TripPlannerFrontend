@@ -25,7 +25,6 @@
                             </label>
                         </div>
 
-
                     </div>
                     <h1 class="font-size-price">Rating: {{item.rating}}</h1>
 
@@ -40,7 +39,6 @@
                             @for (transaction of item.transactions ; track generateId) {
                             <li>{{transaction}}</li>
                             }
-
                         </ul>
 
                     </div>
@@ -76,11 +74,6 @@
             <app-maps class="z-index-1" [destination]="fromValue" [pointsOfInterest]="foodLocalsNerby"
                 [zoomPlace]="zoomToPlace">
             </app-maps>
-
-
         </div>
-
     </div>
-
-
 </div>

@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { IPlaceSearchResult } from '../../interfaces/placeSearch';
 import { NgIf } from '@angular/common';
 import { IGoogleResponse } from '../../interfaces/google-hotel-response.interface';
@@ -28,7 +28,7 @@ export class ActivitiesNearbyCardComponent implements OnInit {
 
   notifyService     = inject(NotifyService);
   budgetService     = inject(BudgetService);
-  activityService   = inject(ActivityService);  // Inyecta el servicio
+  activityService   = inject(ActivityService);
 
   activitySelected:IActivity[];
 
@@ -62,25 +62,20 @@ export class ActivitiesNearbyCardComponent implements OnInit {
   zoomToPlace: IPlaceSearchResult = { address: '' };
 
   onNearbyPlacesFound(places: IPlaceSearchResult[]) {
-    
-    
-
     this.fromNearbyPlaces = places;
-
     this.allNearbyPlaces = [...this.fromNearbyPlaces];
-    }
+  }
 
   viewInMap(place: IPlaceSearchResult) {
-
       this.zoomToPlace = place; 
-    }
+  }
 
-    ViewDestination(){
-      const storedPlace = localStorage.getItem('destinationLocation');
-      if (storedPlace) {
+  ViewDestination(){
+    const storedPlace = localStorage.getItem('destinationLocation');
+    if (storedPlace) {
         this.fromValue = JSON.parse(storedPlace);
-      }
     }
+  }
 
   visitSite(url: string | undefined): void {
       if (url) {
@@ -92,9 +87,7 @@ export class ActivitiesNearbyCardComponent implements OnInit {
 
   checkboxChange(placeNearby: IPlaceSearchResult, event: any): void {
 
-    const activitySelected=this.activityFilterInfo(placeNearby);
-
-
+  const activitySelected=this.activityFilterInfo(placeNearby);
 
     if (event.target.checked) {
       this.activityService.addItem(activitySelected);  
@@ -113,7 +106,6 @@ export class ActivitiesNearbyCardComponent implements OnInit {
 
     const activityNearby: IActivity=this.activityService.onGetDefaultVoiageActivities();
 
-    
     const lat = (placeNearby.location as any).lat;
     const lng = (placeNearby.location as any).lng;
     
@@ -124,7 +116,6 @@ export class ActivitiesNearbyCardComponent implements OnInit {
       activityNearby.latitude = 0;
       activityNearby.longitude = 0;
     }
-    
 
     activityNearby.address      = placeNearby.address;
     activityNearby.imageUrl     = placeNearby.imageUrl;
@@ -133,12 +124,7 @@ export class ActivitiesNearbyCardComponent implements OnInit {
     activityNearby.rating       = placeNearby.rating;
     activityNearby.website      = placeNearby.website;
     activityNearby.priceLevel   = placeNearby.pricelevel;
-
     activityNearby.iconUrl      = '';
-
-
     return activityNearby;
   }
-
-
 }

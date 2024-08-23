@@ -22,7 +22,4 @@ export class PriceDetailsComponent {
   ) {
     this.tripBudget = this.budgetService.getBudgetData();
   }
-
-
-
 }

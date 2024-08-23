@@ -1,15 +1,6 @@
 import { GoogleService } from './../../services/google.service';
 import { Router } from '@angular/router';
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  NgZone,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import {  Component, ElementRef, EventEmitter, Input, NgZone, OnInit, Output, ViewChild} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -149,7 +140,6 @@ export class PlaceAutocompleteComponent implements OnInit {
         Promise.all(nearbyPlacesPromises).then((nearbyPlaces) => {
           this.nearbyPlacesFound.emit(nearbyPlaces);
           localStorage.setItem('nearbyPlaces', JSON.stringify(nearbyPlaces));
-          // console.log(JSON.stringify(nearbyPlaces, null, 4));
         }).catch((error) => {
           console.error(error);
         });

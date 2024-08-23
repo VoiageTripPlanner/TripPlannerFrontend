@@ -8,12 +8,10 @@
           <button (click)="previousMonth()" class="toggle__option toggle__option--selected">&#60;</button>
           <span class="month-tittle">{{ monthNames[month] }}, {{ year }}</span>
           <button (click)="nextMonth()" class="toggle__option toggle__option--selected">&#62;</button>
-  
         </div>
   
         <div class="col-1 button-header">
           <button type="button" class="btn btn-secondary" (click)="openDialog(false , null)">Create</button>
-  
         </div>
   
       </div>
@@ -31,24 +29,21 @@
         @for( week of weeks; track week){
         <div class="calendar__week">
           @for( day of week; track day){
-          <div class="calendar__day day">
-            @if(day.day !== 0){
-            <span>{{ day.day }}</span>
-            @for( event of day.events; track event){
-            <div class="event" (click)="openDialog(true,event)">
-              <div class="event__time">{{ event.title }}</div>
-              <div class="event__title">{{ event.description }}</div>
+            <div class="calendar__day day">
+              @if(day.day !== 0){
+                <span>{{ day.day }}</span>
+                  @for( event of day.events; track event){
+                    <div class="event" (click)="openDialog(true,event)">
+                      <div class="event__time">{{ event.title }}</div>
+                      <div class="event__title">{{ event.description }}</div>
+                    </div>
+                  }
+              }
             </div>
-            }
-            }
-          </div>
           }
         </div>
         }
-  
       </div>
     </main>
-  
   </div>
-
 }

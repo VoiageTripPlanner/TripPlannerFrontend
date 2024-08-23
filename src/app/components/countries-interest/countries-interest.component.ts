@@ -5,12 +5,10 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { MatChipInput, MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
+import { MatChipInput, MatChipsModule } from '@angular/material/chips';
 import {A, COMMA, ENTER} from '@angular/cdk/keycodes';
 import { map, Observable, of, startWith } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
-import { UserCountryInterestService } from '../../services/user-country-interest.service';
-import { UserService } from '../../services/user.service';
 import { ICountryInterest } from '../../interfaces/country-interest.interface';
 
 @Component({

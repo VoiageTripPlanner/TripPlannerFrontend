@@ -1,5 +1,5 @@
 import { ICurrency } from "./currency.interface";
-import { IFlights, IVoiageFlight } from "./flights.interface";
+import { IVoiageFlight } from "./flights.interface";
 import { Flight } from './google-flights-response.interface';
 import { IVoiageLodge } from "./lodge.interface";
 import { IFoodBusiness } from "./yelp-food-response.interface";

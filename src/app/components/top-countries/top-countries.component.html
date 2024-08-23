@@ -15,7 +15,7 @@
           <span class="ms-2 align-self-end">{{ country.visits }} visits</span>
         </div>
       } @empty {
-        <p>No data available</p>
+        <p class="text-center">No data available</p>
       }
       @if (topCountries && topCountries.length > 0) {
         <div class="total d-flex pt-2 border-top">

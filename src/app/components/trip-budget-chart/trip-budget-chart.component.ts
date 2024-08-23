@@ -22,7 +22,6 @@ export class TripBudgetChartComponent {
   private statisticsService: StatisticsService = inject(StatisticsService);
 
   constructor() {
-    this.statisticsService.getTripBudgetOverview();
     effect(() => {
       this.getChartData(this.statisticsService.budgetOverviewSig());
     });

@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 class="fs-2 pt-5 pb-2">Trips</h2>
+  <h2 class="fs-2 pt-5 pb-2 color-white">Trips</h2>
   @defer (when tripPagination() !== null && tripPagination()?.totalElements !== 0) {
     <app-trips-table 
       [trips]="tripPagination()?.data ?? null" 

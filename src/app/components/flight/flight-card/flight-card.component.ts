@@ -184,7 +184,7 @@ export class FlightCardComponent implements OnInit {
 
   flightFilterInfo( googleFlight: OtherFlight): IVoiageFlight {
     this.flightSelected.duration                        = googleFlight.total_duration || 0;
-    this.flightSelected.airline_name                    = googleFlight.flights![0].airline || " ";
+    this.flightSelected.airline                    = googleFlight.flights![0].airline || " ";
     this.flightSelected.airline_logo                    = googleFlight.flights![0].airline_logo || "./assets/img/No_image_available.png";
     this.flightSelected.travel_class                    = googleFlight.flights![0].travel_class || " ";
     this.flightSelected.flight_number                   = googleFlight.flights![0].flight_number || " ";

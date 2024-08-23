@@ -7,7 +7,7 @@ export interface Airport {
 export interface IVoiageFlight{
     flight_id                      : number;
     duration                        : number;
-    airline_name                    : string;
+    airline                         : string;
     airline_logo                    : string;
     travel_class                    : string;
     flight_number                   : string;

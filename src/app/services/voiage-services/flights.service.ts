@@ -29,7 +29,7 @@ export class FlightService extends BaseService<IVoiageFlight>   {
     const defaultValue: IVoiageFlight = {
       flight_id               : 0,
       duration                : 0,
-      airline_name            : '',
+      airline           : '',
       airline_logo            : '',
       travel_class            : '',
       flight_number           : '',

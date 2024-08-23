@@ -25,6 +25,8 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { CalendarComponent } from './pages/calendar/calendar.component';
 import { TripsPageComponent } from './pages/trips-page/trips-page.component';
 import { TripInformationPageComponent } from './pages/trip-information-page/trip-information-page.component';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+
 
 export const routes: Routes = [
   {
@@ -35,6 +37,11 @@ export const routes: Routes = [
   {
     path: 'signup',
     component: SigUpComponent,
+    canActivate: [GuestGuard],
+  },
+  {
+    path: 'landing',
+    component: LandingPageComponent,
     canActivate: [GuestGuard],
   },
   {

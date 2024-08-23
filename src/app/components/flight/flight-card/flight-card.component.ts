@@ -1,10 +1,10 @@
-import { Component, effect, inject} from '@angular/core';
+import { Component, effect, inject, OnInit} from '@angular/core';
 import { LoaderComponent } from '../../loader/loader.component';
 import { ModalComponent } from '../../modal/modal.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { GoogleFlightsService } from '../../../services/api-request/google-flights.service';
-import { OtherFlight, SearchParameters } from '../../../interfaces/google-flights-response.interface';
+import { OtherFlight, SearchParameters, Layover, SearchMetadata } from '../../../interfaces/google-flights-response.interface';
 import { MapComponent } from '../../map/map.component';
 import { NotifyService } from '../../../shared/notify/notify.service';
 import { ITripForm } from '../../../interfaces/trip.interface';
@@ -32,7 +32,7 @@ import { FlightService } from '../../../services/voiage-services/flights.service
   templateUrl: './flight-card.component.html',
   styleUrl: './flight-card.component.scss'
 })
-export class FlightCardComponent {
+export class FlightCardComponent implements OnInit {
 
   budgetService = inject(BudgetService);
   notifyService = inject(NotifyService);
@@ -45,8 +45,10 @@ export class FlightCardComponent {
   flightSelected: IVoiageFlight;
   flightDepartureAirport: Airport;
   flightArrivalAirport: Airport;
-  googleFlightsResponseList: OtherFlight[] = [];
 
+  googleFlightsResponseList: OtherFlight[] = [];
+  googleFlightsResponseMetadata: SearchMetadata = {};
+  layovers: IVoiageFlight[] = [];
 
   constructor(
     private router: Router,
@@ -59,7 +61,24 @@ export class FlightCardComponent {
     this.tripBudget = this.budgetService.getBudgetData();
 
     this.sendData();
+  }ngOnInit(): void {
+
   };
+
+  removeCircularReferences<T>(obj: T, seen: WeakSet<any> = new WeakSet()): T | undefined {
+    if (obj && typeof obj === 'object') {
+        if (seen.has(obj)) {
+            return undefined;
+        }
+        seen.add(obj);
+        for (const key in obj) {
+            if (Object.prototype.hasOwnProperty.call(obj, key)) {
+                (obj as any)[key] = this.removeCircularReferences((obj as any)[key], seen);
+            }
+        }
+    }
+    return obj;
+}
 
   sendData() {
     this.isLoading = true;
@@ -81,11 +100,12 @@ export class FlightCardComponent {
     this.service.getAllSignal(datos);
 
     effect(() => {
-
       this.googleFlightsResponseList = this.service.googleFlightsResponse$();
       if (this.googleFlightsResponseList.length > 0) {
         this.isLoading = false;
-      } else if (this.googleFlightsResponseList.length = 0) {
+        this.layovers = this.googleFlightsResponseList.map(flight => this.flightFilterInfo(flight));
+        this.layovers.forEach(layover => layover.showLayovers = false);
+      } else if (this.googleFlightsResponseList.length === 0) {
         this.isLoading = false;
         this.notifyService.onError();
       }
@@ -119,34 +139,67 @@ export class FlightCardComponent {
 
   selectOption(googleFlight: OtherFlight): void {
     let amount = googleFlight.price;
-
+  
     if (!amount) {
       amount = 0;
     }
     const classification = 'flights';
     this.budgetService.updateSpending(amount, classification);
-    this.flightSelected=this.flghtFilterInfo(googleFlight);
-    this.flightService.saveVoiageFlightData(this.flightSelected);       
-    this.notifyService.onCustomSimpleNotify('Flight Selected','Go to the next step', );
+    this.flightSelected=this.flightFilterInfo(googleFlight);
+    this.isLayoverOrNot(googleFlight);
+    const sanitizedFlight = this.removeCircularReferences<IVoiageFlight>(this.flightSelected);
+    if (sanitizedFlight) {
+      this.flightService.saveVoiageFlightData(sanitizedFlight);
+      this.notifyService.onCustomSimpleNotify('Flight Selected','Go to the next step', );
+    }else{ 
+      console.error('Circular reference detected in googleFlight object');
+      this.notifyService.onError();
+    }
   }
 
-  flghtFilterInfo( googleFlight: OtherFlight): IVoiageFlight {
-    this.airportFlightSelected(googleFlight);
-    this.flightSelected.departure_airport               = this.flightDepartureAirport;
-    this.flightSelected.arrival_airport                 = this.flightArrivalAirport;
-    this.flightSelected.airline                         = googleFlight.flights![0].airline || " ";
+  isLayoverOrNot(layover: Layover & { flights?: any[] }): boolean {
+    if (!layover.flights || layover.flights.length === 0) {
+      this.flightSelected.isLayover = false;
+      return this.flightSelected.isLayover;
+    }
+
+    const departureAirport = layover.flights[0].name && layover.flights[0].id;
+    const arrivalAirport = layover.flights[layover.flights.length - 1].name;
+
+    if (
+      (layover.name === this.initialForm.departure_id && layover.id === departureAirport.id) ||
+      (layover.name === this.initialForm.arrival_id && layover.id === arrivalAirport.id)
+    ) {
+        this.flightSelected.isLayover = true;
+        this.layovers.push(this.flightSelected.layovers![0]);
+        //**********************delete*****************************//
+        console.log('Layover', this.layovers);
+    } else {
+        this.flightSelected.isLayover = false;
+    }
+    return this.flightSelected.isLayover;
+  }
+
+  flightFilterInfo( googleFlight: OtherFlight): IVoiageFlight {
+    this.flightSelected.duration                        = googleFlight.total_duration || 0;
+    this.flightSelected.airline_name                    = googleFlight.flights![0].airline || " ";
     this.flightSelected.airline_logo                    = googleFlight.flights![0].airline_logo || "./assets/img/No_image_available.png";
     this.flightSelected.travel_class                    = googleFlight.flights![0].travel_class || " ";
     this.flightSelected.flight_number                   = googleFlight.flights![0].flight_number || " ";
     this.flightSelected.start_date                      = this.initialForm.outbound_date || new Date();
     this.flightSelected.end_date                        = this.initialForm.return_date || new Date(); 
-    this.flightSelected.booking_token                   = googleFlight.booking_token || "";
+    this.flightSelected.created_at                      = new Date();
+    this.flightSelected.booking_token                   = googleFlight.booking_token || " ";
+    this.flightSelected.isLayover                      = this.flightSelected.isLayover || false;
+    this.flightSelected.total_duration                        = googleFlight.total_duration || 0;
     this.flightSelected.price                           = Number(googleFlight.price) || 0;
     this.flightSelected.type                            = googleFlight.type || " ";
-    // this.flightSelected.is_layover                      =
-    this.flightSelected.duration                        = googleFlight.total_duration || 0;
-    this.flightSelected.booking_token                   = googleFlight.booking_token || " ";
-    this.flightSelected.total_duration                        = googleFlight.total_duration || 0;
+    this.flightSelected.departure_airport               = this.flightDepartureAirport;
+    this.flightSelected.arrival_airport                 = this.flightArrivalAirport;
+    this.flightSelected.layovers                        = this.layovers;
+    this.flightSelected.parentFlight                    = undefined;
+    this.flightSelected.showLayovers                    = false;
+    
     return this.flightSelected;
   };
 

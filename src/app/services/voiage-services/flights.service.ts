@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { BaseService } from '../base-service';
-import { Airport, IFlights, IVoiageFlight } from '../../interfaces/flights.interface';
+import { Airport, IVoiageFlight } from '../../interfaces/flights.interface';
 import { NotifyService } from '../../shared/notify/notify.service';
 
 
@@ -19,7 +19,6 @@ export class FlightService extends BaseService<IVoiageFlight>   {
     return this.flightsListSignal;
   };
 
-
   onGetDefaultVoiageFlight(){
 
     const getNextDay = (): Date => {
@@ -28,64 +27,30 @@ export class FlightService extends BaseService<IVoiageFlight>   {
     };
 
     const defaultValue: IVoiageFlight = {
-
       flight_id               : 0,
-      departure_airport       : this.onGetDefaultAirports(),
-      arrival_airport         : this.onGetDefaultAirports(),
-      return_date             : new Date('1900-01-01'),
-      airline                 : '',
+      duration                : 0,
+      airline_name            : '',
       airline_logo            : '',
       travel_class            : '',
       flight_number           : '',
       start_date              : getNextDay(),
       end_date                : getNextDay(),
+      created_at              : new Date(),
       booking_token           : '',
+      isLayover               : false,
+      total_duration          : 0,
       price                   : 0,
       type                    : '',
-      isLayover               : false,
-      duration                : 0,
-      outbound_date           : getNextDay(),
-      google_flights_link     : '',
-      total_duration          : 0,
-      layovers                : this.onGetDefaultLayoversList(),
-      created_at              : new Date()
-      
-
+      departure_airport       : this.onGetDefaultAirports(),
+      arrival_airport         : this.onGetDefaultAirports(),
+      showLayovers            : false,
     }
 
+    defaultValue.layovers                = [];
+    defaultValue.parentFlight            = undefined;
+
     return defaultValue;
-
   };
-
-
-  onGetDefaultLayover(){
-
-  const defaultLayover:IFlights = {
-    duration                       : 0,
-    airline                        : '',
-    airline_logo                   : '',
-    travel_class                   : '',
-    flight_number                  : '',
-    return_date                    : new Date('1900-01-01'),
-    outbound_date                  : new Date('1900-01-01'),
-    created_at                     : new Date(),
-    booking_token                  : '',
-    google_flights_link            : '',
-    isLayover                       : false,
-    total_duration                 : 0,
-    price                          : 0,
-    type                           : '',
-    departure_airport              : this.onGetDefaultAirports(),
-    arrival_airport                : this.onGetDefaultAirports(),
-    
-  }
-
-  return defaultLayover;
-}
-
-onGetDefaultLayoversList(){
-  return [this.onGetDefaultLayover()];
-}
 
   onGetDefaultAirports(){
       
@@ -111,7 +76,6 @@ onGetDefaultLayoversList(){
       }
     });
   };
-
 
   saveVoiageFlightData(formData: IVoiageFlight): void {
     localStorage.setItem(this.storageKey, JSON.stringify(formData));

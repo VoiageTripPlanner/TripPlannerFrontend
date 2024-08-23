@@ -20,10 +20,9 @@ import { StepperComponent } from './components/stepper/stepper.component';
 import { TripSummaryComponent } from './pages/trip-summary/trip-summary.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { CalendarComponent } from './pages/calendar/calendar.component';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { TripsPageComponent } from './pages/trips-page/trips-page.component';
 import { TripInformationPageComponent } from './pages/trip-information-page/trip-information-page.component';
-import { LandingPageComponent } from './pages/landing-page/landing-page.component';
-
 
 export const routes: Routes = [
   {

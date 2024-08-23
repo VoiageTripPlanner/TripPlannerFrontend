@@ -5,10 +5,10 @@
   left: 980px;
   width: 100%;
   height: fit-content;
-  background: #FFFFFFFF;
   /* white */
   border-radius: 5%;
   padding: 5%;
+  background: $custom-gradient-three;
 }
 
 .details-container {
@@ -19,47 +19,60 @@
 
 .tittle-text {
   font-family: "Yeseva One", serif;
-  font-size: 1.6rem;
+  font-size: 2.3rem;
   line-height: 30px;
   font-weight: 700;
-  color: $title-color;
+  color: $light-color-main;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .left-detail-text {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   line-height: 22px;
   font-weight: 500;
-  color: #323842FF;
+  color: $light-color-main;
+  font-family: "Roboto Flex", sans-serif;
 }
 
 .right-detail-text {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   line-height: 22px;
   font-weight: 500;
-  color: #82758d;
+  color: $light-color-main;
+  font-family: "Roboto Flex", sans-serif;
 }
 
 .total-text{
-  font-size: 1.5rem;
+  font-size: 2rem;
   line-height: 22px;
   font-weight: 500;
   font-weight: 700;
-  color: #323842FF;
+  color: $light-color-main;
+  font-family: "Yeseva One", serif;
 }
 
 .total-price{
-  font-size: 1.5rem;
+  font-size: 2rem;
   line-height: 22px;
   font-weight: 500;
   font-weight: 700;
-  color: $border-color;
+  color: $light-color-main;
+  font-family: "Yeseva One", serif;
 }
 
 .line {
-
   width: 100%;
   border-width: 1px;
-  border-color: rgb(37, 4, 39);
+  border-color: $light-color-second;
+  border-style: solid;
+  transform: rotate(180deg);
+}
+
+hr {
+  border-width: 1px;
+  border-color: $light-color-second;
   border-style: solid;
   transform: rotate(180deg);
 }

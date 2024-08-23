@@ -157,26 +157,28 @@ export class FlightCardComponent implements OnInit {
     }
   }
 
-  isLayoverOrNot(layover: Layover & { flights?: any[] }): boolean {
+  isLayoverOrNot(layover: OtherFlight): boolean {
     if (!layover.flights || layover.flights.length === 0) {
       this.flightSelected.isLayover = false;
       return this.flightSelected.isLayover;
     }
 
-    const departureAirport = layover.flights[0].name && layover.flights[0].id;
-    const arrivalAirport = layover.flights[layover.flights.length - 1].name;
+    // const departureAirport = layover.flights[0].name && layover.flights[0].id;
+    // const arrivalAirport = layover.flights[layover.flights.length - 1].name;
 
-    if (
-      (layover.name === this.initialForm.departure_id && layover.id === departureAirport.id) ||
-      (layover.name === this.initialForm.arrival_id && layover.id === arrivalAirport.id)
-    ) {
-        this.flightSelected.isLayover = true;
-        this.layovers.push(this.flightSelected.layovers![0]);
-        //**********************delete*****************************//
-        console.log('Layover', this.layovers);
-    } else {
-        this.flightSelected.isLayover = false;
-    }
+    // if (
+    //   (layover.name === this.initialForm.departure_id && layover.id === departureAirport.id) ||
+    //   (layover.name === this.initialForm.arrival_id && layover.id === arrivalAirport.id)
+    // ) {
+    //     this.flightSelected.isLayover = true;
+    //     this.layovers.push(this.flightSelected.layovers![0]);
+    //     //**********************delete*****************************//
+    //     console.log('Layover', this.layovers);
+    // } else {
+    //     this.flightSelected.isLayover = false;
+    // }
+    console.log('Layover', this.flightSelected.isLayover);
+    console.log('Layover', this.layovers);
     return this.flightSelected.isLayover;
   }
 

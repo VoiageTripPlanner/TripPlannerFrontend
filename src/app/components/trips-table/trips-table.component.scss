@@ -1,0 +1,47 @@
+@import "../../../assets/utils/_variables";
+
+.table {
+    width: 100%;
+}
+
+tbody{
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    background-color: white;
+}
+
+thead {
+    padding: 0.3rem;
+    text-align: center;
+    color: $light-color-main;
+    font-size: 2vh;
+    padding-bottom: 1rem;
+  }
+
+  td {
+    padding: 0.3rem;
+    text-align: center;
+    color: $neutro-color-main;
+    background-color: white;
+  }
+
+  mat-paginator {
+    background-color: $light-color-main ;
+    padding-top: none;
+    margin-top: none;
+  }
+
+  button{
+    background-color: $middle-color-main;
+    border:none;
+    color: $light-color-main;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    margin-right: 1rem;
+  }
+  
+  button:hover {
+    background-color: #FADCD4;
+    color: $neutro-color-main;
+    }

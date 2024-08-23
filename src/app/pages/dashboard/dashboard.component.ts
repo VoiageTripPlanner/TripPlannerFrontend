@@ -1,4 +1,4 @@
-import { Component, effect } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { CountriesHeatmapComponent } from '../../components/countries-heatmap/countries-heatmap.component';
 import { TopCountriesComponent } from '../../components/top-countries/top-countries.component';

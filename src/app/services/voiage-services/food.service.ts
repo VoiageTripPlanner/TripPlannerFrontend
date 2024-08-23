@@ -31,10 +31,9 @@ export class FoodService extends BaseService<IVoiageRestaurant>   {
           description                   : '',
           average_price                 : 0,
           location             : this.locationMarkService.onGetDefaultVoiageLocationMark(),
-          audit :{
-            creation_datetime             : new Date(),
-            creation_responsible          : 0
-          }
+          creation_datetime             : new Date(),
+          creation_responsible          : 0
+
         }
        ];
     };

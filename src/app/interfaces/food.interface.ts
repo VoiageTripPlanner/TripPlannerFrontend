@@ -6,6 +6,7 @@ export interface IVoiageRestaurant{
     restaurantId?            : number;
     name                     : string;
     description              : string;
+    tripId?                  : number;  //revisar si lo espera o no en el backend
     date?                    : Date;
     average_price            : number;
     location                 : ILocation;

@@ -7,9 +7,7 @@ import { IPlaceSearchResult } from '../../interfaces/placeSearch';
 import { ILocation } from '../../interfaces/location.interface';
 import { RouterOutlet } from '@angular/router';
 import { LoaderComponent } from '../loader/loader.component';
-import { I } from '@angular/cdk/keycodes';
 import { IGoogleResponse } from '../../interfaces/google-hotel-response.interface';
-
 import { environment } from '../../../environments/environment';
 
 @Component({

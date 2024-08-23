@@ -1,14 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
-
-
-//variables de color 
-$background-color-white: #ffffff;
-$background-color-grey: #b4b4b4;
-$background-color-grey-light: #f7f7f7;
-$border-color: #775D68;
-$image-backgorund-color: #FADCD4;
-$title-color: #6D3652;
-
+@import '../../../assets/utils/variables.scss';
 
 // Contenedor general de todo
 .container-box {
@@ -43,6 +33,7 @@ $title-color: #6D3652;
     height: 100vh;
     padding: 1%;
     margin: 0;
+    background: $custom-gradient-fourth;
 }
 
 
@@ -59,18 +50,29 @@ $title-color: #6D3652;
 
 .title{
     transform: translateY(30%);
-    padding-left: 1%;
-    font-size: 4vh;
-    color: $background-color-white;
+    padding-left: 35%;
+    font-size: 6vh;
+    color: $light-color-main;
+}
+
+.logo-container{
+    width: 6%;
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem;
 }
 
 .logo {
-    width: 2.5vw;
-    height: 5vh;
+    width: 6vh;
+    height: 6vh;
+}
+
+.logo:hover{
+    transform: scale(1.1);
 }
 
 .padding-1 {
-    padding: 1%;
+    padding: 2%;
 }
 
 .align-boxes {
@@ -80,7 +82,7 @@ $title-color: #6D3652;
 }
 
 .background-color{
-    background-color: $title-color;
+    background-color: $neutro-color-second;
 }
 
 .body-background-color{

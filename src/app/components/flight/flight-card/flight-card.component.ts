@@ -155,15 +155,11 @@ export class FlightCardComponent {
     this.flightSelected.airline_logo                    = googleFlight.flights![0].airline_logo || "./assets/img/No_image_available.png";
     this.flightSelected.travel_class                    = googleFlight.flights![0].travel_class || " ";
     this.flightSelected.flight_number                   = googleFlight.flights![0].flight_number || " ";
-
-    //Las fechas son sacadas del fomulario de busqueda
     this.flightSelected.start_date                      = this.initialForm.outbound_date || new Date();
-    this.flightSelected.end_date                        = this.initialForm.return_date || new Date(); // Ver si hay que responder una fecha volada para que en el back se agarre y no se guarde essa fecha
-
-    this.flightSelected.booking_token                   = googleFlight.booking_token || "";  //A esta no le veo mucha utilidad guardarla
+    this.flightSelected.end_date                        = this.initialForm.return_date || new Date(); 
+    this.flightSelected.booking_token                   = googleFlight.booking_token || "";  
     this.flightSelected.price                           = Number(googleFlight.price) || 0;
     this.flightSelected.type                            = googleFlight.type || " ";
-    // this.flightSelected.is_layover                      =
     this.flightSelected.duration                        = googleFlight.total_duration || 0;
     this.flightSelected.booking_token                   = googleFlight.booking_token || " ";
     this.flightSelected.total_duration                        = googleFlight.total_duration || 0;
@@ -178,7 +174,6 @@ export class FlightCardComponent {
     this.flightDepartureAirport.name          = googleFlight.flights![0].departure_airport?.name || " ";
     this.flightDepartureAirport.id            = googleFlight.flights![0].departure_airport?.id || " ";
     this.flightDepartureAirport.time          = googleFlight.flights![0].departure_airport?.time || " ";
-    
     this.flightArrivalAirport.name            = googleFlight.flights![0].arrival_airport?.name || " ";
     this.flightArrivalAirport.id              = googleFlight.flights![0].arrival_airport?.id || " ";
     this.flightArrivalAirport.time            = googleFlight.flights![0].arrival_airport?.time || " ";

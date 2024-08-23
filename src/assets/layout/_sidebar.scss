@@ -258,6 +258,7 @@ div .header-wrapper {
 
                   span {
                     font-weight: 500;
+                    color: $light-color-main;
                   }
 
                   p {
@@ -1344,9 +1345,9 @@ div .header-wrapper {
           position: fixed;
           top: 0;
           z-index: 9;
-          height: auto;
+          height: 100%;
           line-height: inherit;
-          background: $white;
+          background: $neutro-color-second;
           width: $sidebar-compact-width;
           text-align: left;
           transition: 0.3s;
@@ -1384,7 +1385,6 @@ div .header-wrapper {
                               display: none;
                             }
                           }
-
                           a {
                             text-align: center;
                             padding: 12px 14px;
@@ -1653,7 +1653,7 @@ div .header-wrapper {
                           &:hover {
                             > a {
                               &:hover {
-                                background-color: rgba($primary-color, 0.07);
+                                background-color: rgba($primary-color, 0.2);
                                 transition: all 0.3s ease;
                               }
                             }
@@ -1668,7 +1668,7 @@ div .header-wrapper {
                                 stroke: var(--theme-default);
                                 transition: all 0.3s ease;
                                 &.fill-icon {
-                                  fill: var(--theme-default);
+                                  fill: $light-color-main;
                                   stroke: none;
                                 }
                               }
@@ -1680,7 +1680,7 @@ div .header-wrapper {
 
                               .according-menu {
                                 i {
-                                  color: var(--theme-default);
+                                  color: var(--theme-default) !important;
                                   transition: all 0.3s ease;
                                 }
                               }
@@ -1691,7 +1691,7 @@ div .header-wrapper {
                         a {
                           padding: 12px 20px;
                           position: relative;
-                          color: #222222;
+                          color:$light-color-main !important;
                           transition: all 0.3s ease;
 
                           .sub-arrow {
@@ -1945,7 +1945,7 @@ div .header-wrapper {
                             transition: all 0.5s ease;
                             position: relative;
                             margin-bottom: 10px;
-                            background-color: lighten($primary-color, 27%);
+                            background-color: $middle-color-main;
                             &::after {
                               opacity: 1;
                               visibility: visible;
@@ -1963,7 +1963,7 @@ div .header-wrapper {
                             }
 
                             span {
-                              color: var(--theme-default);
+                              color: $light-color-main;
                               transition: all 0.3s ease;
                             }
                           }

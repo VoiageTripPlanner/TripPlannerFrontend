@@ -13,20 +13,16 @@ import { LodgeComponent } from './pages/lodge/lodge.component';
 import { ResetpasswordComponent } from './pages/resetpassword/resetpassword.component';
 import { ValidateOTPComponent } from './pages/validate-otp/validate-otp.component';
 import { FoodComponent } from './pages/food/food.component';
-import { RecomendationComponent } from './pages/recomendation/recomendation.component';
-import { BudgetBarComponent } from './components/budget-bar/budget-bar.component';
 import { FlightsComponent } from './pages/flights/flights.component';
 import { TripFormComponent } from './pages/trip-form/trip-form.component';
-import { UpdateUserComponent } from './pages/update-user/update-user.component';
 import { ActivitiesNearbyComponent } from './pages/activities-nearby/activities-nearby.component';
 import { StepperComponent } from './components/stepper/stepper.component';
 import { TripSummaryComponent } from './pages/trip-summary/trip-summary.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { CalendarComponent } from './pages/calendar/calendar.component';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { TripsPageComponent } from './pages/trips-page/trips-page.component';
 import { TripInformationPageComponent } from './pages/trip-information-page/trip-information-page.component';
-import { LandingPageComponent } from './pages/landing-page/landing-page.component';
-
 
 export const routes: Routes = [
   {
@@ -172,7 +168,7 @@ export const routes: Routes = [
             IRole.user
           ],
           name: 'Dashboard',
-          icon:'bi bi-duffle-fill'
+          icon:'fa-solid fa-gauge'
         }
       },
       {
@@ -184,7 +180,7 @@ export const routes: Routes = [
             IRole.user
           ],
           name: 'Trip Form',
-          icon:'bi bi-duffle-fill'
+          icon:'bi bi-luggage-fill'
         }
       },
       {
@@ -212,7 +208,7 @@ export const routes: Routes = [
             IRole.user
           ],
           name: 'Calendar',
-          icon:'bi bi-duffle-fill'
+          icon:'fa-solid fa-calendar'
         }
       },
     ],

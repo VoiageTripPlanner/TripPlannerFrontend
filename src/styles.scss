@@ -36,10 +36,11 @@ $demo-angular-front-theme: mat.define-light-theme((
 
 //Gradient for Voiage background
 $custom-gradient: linear-gradient(to bottom, #2D2230, #1D0F1C, #4B2137,);
+@import "./assets/utils/variables";
 
 :root {
-  --theme-default: #775D68;
-  --theme-secondary: #4B2137;
+  --theme-default: $neutro-color-main;
+  --theme-secondary: $light-color-main;
   --light-background: rgba(242, 243, 247, 0.7);
   --body-font-color: #2f2f3b;
   --chart-border: #ecf3fa;

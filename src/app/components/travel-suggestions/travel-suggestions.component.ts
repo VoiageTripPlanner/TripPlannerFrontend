@@ -6,7 +6,7 @@ import { ModalComponent } from '../modal/modal.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { IOpenAIResponse, IPlaceSearchResult } from '../../interfaces/placeSearch';
+import { IOpenAIResponse} from '../../interfaces/placeSearch';
 import { GoogleService } from '../../services/google.service';
 import { IActivity } from '../../interfaces/activities.interface';
 
@@ -51,9 +51,6 @@ export class TravelSuggestionsComponent {
 
     effect(() => {
       this.travelSuggestions = this.GoogleService.suggestionsResponseSignal$();
-      console.log(this.travelSuggestions);
     });
-
   }
-
 }

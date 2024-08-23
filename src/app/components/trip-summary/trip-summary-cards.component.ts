@@ -55,7 +55,6 @@ export class TripSummaryCardsComponent implements OnInit {
     private router: Router,
   ) { }
 
-
   ngOnInit(): void {
     this.initializaData();
 
@@ -66,21 +65,17 @@ export class TripSummaryCardsComponent implements OnInit {
     try {
       this.initialForm              = this.tripFormService.getFormData();
       this.tripBudget               = this.budgetService.getBudgetData();
-  
-      //Data seleccionada por el usuario
+
       this.flightSelected           = this.flightService.getFlightData();
       this.lodgeSelected            = this.lodgeService.getLodgeData();
       this.foodSelectedlist         = this.foodService.getFoodData();
       this.foodSelectedlist         = this.foodSelectedlist.filter(food => food.name !== '');
       this.activitiesSelectedList   = this.activitiesService.getActivities();
       this.activitiesSelectedList   = this.activitiesSelectedList.filter(activity => activity.address !== '');
-
       this.dataAvailable = !!(this.initialForm && this.tripBudget && this.flightSelected && this.lodgeSelected && this.foodSelectedlist.length);
 
       if (this.dataAvailable) {
-        
         this.onListAmenities();
-
         this.restaurantCount    = this.foodSelectedlist.length;
         this.activitiesCount    = this.activitiesSelectedList.length;
       } else {
@@ -93,9 +88,7 @@ export class TripSummaryCardsComponent implements OnInit {
     } catch (error) {
       this.router.navigateByUrl('/app/trip-form');
       this.notifyService.onCustomErrorNotify('Error', 'Please try again');
-
     }
-
   }
 
 
@@ -115,7 +108,4 @@ export class TripSummaryCardsComponent implements OnInit {
   generateId() {
     return Math.random().toString(36).substring(2, 9);
   };
-
-
-
 }

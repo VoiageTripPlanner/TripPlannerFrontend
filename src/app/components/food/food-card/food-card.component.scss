@@ -1,18 +1,10 @@
-
-//variables de color 
-$background-color-white: #ffffff;
-$background-color-grey: #b4b4b4;
-$background-color-grey-light: #f9f9f9;
-$border-color: #775D68;
-$image-backgorund-color: #FADCD4;
-
+@import "../../../../assets/utils/_variables.scss";
 
 .yeseva-one-regular {
     font-family: "Yeseva One", serif;
     font-weight: 400;
     font-style: normal;
 }
-
 
 // Contenedor general de todo
 .container-box {
@@ -47,9 +39,7 @@ $image-backgorund-color: #FADCD4;
     background: $background-color-grey;
 }
 
-
 //   Tarjetas de hoteles 
-
 .hotel-card {
     width: 100%;
     max-height: 100%;
@@ -63,7 +53,6 @@ $image-backgorund-color: #FADCD4;
 }
 
 //Generales 
-
 .padding-1 {
     padding: 1%;
 }
@@ -101,7 +90,6 @@ $image-backgorund-color: #FADCD4;
     justify-content: space-between;
 }
 
-
 .bold-text {
     font-weight: 500; 
 }
@@ -119,7 +107,6 @@ $image-backgorund-color: #FADCD4;
 }
 
 //Lista no ordenada 
-
 .circle-list {
     list-style-type: circle;
     list-style-type: disc;

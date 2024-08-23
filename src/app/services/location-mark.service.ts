@@ -1,17 +1,17 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { BaseService } from './base-service';
 import { NotifyService } from '../shared/notify/notify.service';
-import { ILocationMark } from '../interfaces/location-mark.interface';
+import { ILocation } from '../interfaces/location.interface';
 
 
 @Injectable({
   providedIn: 'root',
 })
-export class LocationMarkService extends BaseService<ILocationMark>   {
+export class LocationMarkService extends BaseService<ILocation>   {
 
   notifyService=inject(NotifyService);
 
-  private restaurantListSignal = signal<ILocationMark>(this.onGetDefaultVoiageLocationMark());
+  private restaurantListSignal = signal<ILocation>(this.onGetDefaultVoiageLocationMark());
 
   get restaurant$() {
     return this.restaurantListSignal;
@@ -20,12 +20,14 @@ export class LocationMarkService extends BaseService<ILocationMark>   {
 
   onGetDefaultVoiageLocationMark(){
 
-    const defaultValue: ILocationMark = {
-      mark_id                      : 0,
-      latitude                     : 0,
-      longitude                    : 0,
+    const defaultValue: ILocation = {
+      id                      : 0,
+      LatLng: {
+        latitude                     : 0,
+        longitude                    : 0,
+      },
       address                       : '',
-      place_id                     : 0,
+      place_id                     : '',
       user_id                      : 0
     }
 
@@ -46,4 +48,17 @@ export class LocationMarkService extends BaseService<ILocationMark>   {
       }
     });
   };
-}
+
+    saveLocation(location: ILocation) {
+      this.add(location).subscribe({
+        next: (response: any) => {
+          console.log('Location saved successfully', response);
+          this.notifyService.onSuccess();
+        },
+        error: (error: any) => {
+          console.error('Error saving location', error);
+          this.notifyService.onError();
+        }
+      });
+    }
+  }

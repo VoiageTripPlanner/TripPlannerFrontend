@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 import { IBudgetPrices } from '../../../interfaces/budget.interface';
 import { IVoiageRestaurant } from '../../../interfaces/food.interface';
 import { LocationMarkService } from '../../../services/location-mark.service';
-import { ILocationMark } from '../../../interfaces/location-mark.interface';
+import { ILocation } from '../../../interfaces/location.interface';
 import { FoodService } from '../../../services/voiage-services/food.service';
 import { IPlaceSearchResult } from '../../../interfaces/placeSearch';
 import { MapsService } from '../../../services/map.service';
@@ -141,13 +141,14 @@ export class FoodCardComponent {
 
   foodFilterInfo(yelpFood:IFoodBusiness): IVoiageRestaurant {  
 
-    let locationMark:ILocationMark                = this.locationMark.onGetDefaultVoiageLocationMark();
-    locationMark.latitude                         = yelpFood?.coordinates?.latitude ?? 0;
-    locationMark.longitude                        = yelpFood?.coordinates?.longitude ?? 0;
+    let locationMark:ILocation             = this.locationMark.onGetDefaultVoiageLocationMark();
+    locationMark.LatLng.latitude                       = yelpFood?.coordinates?.latitude ?? 0;
+    locationMark.LatLng.longitude                      = yelpFood?.coordinates?.longitude ?? 0;
 
-    this.foodSelectedOption.name                  = yelpFood.name   || " ";
-    this.foodSelectedOption.description           = yelpFood.alias  || " ";
-    this.foodSelectedOption.locationMark          = locationMark    || this.locationMark.onGetDefaultVoiageLocationMark();
+    this.foodSelectedOption.name                = yelpFood.name   || " ";
+    this.foodSelectedOption.description         = yelpFood.alias  || " ";
+    // this.foodSelectedOption.average_price       = yelpFood.price || 0; //aca se debe de aplcar el precio promedio que se obtenga con la IA mas adelante
+    this.foodSelectedOption.location     = locationMark    || this.locationMark.onGetDefaultVoiageLocationMark();
 
     //Datos que no persisten en la BD 
     this.foodSelectedOption.yelpId                = yelpFood.id     || " ";
@@ -165,7 +166,12 @@ export class FoodCardComponent {
       name: foodBusiness.name,
       latitude: foodBusiness.coordinates?.latitude,
       longitude: foodBusiness.coordinates?.longitude,
-      location: new google.maps.LatLng(foodBusiness.coordinates?.latitude || 0, foodBusiness.coordinates?.longitude || 0),
+      location: {
+        LatLng: {
+          latitude: foodBusiness.coordinates?.latitude || 0,
+          longitude: foodBusiness.coordinates?.longitude || 0,
+        }
+      }
     }));
     debugger
   }
@@ -182,14 +188,14 @@ export class FoodCardComponent {
     const place: IPlaceSearchResult = {
       address: yelpFood.location?.address1 || '',
       name: yelpFood.name,
-      latitude: yelpFood.coordinates?.latitude || 0,
-      longitude: yelpFood.coordinates?.longitude || 0,
-      location: new google.maps.LatLng(yelpFood.coordinates?.latitude || 0, yelpFood.coordinates?.longitude || 0),
+      location: {
+        LatLng: {
+          longitude: yelpFood.coordinates?.longitude || 0,
+          latitude: yelpFood.coordinates?.latitude || 0,
+        }
+      },
     };
 
     this.zoomToPlace = place; 
   }
-
-  
-
 }

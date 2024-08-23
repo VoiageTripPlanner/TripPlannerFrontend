@@ -1,15 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
-
-//variables de color 
-$background-color-white: #ffffff;
-$background-color-grey: #b4b4b4;
-$background-color-grey-light: #f9f9f9;
-$border-color: #775D68;
-$image-backgorund-color: #FADCD4;
-$title-color: #6D3652;
-
-
+@import "../../../assets/utils/_variables";
 
 .yeseva-one-regular {
     font-family: "Yeseva One", serif;
@@ -17,7 +6,69 @@ $title-color: #6D3652;
     font-style: normal;
 }
 
-
 .margin-bottom-10 {
     margin-bottom: 10%;
+}
+
+label{
+    color: $light-color-main;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    font-size: 1rem;
+    font-family: "Roboto Flex", sans-serif;
+    font-weight: 400;
+}
+
+input{
+    background: white;
+    color: rgba($neutro-color-main, 0.8);
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 1rem;
+}
+
+textarea{
+    background: white;
+    color: rgba($neutro-color-main, 0.8);
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 1rem;
+    padding-bottom: none;
+    margin-bottom: none;
+}
+
+.primary {
+    background-color: $middle-color-main;
+    color: $light-color-main;
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    padding: 0.6rem;
+    border-radius: 0.5rem;
+    border: none;
+}
+
+.primary:hover {
+    background-color: $light-color-main;
+    color: $middle-color-main;
+    font-family: "Roboto Flex", sans-serif;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.secondary {
+    background-color: $light-color-second;
+    color: $light-color-main;
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    padding: 0.6rem;
+    border-radius: 0.5rem;
+    border: none;
+}
+
+.secondary:hover {
+    background-color: $light-color-main;
+    color: $middle-color-main;
+    font-family: "Roboto Flex", sans-serif;
+    font-weight: bold;
+    font-size: 1.1rem;
 }

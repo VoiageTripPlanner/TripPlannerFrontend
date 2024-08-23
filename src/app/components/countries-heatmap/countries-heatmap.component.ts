@@ -7,7 +7,6 @@ import { combineLatest, Observable, Subscription } from 'rxjs';
 import { CountryVisit } from '../../interfaces/country-visit.interface';
 
 ChoroplethChart.register([Tooltip]);
-
 @Component({
   selector: 'app-countries-heatmap',
   standalone: true,

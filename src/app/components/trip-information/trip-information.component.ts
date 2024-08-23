@@ -18,7 +18,6 @@ import { AuthService } from '../../services/auth.service';
 import { IActivity } from '../../interfaces/activities.interface';
 import { ActivityService } from '../../services/voiage-services/activity.service';
 import { CurrencyService } from '../../services/currency.service';
-import { ICurrency } from '../../interfaces/currency.interface';
 import { UserService } from '../../services/user.service';
 import { IUser } from '../../interfaces/user.interface';
 import { GoogleService } from '../../services/google.service';
@@ -60,7 +59,6 @@ export class TripInformationComponent  implements OnInit {
   lodgeSelected                 : IVoiageLodge ;
   tripBudget                    : IBudgetPrices ;
   userInfo                      : IUser;
-
   tripNgModel                   : ITrip;
   userId                        : number;
   travelSuggestionAI            : string = '';
@@ -69,12 +67,10 @@ export class TripInformationComponent  implements OnInit {
     private router: Router,
   ) { 
     this.tripNgModel            = this.tripService.onGetDefaultTrip();
-
     this.userId                 = this.authService.getUserId();
     this.initialForm            = this.tripFormService.getFormData();
     this.tripBudget             = this.budgetService.getBudgetData();
 
-    //Data seleccionada por el usuario
     this.flightSelected           = this.flightService.getFlightData();
     this.lodgeSelected            = this.lodgeService.getLodgeData();
     this.foodSelectedlist         = this.foodService.getFoodData();
@@ -82,35 +78,25 @@ export class TripInformationComponent  implements OnInit {
     this.activitiesSelectedList   = this.activitiesService.getActivities();
     this.activitiesSelectedList   = this.activitiesSelectedList.filter(activity => activity.address !== '');
 
-    //Data del perfil del usuario
     this.userInfo                 = this.userService.userSig();
-
   }
+
   ngOnInit(): void {
 
   }
 
-
-
   onSaveTrip(formTripInfo: any, event:Event) {
-
     event.preventDefault();
 
     if (formTripInfo.valid) {
-      
       this.notifyService.onCustomConfirmation('Do you want to save this info ?', 'The trip info will be stored', 'Yes, sure!').then((result) => {
         if (result.isConfirmed) {
-      
-          
           this.assignTripData();
           this.tripService.saveTrip(this.tripNgModel).subscribe(
             () => {
               this.notifyService.onCustomSimpleNotify('Trip Saved', 'The trip information has been saved successfully');
             }
-          )
-          
-          console.log(this.tripNgModel); 
-          
+          )         
           
           this.removeLocalStorage() 
           this.router.navigateByUrl('/app/dashboard')
@@ -119,24 +105,18 @@ export class TripInformationComponent  implements OnInit {
     }else{
       this.notifyService.onNoFormData();
     };
-
-    
   }
 
   onStartAgain() {
-
     this.notifyService.onCustomConfirmation('Are you sure?', 'You will lose all the data', 'Yes, Start Again').then((result) => {
       if (result.isConfirmed) {
         this.removeLocalStorage()
         this.router.navigateByUrl('/app/trip-form');
       };
-
     });
   };
 
-
   private removeLocalStorage() {
-
     localStorage.removeItem('tripFormData');
     localStorage.removeItem('budget');
     localStorage.removeItem('flight');
@@ -149,8 +129,6 @@ export class TripInformationComponent  implements OnInit {
     localStorage.removeItem('destinationName');      
     localStorage.removeItem('destinationLocation');      
     localStorage.removeItem('selectedActivities');      
-
-
   };
 
 
@@ -158,10 +136,7 @@ export class TripInformationComponent  implements OnInit {
 
     const data : IOpenAIResponse = this.googleService.suggestionsResponseSignal$();
     
-    
     this.travelSuggestionAI =this.cutStringCharacters( data.content ?? '');
-    
-
     this.tripNgModel.departureDate                  = this.initialForm.outbound_date;
     this.tripNgModel.destinationCity                = this.initialForm.q;  
     this.tripNgModel.returnDate                     = this.initialForm.return_date;
@@ -175,19 +150,12 @@ export class TripInformationComponent  implements OnInit {
     this.tripNgModel.aiSuggestion                   =this.travelSuggestionAI; 
     this.tripNgModel.creationDatetime               = new Date(); 
     this.tripNgModel.creationResponsible            = this.userId;
-
     this.tripNgModel.activitiesEstimatedCost            = this.tripBudget.activitiesAmount;
     this.tripNgModel.restaurantsEstimatedCost           = this.tripBudget.foodAmount;
     this.tripNgModel.destinationCountry.countryName     = this.initialForm.q;
-
-
   }
 
   cutStringCharacters(data: string) {
-
    return data.length > 250 ? data.substring(0, 250) + '...' : data;
-
   }
-
-
 }

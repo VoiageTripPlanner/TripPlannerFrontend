@@ -9,7 +9,6 @@ import { MatRadioModule } from '@angular/material/radio';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { PlaceAutocompleteComponent } from '../place-autocomplete/place-autocomplete.component';
-
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { NotifyService } from '../../shared/notify/notify.service';
 import { AuthService } from '../../services/auth.service';
@@ -48,12 +47,8 @@ export class CalendarEventComponent {
   ) {
     this.isEdit = data.edit;
     this.dialogTitle = this.isEdit ? 'Edit Event' : 'Add Event';
-
     this.eventNgmodel = this.isEdit ? data.calendarEvent : this.calendarEventService.onGetDefaultCalendarEvent();
-
-
   }
-
 
   saveCalendarEvent(form: NgForm) {
 
@@ -62,9 +57,7 @@ export class CalendarEventComponent {
         this.calendarEventService.updateCalendarEvent(this.eventNgmodel).subscribe(
           () => this.notifyService.onSuccess()
         );
-        
       } else {
-        
         this.eventNgmodel.creation_responsible = this.userInformation.getUserId();
         this.calendarEventService.saveCalendarEvent(this.eventNgmodel).subscribe(() =>
           this.notifyService.onSuccess()
@@ -73,16 +66,13 @@ export class CalendarEventComponent {
     } else {
       this.notifyService.onError();
     }
-
     this.onClose();
   }
 
   deleteCalendarEvent() {
-
     this.notifyService.onDeleteConfirmation().then((result) => {
 
       if (result.value) {
-
         this.calendarEventService.deleteCalendarEvent(this.eventNgmodel).subscribe(() =>
           this.notifyService.onSuccess()
         );
@@ -94,5 +84,4 @@ export class CalendarEventComponent {
   onClose = () => {
     this._dialogRef.close();
   };
-
 }

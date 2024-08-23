@@ -1,9 +1,16 @@
 <div class="container">
   <h2 class="fs-2 pt-5 pb-2">Trips</h2>
-  <app-trips-table 
-    [trips]="tripPagination?.data ?? null" 
-    [pageSize]="tripPagination?.size ?? 0" 
-    [totalElements]="tripPagination?.totalElements ?? 0" 
-    (page)="changePage($event)" 
-    (view)="goTo($event)" />
+  @defer (when tripPagination() !== null && tripPagination()?.totalElements !== 0) {
+    <app-trips-table 
+      [trips]="tripPagination()?.data ?? null" 
+      [pageSize]="tripPagination()?.size ?? 0" 
+      [totalElements]="tripPagination()?.totalElements ?? 0" 
+      (page)="changePage($event)" 
+      (view)="goTo($event)" />
+  } @placeholder {
+    <div class="d-flex justify-center mb-5">
+      <img class="my-0 mx-auto" src="/assets/img/undraw_not_found_re_bh2e.svg" alt="No data available" />
+    </div>
+    <p class="text-center">No data available</p>
+  }
 </div>

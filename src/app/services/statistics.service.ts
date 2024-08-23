@@ -10,13 +10,8 @@ import { toObservable } from '@angular/core/rxjs-interop';
 })
 export class StatisticsService {
   private httpService: HttpClient = inject(HttpClient);
-  private topCountries = signal<CountryVisit[]>([]);
   private countryVisitsList = signal<CountryVisit[]>([]);
   private budgetOverview = signal<IBudgetPrices | null>(null);
-
-  public get topCountries$(): Observable<CountryVisit[]> {
-    return toObservable(this.topCountries);
-  }
 
   public get countryVisitsList$(): Observable<CountryVisit[]> {
     return toObservable(this.countryVisitsList);
@@ -34,24 +29,8 @@ export class StatisticsService {
     return this.httpService.get<any>('https://flagcdn.com/en/codes.json');
   }
 
-  public getTopCountries(): void {
-    this.httpService.get<CountryVisit[]>('statistics/topCountryVisits')
-      .subscribe({
-        next: (data) => {
-          if (data) {
-            this.topCountries.set(data);
-          } else {
-            this.topCountries.set([]);
-          }
-        },
-        error: (error) => {
-          console.error('Error fetching recommendations', error);
-        }
-      })
-  }
-
-  public getCountryVisitsList(): void {
-    this.httpService.get<CountryVisit[]>('statistics/countryVisits')
+  public getCountryVisitsList(userId: number): void {
+    this.httpService.get<CountryVisit[]>(`statistics/countryVisits/${userId}`)
       .subscribe({
         next: (data) => {
           if (data) {
@@ -66,8 +45,8 @@ export class StatisticsService {
       })
   }
 
-  public getTripBudgetOverview(): void {
-    this.httpService.get<IBudgetPrices>('statistics/budgetOverview')
+  public getTripBudgetOverview(userId: number): void {
+    this.httpService.get<IBudgetPrices>(`statistics/budgetOverview/${userId}`)
       .subscribe({
         next: (data) => {
           if (data) {

@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IResponse } from '../interfaces/index.interface';
 import { Injectable, inject } from '@angular/core';
+import { IPagination } from '../interfaces/pagination.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,10 @@ export class BaseService<T> {
 
   public find(id: string | number): Observable<IResponse<T>> {
     return this.http.get<IResponse<T>>(this.source + '/' + id);
+  }
+
+  public findAllByUserAndPage(userId: number, page: number, size: number): Observable<IResponse<IPagination<T>>> {
+    return this.http.get<IResponse<IPagination<T>>>(`${this.source}/pagination/${userId}`, { params: { page, size } });
   }
 
   public findAll(s: string = ''): Observable<IResponse<T[]>> {

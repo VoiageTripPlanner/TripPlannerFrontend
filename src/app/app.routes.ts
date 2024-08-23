@@ -22,6 +22,8 @@ import { ActivitiesNearbyComponent } from './pages/activities-nearby/activities-
 import { StepperComponent } from './components/stepper/stepper.component';
 import { TripSummaryComponent } from './pages/trip-summary/trip-summary.component';
 import { CalendarComponent } from './pages/calendar/calendar.component';
+import { TripsPageComponent } from './pages/trips-page/trips-page.component';
+import { TripInformationPageComponent } from './pages/trip-information-page/trip-information-page.component';
 
 export const routes: Routes = [
   {
@@ -176,6 +178,22 @@ export const routes: Routes = [
           name: 'Trip Form',
           icon:'bi bi-duffle-fill'
         }
+      },
+      {
+        path: 'trip-list',
+        component: TripsPageComponent,
+        data: { 
+          authorities: [
+            IRole.admin, 
+            IRole.user
+          ],
+          name: 'Trip List',
+          icon:'bi bi-duffle-fill'
+        }
+      },
+      {
+        path: 'trip-info/:id',
+        component: TripInformationPageComponent
       },
       {
         path: 'calendar',

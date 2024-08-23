@@ -16,6 +16,7 @@ import { timeout, timer } from 'rxjs';
 import { PlaceAutocompleteComponent } from '../../components/place-autocomplete/place-autocomplete.component';
 import { AutoCompleteService } from '../../services/auto-complete.service';
 import { IAutoComplete } from '../../interfaces/auto-complete.interface';
+import { MapComponent } from "../../components/map/map.component";
 
 
 @Component({
@@ -29,8 +30,9 @@ import { IAutoComplete } from '../../interfaces/auto-complete.interface';
     MatRadioModule,
     FormsModule,
     CommonModule,
-    PlaceAutocompleteComponent
-  ],
+    PlaceAutocompleteComponent,
+    MapComponent
+],
   providers: [provideNativeDateAdapter()],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './trip-form.component.html',

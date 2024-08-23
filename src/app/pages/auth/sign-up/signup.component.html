@@ -54,7 +54,7 @@
                   placeholder="agent@gmail.com" [ngClass]="{
                     'is-invalid': signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched,
                     'is-valid': signUpForm.get('email')?.valid && signUpForm.get('email')?.touched
-                  }" />
+                  }" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"/>
                 <div *ngIf="signUpForm.get('email')?.invalid" class="invalid-feedback">
                   Please add a valid email
                 </div>

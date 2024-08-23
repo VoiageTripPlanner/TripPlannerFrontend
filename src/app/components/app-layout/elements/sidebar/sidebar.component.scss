@@ -1,59 +1,70 @@
 //variables de color 
 $background-color: #6D3C52;
-$sidebar-color: #4B2137;
-$text-color: #ffffff;
+$sidebar-color: #2D2230;
+$text-color: #FADCD4;
 $hover-background-color: #FADCD4;
-$active-background-color: #6D3C52;
+$active-background-color: #1D0F1C;
 
-.backgorund-color {
-  // background-color: #FADCD4;
-  background-color: $sidebar-color;
-}
+//variables de color 
+$neutro-color-main:#1D0F1C;
+$neutro-color-second: #2D2230;
+$middle-color-main:#4B2137;
+$middle-color-second:#6D3C52;
+$light-color-main: #FADCD4;
+$light-color-second: #775D68;
+$line-gradient:linear-gradient(to right, rgba(255, 255, 255, 0.1), #FADCD4, rgba(255, 255, 255, 0.1)); 
 
 .toggle-background-color {
-  color: $text-color;
-}
+    color: $light-color-main;
+  }
 
+ //Logo de voiage arriba del side-bar
 .container-flex {
   display: flex;
   justify-content: center;
+  background-color: $neutro-color-second;
 }
 
+//Elimina el gap superior con el header del side-bar
 .margin-top-0 {
   margin-top: 0% !important;
 }
 
-body {
-  background-color: $background-color;
-  color: $text-color;
-  font-family: Arial, sans-serif;
-  margin-top: 0% !important;
+h6 {
+    font-size: 23px !important;
+    font-family: 'Yeseva One';
+    color: $light-color-main !important;
+    padding-bottom: 1.5rem;
+}
+
+a{
+  font-family: 'Roboto', sans-serif;
+  text-decoration: none;
 }
 
 //Color del "General" 
-.sidebar-main * {
-  color: $text-color;
+.sidebar-main{
+  background-color: $neutro-color-second;
 }
 
-.sidebar-link {
-  color: $text-color;
-
+.sidebar-link .sidebar-title {
   &:hover {
-    background-color: $hover-background-color;
+    background-color: $middle-color-second;
   }
 
   &:active,
   &.active {
-    background-color: $active-background-color !important;
+    background-color: $middle-color-main !important;
+    color: $light-color-main !important;
   }
 }
 
-.sidebar-link,
-.sidebar-title,
-.sidebar-link span,
-.sidebar-title span {
-  color: $text-color !important;
-}
+// .sidebar-link,
+// .sidebar-title,
+// .sidebar-link span,
+// .sidebar-title span {
+//   color: $background-color !important;
+// }
 
 .padding-right-3 {
   padding-right: 3%;

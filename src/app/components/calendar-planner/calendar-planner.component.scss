@@ -1,13 +1,12 @@
+@import "../../../assets/utils/_variables";
 /**
 * ALL the UI design credit goes to:
 * https://www.sketchappsources.com/free-source/2676-calendar-template-sketch-freebie-resource.html
 */
 
-
 /* WRAPPER */
-
 body {
-  font-family: Montserrat;
+  font-family: "Roboto Flex", sans-serif;
   font-weight: 100;
   color: #A8B2B9;
 }
@@ -20,7 +19,6 @@ $border-color: #775D68;
 $image-backgorund-color: #FADCD4;
 $title-color: #6D3652;
 
-
 .wrapper {
   display: grid;
   grid-template-rows: 70px 1fr 70px;
@@ -31,9 +29,7 @@ $title-color: #6D3652;
   padding: 2%
 }
 
-
 /* MAIN */
-
 .toolbar {
   display: flex;
   justify-content: space-between;
@@ -46,7 +42,6 @@ $title-color: #6D3652;
   display: flex;
   flex-direction: column;
 }
-
 
 .calendar__header {
   display: grid;
@@ -64,15 +59,10 @@ $title-color: #6D3652;
   flex: 1;
 }
 
-
-
-
 /* COSMETIC STYLING */
-
 :root {
   --red: #ED5454;
 }
-
 
 sidebar {
   background-color: white;
@@ -80,7 +70,7 @@ sidebar {
 }
 
 main {
-  background-color: #FCFBFC;
+  background-color: $custom-gradient;
 }
 
 .avatar__name {
@@ -110,7 +100,6 @@ main {
   color: black;
 }
 
-
 .menu__icon {
   font-size: 1.3rem;
 }
@@ -133,16 +122,17 @@ main {
 }
 
 .calendar {
-  background-color: white;
-  border: 1px solid #e1e1e1;
+  background-color: $light-color-second;
 }
 
 .calendar__header>div {
   text-transform: uppercase;
   font-size: 0.8em;
   font-weight: bold;
+  font-family: "Yeseva One";
+  font-size: 1.3rem;
+  color: $neutro-color-main;
 }
-
 
 .toggle {
   display: grid;
@@ -172,19 +162,48 @@ main {
 }
 
 .toggle__option--selected {
-  border-color: white;
-  background-color: white;
-  color: var(--red);
-  font-weight: 500;
+  border-color: none;
+  background-color: $middle-color-main;
+  color: $light-color-main;
   box-shadow: 1px 2px 30px -5px var(--red);
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 0.8rem;
+  border: none;
+}
+
+
+.toggle__option--selected:hover {
+  background-color: $light-color-main;
+  color: $neutro-color-main;
+  transform: scale(1.05);
 }
 
 .month-tittle{
   font-family: "Yeseva One", serif;
-  font-weight: 600;
+  font-weight: medium;
   font-style: normal;
-  color: $title-color ;
-  font-size: 1.6rem;
+  color: $light-color-main;
+  font-size: 3rem;
+  letter-spacing: 0.3rem;
+}
+
+.btn-secondary{
+  background-color: $light-color-main;
+  color: $neutro-color-main;
+  font-weight: medium;
+  font-family: "Roboto Flex", sans-serif;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border: none;
+}
+
+.btn-secondary:hover{
+  background-color: $middle-color-main;
+  color: $light-color-main;
+  transform: scale(1.05);
 }
 
 .calendar__day {
@@ -202,34 +221,47 @@ main {
   border-right: 0;
 }
 
-
 .event {
   margin-top: 5px;
   padding: 2px 5px;
   border-radius: 3px;
   font-size: 12px;
-  background-color: $border-color;
-  color: white;
+  background-color: $middle-color-main;
+  color: $light-color-main;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: 0.8rem;
   cursor: pointer;
+  padding: 0.5rem;
+}
+
+.event:hover {
+  background-color: $light-color-main;
+  color: $neutro-color-main;
+  transform: scale(1.05);
 }
 
 .event__time {
-  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Yeseva One";
+  font-weight: medium;
   font-size: 0.9rem;
 }
 
 .event__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto Flex";
   margin-top: 2px;
 }
 
 .calendar-header{
   display: flex;
   justify-content: inherit;
-  
 }
 
 .button-header{
@@ -238,11 +270,7 @@ main {
 
 }
 
-
-
 // Calendar event dialog
-
-
 .mat-dialog-container-medium {
   height: 60vh;
   width: 60vw;

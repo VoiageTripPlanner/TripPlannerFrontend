@@ -1,7 +1,17 @@
+$line-gradient:linear-gradient(to right, rgba(255, 255, 255, 0.1), #FADCD4, rgba(255, 255, 255, 0.1));
 
-.maps{
+.container-fluid {
+    padding: 0;
+    margin: 0;
+    height: 90vh;
+    width: 100%;
+    overflow: hidden;  
+}
+
+google-map .maps{
     height: 100%;
     width: 100%;
+    background-color: $line-gradient;
 }
 
 

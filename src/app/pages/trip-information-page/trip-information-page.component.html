@@ -1,0 +1,121 @@
+@defer (when tripSig() !== null) {
+  <div class="container mb-5">
+    <h2 class="pt-5 mb-5">
+      <mat-icon class="fs-2 me-2" role="button" aria-hidden="false" aria-label="Back" fontIcon="arrow_back" (click)="goToTrips()"></mat-icon>
+      <span class="trip-name fs-2 pt-5 pb-2">{{tripSig()?.name}}</span>
+    </h2>
+    <h3 class="fs-4 mb-3">Trip Information</h3>
+    <div class="trip-information row row-cols-2 border-bottom pb-3 mb-5">
+      <dl class="detail-row row">
+        <dt class="col-sm-3">Name:</dt>
+        <dd class="col-sm-9">{{tripSig()?.name}}</dd>
+      </dl>
+      <dl class="detail-row row">
+        <dt class="col-sm-3">Description:</dt>
+        <dd class="col-sm-9">{{tripSig()?.description}}</dd>
+      </dl>
+      <dl class="detail-row row">
+        <dt class="col-sm-3">Depature Date:</dt>
+        <dd class="col-sm-9">{{tripSig()?.departureDate | date: 'MM-dd-YYYY'}}</dd>
+      </dl>
+      <dl class="detail-row row">
+        <dt class="col-sm-3">Return Date:</dt>
+        <dd class="col-sm-9">{{tripSig()?.returnDate | date: 'MM-dd-YYYY'}}</dd>
+      </dl>
+      <dl class="detail-row row">
+        <dt class="col-sm-3">Budget:</dt>
+        <dd class="col-sm-9">{{tripSig()?.budget | currency: 'USD'}}</dd>
+      </dl>
+      <dl class="detail-row row">
+        <dt class="col-sm-3">AI Suggestion:</dt>
+        <dd class="col-sm-9">{{tripSig()?.aiSuggestion}}</dd>
+      </dl>
+    </div>
+    <h3 class="fs-4 mb-3">Trip Details</h3>
+    <div class="trip-details row row-cols-3">
+      <div class="trip-category">
+        <h4 class="fs-5">Flights</h4>
+        <dl class="detail-row row mb-0">
+          <dt class="col-sm-3">Airline:</dt>
+          <dd class="col-sm-9">{{tripSig()?.flight?.airline}}</dd>
+        </dl>
+        <dl class="detail-row row mb-0">
+          <dt class="col-sm-3">Flight Number:</dt>
+          <dd class="col-sm-9">{{tripSig()?.flight?.flight_number}}</dd>
+        </dl>
+        <dl class="detail-row row mb-0">
+          <dt class="col-sm-3">Price:</dt>
+          <dd class="col-sm-9">{{tripSig()?.flight?.price | currency: 'USD'}}</dd>
+        </dl>
+        <dl class="detail-row row mb-0">
+          <dt class="col-sm-3">Travel Class:</dt>
+          <dd class="col-sm-9">{{tripSig()?.flight?.travel_class}}</dd>
+        </dl>
+        <dl class="detail-row row mb-0">
+          <dt class="col-sm-3">Type:</dt>
+          <dd class="col-sm-9">{{tripSig()?.flight?.type}}</dd>
+        </dl>
+        <dl class="detail-row row mb-0">
+          <dt class="col-sm-3">Departure:</dt>
+          <dd class="col-sm-9">{{tripSig()?.flight?.departure_airport?.name}} - {{tripSig()?.flight?.departure_airport?.time}} hrs</dd>
+        </dl>
+        <dl class="detail-row row mb-0">
+          <dt class="col-sm-3">Arrival:</dt>
+          <dd class="col-sm-9">{{tripSig()?.flight?.arrival_airport?.name}} - {{tripSig()?.flight?.arrival_airport?.time}} hrs</dd>
+        </dl>
+      </div>
+      <div class="trip-category">
+        <h4 class="fs-5">Lodge</h4>
+        <dl class="detail-row row mb-0">
+          <dt class="col-sm-3">Name:</dt>
+          <dd class="col-sm-9">{{tripSig()?.lodge?.lodgeName}}</dd>
+        </dl>
+        <dl class="detail-row row mb-0">
+          <dt class="col-sm-3">Type:</dt>
+          <dd class="col-sm-9">{{tripSig()?.lodge?.type}}</dd>
+        </dl>
+        <dl class="detail-row row mb-0">
+          <dt class="col-sm-3">Night Price:</dt>
+          <dd class="col-sm-9">{{tripSig()?.lodge?.nightPrice | currency: 'USD'}}</dd>
+        </dl>
+        <dl class="detail-row row mb-0">
+          <dt class="col-sm-3">Rate:</dt>
+          <dd class="col-sm-9">{{tripSig()?.lodge?.totalRate}}</dd>
+        </dl>
+        <dl class="detail-row row mb-0">
+          <dt class="col-sm-3">Description:</dt>
+          <dd class="col-sm-9">{{tripSig()?.lodge?.description}}</dd>
+        </dl>
+        <dl class="detail-row row mb-0">
+          <dt class="col-sm-3">Check In:</dt>
+          <dd class="col-sm-9">{{tripSig()?.lodge?.checkIn | date: 'MM-dd-YYYY'}}</dd>
+        </dl>
+        <dl class="detail-row row mb-0">
+          <dt class="col-sm-3">Check Out:</dt>
+          <dd class="col-sm-9">{{tripSig()?.lodge?.checkOut | date: 'MM-dd-YYYY'}}</dd>
+        </dl>
+        <dl class="detail-row row mb-0">
+          <dt class="col-sm-3">Amenities:</dt>
+          <dd class="col-sm-9">{{tripSig()?.lodge?.amenities}}</dd>
+        </dl>
+      </div>
+      <div class="trip-category">
+        <h4 class="fs-5">Restaurants</h4>
+        @for (restaurant of tripSig()?.restaurants; track restaurant) {
+          <div class="entry mb-3">
+            <dl class="detail-row row mb-0">
+              <dt class="col-sm-3">Name:</dt>
+              <dd class="col-sm-9">{{restaurant.name}}</dd>
+            </dl>
+            <dl class="detail-row row mb-0">
+              <dt class="col-sm-3">Description:</dt>
+              <dd class="col-sm-9">{{restaurant.description}}</dd>
+            </dl>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+} @loading {
+  <app-loader />
+}

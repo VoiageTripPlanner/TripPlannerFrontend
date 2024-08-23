@@ -1,0 +1,9 @@
+<div class="container">
+  <h2 class="fs-2 pt-5 pb-2">Trips</h2>
+  <app-trips-table 
+    [trips]="tripPagination?.data ?? null" 
+    [pageSize]="tripPagination?.size ?? 0" 
+    [totalElements]="tripPagination?.totalElements ?? 0" 
+    (page)="changePage($event)" 
+    (view)="goTo($event)" />
+</div>

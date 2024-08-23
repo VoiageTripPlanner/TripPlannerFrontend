@@ -13,6 +13,8 @@ export class AuthService {
   private userId!: number;
   private user: IUser = {email: '', authorities: []};
 
+  
+
   constructor(private http: HttpClient) {
     this.load();
   }
@@ -102,6 +104,22 @@ export class AuthService {
     localStorage.removeItem('expiresIn');
     localStorage.removeItem('auth_user');
     localStorage.removeItem('userId');
+    localStorage.removeItem('longitudeDestination');
+    localStorage.removeItem('latitudeDestination');
+    localStorage.removeItem('destinationName');
+    localStorage.removeItem('destinatioLocation');
+    localStorage.removeItem('user_id');
+    localStorage.removeItem('nearbyPlaces');
+    localStorage.removeItem('destinationAddress');
+    localStorage.removeItem('destination');
+    localStorage.removeItem('destinationLocation');
+    localStorage.removeItem('selectedActivities');
+    localStorage.removeItem('flight');
+    localStorage.removeItem('tripFormData');
+    localStorage.removeItem('budget');
+    localStorage.removeItem('lodge');
+    localStorage.removeItem('food');
+
   }
 
   public resetPassword(user: IUser): Observable<IUser> {
@@ -111,4 +129,16 @@ export class AuthService {
   public validateOtp(user: IUser): Observable<IUser> {
     return this.http.post('auth/validate-otp', user);
   }
+
+  getUserId(): number {
+    const formDataString = localStorage.getItem('auth_user');
+
+    if (formDataString) {
+      const formData = JSON.parse(formDataString);
+
+      return formData.user_id || 0;
+    } else {
+      return 0;
+    }
+  };
 }

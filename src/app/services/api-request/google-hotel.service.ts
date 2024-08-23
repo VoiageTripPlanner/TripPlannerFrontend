@@ -20,7 +20,6 @@ export class GoogleHotelService extends BaseService<IGoogleResponse> {
     this.bringInfoWithParams(searchParams).subscribe({
       next: (response: any) => {
         
-        console.log(response.properties);
         this.googleHotelResponseSignal.set(response.properties);
       },
       error: (error: any) => {

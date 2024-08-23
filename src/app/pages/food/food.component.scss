@@ -31,6 +31,10 @@ $title-color: #6D3652;
     padding: 1%;
 }
 
+.margin-right-10 {
+    margin-right: 10%;
+}
+
 .align-boxes {
     width: 100%;
     display: flex;
@@ -40,4 +44,19 @@ $title-color: #6D3652;
 
 .background-color{
     background-color: $title-color;
+}
+
+
+.title-box {
+    width: 80%;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.stepper-button{
+    width: 20%;
+    align-items: center; 
+    display: flex;
+    justify-content: flex-end;
+    padding: 1%;
 }

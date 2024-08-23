@@ -1,0 +1,28 @@
+html,
+body {
+    overflow-y: hidden;
+    /* Quita el scroll vertical */
+    height: 100%;
+    /* Asegura que el contenido se ajuste a la altura de la ventana */
+}
+
+.mat-stepper-horizontal {
+    margin-top: 8px;
+}
+
+.mat-mdc-form-field {
+    margin-top: 16px;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    
+}
+
+.main-content {
+    flex: 1;
+    overflow-y: auto;
+    
+}

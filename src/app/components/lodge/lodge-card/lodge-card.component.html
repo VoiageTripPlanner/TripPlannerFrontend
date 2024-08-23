@@ -20,7 +20,7 @@
                     </div>
 
                     <div class="align-boxes space-between">
-                        <h3>Stats: {{item.overall_rating}}/5</h3>
+                        <h3>Stats: {{item.overall_rating }}/5</h3>
                         <h3 class="move-to-right">Price per night {{item.rate_per_night?.lowest}}</h3>
                     </div>
 
@@ -37,11 +37,11 @@
                     </div>
 
                     <div class="align-boxes space-between">
-                        <button type="button" class="btn btn-outline-info ">View in map</button>
-                        <button type="button" class="btn btn-outline-dark" (click)="visitSite(item.link)">Go to the
+                        <button type="button" class="btn btn-outline-info " (click)="viewInMap(item)">View in map</button>
+                        <button type="button" class="btn btn-outline-dark" (click)="visitSite(item.link)" >Go to the
                             Site</button>
                         <button type="button" class="btn btn-outline-success"
-                            (click)="selectOption(item.total_rate?.extracted_lowest )">Select option </button>
+                            (click)="selectOption(item)" mat-button matStepperNext>Select option </button>
 
                     </div>
 
@@ -64,8 +64,14 @@
         </div>
         <div class="map-container">
 
-            
-            <app-maps />
+            <button type="button" class="btn  btn-warning position-absolute position-button"
+            (click)="ViewDestination()">
+            <i class="bi bi-compass"></i>
+        </button>
+
+        <app-maps class="z-index-1" 
+            [zoomLodge]="zoomToLodge">
+        </app-maps>
 
         </div>
 

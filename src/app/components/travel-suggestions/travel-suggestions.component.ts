@@ -51,7 +51,6 @@ export class TravelSuggestionsComponent {
 
     effect(() => {
       this.travelSuggestions = this.GoogleService.suggestionsResponseSignal$();
-      console.log(this.travelSuggestions);
     });
   }
 }

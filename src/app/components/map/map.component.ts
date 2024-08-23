@@ -1,17 +1,11 @@
 import { Component, Input, OnInit, ViewChild, OnChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  GoogleMap,
-  GoogleMapsModule,
-  MapDirectionsService,
-} from '@angular/google-maps';
+import { GoogleMap, GoogleMapsModule, MapDirectionsService} from '@angular/google-maps';
 import { BehaviorSubject, map } from 'rxjs';
 import { IPlaceSearchResult } from '../../interfaces/placeSearch';
 import { RouterOutlet } from '@angular/router';
 import { LoaderComponent } from '../loader/loader.component';
-import { I } from '@angular/cdk/keycodes';
 import { IGoogleResponse } from '../../interfaces/google-hotel-response.interface';
-
 
 @Component({
   selector: 'app-maps',
@@ -21,32 +15,23 @@ import { IGoogleResponse } from '../../interfaces/google-hotel-response.interfac
   styleUrl: './map.component.scss'
 })
 export class MapComponent implements OnInit, OnChanges  {
-
   @ViewChild('map', { static: true })
   map!: GoogleMap;
 
   @Input()
   destination: any | undefined;
-
   @Input()
   zoomPlace : IPlaceSearchResult | undefined;
-
   @Input()
   zoomLodge : IGoogleResponse | undefined;
-
   @Input()
   pointsOfInterest: IPlaceSearchResult[] = [];
 
   markerPositions: google.maps.LatLng[] = [];
-
   zoomToPlace$ = new BehaviorSubject<IPlaceSearchResult | undefined>(undefined); //
-
   zoomToLodge$ = new BehaviorSubject<IGoogleResponse | undefined>(undefined); //
-
   zoom = 5;
-
-  //Asignar un valor inicial a la variable directionsResult$ de tipo BehaviorSubject
-  
+ 
   directionsResult$ = new BehaviorSubject< 
     google.maps.DirectionsResult | undefined
   >(undefined);
@@ -54,11 +39,9 @@ export class MapComponent implements OnInit, OnChanges  {
   constructor(private directionsService: MapDirectionsService) {}
 
   ngOnInit(): void {
-
     if (this.destination?.location) {
       this.gotoLocation(this.destination.location);
     }
-
   }
 
   ngOnChanges() {
@@ -128,7 +111,5 @@ export class MapComponent implements OnInit, OnChanges  {
       this.gotoLocation(place.location);
     }
   }
-
-
 }
 

@@ -1,4 +1,4 @@
-<div class="width-100 padding" >
+<div class="bar-container width-100 padding" >
     <h1 class="title">Total budgeted:  {{ budgetQuantity.total | currency }} </h1>
     <div  class="display-flex">
         <p class="margin-1">- Flight: {{ budgetQuantity.flightAmount | currency }}</p>
@@ -34,8 +34,8 @@
             {{ budgetQuantity.activitiesAmount | currency }}
         </div>
         <div class="progress-bar width-100 custom-progress-bar-others" role="progressbar"  
-            [style.width.%]="getSpendingPercentage(budgetQuantity.otherAmount ?? 0)" 
-            [attr.aria-valuenow]="budgetQuantity.otherAmount ?? 0"  
+            [style.width.%]="getSpendingPercentage(budgetQuantity.otherAmount)" 
+            [attr.aria-valuenow]="budgetQuantity.otherAmount"  
             aria-valuemin="0" aria-valuemax="100">
             {{ budgetQuantity.otherAmount | currency }}
         </div>

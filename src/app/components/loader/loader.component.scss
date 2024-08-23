@@ -1,10 +1,4 @@
-$background-color: #6D3C52;
-$sidebar-color:#4B2137;
-$text-color: #ffffff; 
-$hover-background-color: #FADCD4; 
-$hover-background-color2: #775D68; 
-$active-background-color: #6D3C52; 
-
+@import "../../../assets/utils/_variables.scss";
 
 .loader {
   width: 40px;

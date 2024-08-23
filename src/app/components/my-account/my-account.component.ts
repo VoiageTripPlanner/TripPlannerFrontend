@@ -1,7 +1,6 @@
 import { Component, OnInit, effect, inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { AuthService } from "../../services/auth.service";
-import { IUser } from "../../interfaces/user.interface";
 import { UserService } from "../../services/user.service";
 import { NgIf } from "@angular/common";
 import { UserRole } from "../enums/role.enum";
@@ -39,5 +38,4 @@ export class MyAccountComponent implements OnInit {
   updateProfile() {
     this.router.navigateByUrl('/app/update-user');
   }
-
 }

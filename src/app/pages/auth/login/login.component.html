@@ -22,13 +22,14 @@
               <label for="email" class="form-label mb-2">
                 Email
               </label>
-              <input #email="ngModel" type="text" class="form-control" id="email" name="email"
+              <input #email="ngModel" type="email" class="form-control" id="email" name="email"
                 placeholder="Email" [(ngModel)]="loginForm.email" [ngClass]="{
                   'is-invalid': email.invalid && email.touched,
                   'is-valid': email.valid && email.touched
-                }" required />
+                }" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
+                 required />
               <div *ngIf="email.invalid" class="invalid-feedback">
-                Please add a valid email
+                Please use valid credentials
               </div>
             </div>
 
@@ -37,11 +38,11 @@
               <div class="form-input position-relative">
                 <input #password="ngModel" type="password" class="form-control" id="password" name="password"
                   placeholder="*******" [(ngModel)]="loginForm.password" [ngClass]="{
-                  'is-invalid': password.invalid && password.touched,
-                  'is-valid': password.valid && password.touched
-                }" required />
-                <div *ngIf="password.invalid" class="invalid-feedback">
-                  Please add a valid password
+                    'is-invalid': email.invalid && email.touched,
+                    'is-valid': email.valid && email.touched
+                  }" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" required />
+                <div *ngIf="email.invalid" class="invalid-feedback">
+                  Please use valid credentials
                 </div>
               </div>
               <div class="justify-right mt-1">

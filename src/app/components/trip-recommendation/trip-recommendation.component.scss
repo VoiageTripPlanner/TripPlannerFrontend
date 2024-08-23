@@ -1,10 +1,42 @@
+@import "../../../assets/utils/_variables";
+
 .card {
+  padding: 1rem;
   width: 420px;
   height: 379px;
   background: url('/assets/img/ai-icon.png') no-repeat top right / 100px;
-
+  background-color: white;
   .content {
     height: 300px;
+  }
+
+  h3 {
+    font-family: "Yeseva One";
+    font-size: 2.3vh;
+    color: $neutro-color-main;
+  }
+
+  strong {
+    font-family: "Yeseva One";
+    color: $middle-color-main;
+  } 
+
+  li {
+    font-family: "Roboto Flex";
+  }
+
+  a {
+    font-family: "Roboto Flex";
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $middle-color-second;
+    text-decoration: none;
+  }
+  a:hover{
+    color: green;
   }
 
   .country-name, .total-label {

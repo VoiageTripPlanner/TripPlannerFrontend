@@ -1,4 +1,3 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
@@ -35,14 +34,18 @@ $demo-angular-front-theme: mat.define-light-theme((
 // that you are using.
 @include mat.all-component-themes($demo-angular-front-theme);
 
+//Gradient for Voiage background
+$custom-gradient: linear-gradient(to bottom, #2D2230, #1D0F1C, #4B2137,);
+@import "./assets/utils/variables";
+
 :root {
-  --theme-default: #7366ff;
-  --theme-secondary: #f73164;
+  --theme-default: $neutro-color-main;
+  --theme-secondary: $light-color-main;
   --light-background: rgba(242, 243, 247, 0.7);
   --body-font-color: #2f2f3b;
   --chart-border: #ecf3fa;
   --recent-chart-bg: #fcfcfd;
-  --light-bg: #f6f7f9;
+  --light-bg: #1D0F1C;
   --white: #fff;
   --light2: #f5f6f9;
   --sidebar-border: rgba(0, 0, 0, 0.1);
@@ -81,17 +84,23 @@ body[class="dark-only"] {
   --view-grid-bg: var(--light-bg);
   --view-border-marker: #2c2c45d4;
 }
+
 // scss variables
 @import "./assets/utils/variables";
 //start template styles
 @import "./assets/layout/layout.scss";
 //end template styles
 
-body { 
-  height: 100%; 
+body {
+  background-image: $custom-gradient !important;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0; font-family: "Roboto Flex", sans-serif;
 }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+html {
+  height: 100%;
+}	
 
 .error-snackbar .mdc-snackbar__surface{
   background-color: rgb(197, 49, 49) !important;
@@ -108,3 +117,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background: #6D3052;
   }
 }
+
+// //Variables de color 
+// $neutro-color-main:#1D0F1C;
+// $neutro-color-second: #2D2230;
+// $middle-color-main:#4B2137;
+// $middle-color-second:#6D3C52;
+// $light-color-main: #FADCD4;
+// $light-color-second: #775D68;
+// //Line gradient
+// $line-gradient: linear-gradient(to right, rgba(255, 255, 255, 0.1), #FADCD4, rgba(255, 255, 255, 0.1));

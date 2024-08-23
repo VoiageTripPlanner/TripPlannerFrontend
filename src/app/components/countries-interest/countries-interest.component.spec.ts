@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CountriesInterestComponent } from './countries-interest.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AsyncPipe } from '@angular/common';

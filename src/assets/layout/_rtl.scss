@@ -100,6 +100,7 @@ html[dir="rtl"] {
             }
             ~ .page-body,
             ~ footer {
+              background-color: $middle-color-main;
               margin-left: 0;
               margin-right: 100px;
               transition: 0.5s;

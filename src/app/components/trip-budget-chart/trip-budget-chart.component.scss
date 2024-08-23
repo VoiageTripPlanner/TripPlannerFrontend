@@ -1,3 +1,5 @@
+@import "../../../assets/utils/_variables";
+
 .card {
   width: 420px;
 
@@ -9,4 +11,17 @@
     width: 400px;
     margin: 0 auto;
   }
+}
+
+h3 {
+  font-family: "Yeseva One";
+  font-size: 2.3vh;
+  color: $neutro-color-main;
+  text-align: center;
+}
+
+span {
+  font-family: "Roboto Flex";
+  font-weight: bold;
+  color: $middle-color-main;
 }

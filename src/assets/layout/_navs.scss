@@ -1,10 +1,18 @@
 /**=====================
      36. NAV CSS Start
 ==========================**/
+//variables de color 
+$neutro-color-main:#1D0F1C;
+$neutro-color-second: #2D2230;
+$middle-color-main:#4B2137;
+$middle-color-second:#6D3C52;
+$light-color-main: #FADCD4;
+$light-color-second: #775D68;
+
 #accordionoc {
   #collapseicon,
   #collapseicon1 {
-    padding-top: 0px;
+    padding-top: 20px;
   }
   li {
     button {
@@ -18,7 +26,7 @@
     button {
       position: relative;
       &:hover {
-        color: var(--theme-default) !important;
+        color: $middle-color-main !important;
       }
     }
     button[aria-expanded="true"] {

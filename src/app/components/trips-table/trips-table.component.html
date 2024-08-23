@@ -18,7 +18,7 @@
         <td>{{ trip.departureDate | date: 'MM-dd-YYYY' }}</td>
         <td>{{ trip.returnDate | date: 'MM-dd-YYYY' }}</td>
         <td>{{ trip.budget | currency: 'USD' }}</td>
-        <td>{{ trip.aiSuggestion }}</td>
+        <td class="text-truncate" style="max-width: 150px;">{{ trip.aiSuggestion }}</td>
         <td>
           <button class="btn btn-primary btn-sm" (click)="viewTrip(trip)">View</button>
         </td>

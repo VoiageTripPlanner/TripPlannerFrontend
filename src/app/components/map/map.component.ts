@@ -7,6 +7,9 @@ import { IPlaceSearchResult } from '../../interfaces/placeSearch';
 import { ILocation } from '../../interfaces/location.interface';
 import { RouterOutlet } from '@angular/router';
 import { LoaderComponent } from '../loader/loader.component';
+import { I } from '@angular/cdk/keycodes';
+import { IGoogleResponse } from '../../interfaces/google-hotel-response.interface';
+
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -31,6 +34,7 @@ export class MapComponent implements OnInit {
   markerPositions: google.maps.LatLngLiteral[] = [];
 
   zoomToPlace$ = new BehaviorSubject<IPlaceSearchResult | undefined>(undefined);
+  zoomToLodge$ = new BehaviorSubject<IGoogleResponse | undefined>(undefined);
   zoom: number = 8;
 
   address: string = '';
@@ -53,15 +57,18 @@ export class MapComponent implements OnInit {
   }
   
   @Input()
-  destination: IPlaceSearchResult | undefined;
+  destination: any | undefined;
 
   @Input()
   zoomPlace : IPlaceSearchResult | undefined;
 
   @Input()
-  pointsOfInterest: IPlaceSearchResult[] = [];
+  zoomLodge : IGoogleResponse | undefined;
 
-  directionsResult$ = new BehaviorSubject<
+  @Input()
+  pointsOfInterest: IPlaceSearchResult[] = [];
+  
+  directionsResult$ = new BehaviorSubject< 
     google.maps.DirectionsResult | undefined
   >(undefined);
 
@@ -89,6 +96,12 @@ export class MapComponent implements OnInit {
       this.gotoLocationZoom(zoomPlace);
     }
 
+    const zoomLodge = this.zoomLodge?.gps_coordinates;
+    if (zoomLodge) {
+      const latLng = new google.maps.LatLng(zoomLodge.latitude, zoomLodge.longitude);
+      this.gotoLodgeZoom(latLng);
+    }
+
     const destinationZooom: google.maps.LatLngLiteral = {
       lat: this.zoomPlace?.location?.LatLng?.latitude || 0,
       lng: this.zoomPlace?.location?.LatLng?.longitude || 0
@@ -114,6 +127,13 @@ export class MapComponent implements OnInit {
       this.map.panTo(location);
       this.zoom = 25;
       this.directionsResult$.next(undefined);
+  }
+
+  gotoLodgeZoom(location: google.maps.LatLng) {
+    this.markerPositions = [location.toJSON()];
+    this.map.panTo(location.toJSON());
+    this.zoom = 25;
+    this.directionsResult$.next(undefined);
   }
 
   getDirections(

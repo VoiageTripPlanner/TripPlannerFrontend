@@ -18,6 +18,7 @@ import { IVoiageLodge } from '../../../interfaces/lodge.interface';
 import { LodgeService } from '../../../services/voiage-services/lodge.service';
 import { MatStepperModule } from '@angular/material/stepper';
 import { AuthService } from '../../../services/auth.service';
+import { IPlaceSearchResult } from '../../../interfaces/placeSearch';
 
 @Component({
   selector: 'app-lodge-card',
@@ -156,8 +157,21 @@ export class LodgeCardComponent {
 
   }
   
+  zoomToLodge : IGoogleResponse = {};
 
+  viewInMap(lodge :IGoogleResponse) {
+    this.zoomToLodge = lodge;
+    console.log(this.zoomToLodge);
+  }
 
+  fromValue: IPlaceSearchResult = { address: '' };
+
+  ViewDestination(){
+    const storedPlace = localStorage.getItem('destinationLocation');
+    if (storedPlace) {
+      this.fromValue = JSON.parse(storedPlace);
+    }
+  }
 
 }
 

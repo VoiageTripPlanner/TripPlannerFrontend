@@ -1,0 +1,202 @@
+body {
+  font-family: 'Yeseva One', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+
+.background-yellow {
+  background-color: #F79B0C;
+}
+
+.padding-left-1 {
+  padding-left: 1%;
+}
+
+.body-background {
+  background-image: url('../../../assets/img/BG_A4.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+
+.hero-section {
+  position: relative;
+  background: url('../../../assets/img/header2.jpg') no-repeat center center/cover;
+  width: 100%;
+  height: 45vh;
+  color: white;
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+
+    .logo-text {
+      font-size: 4rem;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      background-color: #f9a825;
+      border: none;
+      font-weight: bold;
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+}
+
+.voiage-letter-logo {
+  height: 25vh;
+  max-height: 25vh;
+}
+
+.about-us-section {
+  color: white;
+  text-align: center;
+  padding: 5% 0%;
+
+  h1 {
+    font-size: 3.5rem;
+    font-family: 'Yeseva One', sans-serif;
+    margin: 0;
+  }
+
+  p {
+    font-size: 1.1rem;
+    margin-bottom: 3%;
+  }
+
+  .gradient-line {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, rgba(192, 192, 192, 0), #C0C0C0, #D4AF37, rgba(192, 192, 192, 0));
+    margin: 1rem auto;
+    max-width: 300px;
+    margin-bottom: 3%;
+  }
+}
+
+.team-image {
+  width: 60%;
+  max-width: 70%;
+  height: 75vh;
+  max-height: 90vh;
+  border-radius: 5px;
+}
+
+.margin-bottom-5 {
+  margin-bottom: 5%;
+}
+
+
+.team-card {
+  background-color: rgb(243 243 243 / 80%);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  color: #333;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  margin: 15%;
+  min-height: 45vh;
+  max-height: 65vh;
+  max-width: 20vw;
+  width: 100%;
+
+
+  img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    color: black;
+  }
+
+  h4 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #f39c12;
+  }
+
+  p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  a img {
+    width: 40px;
+    margin-top: 10px;
+  }
+}
+
+.team-photo {
+  min-width: 25vh;
+  max-height: 30vh;
+  height: 25vh;
+  padding: 0% 15%;
+}
+
+.mission-vision-card {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: justify;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  h2 {
+    color: #f39c12;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
+
+.vertical-line-yellow {
+  width: 4px;
+  height: 30vh;
+  background-color: #f39c12;
+  margin: 0 auto;
+}
+
+.margin-equix{
+  margin: 5% 0 0 0;
+}
+
+.justify-center {
+  justify-content: center;
+}

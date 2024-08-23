@@ -22,27 +22,41 @@ export interface ITripForm {
 }
 
 export interface ITrip{
-    tripId?:             number;
-    name:               string;
-    description:        string;
-    departureDate:      Date;
-    returnDate?:        Date;
-    budget? :           number;
-    user:               number;
-    currency?:          number;  
-    lodge:              IVoiageLodge; 
-    aiSuggestion?:      string;
-    flight:             IVoiageFlight; // IFlights: ver lo de separarlo en departure y return flight
-    departureCity?:     string;
-    restaurants:        IVoiageRestaurant[]; 
-    activities:         IActivity[] 
-    destinationCity:    string;
+    tripId:                         number;
+    name:                           string;
+    description:                    string;
+    departureDate:                  Date;
+    returnDate?:                    Date;
+    budget? :                       number;
+    user:                           number;
+    currency?:                      number;  
+    lodge:                          IVoiageLodge; 
+    aiSuggestion?:                  string;
+    flight:                         IVoiageFlight; 
+    departureCity?:                 string;
+    restaurants:                    IVoiageRestaurant[]; 
+    activities:                     IActivity[] 
+    destinationCity:                string;
 
+    //Desglose de precios
+    activitiesEstimatedCost? :      number; 
+    restaurantsEstimatedCost?:      number;
+
+    //Pais de destino
+    destinationCountry:             ITripDestinationCountry;
 
     //Propiedades de auditoria
-    creationDatetime             : Date;
-    creationResponsible          : number;
-    lastUpdateDatetime?          : Date;
-    updateResponsible?           : number;
+    creationDatetime:               Date;
+    creationResponsible:            number;
+    lastUpdateDatetime?:            Date;
+    updateResponsible? :            number;
 
+
+
+}
+
+export interface ITripDestinationCountry{
+
+    countryName: string;
+    countryCode: string;
 }

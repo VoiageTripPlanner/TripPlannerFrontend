@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CountryVisit } from '../../interfaces/country-visit.interface';
 import { StatisticsService } from '../../services/statistics.service';
-import { combineLatest } from 'rxjs';
+import { combineLatest, map, tap } from 'rxjs';
 
 @Component({
   selector: 'app-top-countries',
@@ -13,12 +13,11 @@ import { combineLatest } from 'rxjs';
 export class TopCountriesComponent {
   public topCountries!: CountryVisit[];
   public countryFlags!: {[key: string]: [value: string]};
-  public totalCountryVisited: number = 10;
+  public totalCountryVisited: number = 0;
   private statisticsService: StatisticsService = inject(StatisticsService);
 
   constructor() {
     this.getCountryFlagCodes();
-    this.statisticsService.getTopCountries();
   }
 
   public getCountryFlag(country: string): string {
@@ -30,7 +29,11 @@ export class TopCountriesComponent {
   }
 
   private getCountryFlagCodes(): void {
-    combineLatest([this.statisticsService.topCountries$, this.statisticsService.getCountryFlagCodeJson()]).subscribe(([countries, flagCodes]) => {
+    const topCountries$ = this.statisticsService.countryVisitsList$.pipe(
+      tap((countries) => this.totalCountryVisited = countries.length),
+      map((countries) => countries.slice(0, 3))
+    );
+    combineLatest([topCountries$, this.statisticsService.getCountryFlagCodeJson()]).subscribe(([countries, flagCodes]) => {
       this.topCountries = countries;
       this.countryFlags = flagCodes;
     });

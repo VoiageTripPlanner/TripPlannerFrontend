@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
+
+
+//variables de color 
+$background-color-white: #ffffff;
+$background-color-grey: #b4b4b4;
+$background-color-grey-light: #f9f9f9;
+$border-color: #775D68;
+$image-backgorund-color: #FADCD4;
+$title-color: #6D3652;
+
+
+// Contenedor general de todo
+
+.yeseva-one-regular {
+    font-family: "Yeseva One", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.title{
+    transform: translateY(30%);
+    padding-left: 1%;
+    font-size: 4vh;
+    color: $image-backgorund-color;
+}
+
+
+.container-box {
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+}
+
+.align-boxes {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.background-color{
+    background-color: $title-color;
+}
+
+
+
+.options-container {
+    width: 60%;
+    max-width: 90%;
+    height: 100vh;
+    max-height: 100%;
+    background: $background-color-white;
+    padding: 2%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow-y: auto;
+}
+
+
+//   Tarjetas de hotels
+
+.hotel-card {
+    width: 100%;
+    max-height: 100%;
+    background: $background-color-white;
+    // border-radius: 6px;
+    border-color: transparent;
+    border-width: 1px;
+    border-style: solid;
+    background-color: $background-color-white;
+    margin: 2% 0;
+    border-radius: 5%;
+}
+
+.information-container{
+    width: 100%;
+    max-width: 100%;
+    padding: 3%;
+}
+
+
+//tarjetas para fligths
+
+
+//Tarjetas para activies
+
+
+//Tarjetas para food
+
+
+
+
+
+
+//Genrales 
+
+.circle-list {
+    list-style-type: circle;
+    list-style-type: disc;
+    padding-left: 20px; 
+    column-count: 3; 
+    column-gap: 20px; 
+}
+.circle-list li {
+    break-inside: avoid; 
+}
+
+.loader-desing{
+    align-items: center;
+
+}
+
+.image-container{
+    width: 35%;
+    max-width: 35%;
+    background: $background-color-white;
+    padding: 1%;
+    background-color: $image-backgorund-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5%;
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: cover; 
+    }
+}
+
+
+.move-to-right{
+    align-self: flex-end; 
+    text-align: right;
+}
+
+.space-between{
+    justify-content: space-between;
+}
+
+
+.bold-text {
+    font-weight: 500; 
+}
+
+.font-size-title{
+    font-size: 1.6rem;  
+}
+
+.font-size-subtitle{
+    font-size: 1.3rem;  
+}
+
+.font-size-price{
+    font-size: 1.5rem;  
+}
+
+.logo {
+    width: 2.5vw;
+    height: 5vh;
+}
+
+.padding-1 {
+    padding: 1%;
+}
+
+.right-aligned-text {
+    text-align: end;
+  }
+
+.space-between{
+    justify-content: space-between;
+}
+
+.width-100{
+    width: 100%;
+}
+
+
+

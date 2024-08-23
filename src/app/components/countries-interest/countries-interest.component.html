@@ -1,0 +1,26 @@
+<form>
+  <mat-form-field class="w-100">
+    <mat-label>Countries of Interest</mat-label>
+    <mat-chip-grid #chipGrid aria-label="Countries of Interest">
+      @for (country of countriesSelected(); track country) {
+        <mat-chip-row (removed)="remove(country)">
+          {{getCountryName(country)}}
+          <button matChipRemove [attr.aria-label]="'Remove ' + getCountryName(country) ">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      }
+    </mat-chip-grid>
+    <input
+      [formControl]="countryCtrl"
+      [matChipInputFor]="chipGrid"
+      [matAutocomplete]="autoCountries"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes" />
+      <mat-autocomplete #autoCountries="matAutocomplete" [displayWith]="displayCountryName" (optionSelected)="selected($event)">
+        @for (country of filteredCountries$ | async; track country) {
+          <mat-option [value]="country.id">{{country.name}}</mat-option>
+        }
+      </mat-autocomplete>
+  </mat-form-field>
+  <button class="btn btn-primary" [disabled]="countryCtrl.invalid" (click)="saveCountries()">Save</button>
+</form>

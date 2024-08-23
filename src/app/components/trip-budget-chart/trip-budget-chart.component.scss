@@ -1,0 +1,12 @@
+.card {
+  width: 420px;
+
+  .country-name, .total-label {
+    margin-right: auto;
+  }
+
+  ngx-charts-pie-chart {
+    width: 400px;
+    margin: 0 auto;
+  }
+}

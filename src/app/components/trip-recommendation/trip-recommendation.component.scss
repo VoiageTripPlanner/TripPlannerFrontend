@@ -1,10 +1,52 @@
+//Gradient for Voiage background
+$custom-gradient: linear-gradient(to bottom, #2D2230, #1D0F1C, #4B2137,);
+//Variables de color 
+$neutro-color-main:#1D0F1C;
+$neutro-color-second: #2D2230;
+$middle-color-main:#4B2137;
+$middle-color-second:#6D3C52;
+$light-color-main: #FADCD4;
+$light-color-second: #775D68;
+//Line gradient
+$line-gradient: linear-gradient(to right, rgba(255, 255, 255, 0.1), #FADCD4, rgba(255, 255, 255, 0.1));
+
 .card {
+  padding: 1rem;
   width: 420px;
   height: 379px;
   background: url('/assets/img/ai-icon.png') no-repeat top right / 100px;
-
+  background-color: white;
   .content {
     height: 300px;
+  }
+
+  h3 {
+    font-family: "Yeseva One";
+    font-size: 2.3vh;
+    color: $neutro-color-main;
+  }
+
+  strong {
+    font-family: "Yeseva One";
+    color: $middle-color-main;
+  } 
+
+  li {
+    font-family: "Roboto Flex";
+  }
+
+  a {
+    font-family: "Roboto Flex";
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $middle-color-second;
+    text-decoration: none;
+  }
+  a:hover{
+    color: green;
   }
 
   .country-name, .total-label {

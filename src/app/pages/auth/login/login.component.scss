@@ -1,9 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap'); 
+//variables de color 
+$neutro-color-main:#1D0F1C;
+$neutro-color-second: #2D2230;
+$middle-color-main:#4B2137;
+$middle-color-second:#6D3C52;
+$light-color-main: #FADCD4;
+$light-color-second: #775D68;
+$line-gradient:linear-gradient(to right, rgba(255, 255, 255, 0.1), #FADCD4, rgba(255, 255, 255, 0.1));
 
 .yeseva-one-regular {
   font-family: "Yeseva One", serif;
   font-weight: 400;
   font-style: normal;
+  color: #FADCD4;
 }
 
 .font-size-4{
@@ -18,11 +26,32 @@ body {
 
 a {
   margin-left: 5px; 
-  color: #6d3c52; 
-  font-weight: bold;
-  text-decoration: none; 
-  
+  color: white; 
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
 }
+a:hover {
+  color: #6d3c52; 
+}
+
+label {
+  color: #6d3c52; 
+  font-size: 1.2em;
+  font-family: 'Roboto', sans-serif;
+}
+
+p {
+  color: #6d3c52; 
+  font-family: 'Roboto', sans-serif;
+}
+
+.text-danger {
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  padding-top: 1rem;
+}	
 
 .login-container {
   height: 100vh;
@@ -41,7 +70,6 @@ a {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.3); 
     z-index: 1;
   }
   .login-card {
@@ -52,7 +80,7 @@ a {
     border-radius: 2px;
     box-shadow: 0 0 37px rgba(8, 21, 66, 0.05);
     margin: 0 auto;
-    background-color: #fff;
+    background: linear-gradient(to top, #2D2230, #1D0F1C);
   }
   @media screen and (min-width: 801px) and (max-width: 1500px) {
     padding: 20px 5%;
@@ -99,13 +127,15 @@ a {
 
 /* Estilos para el botón de inicio de SIGN IN */
 .btn-login {
-  background-color: #4B2137; 
-  color: white; 
+  background-color: #FADCD4; 
+  color: #1D0F1C; 
   padding: 10px 20px; 
   border: none; 
   border-radius: 5px; 
-  font-size: 1em; 
-  cursor: pointer; 
+  font-size: 1.1em; 
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
 }
 
 .btn-login:hover {
@@ -115,9 +145,9 @@ a {
 /*Linea de separación*/
 
 .custom-line {
-  width: 85%; 
+  width: 100%; 
   height: 2px; 
-  background: linear-gradient(to right, #4B2137 50%, transparent 100%); 
+  background: $line-gradient;
   margin: 20px 0; 
 }
 
@@ -129,7 +159,6 @@ a {
 
 .voiage-image{
   height: 27vh;
-
 }
 
 
@@ -142,16 +171,15 @@ a {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background: #775D68;
-  // background: #FADCD4;
+  background: #1D0F1C;
   background-size: cover;
   background-position: center;
   margin-left: 0;
 }
 
 .footer-logo {
-  width: 2.5vw; 
-  height: 5vh;
+  width: 3%; 
+  height: 3%;
 }
 
 

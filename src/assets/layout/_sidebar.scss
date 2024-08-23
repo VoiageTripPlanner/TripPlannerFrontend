@@ -1,6 +1,36 @@
 /**=====================
     78. Sidebar CSS Start
 ==========================**/
+@import "../utils/variables";
+
+/**Added**/
+ i {
+   color: $light-color-main;
+ }
+
+ .sidebar-link  .active {
+   background-color: $middle-color-second !important;
+   color: $middle-color-main !important;
+ }
+
+ .sidebar-title .color-white .active {
+   color: $middle-color-main !important;
+ }
+
+// i:hover {
+//   color: $light-color-main;
+// }
+
+div .header-wrapper {
+  background-color: $neutro-color-second;
+}
+
+// div .header-wrapper span {
+//   color: $light-color-main;
+//   font-family: 'Roboto', sans-serif;
+// }
+
+/** Already here**/
 %sidebar-after {
   position: absolute;
   content: "";
@@ -104,7 +134,7 @@
     top: $main-header-top;
     z-index: $main-header-z-index;
     transition: $sidebar-transition;
-    background-color: $white;
+    //background-color: $white;
     box-shadow: $main-header-shadow-1;
     .header-wrapper {
       width: 100%;
@@ -115,7 +145,7 @@
         padding: 22px 20px;
       }
       .search-full {
-        background-color: $white;
+        //background-color: $white;
         position: absolute;
         right: 0;
         z-index: 3;
@@ -126,7 +156,7 @@
         top: 0;
         .Typeahead-menu {
           top: 90%;
-          background: $white;
+          //background: $white;
           width: calc(100% - 20px);
           left: 50%;
           transform: translateX(-50%);
@@ -207,7 +237,8 @@
                   font-size: 18px;
                   font-weight: 600;
                   transition: all 0.3s ease;
-
+                  color: $light-color-main;
+                  
                   &.fa-lightbulb-o {
                     font-weight: 500;
                     font-size: 22px;
@@ -257,7 +288,7 @@
               padding: 2px 4px;
               font-size: 11px;
               font-weight: 700;
-              font-family: work-Sans, sans-serif;
+              font-family: "Roboto Flex", sans-serif;
             }
 
             span {
@@ -366,7 +397,7 @@
             }
 
             .front {
-              background-color: $white;
+              //background-color: $white;
               transition: 0.3s;
 
               svg {
@@ -381,7 +412,7 @@
             }
 
             .back {
-              background-color: $white;
+              //background-color: $white;
               transform: rotateY(180deg);
               .Typeahead-menu {
                 max-height: 150px;
@@ -570,7 +601,7 @@
               }
               .btn {
                 padding: 0px 7px;
-                background-color: $off-white !important;
+                //background-color: $off-white !important;
                 border-color: $off-white !important;
                 border-radius: 100%;
                 font-size: 14px;
@@ -581,7 +612,7 @@
           .total {
             margin: 0;
             padding: 15px;
-            background-color: #f9f9f9;
+            //background-color: #f9f9f9;
             border: none;
             h6 {
               font-family: $font-roboto, $font-serif;
@@ -613,7 +644,7 @@
             width: calc(100vw - 30px);
           }
           li {
-            background-color: #f9f9f9;
+            //background-color: #f9f9f9;
             border-radius: 5px;
             &:last-child {
               text-align: center;
@@ -693,7 +724,7 @@
   }
 
   .page-body-wrapper {
-    background-color: $main-body-color;
+    background: $custom-gradient;
 
     .page-body {
       $extra-height: $header-size + $footer-height;
@@ -2638,9 +2669,9 @@
 
   // only body css
   &.only-body {
-    background-color: #f2f0fa;
+    background: $custom-gradient;
     .page-body-wrapper {
-      background-color: #f2f0fa;
+      background: $custom-gradient;
     }
     .page-header {
       position: relative;
@@ -2912,7 +2943,7 @@
 
     .page-body-wrapper {
       background-blend-mode: overlay;
-      background-color: rgba($white, 0.5);
+      background-color: $custom-gradient;
 
       .sidebar-wrapper {
         position: relative;
@@ -2925,7 +2956,7 @@
       .page-body {
         margin: 0 auto;
         max-width: 1560px;
-        background-color: $body-color;
+        background-color: $custom-gradient;
         box-shadow: 0 0 20px 7px rgba(8, 21, 66, 0.05);
         border-radius: 0 0 15px 15px;
       }
@@ -3509,7 +3540,7 @@
   .page-wrapper {
     &.material-icon {
       &::before {
-        height: 240px;
+        height: 100%;
       }
     }
   }

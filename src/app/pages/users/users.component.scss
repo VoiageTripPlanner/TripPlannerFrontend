@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap'); 
+
 
 //variables de color 
 $background-color: #6D3C52;
@@ -6,13 +6,18 @@ $sidebar-color:#4B2137;
 $text-color: #ffffff; 
 $hover-background-color: #FADCD4; 
 $hover-background-color2: #775D68; 
-$active-background-color: #6D3C52; 
+$active-background-color: #6D3C52;
+@import "../../../assets/utils/_variables";
 
 .yeseva-one-regular {
   font-family: "Yeseva One", serif;
   font-weight: 400;
   font-style: normal;
+  color: $light-color-main;
+  text-align: center;
+  font-size: 8vh !important;
 }
+
 
 .font-size-4{
     font-size: 4vh;
@@ -23,8 +28,16 @@ $active-background-color: #6D3C52;
 }
 
 .button{
-  background-color: $background-color;
-  border:#FADCD4
+  background-color: $middle-color-main;
+  border:none;
+  color: $light-color-main;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  margin-right: 1rem;
 }
 
-.button:hover {background-color: $hover-background-color2}
+.button:hover {
+  background-color: #FADCD4;
+  color: $neutro-color-main;
+  padding-left: 1.6rem;
+  }

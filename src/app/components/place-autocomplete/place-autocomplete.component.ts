@@ -53,7 +53,12 @@ export class PlaceAutocompleteComponent implements OnInit {
           address: this.inputField.nativeElement.value,
           googleId: place?.place_id,
           name: place?.name,
-          location: place?.geometry?.location,
+          location: {
+            LatLng: {
+              latitude: place?.geometry?.location?.lat() ?? 0,
+              longitude: place?.geometry?.location?.lng() ?? 0,
+            },
+          },
           imageUrl: this.getPhotoUrl(place),
           latitude: place?.geometry?.location?.lat() ?? 0,
           longitude: place?.geometry?.location?.lng() ?? 0, 
@@ -68,9 +73,10 @@ export class PlaceAutocompleteComponent implements OnInit {
         localStorage.setItem('longitudeDestination', JSON.stringify(result.longitude));
         localStorage.setItem('destinationAddress', JSON.stringify(result.address));
         localStorage.setItem('destinationLocation', JSON.stringify(result));
-       if (result.location) {
-        this.findNearbyPlaces(result.location);
-        }
+      if (result.location) {
+        const latLng = new google.maps.LatLng(result.location.LatLng.latitude, result.location.LatLng.longitude);
+        this.findNearbyPlaces(latLng);
+      }
       });
     });
 
@@ -110,10 +116,15 @@ export class PlaceAutocompleteComponent implements OnInit {
             this.placesService?.getDetails({ placeId: place.place_id! }, (placeDetails, detailsStatus) => {
               if (detailsStatus === google.maps.places.PlacesServiceStatus.OK && placeDetails) {
                 resolve({
-                  address: placeDetails.vicinity || '',
+                  address: placeDetails.vicinity || '', 
                   name: placeDetails.name,
                   googleId: placeDetails.place_id,
-                  location: placeDetails.geometry?.location,
+                  location: {
+                    LatLng: {
+                      latitude: placeDetails.geometry?.location?.lat() || 0,
+                      longitude: placeDetails.geometry?.location?.lng() || 0,
+                    },
+                  },
                   imageUrl: this.getPhotoUrl(placeDetails),
                   rating: placeDetails?.rating,
                   priceLevel: placeDetails?.price_level,

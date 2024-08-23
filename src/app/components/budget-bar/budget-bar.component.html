@@ -10,14 +10,14 @@
 
     <div class="progress progress-bar-height width-100">
         <div class="progress-bar font-progress-bar width-100 custom-progress-bar-flight" role="progressbar" 
-            [style.width.%]="getSpendingPercentage(budgetQuantity.flightAmount ?? 0)" 
-            [attr.aria-valuenow]="budgetQuantity.flightAmount ?? 0"  
+            [style.width.%]="getSpendingPercentage(budgetQuantity.flightAmount)" 
+            [attr.aria-valuenow]="budgetQuantity.flightAmount"  
             aria-valuemin="0" aria-valuemax="100">
             {{ budgetQuantity.flightAmount | currency }}
         </div>
         <div class="progress-bar font-progress-bar width-100 custom-progress-bar-lodge" role="progressbar"  
-            [style.width.%]="getSpendingPercentage(budgetQuantity.lodgeAmount ?? 0)" 
-            [attr.aria-valuenow]="budgetQuantity.lodgeAmount ?? 0"  
+            [style.width.%]="getSpendingPercentage(budgetQuantity.lodgeAmount)" 
+            [attr.aria-valuenow]="budgetQuantity.lodgeAmount"  
             aria-valuemin="0" aria-valuemax="100">
             {{ budgetQuantity.lodgeAmount | currency }}
         </div>

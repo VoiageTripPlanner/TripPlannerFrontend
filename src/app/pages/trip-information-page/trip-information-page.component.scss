@@ -1,0 +1,75 @@
+@import "../../../assets/utils/_variables";
+
+h2{
+    color: $light-color-main;
+    font-family: "Yeseva One", serif;
+}
+
+h3{
+    color: $light-color-main;
+    font-family: "Yeseva One", serif;
+    font-size: 2.5rem !important;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+}
+
+.trip-detail-text{
+    color: $light-color-main;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.trip-information{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.trip-information dt{
+    color: $white;
+}
+
+.trip-information dd{
+    color: $white
+}
+
+h4{
+    color: $neutro-color-second;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Yeseva One", serif;
+    font-weight: 600;
+    font-size: 2rem !important;
+}
+
+dl{
+    font-family: "Roboto Flex", sans-serif;
+}
+
+dt{
+    color:  $middle-color-main;
+    font-family: "Roboto Flex", sans-serif;
+}
+
+dd{
+    color: $neutro-color-second;
+    font-family: "Roboto Flex", sans-serif;
+}
+
+.trip-details{
+    border-radius: 1.5rem;
+    background: $white;
+    padding: 1rem;
+
+}
+
+.trip-details dl{
+    display: flex;
+    justify-content: space-between;
+}
+
+.trip-category{
+    padding: 1rem;
+}

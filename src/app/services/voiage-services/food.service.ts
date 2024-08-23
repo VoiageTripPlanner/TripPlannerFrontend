@@ -25,7 +25,16 @@ export class FoodService extends BaseService<IVoiageRestaurant>   {
   onGetDefaultVoiageRestaurantList(){
 
       return [
-        this.onGetDefaultVoiageRestaurant(),
+        {
+          restaurant_id                 : 0,
+          name                          : '',
+          description                   : '',
+          average_price                 : 0,
+          location             : this.locationMarkService.onGetDefaultVoiageLocationMark(),
+          creation_datetime             : new Date(),
+          creation_responsible          : 0
+
+        }
        ];
     };
 
@@ -34,8 +43,8 @@ export class FoodService extends BaseService<IVoiageRestaurant>   {
       const defaultValue:IVoiageRestaurant={
         name                          : '',
         description                   : '',
-        averagePrice                 : 0,
-        locationMark                 : this.locationMarkService.onGetDefaultVoiageLocationMark(),
+        average_price                 : 0,
+        location : this.locationMarkService.onGetDefaultVoiageLocationMark(),
         creationDatetime             : new Date(),
         creationResponsible          : 0,
         lastUpdateDatetime           : new Date('1900-01-01'),

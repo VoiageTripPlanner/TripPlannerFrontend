@@ -2,3 +2,13 @@
   <h3 class="fw-bold">Country visits frecuency</h3>
 </div>
 <canvas id="canvas"></canvas>
+@if ((countryVisitsList$ | async)?.length === 0) {
+  <p class="text-center">No data available</p>
+  <div class="d-flex justify-center mb-5">
+    <img
+      class="my-0 mx-auto"
+      src="/assets/img/undraw_blank_canvas_re_2hwy.svg"
+      alt="No data available"
+    />
+  </div>
+}

@@ -2,22 +2,24 @@
   <div class="card-body">
     <h3 class="card-title fw-bold">Trip budget distribution</h3>
     <div class="d-flex flex-column">
-      @if (chartData.length) {
-        <ngx-charts-pie-chart class="mb-4"
+      @if (totalInvestment !== 0) {
+        <ngx-charts-pie-chart
+          class="mb-4"
           [view]="view"
           [results]="chartData"
           [gradient]="gradient"
           [legend]="showLegend"
           [legendPosition]="legendPosition"
           [labels]="showLabels"
-          [doughnut]="isDoughnut">
+          [doughnut]="isDoughnut"
+        >
         </ngx-charts-pie-chart>
-      }
-      @if (totalInvestment !== 0) {
         <div class="d-flex mt-5 pt-2 border-top">
           <span class="total-label">Total investment:</span>
-          <span>{{totalInvestment | currency: 'USD'}}</span>
+          <span>{{ totalInvestment | currency: "USD" }}</span>
         </div>
+      } @else {
+        <p class="text-center">No budget data available</p>
       }
     </div>
   </div>

@@ -1,6 +1,14 @@
 .login-container {
   height: 100vh;
-  background: linear-gradient(#2D2230, #2D2230 10%, #1D0F1C 30%, #1D0F1C 70%, #2D2230 90%, #2D2230) #1D0F1C;
+  background: linear-gradient(
+      #2d2230,
+      #2d2230 10%,
+      #1d0f1c 30%,
+      #1d0f1c 70%,
+      #2d2230 90%,
+      #2d2230
+    )
+    #1d0f1c;
   padding: 20px 20%;
   position: relative;
 
@@ -11,7 +19,7 @@
       width: 60px;
     }
     p {
-      color: #FADCD4;
+      color: #fadcd4;
       line-height: 54px;
     }
   }
@@ -22,7 +30,7 @@
 
   footer {
     margin: 0 20%;
-    border-top: 2px solid #FADCD4;
+    border-top: 2px solid #fadcd4;
 
     img {
       width: 90px;
@@ -37,10 +45,10 @@
     border-radius: 10px;
     box-shadow: 0 0 37px rgba(8, 21, 66, 0.05);
     margin: 0 auto;
-    background: #FADCD4;
+    background: #fadcd4;
 
     h2 {
-      border-bottom: 2px solid #1D0F1C;
+      border-bottom: 2px solid #1d0f1c;
     }
   }
   .invalid-feedback {

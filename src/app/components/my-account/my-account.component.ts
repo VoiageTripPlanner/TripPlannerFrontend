@@ -18,7 +18,10 @@ export class MyAccountComponent implements OnInit {
   private service = inject(AuthService);
   public role!: string;
 
-  constructor(public router: Router, private userService: UserService) {
+  constructor(
+    public router: Router,
+    private userService: UserService,
+  ) {
     this.userService.getUserById(this.service.getUser()?.user_id!);
     effect(() => {
       this.user = this.userService.userSig();
@@ -33,11 +36,10 @@ export class MyAccountComponent implements OnInit {
 
   logout() {
     this.service.logout();
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl("/login");
   }
 
   updateProfile() {
-    this.router.navigateByUrl('/app/update-user');
+    this.router.navigateByUrl("/app/update-user");
   }
-
 }

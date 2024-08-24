@@ -1,18 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import {
   BehaviorSubject,
   Subject,
   debounceTime,
   fromEvent,
   takeUntil,
-} from 'rxjs';
+} from "rxjs";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class LayoutService {
   private unsubscriber: Subject<any> = new Subject();
-  private pageTitle = new BehaviorSubject<string>('');
+  private pageTitle = new BehaviorSubject<string>("");
 
   public title = this.pageTitle.asObservable();
   public sidebarOpen: boolean = true;

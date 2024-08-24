@@ -1,43 +1,68 @@
-<div class="width-100 padding" >
-    <h1 class="title">Total budgeted:  {{ budgetQuantity.total | currency }} </h1>
-    <div  class="display-flex">
-        <p class="margin-1">- Flight: {{ budgetQuantity.flightAmount | currency }}</p>
-        <p class="margin-1">- Lodge: {{ budgetQuantity.lodgeAmount | currency  }}</p>
-        <p class="margin-1">- Food: {{ budgetQuantity.foodAmount | currency }}</p>
-        <p class="margin-1">- Activities: {{ budgetQuantity.activitiesAmount | currency }}</p>
-             
-    </div>
+<div class="bar-container width-100 padding">
+  <h1 class="title">Total budgeted: {{ budgetQuantity.total | currency }}</h1>
+  <div class="display-flex">
+    <p class="margin-1">
+      - Flight: {{ budgetQuantity.flightAmount | currency }}
+    </p>
+    <p class="margin-1">- Lodge: {{ budgetQuantity.lodgeAmount | currency }}</p>
+    <p class="margin-1">- Food: {{ budgetQuantity.foodAmount | currency }}</p>
+    <p class="margin-1">
+      - Activities: {{ budgetQuantity.activitiesAmount | currency }}
+    </p>
+  </div>
 
-    <div class="progress progress-bar-height width-100">
-        <div class="progress-bar font-progress-bar width-100 custom-progress-bar-flight" role="progressbar" 
-            [style.width.%]="getSpendingPercentage(budgetQuantity.flightAmount ?? 0)" 
-            [attr.aria-valuenow]="budgetQuantity.flightAmount ?? 0"  
-            aria-valuemin="0" aria-valuemax="100">
-            {{ budgetQuantity.flightAmount | currency }}
-        </div>
-        <div class="progress-bar font-progress-bar width-100 custom-progress-bar-lodge" role="progressbar"  
-            [style.width.%]="getSpendingPercentage(budgetQuantity.lodgeAmount ?? 0)" 
-            [attr.aria-valuenow]="budgetQuantity.lodgeAmount ?? 0"  
-            aria-valuemin="0" aria-valuemax="100">
-            {{ budgetQuantity.lodgeAmount | currency }}
-        </div>
-        <div class="progress-bar font-progress-bar width-100 custom-progress-bar-food" role="progressbar"  
-            [style.width.%]="getSpendingPercentage(budgetQuantity.foodAmount ?? 0)" 
-            [attr.aria-valuenow]="budgetQuantity.foodAmount ?? 0"  
-            aria-valuemin="0" aria-valuemax="100">
-            {{ budgetQuantity.foodAmount | currency }}
-        </div>
-        <div class="progress-bar font-progress-bar width-100 custom-progress-bar-activities" role="progressbar" 
-            [style.width.%]="getSpendingPercentage(budgetQuantity.activitiesAmount ?? 0)" 
-            [attr.aria-valuenow]="budgetQuantity.activitiesAmount ?? 0" 
-            aria-valuemin="0" aria-valuemax="100">
-            {{ budgetQuantity.activitiesAmount | currency }}
-        </div>
-        <div class="progress-bar width-100 custom-progress-bar-others" role="progressbar"  
-            [style.width.%]="getSpendingPercentage(budgetQuantity.otherAmount ?? 0)" 
-            [attr.aria-valuenow]="budgetQuantity.otherAmount ?? 0"  
-            aria-valuemin="0" aria-valuemax="100">
-            {{ budgetQuantity.otherAmount | currency }}
-        </div>
+  <div class="progress progress-bar-height width-100">
+    <div
+      class="progress-bar font-progress-bar width-100 custom-progress-bar-flight"
+      role="progressbar"
+      [style.width.%]="getSpendingPercentage(budgetQuantity.flightAmount ?? 0)"
+      [attr.aria-valuenow]="budgetQuantity.flightAmount ?? 0"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    >
+      {{ budgetQuantity.flightAmount | currency }}
     </div>
+    <div
+      class="progress-bar font-progress-bar width-100 custom-progress-bar-lodge"
+      role="progressbar"
+      [style.width.%]="getSpendingPercentage(budgetQuantity.lodgeAmount ?? 0)"
+      [attr.aria-valuenow]="budgetQuantity.lodgeAmount ?? 0"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    >
+      {{ budgetQuantity.lodgeAmount | currency }}
+    </div>
+    <div
+      class="progress-bar font-progress-bar width-100 custom-progress-bar-food"
+      role="progressbar"
+      [style.width.%]="getSpendingPercentage(budgetQuantity.foodAmount ?? 0)"
+      [attr.aria-valuenow]="budgetQuantity.foodAmount ?? 0"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    >
+      {{ budgetQuantity.foodAmount | currency }}
+    </div>
+    <div
+      class="progress-bar font-progress-bar width-100 custom-progress-bar-activities"
+      role="progressbar"
+      [style.width.%]="
+        getSpendingPercentage(budgetQuantity.activitiesAmount ?? 0)
+      "
+      [attr.aria-valuenow]="budgetQuantity.activitiesAmount ?? 0"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    >
+      {{ budgetQuantity.activitiesAmount | currency }}
+    </div>
+    <div
+      class="progress-bar width-100 custom-progress-bar-others"
+      role="progressbar"
+      [style.width.%]="getSpendingPercentage(budgetQuantity.otherAmount)"
+      [attr.aria-valuenow]="budgetQuantity.otherAmount"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    >
+      {{ budgetQuantity.otherAmount | currency }}
+    </div>
+  </div>
 </div>

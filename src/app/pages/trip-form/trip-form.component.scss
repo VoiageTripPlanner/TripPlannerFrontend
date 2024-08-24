@@ -1,150 +1,162 @@
-@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
-
-//variables de color 
+//variables de color
 $background-color-white: #ffffff;
 $background-color-grey: #b4b4b4;
 $background-color-grey-light: #f9f9f9;
-$border-color: #775D68;
-$image-backgorund-color: #FADCD4;
-$title-color: #6D3652;
+$border-color: #775d68;
+$image-backgorund-color: #fadcd4;
+$title-color: #6d3652;
 
+@import "../../../assets/utils/variables.scss";
 
 .yeseva-one-regular {
-    font-family: "Yeseva One", serif;
-    font-weight: 400;
-    font-style: normal;
+  font-family: "Yeseva One", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.8rem;
+}
+
+label {
+  font-family: "Roboto Flex";
+  font-size: 1rem;
+  font-weight: 300;
+  color: $middle-color-main;
 }
 
 .title {
-    transform: translateY(30%);
-    padding-left: 1%;
-    font-size: 4vh;
+  transform: translateY(30%);
+  padding-left: 1%;
+  font-size: 2.5rem;
+  font-family: "Yeseva One", serif;
+  color: $light-color-main;
+  font-weight: 400;
+  font-style: normal;
 }
 
-
 .logo {
-    width: 2.5vw;
-    height: 5vh;
+  width: 2.5vw;
+  height: 5vh;
 }
 
 .align-boxes {
-    width: 100%;
-    display: flex;
-    flex-wrap: nowrap;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
-
-// Contenedor general de todo
-
+// Contenedor general de todo el formulario
 .card-container {
-    width: 20%;
-    max-width: 90%;
-    height: 80vh;
-    max-height: 100%;
-    padding: 2%;
-    overflow-y: auto;
-    margin: 0% 1% 5% 1%;
+  width: 20%;
+  max-width: 90%;
+  height: 80vh;
+  max-height: 100%;
+  padding: 2%;
+  overflow-y: auto;
+  margin: 0% 1% 5% 1%;
 }
 
-//   Tarjetas de inputs 
-
+//   Tarjetas de inputs
 .inputs-card {
-    width: 100%;
-    max-height: 100%;
-    background: $background-color-white;
-    border-radius: 6px;
-    border-width: 1px;
-    border-color: $image-backgorund-color;
-    border-style: solid;
-    // background-color: $background-color-white;
+  width: 100%;
+  max-height: 100%;
+  background: $background-color-white;
+  border-radius: 6px;
+  border-width: 1px;
+  border-color: $image-backgorund-color;
+  border-style: solid;
 }
 
-
-//Generales 
+//Generales
 .box-title {
-    transform: translateY(-20%);
-    font-size: 2vh;
+  transform: translateY(-20%);
+  font-size: 2vh;
 }
 
-.class-title-color{
-    color: $title-color
+.class-title-color {
+  color: $title-color;
 }
 
 .display-flex {
-    display: flex;
+  display: flex;
 }
 
 .padding-1 {
-    padding: 1%;
+  padding: 1%;
 }
 
 .padding-bottom {
-    padding-bottom: 5%;
+  padding-bottom: 5%;
 }
 
 .margin-2 {
-    margin: 2%;
+  margin: 2%;
 }
 
 .margin-bottom-3 {
-    margin-bottom: 3%;
+  margin-bottom: 3%;
 }
 .margin-bottom-5 {
-    margin-bottom: 5%;
+  margin-bottom: 5%;
 }
 
 .margin-bottom-6 {
-    margin-bottom: 6%;
+  margin-bottom: 6%;
 }
 
 .margin-bottom-10 {
-    margin-bottom: 10%;
+  margin-bottom: 10%;
 }
 
-.move-to-right{
-    align-self: flex-end; 
+.move-to-right {
+  align-self: flex-end;
 }
 
 .space-between {
-    justify-content: space-between;
+  justify-content: space-between;
 }
 
-
 .space-evenly {
-    justify-content: space-evenly;
+  justify-content: space-evenly;
 }
 
 .font-size-label {
-    font-size: 1.3rem;
+  font-size: 1.3rem;
 }
 
 .width-20 {
-    width: 20%;
+  width: 20%;
 }
 .width-45 {
-    width: 45%;
+  width: 45%;
 }
 
 .width-75 {
-    width: 75%;
+  width: 75%;
 }
 
 .width-80 {
-    width: 80%;
+  width: 80%;
 }
 .width-100 {
-    width: 100%;
+  width: 100%;
 }
 
 .button-container {
-    display: flex;
-    justify-content: flex-end; 
+  display: flex;
+  justify-content: flex-end;
 }
 
+.button-container button {
+  color: $light-color-main;
+  background-color: $middle-color-main;
+  border: none;
+}
+
+.button-container button:hover {
+  background-color: $light-color-main;
+  color: $middle-color-main;
+}
 
 .input-no-border {
-    border: none;
-    outline: none; 
+  border: none;
+  outline: none;
 }
-
-

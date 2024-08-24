@@ -1,22 +1,40 @@
+//Gradient for Voiage background
+$custom-gradient: linear-gradient(to bottom, #2d2230, #1d0f1c, #4b2137);
+//Variables de color
+$neutro-color-main: #1d0f1c;
+$neutro-color-second: #2d2230;
+$middle-color-main: #4b2137;
+$middle-color-second: #6d3c52;
+$light-color-main: #fadcd4;
+$light-color-second: #775d68;
+//Line gradient
+$line-gradient: linear-gradient(
+  to right,
+  rgba(255, 255, 255, 0.1),
+  #fadcd4,
+  rgba(255, 255, 255, 0.1)
+);
+
 /**=====================
      47. Footer CSS Start
 ==========================**/
-.footer{
-  background-color: $footer_bg_color;
+.footer {
+  background-color: $middle-color-main;
+  color: $white;
   box-shadow: $footer_box_shadow;
   padding: 15px;
   bottom: 0;
   left: 0;
   margin-left: $sidebar-compact-width;
-  transition: 0.5s;  
-  &.footer-dark{
+  transition: 0.5s;
+  &.footer-dark {
     background-color: $footer_dark_color;
-    p{
+    p {
       color: $white;
     }
   }
 }
-.footer-fix{
+.footer-fix {
   width: calc(100% - $sidebar-compact-width);
   position: fixed;
 }

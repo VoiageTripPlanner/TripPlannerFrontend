@@ -12,7 +12,10 @@
     <i class="fa-solid fa-arrow-left"></i>
   </div>
 
-  <div class="toggle-sidebar toggle-background-color" (click)="layoutService.toggleSidebar()">
+  <div
+    class="toggle-sidebar toggle-background-color"
+    (click)="layoutService.toggleSidebar()"
+  >
     <i class="fa-solid fa fa-thumb-tack"></i>
   </div>
 </div>
@@ -64,7 +67,6 @@
 
                 <li class="sidebar-main-title">
                   <div>
-
                     <h6>General</h6>
                   </div>
                 </li>
@@ -72,18 +74,21 @@
                 @for (route of permittedRoutes; track $index) {
                   <li class="sidebar-list color-white">
                     <a
-                      routerLink="{{route.path}}"
+                      routerLink="{{ route.path }}"
                       routerLinkActive="active"
                       class="sidebar-link sidebar-title color-white"
                     >
-                    @if (route.data) {
-                        <i [class]="route.data['icon']" class="padding-right-3">&nbsp;</i> 
-                        <span class="color-white">{{route.data['name']}}</span>
+                      @if (route.data) {
+                        <i [class]="route.data['icon']" class="padding-right-3"
+                          >&nbsp;</i
+                        >
+                        <span class="color-white">{{
+                          route.data["name"]
+                        }}</span>
                       }
                     </a>
                   </li>
                 }
-
               </div>
             </div>
           </div>

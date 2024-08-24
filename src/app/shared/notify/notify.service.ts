@@ -1,22 +1,19 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import {
   BehaviorSubject,
   Subject,
   debounceTime,
   fromEvent,
   takeUntil,
-} from 'rxjs';
+} from "rxjs";
 
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
-
 export class NotifyService {
-  
-  onDeleteConfirmation=()=>{
-
+  onDeleteConfirmation = () => {
     return Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -24,21 +21,23 @@ export class NotifyService {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
-    })
-    
-  };
-
-  onSuccess=()=>{
-    Swal.fire({
-      title: "All good...",
-      text: "Work Done !",
-      icon: "success"
+      confirmButtonText: "Yes, delete it!",
     });
   };
 
-  onCustomConfirmation=( title:string,text:string,confirmButton:string )=>{
+  onSuccess = () => {
+    Swal.fire({
+      title: "All good...",
+      text: "Work Done !",
+      icon: "success",
+    });
+  };
 
+  onCustomConfirmation = (
+    title: string,
+    text: string,
+    confirmButton: string,
+  ) => {
     return Swal.fire({
       title: title,
       text: text,
@@ -46,63 +45,58 @@ export class NotifyService {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: confirmButton
-    })
-    
-  };
-
-
-  onCustomSimpleNotify=(title:string,text:string)=>{
-    Swal.fire({
-      title: title,
-      text: text,
-      icon: "success"
+      confirmButtonText: confirmButton,
     });
   };
 
-  onCustomErrorNotify=(title:string,text:string)=>{
+  onCustomSimpleNotify = (title: string, text: string) => {
     Swal.fire({
       title: title,
       text: text,
-      icon: "error"
+      icon: "success",
     });
   };
-  
-  onError=()=>{
+
+  onCustomErrorNotify = (title: string, text: string) => {
+    Swal.fire({
+      title: title,
+      text: text,
+      icon: "error",
+    });
+  };
+
+  onError = () => {
     Swal.fire({
       title: "Oops...",
       text: "Something went wrong!",
-      icon: "error"
+      icon: "error",
     });
   };
 
-  onNoData=()=>{
+  onNoData = () => {
     Swal.fire({
       title: "Oops...",
       text: "There is no info with these params!",
-      icon: "info"
+      icon: "info",
     });
   };
 
-  onSearchDisclaimer=()=>{
-
+  onSearchDisclaimer = () => {
     return Swal.fire({
       title: "Be aware !",
       text: "Voiage is not responsible for the prices shown!",
       icon: "info",
       showCancelButton: false,
       confirmButtonColor: "#3085d6",
-      confirmButtonText: "Acknowledged !"
-    })
-    
-  };
-
-  onNoFormData=()=>{
-    Swal.fire({
-      title: "Oops...",
-      text: "Please complete the form",
-      icon: "info"
+      confirmButtonText: "Acknowledged !",
     });
   };
 
+  onNoFormData = () => {
+    Swal.fire({
+      title: "Oops...",
+      text: "Please complete the form",
+      icon: "info",
+    });
+  };
 }

@@ -4,7 +4,9 @@
     <mat-expansion-panel [expanded]="true">
       <mat-expansion-panel-header>
         <mat-panel-title>Personal Information</mat-panel-title>
-        <mat-panel-description class="justify-content-between align-items-center">
+        <mat-panel-description
+          class="justify-content-between align-items-center"
+        >
           Update your personal information
           <mat-icon>account_circle</mat-icon>
         </mat-panel-description>
@@ -14,12 +16,19 @@
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>Countries of Interest</mat-panel-title>
-        <mat-panel-description class="justify-content-between align-items-center">
+        <mat-panel-description
+          class="justify-content-between align-items-center"
+        >
           Update your countries of interest
           <mat-icon>public</mat-icon>
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <app-countries-interest *ngIf="userId" [countryInterestData]="countryInterestData()" [userId]="userId" (saved)="saveCountryInterest($event)"></app-countries-interest>
+      <app-countries-interest
+        *ngIf="userId"
+        [countryInterestData]="countryInterestData()"
+        [userId]="userId"
+        (saved)="saveCountryInterest($event)"
+      ></app-countries-interest>
     </mat-expansion-panel>
   </mat-accordion>
 </div>

@@ -1,81 +1,90 @@
 <div class="container-box">
-
-    <div class="align-boxes">
-
-        <div *ngIf="isLoading" class="col-md-6 lodge-container loader-desing">
-            <app-loader></app-loader>
-        </div>
-
-        <div class="col-md-6 lodge-container" *ngIf="!isLoading">
-
-
-            @for (item of googleHotelResponseList ; track trackByIndex) {
-            <div class="hotel-card align-boxes">
-
-                <div class="information-container">
-
-                    <div class="align-boxes space-between">
-                        <h1 class="bold-text font-size-title">{{item.name}}</h1>
-                        <h1 class="move-to-right font-size-price">Total: {{item.total_rate?.lowest}}</h1>
-                    </div>
-
-                    <div class="align-boxes space-between">
-                        <h3>Stats: {{item.overall_rating }}/5</h3>
-                        <h3 class="move-to-right">Price per night {{item.rate_per_night?.lowest}}</h3>
-                    </div>
-
-                    <div class="width-100">
-                        <h2>Amenities:</h2>
-                        <ul class="circle-list">
-                            @for (amenity of item.amenities ; track generateId) {
-                            <li>{{amenity}}</li>
-
-                            }
-
-                        </ul>
-
-                    </div>
-
-                    <div class="align-boxes space-between">
-                        <button type="button" class="btn btn-outline-info " (click)="viewInMap(item)">View in map</button>
-                        <button type="button" class="btn btn-outline-dark" (click)="visitSite(item.link)" >Go to the
-                            Site</button>
-                        <button type="button" class="btn btn-outline-success"
-                            (click)="selectOption(item)" mat-button matStepperNext>Select option </button>
-
-                    </div>
-
-                </div>
-
-                <div class="image-container">
-                    @if(item.images && item.images.length){
-                    <img [src]="item.images[0].original_image" alt="ImageHotel" (error)="onImageError($event)">
-                    }@else{
-                    <img src="../../../../assets/img/No_image_available.png" alt="ImageHotel">
-                    }
-                </div>
-
-
-
-            </div>
-            }
-
-
-        </div>
-        <div class="map-container">
-
-            <button type="button" class="btn  btn-warning position-absolute position-button"
-            (click)="ViewDestination()">
-            <i class="bi bi-compass"></i>
-        </button>
-
-        <app-maps class="z-index-1" 
-            [zoomLodge]="zoomToLodge">
-        </app-maps>
-
-        </div>
-
+  <div class="align-boxes">
+    <div *ngIf="isLoading" class="col-md-6 lodge-container loader-desing">
+      <app-loader></app-loader>
     </div>
 
+    <div class="col-md-6 lodge-container" *ngIf="!isLoading">
+      @for (item of googleHotelResponseList; track trackByIndex) {
+        <div class="hotel-card align-boxes">
+          <div class="information-container">
+            <div class="align-boxes space-between">
+              <h1 class="bold-text font-size-title">{{ item.name }}</h1>
+              <h1 class="move-to-right font-size-price">
+                Total: {{ item.total_rate?.lowest }}
+              </h1>
+            </div>
 
+            <div class="align-boxes space-between">
+              <h3>Stats: {{ item.overall_rating }}/5</h3>
+              <h3 class="move-to-right">
+                Price per night {{ item.rate_per_night?.lowest }}
+              </h3>
+            </div>
+
+            <div class="width-100">
+              <h2>Amenities:</h2>
+              <ul class="circle-list">
+                @for (amenity of item.amenities; track generateId) {
+                  <li>{{ amenity }}</li>
+                }
+              </ul>
+            </div>
+
+            <div class="align-boxes space-between">
+              <button
+                type="button"
+                class="btn btn-outline-info"
+                (click)="viewInMap(item)"
+              >
+                View in map
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-dark"
+                (click)="visitSite(item.link)"
+              >
+                Go to the Site
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-success"
+                (click)="selectOption(item)"
+                mat-button
+                matStepperNext
+              >
+                Select option
+              </button>
+            </div>
+          </div>
+
+          <div class="image-container">
+            @if (item.images && item.images.length) {
+              <img
+                [src]="item.images[0].original_image"
+                alt="ImageHotel"
+                (error)="onImageError($event)"
+              />
+            } @else {
+              <img
+                src="../../../../assets/img/No_image_available.png"
+                alt="ImageHotel"
+              />
+            }
+          </div>
+        </div>
+      }
+    </div>
+    <div class="map-container">
+      <button
+        type="button"
+        class="btn btn-warning position-absolute position-button"
+        (click)="ViewDestination()"
+      >
+        <i class="bi bi-compass"></i>
+      </button>
+
+      <app-maps class="z-index-1" [zoomLodge]="zoomToLodge"> </app-maps>
+    </div>
+  </div>
 </div>

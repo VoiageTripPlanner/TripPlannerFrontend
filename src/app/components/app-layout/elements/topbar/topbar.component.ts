@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
-import { AuthService } from '../../../../services/auth.service';
-import { LayoutService } from '../../../../services/layout.service';
-import { MyAccountComponent } from '../../../my-account/my-account.component';
-import { IUser } from '../../../../interfaces/user.interface';
+import { Component, OnInit } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { Router, RouterLink } from "@angular/router";
+import { AuthService } from "../../../../services/auth.service";
+import { LayoutService } from "../../../../services/layout.service";
+import { MyAccountComponent } from "../../../my-account/my-account.component";
+import { IUser } from "../../../../interfaces/user.interface";
 
 @Component({
-  selector: 'app-topbar',
+  selector: "app-topbar",
   standalone: true,
   imports: [CommonModule, RouterLink, MyAccountComponent],
-  templateUrl: './topbar.component.html',
+  templateUrl: "./topbar.component.html",
 })
 export class TopbarComponent implements OnInit {
   public user?: IUser;
@@ -18,7 +18,7 @@ export class TopbarComponent implements OnInit {
   constructor(
     public router: Router,
     public layoutService: LayoutService,
-    public authService: AuthService
+    public authService: AuthService,
   ) {}
 
   ngOnInit(): void {
@@ -27,6 +27,6 @@ export class TopbarComponent implements OnInit {
 
   public logout(): void {
     this.authService.logout();
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl("/login");
   }
 }

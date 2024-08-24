@@ -4,18 +4,18 @@
 @import "../utils/variables";
 
 /**Added**/
- i {
-   color: $light-color-main;
- }
+i {
+  color: $light-color-main;
+}
 
- .sidebar-link  .active {
-   background-color: $middle-color-second !important;
-   color: $middle-color-main !important;
- }
+.sidebar-link .active {
+  background-color: $middle-color-second !important;
+  color: $middle-color-main !important;
+}
 
- .sidebar-title .color-white .active {
-   color: $middle-color-main !important;
- }
+.sidebar-title .color-white .active {
+  color: $middle-color-main !important;
+}
 
 // i:hover {
 //   color: $light-color-main;
@@ -238,7 +238,7 @@ div .header-wrapper {
                   font-weight: 600;
                   transition: all 0.3s ease;
                   color: $light-color-main;
-                  
+
                   &.fa-lightbulb-o {
                     font-weight: 500;
                     font-size: 22px;

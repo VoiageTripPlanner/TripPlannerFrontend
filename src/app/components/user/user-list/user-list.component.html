@@ -15,38 +15,40 @@
     </thead>
     <tbody>
       @for (item of userList; track item.id) {
-      <tr>
-        <td>{{item.name}}</td>
-        <td>{{item.lastname}}</td>
-        <td>{{item.secondLastname}}</td>
-        <td>{{item.email}}</td>
-        <td>{{getRole(item.roleId)}}</td>
-        <td>{{getCountry(item.countryId)}}</td>
-        <td>{{getDate(item.createAt) | date: 'dd/MM/yyyy HH:mm'}}</td>
-        <td>{{getDate(item.updateAt) | date: 'dd/MM/yyyy HH:mm'}}</td>
-        <td>
-          <div class="d-flex justify-content-evenly align-items-center">
-            <button type="button" (click)="showDetail(item, formModal)" class="btn-icon">
-              <i class="bi bi-pencil-fill icon-color-edit"
-              ></i>
-            </button>
-            <button type="button" (click)="onDeleteUser(item)" class="btn-icon ">
-              <i class="bi bi-trash-fill icon-color-delete"
-              ></i>
-            </button>
-          </div>
-        </td>
-      </tr>
+        <tr>
+          <td>{{ item.name }}</td>
+          <td>{{ item.lastname }}</td>
+          <td>{{ item.secondLastname }}</td>
+          <td>{{ item.email }}</td>
+          <td>{{ getRole(item.roleId) }}</td>
+          <td>{{ getCountry(item.countryId) }}</td>
+          <td>{{ getDate(item.createAt) | date: "dd/MM/yyyy HH:mm" }}</td>
+          <td>{{ getDate(item.updateAt) | date: "dd/MM/yyyy HH:mm" }}</td>
+          <td>
+            <div class="d-flex justify-content-evenly align-items-center">
+              <button
+                type="button"
+                (click)="showDetail(item, formModal)"
+                class="btn-icon"
+              >
+                <i class="bi bi-pencil-fill icon-color-edit"></i>
+              </button>
+              <button
+                type="button"
+                (click)="onDeleteUser(item)"
+                class="btn-icon"
+              >
+                <i class="bi bi-trash-fill icon-color-delete"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
       }
     </tbody>
   </table>
 </div>
 
 <app-modal size="lg" #formModal>
-  <app-user-form 
-  [user]="currentUser" 
-  [action]="'edit'"
-  [title]="'Update User'"
-  >
-</app-user-form>
+  <app-user-form [user]="currentUser" [action]="'edit'" [title]="'Update User'">
+  </app-user-form>
 </app-modal>

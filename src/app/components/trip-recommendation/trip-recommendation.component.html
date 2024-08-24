@@ -1,13 +1,21 @@
 <div class="card shadow">
   <ng-container *ngIf="tripRecommendation() as tripRecommendation">
     <div class="card-body">
-      <h3 class="card-title fw-bold">{{tripRecommendation.city}}, {{tripRecommendation.country}}</h3>
+      <h3 class="card-title fw-bold">
+        {{ tripRecommendation.city }}, {{ tripRecommendation.country }}
+      </h3>
       @if (countryFlags) {
-        <img class="shadow"
-          src="https://flagcdn.com/w80/{{getCountryFlag(tripRecommendation.country)}}.png"
-          srcset="https://flagcdn.com/w160/{{getCountryFlag(tripRecommendation.country)}}.png 2x"
+        <img
+          class="shadow"
+          src="https://flagcdn.com/w80/{{
+            getCountryFlag(tripRecommendation.country)
+          }}.png"
+          srcset="
+            https://flagcdn.com/w160/{{getCountryFlag(tripRecommendation.country)}}.png 2x
+          "
           width="80"
-          alt="{{tripRecommendation.country}}">
+          alt="{{ tripRecommendation.country }}"
+        />
       }
     </div>
     <div class="card-body">
@@ -16,7 +24,7 @@
     <ul class="list-group list-group-flush">
       @if (tripRecommendation.reasons.length !== 0) {
         @for (reason of tripRecommendation.reasons; track reason) {
-          <li class="list-group-item">{{reason}}</li>
+          <li class="list-group-item">{{ reason }}</li>
         }
       } @else {
         <li class="list-group-item">No recommendation available</li>
@@ -27,8 +35,11 @@
     </div>
   </ng-container>
 </div>
-<app-modal *ngIf="tripRecommendation()" [title]="tripRecommendation()?.city + ', ' + tripRecommendation()?.country">
+<app-modal
+  *ngIf="tripRecommendation()"
+  [title]="tripRecommendation()?.city + ', ' + tripRecommendation()?.country"
+>
   <p>
-    {{tripRecommendation()?.description}}
+    {{ tripRecommendation()?.description }}
   </p>
 </app-modal>

@@ -1,21 +1,21 @@
-import { Component, effect, inject, Signal } from '@angular/core';
-import { TripService } from '../../services/trip.service';
-import { ITrip } from '../../interfaces/trip.interface';
-import { IPagination } from '../../interfaces/pagination.interface';
-import { TripsTableComponent } from '../../components/trips-table/trips-table.component';
-import { PageEvent } from '@angular/material/paginator';
-import { Router } from '@angular/router';
-import { UserService } from '../../services/user.service';
+import { Component, effect, inject, Signal } from "@angular/core";
+import { TripService } from "../../services/trip.service";
+import { ITrip } from "../../interfaces/trip.interface";
+import { IPagination } from "../../interfaces/pagination.interface";
+import { TripsTableComponent } from "../../components/trips-table/trips-table.component";
+import { PageEvent } from "@angular/material/paginator";
+import { Router } from "@angular/router";
+import { UserService } from "../../services/user.service";
 
 @Component({
-  selector: 'app-trips-page',
+  selector: "app-trips-page",
   standalone: true,
   imports: [TripsTableComponent],
-  templateUrl: './trips-page.component.html',
-  styleUrl: './trips-page.component.scss'
+  templateUrl: "./trips-page.component.html",
+  styleUrl: "./trips-page.component.scss",
 })
 export class TripsPageComponent {
-  public tripPagination!: Signal<IPagination<ITrip>|null>;
+  public tripPagination!: Signal<IPagination<ITrip> | null>;
   public isLoading: boolean = false;
   private tripService: TripService = inject(TripService);
   private router: Router = inject(Router);
@@ -34,7 +34,11 @@ export class TripsPageComponent {
   }
 
   public changePage(page: PageEvent): void {
-    this.tripService.getTripsByUserAndPage(this.user.id, page.pageIndex, page.pageSize);
+    this.tripService.getTripsByUserAndPage(
+      this.user.id,
+      page.pageIndex,
+      page.pageSize,
+    );
     this.isLoading = true;
   }
 

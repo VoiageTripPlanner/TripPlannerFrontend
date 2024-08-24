@@ -1,61 +1,66 @@
-//variables de color 
-$neutro-color-main:#1D0F1C;
-$neutro-color-second: #2D2230;
-$middle-color-main:#4B2137;
-$middle-color-second:#6D3C52;
-$light-color-main: #FADCD4;
-$light-color-second: #775D68;
-$line-gradient:linear-gradient(to right, rgba(255, 255, 255, 0.1), #FADCD4, rgba(255, 255, 255, 0.1));
+//variables de color
+$neutro-color-main: #1d0f1c;
+$neutro-color-second: #2d2230;
+$middle-color-main: #4b2137;
+$middle-color-second: #6d3c52;
+$light-color-main: #fadcd4;
+$light-color-second: #775d68;
+$line-gradient: linear-gradient(
+  to right,
+  rgba(255, 255, 255, 0.1),
+  #fadcd4,
+  rgba(255, 255, 255, 0.1)
+);
 
 .yeseva-one-regular {
   font-family: "Yeseva One", serif;
   font-weight: 400;
   font-style: normal;
-  color: #FADCD4;
+  color: #fadcd4;
 }
 
-.font-size-4{
+.font-size-4 {
   font-size: 4vh;
 }
 
 /* Estilos generales para body */
 body {
-    margin: 0;
-    font-family: 'Yeseva One', cursive; 
+  margin: 0;
+  font-family: "Yeseva One", cursive;
 }
 
 a {
-  margin-left: 5px; 
-  color: white; 
+  margin-left: 5px;
+  color: white;
   text-decoration: none;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 700;
 }
 a:hover {
-  color: #6d3c52; 
+  color: #6d3c52;
 }
 
 label {
-  color: #6d3c52; 
+  color: #6d3c52;
   font-size: 1.2em;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 p {
-  color: #6d3c52; 
-  font-family: 'Roboto', sans-serif;
+  color: #6d3c52;
+  font-family: "Roboto", sans-serif;
 }
 
 .text-danger {
-  display: flex; 
+  display: flex;
   align-items: center;
   justify-content: center;
   padding-top: 1rem;
-}	
+}
 
 .login-container {
   height: 100vh;
-  background-image: url('../../../../assets/img/imagen-desenfocada.png');
+  background-image: url("../../../../assets/img/imagen-desenfocada.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -64,7 +69,7 @@ p {
   align-items: center;
   justify-content: center;
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -80,7 +85,7 @@ p {
     border-radius: 2px;
     box-shadow: 0 0 37px rgba(8, 21, 66, 0.05);
     margin: 0 auto;
-    background: linear-gradient(to top, #2D2230, #1D0F1C);
+    background: linear-gradient(to top, #2d2230, #1d0f1c);
   }
   @media screen and (min-width: 801px) and (max-width: 1500px) {
     padding: 20px 5%;
@@ -102,65 +107,63 @@ p {
   }
 }
 
-
 // Stylos Voiage
 
 .container-flex-center {
   display: flex;
-  align-items: center; 
+  align-items: center;
   justify-content: center;
 }
 
 .container-flex-center p {
-  margin: 0; 
+  margin: 0;
 }
 
-.justify-right{
+.justify-right {
   justify-content: end;
   display: flex;
 }
 
-.input-horizontal-margin{
+.input-horizontal-margin {
   margin-left: 5%;
   margin-right: 5%;
 }
 
 /* Estilos para el botón de inicio de SIGN IN */
 .btn-login {
-  background-color: #FADCD4; 
-  color: #1D0F1C; 
-  padding: 10px 20px; 
-  border: none; 
-  border-radius: 5px; 
-  font-size: 1.1em; 
+  background-color: #fadcd4;
+  color: #1d0f1c;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1em;
   cursor: pointer;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: bold;
 }
 
 .btn-login:hover {
-  background-color: #6d3c52; 
+  background-color: #6d3c52;
 }
 
 /*Linea de separación*/
 
 .custom-line {
-  width: 100%; 
-  height: 2px; 
+  width: 100%;
+  height: 2px;
   background: $line-gradient;
-  margin: 20px 0; 
+  margin: 20px 0;
 }
 
-.container-voiage{
+.container-voiage {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.voiage-image{
+.voiage-image {
   height: 27vh;
 }
-
 
 /* Footer */
 .footer {
@@ -171,17 +174,13 @@ p {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background: #1D0F1C;
+  background: #1d0f1c;
   background-size: cover;
   background-position: center;
   margin-left: 0;
 }
 
 .footer-logo {
-  width: 3%; 
+  width: 3%;
   height: 3%;
 }
-
-
-
-

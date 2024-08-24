@@ -1,44 +1,42 @@
-import { Injectable } from '@angular/core';
-import { ILoginResponse, IResponse } from '../interfaces/index.interface';
-import { Observable, firstValueFrom, of, tap } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { IUser } from '../interfaces/user.interface';
+import { Injectable } from "@angular/core";
+import { ILoginResponse, IResponse } from "../interfaces/index.interface";
+import { Observable, firstValueFrom, of, tap } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { IUser } from "../interfaces/user.interface";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class AuthService {
   private accessToken!: string;
-  private expiresIn! : number;
+  private expiresIn!: number;
   private userId!: number;
-  private user: IUser = {email: '', authorities: []};
-
-  
+  private user: IUser = { email: "", authorities: [] };
 
   constructor(private http: HttpClient) {
     this.load();
   }
 
   public save(): void {
-    if (this.user) localStorage.setItem('auth_user', JSON.stringify(this.user));
+    if (this.user) localStorage.setItem("auth_user", JSON.stringify(this.user));
 
     if (this.accessToken)
-      localStorage.setItem('access_token', JSON.stringify(this.accessToken));
+      localStorage.setItem("access_token", JSON.stringify(this.accessToken));
 
     if (this.expiresIn)
-      localStorage.setItem('expiresIn',JSON.stringify(this.expiresIn));
+      localStorage.setItem("expiresIn", JSON.stringify(this.expiresIn));
     if (this.userId)
-      localStorage.setItem('userId', JSON.stringify(this.userId));
+      localStorage.setItem("userId", JSON.stringify(this.userId));
   }
 
   private load(): void {
-    let token = localStorage.getItem('access_token');
+    let token = localStorage.getItem("access_token");
     if (token) this.accessToken = token;
-    let exp = localStorage.getItem('expiresIn');
+    let exp = localStorage.getItem("expiresIn");
     if (exp) this.expiresIn = JSON.parse(exp);
-    const user = localStorage.getItem('auth_user');
+    const user = localStorage.getItem("auth_user");
     if (user) this.user = JSON.parse(user);
-    const userId = localStorage.getItem('userId');
+    const userId = localStorage.getItem("userId");
     if (userId) this.userId = JSON.parse(userId);
   }
 
@@ -51,7 +49,7 @@ export class AuthService {
   }
 
   public check(): boolean {
-    if (!this.accessToken){
+    if (!this.accessToken) {
       return false;
     } else {
       return true;
@@ -62,7 +60,7 @@ export class AuthService {
     email: string;
     password: string;
   }): Observable<ILoginResponse> {
-    return this.http.post<ILoginResponse>('auth/login', credentials).pipe(
+    return this.http.post<ILoginResponse>("auth/login", credentials).pipe(
       tap((response: any) => {
         this.accessToken = response.token;
         this.user.email = credentials.email;
@@ -70,68 +68,69 @@ export class AuthService {
         this.user = response.authUser;
         this.userId = response.authUser.user_id;
         this.save();
-      })
+      }),
     );
   }
 
   public hasRole(role: string): boolean {
-    return this.user.authorities ?  this.user?.authorities.some(authority => authority.authority == role) : false;
+    return this.user.authorities
+      ? this.user?.authorities.some((authority) => authority.authority == role)
+      : false;
   }
 
   public hasAnyRole(roles: any[]): boolean {
-    return roles.some(role => this.hasRole(role));
+    return roles.some((role) => this.hasRole(role));
   }
 
   public getPermittedRoutes(routes: any[]): any[] {
     let permittedRoutes: any[] = [];
     for (const route of routes) {
-      if(route.data && route.data.authorities) {
+      if (route.data && route.data.authorities) {
         if (this.hasAnyRole(route.data.authorities)) {
           permittedRoutes.unshift(route);
-        } 
+        }
       }
     }
     return permittedRoutes;
   }
 
   public signup(user: IUser): Observable<ILoginResponse> {
-    return this.http.post<ILoginResponse>('auth/signup', user);
+    return this.http.post<ILoginResponse>("auth/signup", user);
   }
 
   public logout() {
-    this.accessToken = '';
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('expiresIn');
-    localStorage.removeItem('auth_user');
-    localStorage.removeItem('userId');
-    localStorage.removeItem('longitudeDestination');
-    localStorage.removeItem('latitudeDestination');
-    localStorage.removeItem('destinationName');
-    localStorage.removeItem('destinatioLocation');
-    localStorage.removeItem('user_id');
-    localStorage.removeItem('nearbyPlaces');
-    localStorage.removeItem('destinationAddress');
-    localStorage.removeItem('destination');
-    localStorage.removeItem('destinationLocation');
-    localStorage.removeItem('selectedActivities');
-    localStorage.removeItem('flight');
-    localStorage.removeItem('tripFormData');
-    localStorage.removeItem('budget');
-    localStorage.removeItem('lodge');
-    localStorage.removeItem('food');
-
+    this.accessToken = "";
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("expiresIn");
+    localStorage.removeItem("auth_user");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("longitudeDestination");
+    localStorage.removeItem("latitudeDestination");
+    localStorage.removeItem("destinationName");
+    localStorage.removeItem("destinatioLocation");
+    localStorage.removeItem("user_id");
+    localStorage.removeItem("nearbyPlaces");
+    localStorage.removeItem("destinationAddress");
+    localStorage.removeItem("destination");
+    localStorage.removeItem("destinationLocation");
+    localStorage.removeItem("selectedActivities");
+    localStorage.removeItem("flight");
+    localStorage.removeItem("tripFormData");
+    localStorage.removeItem("budget");
+    localStorage.removeItem("lodge");
+    localStorage.removeItem("food");
   }
 
   public resetPassword(user: IUser): Observable<IUser> {
-    return this.http.post('auth/reset-password', user);
+    return this.http.post("auth/reset-password", user);
   }
 
   public validateOtp(user: IUser): Observable<IUser> {
-    return this.http.post('auth/validate-otp', user);
+    return this.http.post("auth/validate-otp", user);
   }
 
   getUserId(): number {
-    const formDataString = localStorage.getItem('auth_user');
+    const formDataString = localStorage.getItem("auth_user");
 
     if (formDataString) {
       const formData = JSON.parse(formDataString);
@@ -140,5 +139,5 @@ export class AuthService {
     } else {
       return 0;
     }
-  };
+  }
 }

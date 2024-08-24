@@ -8,16 +8,16 @@
 body {
   font-family: "Roboto Flex", sans-serif;
   font-weight: 100;
-  color: #A8B2B9;
+  color: #a8b2b9;
 }
 
-//variables de color 
+//variables de color
 $background-color-white: #ffffff;
 $background-color-grey: #b4b4b4;
 $background-color-grey-light: #f9f9f9;
-$border-color: #775D68;
-$image-backgorund-color: #FADCD4;
-$title-color: #6D3652;
+$border-color: #775d68;
+$image-backgorund-color: #fadcd4;
+$title-color: #6d3652;
 
 .wrapper {
   display: grid;
@@ -26,7 +26,7 @@ $title-color: #6D3652;
   grid-template-areas: "content";
   width: 100%;
   height: 100%;
-  padding: 2%
+  padding: 2%;
 }
 
 /* MAIN */
@@ -38,7 +38,7 @@ $title-color: #6D3652;
 }
 
 .calendar {
-  height: calc(100vh - 300px); 
+  height: calc(100vh - 300px);
   display: flex;
   flex-direction: column;
 }
@@ -54,14 +54,14 @@ $title-color: #6D3652;
 
 .calendar__week {
   display: grid;
-  grid-template-columns: repeat(7, 1fr); 
-  grid-auto-rows: 1fr; 
+  grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows: 1fr;
   flex: 1;
 }
 
 /* COSMETIC STYLING */
 :root {
-  --red: #ED5454;
+  --red: #ed5454;
 }
 
 sidebar {
@@ -125,7 +125,7 @@ main {
   background-color: $light-color-second;
 }
 
-.calendar__header>div {
+.calendar__header > div {
   text-transform: uppercase;
   font-size: 0.8em;
   font-weight: bold;
@@ -172,14 +172,13 @@ main {
   border: none;
 }
 
-
 .toggle__option--selected:hover {
   background-color: $light-color-main;
   color: $neutro-color-main;
   transform: scale(1.05);
 }
 
-.month-tittle{
+.month-tittle {
   font-family: "Yeseva One", serif;
   font-weight: medium;
   font-style: normal;
@@ -188,7 +187,7 @@ main {
   letter-spacing: 0.3rem;
 }
 
-.btn-secondary{
+.btn-secondary {
   background-color: $light-color-main;
   color: $neutro-color-main;
   font-weight: medium;
@@ -200,7 +199,7 @@ main {
   border: none;
 }
 
-.btn-secondary:hover{
+.btn-secondary:hover {
   background-color: $middle-color-main;
   color: $light-color-main;
   transform: scale(1.05);
@@ -209,7 +208,7 @@ main {
 .calendar__day {
   padding: 2%;
   box-sizing: border-box;
-  background-color: white; 
+  background-color: white;
   display: flex;
   flex-direction: column;
   padding: 16px;
@@ -259,15 +258,14 @@ main {
   margin-top: 2px;
 }
 
-.calendar-header{
+.calendar-header {
   display: flex;
   justify-content: inherit;
 }
 
-.button-header{
+.button-header {
   display: flex;
   justify-content: end;
-
 }
 
 // Calendar event dialog

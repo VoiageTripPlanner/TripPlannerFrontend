@@ -4,21 +4,21 @@
   font-style: normal;
 }
 
-.font-size-4{
+.font-size-4 {
   font-size: 4vh;
 }
 
 /* Estilos generales para body */
 body {
-    margin: 0;
-    font-family: 'Yeseva One', cursive; 
+  margin: 0;
+  font-family: "Yeseva One", cursive;
 }
 
 a {
-  margin-left: 5px; 
-  color: #6d3c52; 
+  margin-left: 5px;
+  color: #6d3c52;
   font-weight: bold;
-  text-decoration: none; 
+  text-decoration: none;
 }
 
 .login-container {
@@ -31,7 +31,7 @@ a {
   align-items: center;
   justify-content: center;
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -70,62 +70,61 @@ a {
   }
 }
 
-
 // Stylos Voiage
 
 .container-flex-center {
   display: flex;
-  align-items: center; 
+  align-items: center;
   justify-content: center;
 }
 
 .container-flex-center p {
-  margin: 0; 
+  margin: 0;
 }
 
-.justify-right{
+.justify-right {
   justify-content: end;
   display: flex;
 }
 
-.input-horizontal-margin{
+.input-horizontal-margin {
   margin-left: 5%;
   margin-right: 5%;
 }
 
 /* Estilos para el botón de inicio de SIGN IN */
 .btn-login {
-  background-color: #FADCD4; 
-  color: #1D0F1C; 
-  padding: 10px 20px; 
-  border: none; 
-  border-radius: 5px; 
-  font-size: 1.1em; 
+  background-color: #fadcd4;
+  color: #1d0f1c;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1em;
   cursor: pointer;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: bold;
 }
 
 .btn-login:hover {
-  background-color: #6d3c52; 
+  background-color: #6d3c52;
 }
 
 /*Linea de separación*/
 
 .custom-line {
-  width: 85%; 
-  height: 2px; 
-  background: linear-gradient(to right, #4B2137 50%, transparent 100%); 
-  margin: 20px 0; 
+  width: 85%;
+  height: 2px;
+  background: linear-gradient(to right, #4b2137 50%, transparent 100%);
+  margin: 20px 0;
 }
 
-.container-voiage{
+.container-voiage {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.voiage-image{
+.voiage-image {
   height: 27vh;
 }
 
@@ -138,19 +137,14 @@ a {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background: #1D0F1C;
+  background: #1d0f1c;
   background-size: cover;
   background-position: center;
   margin-left: 0;
-  padding-top: 20px
+  padding-top: 20px;
 }
-
 
 .footer-logo {
-  width: 3%; 
+  width: 3%;
   height: 3%;
 }
-
-
-
-

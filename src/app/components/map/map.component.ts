@@ -1,38 +1,36 @@
-import { Component, Input, OnInit, ViewChild, OnChanges } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Input, OnInit, ViewChild, OnChanges } from "@angular/core";
+import { CommonModule } from "@angular/common";
 import {
   GoogleMap,
   GoogleMapsModule,
   MapDirectionsService,
-} from '@angular/google-maps';
-import { BehaviorSubject, map } from 'rxjs';
-import { IPlaceSearchResult } from '../../interfaces/placeSearch';
-import { RouterOutlet } from '@angular/router';
-import { LoaderComponent } from '../loader/loader.component';
-import { I } from '@angular/cdk/keycodes';
-import { IGoogleResponse } from '../../interfaces/google-hotel-response.interface';
-
+} from "@angular/google-maps";
+import { BehaviorSubject, map } from "rxjs";
+import { IPlaceSearchResult } from "../../interfaces/placeSearch";
+import { RouterOutlet } from "@angular/router";
+import { LoaderComponent } from "../loader/loader.component";
+import { I } from "@angular/cdk/keycodes";
+import { IGoogleResponse } from "../../interfaces/google-hotel-response.interface";
 
 @Component({
-  selector: 'app-maps',
+  selector: "app-maps",
   standalone: true,
   imports: [CommonModule, GoogleMapsModule, RouterOutlet, LoaderComponent],
-  templateUrl: './map.component.html',
-  styleUrl: './map.component.scss'
+  templateUrl: "./map.component.html",
+  styleUrl: "./map.component.scss",
 })
-export class MapComponent implements OnInit, OnChanges  {
-
-  @ViewChild('map', { static: true })
+export class MapComponent implements OnInit, OnChanges {
+  @ViewChild("map", { static: true })
   map!: GoogleMap;
 
   @Input()
   destination: any | undefined;
 
   @Input()
-  zoomPlace : IPlaceSearchResult | undefined;
+  zoomPlace: IPlaceSearchResult | undefined;
 
   @Input()
-  zoomLodge : IGoogleResponse | undefined;
+  zoomLodge: IGoogleResponse | undefined;
 
   @Input()
   pointsOfInterest: IPlaceSearchResult[] = [];
@@ -46,19 +44,17 @@ export class MapComponent implements OnInit, OnChanges  {
   zoom = 5;
 
   //Asignar un valor inicial a la variable directionsResult$ de tipo BehaviorSubject
-  
-  directionsResult$ = new BehaviorSubject< 
+
+  directionsResult$ = new BehaviorSubject<
     google.maps.DirectionsResult | undefined
   >(undefined);
 
   constructor(private directionsService: MapDirectionsService) {}
 
   ngOnInit(): void {
-
     if (this.destination?.location) {
       this.gotoLocation(this.destination.location);
     }
-
   }
 
   ngOnChanges() {
@@ -69,7 +65,10 @@ export class MapComponent implements OnInit, OnChanges  {
 
     const zoomLodge = this.zoomLodge?.gps_coordinates;
     if (zoomLodge) {
-      const latLng = new google.maps.LatLng(zoomLodge.latitude, zoomLodge.longitude);
+      const latLng = new google.maps.LatLng(
+        zoomLodge.latitude,
+        zoomLodge.longitude,
+      );
       this.gotoLodgeZoom(latLng);
     }
 
@@ -78,9 +77,8 @@ export class MapComponent implements OnInit, OnChanges  {
       this.gotoLocation(destinationZooom);
     }
 
-    this.destination= undefined;
+    this.destination = undefined;
     this.zoomPlace = undefined;
-
   }
 
   gotoLocation(location: google.maps.LatLng) {
@@ -106,7 +104,7 @@ export class MapComponent implements OnInit, OnChanges  {
 
   getDirections(
     fromLocation: google.maps.LatLng,
-    toLocation: google.maps.LatLng
+    toLocation: google.maps.LatLng,
   ) {
     const request: google.maps.DirectionsRequest = {
       destination: toLocation,
@@ -128,7 +126,4 @@ export class MapComponent implements OnInit, OnChanges  {
       this.gotoLocation(place.location);
     }
   }
-
-
 }
-

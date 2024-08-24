@@ -1,24 +1,20 @@
-import { Component } from '@angular/core';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { NgIf } from '@angular/common';
-import { PlaceAutocompleteComponent } from '../../components/place-autocomplete/place-autocomplete.component';
-import { IPlaceSearchResult } from '../../interfaces/placeSearch';
-import { TravelSuggestionsComponent } from '../../components/travel-suggestions/travel-suggestions.component';
-
-
+import { Component } from "@angular/core";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { NgIf } from "@angular/common";
+import { PlaceAutocompleteComponent } from "../../components/place-autocomplete/place-autocomplete.component";
+import { IPlaceSearchResult } from "../../interfaces/placeSearch";
+import { TravelSuggestionsComponent } from "../../components/travel-suggestions/travel-suggestions.component";
 
 @Component({
-  selector: 'app-recomendation',
+  selector: "app-recomendation",
   standalone: true,
   imports: [
     MatToolbarModule,
     PlaceAutocompleteComponent,
     NgIf,
-    TravelSuggestionsComponent
+    TravelSuggestionsComponent,
   ],
-  templateUrl: './recomendation.component.html',
-  styleUrl: './recomendation.component.scss'
+  templateUrl: "./recomendation.component.html",
+  styleUrl: "./recomendation.component.scss",
 })
-export class RecomendationComponent {
-
-}
+export class RecomendationComponent {}

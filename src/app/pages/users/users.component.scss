@@ -1,12 +1,10 @@
-
-
-//variables de color 
-$background-color: #6D3C52;
-$sidebar-color:#4B2137;
-$text-color: #ffffff; 
-$hover-background-color: #FADCD4; 
-$hover-background-color2: #775D68; 
-$active-background-color: #6D3C52;
+//variables de color
+$background-color: #6d3c52;
+$sidebar-color: #4b2137;
+$text-color: #ffffff;
+$hover-background-color: #fadcd4;
+$hover-background-color2: #775d68;
+$active-background-color: #6d3c52;
 @import "../../../assets/utils/_variables";
 
 .yeseva-one-regular {
@@ -18,18 +16,17 @@ $active-background-color: #6D3C52;
   font-size: 8vh !important;
 }
 
-
-.font-size-4{
-    font-size: 4vh;
+.font-size-4 {
+  font-size: 4vh;
 }
 
-.padding-top-7{
-    padding-top: 7vh;
+.padding-top-7 {
+  padding-top: 7vh;
 }
 
-.button{
+.button {
   background-color: $middle-color-main;
-  border:none;
+  border: none;
   color: $light-color-main;
   padding-left: 3rem;
   padding-right: 3rem;
@@ -37,7 +34,7 @@ $active-background-color: #6D3C52;
 }
 
 .button:hover {
-  background-color: #FADCD4;
+  background-color: #fadcd4;
   color: $neutro-color-main;
   padding-left: 1.6rem;
-  }
+}

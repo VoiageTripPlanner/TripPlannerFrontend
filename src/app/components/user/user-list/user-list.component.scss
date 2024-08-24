@@ -1,50 +1,53 @@
 //Gradient for Voiage background
-$custom-gradient: linear-gradient(to bottom, #2D2230, #1D0F1C, #4B2137,);
-//Variables de color 
-$neutro-color-main:#1D0F1C;
-$neutro-color-second: #2D2230;
-$middle-color-main:#4B2137;
-$middle-color-second:#6D3C52;
-$light-color-main: #FADCD4;
-$light-color-second: #775D68;
+$custom-gradient: linear-gradient(to bottom, #2d2230, #1d0f1c, #4b2137);
+//Variables de color
+$neutro-color-main: #1d0f1c;
+$neutro-color-second: #2d2230;
+$middle-color-main: #4b2137;
+$middle-color-second: #6d3c52;
+$light-color-main: #fadcd4;
+$light-color-second: #775d68;
 //Line gradient
-$line-gradient: linear-gradient(to right, rgba(255, 255, 255, 0.1), #FADCD4, rgba(255, 255, 255, 0.1));
-
+$line-gradient: linear-gradient(
+  to right,
+  rgba(255, 255, 255, 0.1),
+  #fadcd4,
+  rgba(255, 255, 255, 0.1)
+);
 
 .btn-icon {
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-  }
-  
-  .icon-color-edit {
-    color: $neutro-color-second; 
-  }
-  
-  .icon-color-delete {
-    color: $middle-color-second; 
-  }
-  
-  .btn-icon:hover .icon-color-edit {
-    color: #0475ef;
-  }
-  
-  .btn-icon:hover .icon-color-delete {
-    color: #cd1208; 
-  }
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
 
-  thead {
-    padding: 0.3rem;
-    text-align: center;
-    color: $light-color-main;
-    font-size: 2vh;
-  }
+.icon-color-edit {
+  color: $neutro-color-second;
+}
 
-  td {
-    padding: 0.3rem;
-    text-align: center;
-    color: $neutro-color-main;
-    background-color: white;
-  }
-  
+.icon-color-delete {
+  color: $middle-color-second;
+}
+
+.btn-icon:hover .icon-color-edit {
+  color: #0475ef;
+}
+
+.btn-icon:hover .icon-color-delete {
+  color: #cd1208;
+}
+
+thead {
+  padding: 0.3rem;
+  text-align: center;
+  color: $light-color-main;
+  font-size: 2vh;
+}
+
+td {
+  padding: 0.3rem;
+  text-align: center;
+  color: $neutro-color-main;
+  background-color: white;
+}

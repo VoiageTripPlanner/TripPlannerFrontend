@@ -1,12 +1,12 @@
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, Signal, signal } from '@angular/core';
-import { from, map, Observable, of } from 'rxjs';
-import { CountryVisit } from '../interfaces/country-visit.interface';
-import { IBudgetPrices } from '../interfaces/budget.interface';
-import { toObservable } from '@angular/core/rxjs-interop';
+import { HttpClient } from "@angular/common/http";
+import { inject, Injectable, Signal, signal } from "@angular/core";
+import { from, map, Observable, of } from "rxjs";
+import { CountryVisit } from "../interfaces/country-visit.interface";
+import { IBudgetPrices } from "../interfaces/budget.interface";
+import { toObservable } from "@angular/core/rxjs-interop";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class StatisticsService {
   private httpService: HttpClient = inject(HttpClient);
@@ -22,15 +22,18 @@ export class StatisticsService {
   }
 
   public getCountryTopoJson(): Observable<any> {
-    return this.httpService.get<any>('https://unpkg.com/world-atlas/countries-50m.json');
+    return this.httpService.get<any>(
+      "https://unpkg.com/world-atlas/countries-50m.json",
+    );
   }
 
   public getCountryFlagCodeJson(): Observable<any> {
-    return this.httpService.get<any>('https://flagcdn.com/en/codes.json');
+    return this.httpService.get<any>("https://flagcdn.com/en/codes.json");
   }
 
   public getCountryVisitsList(userId: number): void {
-    this.httpService.get<CountryVisit[]>(`statistics/countryVisits/${userId}`)
+    this.httpService
+      .get<CountryVisit[]>(`statistics/countryVisits/${userId}`)
       .subscribe({
         next: (data) => {
           if (data) {
@@ -40,13 +43,14 @@ export class StatisticsService {
           }
         },
         error: (error) => {
-          console.error('Error fetching recommendations', error);
-        }
-      })
+          console.error("Error fetching recommendations", error);
+        },
+      });
   }
 
   public getTripBudgetOverview(userId: number): void {
-    this.httpService.get<IBudgetPrices>(`statistics/budgetOverview/${userId}`)
+    this.httpService
+      .get<IBudgetPrices>(`statistics/budgetOverview/${userId}`)
       .subscribe({
         next: (data) => {
           if (data) {
@@ -56,8 +60,8 @@ export class StatisticsService {
           }
         },
         error: (error) => {
-          console.error('Error fetching recommendations', error);
-        }
+          console.error("Error fetching recommendations", error);
+        },
       });
   }
 }

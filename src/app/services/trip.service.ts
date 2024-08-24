@@ -1,32 +1,36 @@
-import { Injectable, Signal, signal } from '@angular/core';
-import { BaseService } from './base-service';
-import { ITrip } from '../interfaces/trip.interface';
-import { IPagination } from '../interfaces/pagination.interface';
+import { Injectable, Signal, signal } from "@angular/core";
+import { BaseService } from "./base-service";
+import { ITrip } from "../interfaces/trip.interface";
+import { IPagination } from "../interfaces/pagination.interface";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class TripService extends BaseService<ITrip> {
-  protected override source: string = 'trip';
-  private tripListSig = signal<IPagination<ITrip>|null>(null);
-  private tripSignal = signal<ITrip|null>(null);
+  protected override source: string = "trip";
+  private tripListSig = signal<IPagination<ITrip> | null>(null);
+  private tripSignal = signal<ITrip | null>(null);
 
-  public get tripsSig(): Signal<IPagination<ITrip>|null> {
+  public get tripsSig(): Signal<IPagination<ITrip> | null> {
     return this.tripListSig.asReadonly();
   }
 
-  public get tripByIdSig(): Signal<ITrip|null> {
+  public get tripByIdSig(): Signal<ITrip | null> {
     return this.tripSignal.asReadonly();
   }
 
-  public getTripsByUserAndPage(userId: number, page: number, size: number): void {
+  public getTripsByUserAndPage(
+    userId: number,
+    page: number,
+    size: number,
+  ): void {
     this.findAllByUserAndPage(userId, page, size).subscribe({
       next: (response: any) => {
         this.tripListSig.set(response);
       },
       error: () => {
         this.tripListSig.set(null);
-      }
+      },
     });
   }
 
@@ -37,8 +41,7 @@ export class TripService extends BaseService<ITrip> {
       },
       error: () => {
         this.tripSignal.set(null);
-      }
+      },
     });
   }
-
 }

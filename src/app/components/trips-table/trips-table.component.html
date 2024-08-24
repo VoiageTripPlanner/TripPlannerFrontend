@@ -15,21 +15,27 @@
       <tr>
         <td>{{ trip.name }}</td>
         <td>{{ trip.description }}</td>
-        <td>{{ trip.departureDate | date: 'MM-dd-YYYY' }}</td>
-        <td>{{ trip.returnDate | date: 'MM-dd-YYYY' }}</td>
-        <td>{{ trip.budget | currency: 'USD' }}</td>
-        <td class="text-truncate" style="max-width: 150px;">{{ trip.aiSuggestion }}</td>
+        <td>{{ trip.departureDate | date: "MM-dd-YYYY" }}</td>
+        <td>{{ trip.returnDate | date: "MM-dd-YYYY" }}</td>
+        <td>{{ trip.budget | currency: "USD" }}</td>
+        <td class="text-truncate" style="max-width: 150px">
+          {{ trip.aiSuggestion }}
+        </td>
         <td>
-          <button class="btn btn-primary btn-sm" (click)="viewTrip(trip)">View</button>
+          <button class="btn btn-primary btn-sm" (click)="viewTrip(trip)">
+            View
+          </button>
         </td>
       </tr>
     }
   </tbody>
 </table>
-<mat-paginator class="mb-5" 
-              [length]="totalElements"
-              [pageSize]="pageSize"
-              [pageSizeOptions]="[5, 10, 25, 100]"
-              (page)="changePage($event)"
-              aria-label="Select page">
+<mat-paginator
+  class="mb-5"
+  [length]="totalElements"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  (page)="changePage($event)"
+  aria-label="Select page"
+>
 </mat-paginator>

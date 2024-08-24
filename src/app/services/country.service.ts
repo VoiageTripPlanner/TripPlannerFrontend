@@ -1,12 +1,12 @@
-import { Injectable, Signal, signal } from '@angular/core';
-import { BaseService } from './base-service';
-import { ICountry } from '../interfaces/country.interface';
+import { Injectable, Signal, signal } from "@angular/core";
+import { BaseService } from "./base-service";
+import { ICountry } from "../interfaces/country.interface";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class CountryService extends BaseService<ICountry> {
-  protected override source: string = 'country';
+  protected override source: string = "country";
   private countryListSig = signal<ICountry[]>([]);
 
   public get countriesSig(): Signal<ICountry[]> {
@@ -23,8 +23,8 @@ export class CountryService extends BaseService<ICountry> {
         }
       },
       error: (error: any) => {
-        console.error('Error fetching countries', error);
-      }
+        console.error("Error fetching countries", error);
+      },
     });
   }
 }

@@ -1,23 +1,31 @@
 <div class="padding-1 align-boxes background-color">
-
-    <div class="title-box">
-        <div class="logo-container">
-            <img src="../../../../assets/icons/Round_Voiage.webp" alt="Logo" class="logo" (click)="navigateToDashboard()">
-        </div>
-        <h1 class="title yeseva-one-regular ">Lodge</h1>
-
+  <div class="title-box">
+    <div class="logo-container">
+      <img
+        src="../../../../assets/icons/Round_Voiage.webp"
+        alt="Logo"
+        class="logo"
+        (click)="navigateToDashboard()"
+      />
     </div>
+    <h1 class="title yeseva-one-regular">Lodge</h1>
+  </div>
 
-    <div class="stepper-button">
-
-        <button type="button" class="btn btn-outline-light margin-right-10" matStepperPrevious>Previous</button>
-        <button type="button" class="btn btn-outline-light" matStepperNext>Next</button>
-
-    </div>
-
+  <div class="stepper-button">
+    <button
+      type="button"
+      class="btn btn-outline-light margin-right-10"
+      matStepperPrevious
+    >
+      Previous
+    </button>
+    <button type="button" class="btn btn-outline-light" matStepperNext>
+      Next
+    </button>
+  </div>
 </div>
 
 <app-budget-bar></app-budget-bar>
-<hr>
+<hr />
 
 <app-lodge-card> </app-lodge-card>

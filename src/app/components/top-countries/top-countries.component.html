@@ -2,16 +2,23 @@
   <div class="card-body">
     <h3 class="card-title fw-bold">Top 3 most visited countries</h3>
     <div class="content d-flex flex-column">
-      @for(country of topCountries; track country.id; let idx = $index) {
+      @for (country of topCountries; track country.id; let idx = $index) {
         <div class="country d-flex mb-3">
           <img
-            src="https://flagcdn.com/56x42/{{getCountryFlag(country.name)}}.png"
-            srcset="https://flagcdn.com/112x84/{{getCountryFlag(country.name)}}.png 2x,
-              https://flagcdn.com/168x126/{{getCountryFlag(country.name)}}.png 3x"
+            src="https://flagcdn.com/56x42/{{
+              getCountryFlag(country.name)
+            }}.png"
+            srcset="
+              https://flagcdn.com/112x84/{{getCountryFlag(country.name)}}.png  2x,
+              https://flagcdn.com/168x126/{{getCountryFlag(country.name)}}.png 3x
+            "
             width="56"
             height="42"
-            alt="{{ country.name }}">
-          <span class="country-name fs-4 ms-2 align-self-end">{{ country.name }}</span>
+            alt="{{ country.name }}"
+          />
+          <span class="country-name fs-4 ms-2 align-self-end">{{
+            country.name
+          }}</span>
           <span class="ms-2 align-self-end">{{ country.visits }} visits</span>
         </div>
       } @empty {
@@ -20,7 +27,7 @@
       @if (topCountries && topCountries.length > 0) {
         <div class="total d-flex pt-2 border-top">
           <span class="total-label">Total country visited:</span>
-          <span>{{totalCountryVisited}}</span>
+          <span>{{ totalCountryVisited }}</span>
         </div>
       }
     </div>

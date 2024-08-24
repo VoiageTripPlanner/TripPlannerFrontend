@@ -1,8 +1,8 @@
-import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { CommonModule } from "@angular/common";
+import { Component, Input } from "@angular/core";
 
 @Component({
-  selector: 'app-svg-icon',
+  selector: "app-svg-icon",
   standalone: true,
   imports: [CommonModule],
   template: `
@@ -12,5 +12,5 @@ import { Component, Input } from '@angular/core';
   `,
 })
 export class SvgIconComponent {
-  @Input('icon') public icon: string | undefined;
+  @Input("icon") public icon: string | undefined;
 }

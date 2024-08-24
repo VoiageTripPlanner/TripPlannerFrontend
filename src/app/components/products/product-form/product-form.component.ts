@@ -1,12 +1,10 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-product-form',
+  selector: "app-product-form",
   standalone: true,
   imports: [],
-  templateUrl: './product-form.component.html',
-  styleUrl: './product-form.component.scss'
+  templateUrl: "./product-form.component.html",
+  styleUrl: "./product-form.component.scss",
 })
-export class ProductFormComponent {
-
-}
+export class ProductFormComponent {}

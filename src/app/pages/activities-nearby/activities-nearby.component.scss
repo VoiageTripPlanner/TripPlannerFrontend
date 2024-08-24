@@ -1,116 +1,113 @@
-//variables de color 
+//variables de color
 $background-color-white: #ffffff;
 $background-color-grey: #b4b4b4;
 $background-color-grey-light: #f9f9f9;
-$border-color: #775D68;
-$image-backgorund-color: #FADCD4;
-$title-color: #6D3652;
+$border-color: #775d68;
+$image-backgorund-color: #fadcd4;
+$title-color: #6d3652;
 
-@import '../../../assets/utils/variables.scss';
+@import "../../../assets/utils/variables.scss";
 
 .input-area {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-  }
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
 
-  .display-area {
-    display: flex;
-    align-items: flex;
-    height: calc(100vh - 180px);
+.display-area {
+  display: flex;
+  align-items: flex;
+  height: calc(100vh - 180px);
 
-    > div {
-      width: 60%;
-      overflow: auto;
-      padding: 8px;
-      height: inherit;
+  > div {
+    width: 60%;
+    overflow: auto;
+    padding: 8px;
+    height: inherit;
 
-      > * {
-        margin-bottom: 16px;
-      }
-    }
-
-    > app-map-display {
-        width: 40%;
-        height: 100vh;
+    > * {
+      margin-bottom: 16px;
     }
   }
 
-
-
-  app-place-autocomplete {
-    width: 300px;
+  > app-map-display {
+    width: 40%;
+    height: 100vh;
   }
+}
 
+app-place-autocomplete {
+  width: 300px;
+}
 
 .yeseva-one-regular {
-    font-family: "Yeseva One", serif;
-    font-weight: 400;
-    font-style: normal;
+  font-family: "Yeseva One", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
-.title{
-    transform: translateY(30%);
-    padding-left: 45%;
-    font-size: 6vh;
-    color: $light-color-main;
+.title {
+  transform: translateY(30%);
+  padding-left: 45%;
+  font-size: 6vh;
+  color: $light-color-main;
 }
 
-.logo-container{
-    width: 5%;
-    display: flex;
-    justify-content: center;
-    padding: 1rem;
+.logo-container {
+  width: 5%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
 }
 
 .logo {
-    width: 6vh;
-    height: 6vh;
+  width: 6vh;
+  height: 6vh;
 }
 
-.logo:hover{
-    transform: scale(1.1);
+.logo:hover {
+  transform: scale(1.1);
 }
 
 .padding-1 {
-    padding: 1%;
+  padding: 1%;
 }
 
 .margin-right-10 {
-    margin-right: 10%;
+  margin-right: 10%;
 }
 
 .align-boxes {
-    width: 100%;
-    display: flex;
-    flex-wrap: nowrap;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
-.background-color{
-    background-color: $neutro-color-second;
+.background-color {
+  background-color: $neutro-color-second;
 }
 
 .title-box {
-    width: 100%;
-    display: flex;
-    flex-wrap: nowrap;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
-.stepper-button{
-    width: 20%;
-    align-items: center; 
-    display: flex;
-    justify-content: flex-end;
-    padding: 1%;
+.stepper-button {
+  width: 20%;
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  padding: 1%;
 }
 
-.stepper-button button{
-    color: $light-color-main;
-    background-color: $middle-color-main;
-    border: none;
+.stepper-button button {
+  color: $light-color-main;
+  background-color: $middle-color-main;
+  border: none;
 }
 
-.stepper-button button:hover{
-    background-color: $light-color-main;
-    color: $middle-color-main;
+.stepper-button button:hover {
+  background-color: $light-color-main;
+  color: $middle-color-main;
 }

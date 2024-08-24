@@ -1,25 +1,27 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { MapComponent } from '../../components/map/map.component';
-import { LoaderComponent } from '../../components/loader/loader.component';
-import { ModalComponent } from '../../components/modal/modal.component';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { FoodCardComponent } from '../../components/food/food-card/food-card.component';
-import { Router } from '@angular/router';
-import { BudgetBarComponent } from '../../components/budget-bar/budget-bar.component';
-import { MatStepperModule } from '@angular/material/stepper';
-import { OpenAIService } from '../../services/openai.service';
-import { BudgetService } from '../../services/budged.service';
-import { IActivityEstimate, IAISuggestion } from '../../interfaces/openai.interface';
-import { FoodService } from '../../services/voiage-services/food.service';
-import { IVoiageRestaurant } from '../../interfaces/food.interface';
-import { TripService } from '../../services/voiage-services/trip.service';
-import { ITripForm } from '../../interfaces/trip.interface';
-import { NotifyService } from '../../shared/notify/notify.service';
-
+import { Component, inject, OnInit } from "@angular/core";
+import { MapComponent } from "../../components/map/map.component";
+import { LoaderComponent } from "../../components/loader/loader.component";
+import { ModalComponent } from "../../components/modal/modal.component";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { FoodCardComponent } from "../../components/food/food-card/food-card.component";
+import { Router } from "@angular/router";
+import { BudgetBarComponent } from "../../components/budget-bar/budget-bar.component";
+import { MatStepperModule } from "@angular/material/stepper";
+import { OpenAIService } from "../../services/openai.service";
+import { BudgetService } from "../../services/budged.service";
+import {
+  IActivityEstimate,
+  IAISuggestion,
+} from "../../interfaces/openai.interface";
+import { FoodService } from "../../services/voiage-services/food.service";
+import { IVoiageRestaurant } from "../../interfaces/food.interface";
+import { TripService } from "../../services/voiage-services/trip.service";
+import { ITripForm } from "../../interfaces/trip.interface";
+import { NotifyService } from "../../shared/notify/notify.service";
 
 @Component({
-  selector: 'app-food',
+  selector: "app-food",
   standalone: true,
   imports: [
     CommonModule,
@@ -31,91 +33,81 @@ import { NotifyService } from '../../shared/notify/notify.service';
     ModalComponent,
     BudgetBarComponent,
   ],
-  templateUrl: './food.component.html',
-  styleUrl: './food.component.scss'
+  templateUrl: "./food.component.html",
+  styleUrl: "./food.component.scss",
 })
 export class FoodComponent implements OnInit {
+  budgetService = inject(BudgetService);
+  openAIService = inject(OpenAIService);
+  foodService = inject(FoodService);
+  tripService = inject(TripService);
+  notifyService = inject(NotifyService);
 
-  budgetService         = inject(BudgetService);
-  openAIService         = inject(OpenAIService);
-  foodService           = inject(FoodService);
-  tripService           = inject(TripService);
-  notifyService         = inject(NotifyService);
+  foodPriceEstimate: IAISuggestion;
+  storedFormData: ITripForm;
 
-  foodPriceEstimate         : IAISuggestion;
-  storedFormData            : ITripForm 
-
-  constructor(
-    private router: Router, 
-  ){
-    this.foodPriceEstimate          = this.openAIService.onGetDefaultAISuggestion();
-    this.storedFormData             = this.tripService.getFormData() ? this.tripService.getFormData() : this.tripService.onGetDefaultTripForm();
+  constructor(private router: Router) {
+    this.foodPriceEstimate = this.openAIService.onGetDefaultAISuggestion();
+    this.storedFormData = this.tripService.getFormData()
+      ? this.tripService.getFormData()
+      : this.tripService.onGetDefaultTripForm();
   }
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   navigateToDashboard() {
-    this.router.navigateByUrl('app/dashboard')
+    this.router.navigateByUrl("app/dashboard");
   }
 
   navigateToSummary() {
-
     this.restaurantPriceEstimate();
-
   }
 
-  restaurantPriceEstimate() { 
+  restaurantPriceEstimate() {
+    let storedFoodData: IVoiageRestaurant[] =
+      this.foodService.getFoodData().length > 0
+        ? this.foodService.getFoodData()
+        : this.foodService.onGetDefaultVoiageRestaurantList();
 
-    let storedFoodData: IVoiageRestaurant[]       = this.foodService.getFoodData().length > 0 ? this.foodService.getFoodData() : this.foodService.onGetDefaultVoiageRestaurantList();
+    //hacer el filtro de actividades vacias
+    storedFoodData = storedFoodData.filter((food) => food.name !== "");
 
-    //hacer el filtro de actividades vacias 
-    storedFoodData                                  = storedFoodData.filter(food => food.name !== '');
-
-    this.foodPriceEstimate.startDate                = this.storedFormData.check_in_date;
-    this.foodPriceEstimate.endDate                  = this.storedFormData.check_out_date;
-    this.foodPriceEstimate.destination              = this.storedFormData.q;
+    this.foodPriceEstimate.startDate = this.storedFormData.check_in_date;
+    this.foodPriceEstimate.endDate = this.storedFormData.check_out_date;
+    this.foodPriceEstimate.destination = this.storedFormData.q;
     this.restaurantsToEstimate(storedFoodData);
-
 
     this.openAIService.getPriceEstimate(this.foodPriceEstimate).subscribe({
       next: (response) => {
-        
-        const amount = response.totalEstimate
-        const classification = 'food';
+        const amount = response.totalEstimate;
+        const classification = "food";
 
         this.budgetService.updateSpending(amount, classification);
-        this.router.navigateByUrl('/summary')
-
+        this.router.navigateByUrl("/summary");
       },
       error: (err) => {
-        console.error('Error occurred:', err);
-        this.notifyService.onCustomErrorNotify('No price estimated', 'Could not estimate the price of the food');
-        this.router.navigateByUrl('/summary')
-
+        console.error("Error occurred:", err);
+        this.notifyService.onCustomErrorNotify(
+          "No price estimated",
+          "Could not estimate the price of the food",
+        );
+        this.router.navigateByUrl("/summary");
       },
       complete: () => {
-        console.log('Request completed');
-      }
+        console.log("Request completed");
+      },
     });
-
-  }; 
-
-
-
-  restaurantsToEstimate( storedFoodData: IVoiageRestaurant[] ) {
-
-    storedFoodData.forEach(restaurant => {
-      
-      let restaurantEstimate: IActivityEstimate = this.openAIService.onGetDefaultActivityEstimate();
-
-      restaurantEstimate.name               = restaurant.name || '';
-      restaurantEstimate.address            = restaurant.addressLocation || '';
-      restaurantEstimate.location           = restaurant.locationCityCountry ?? '';
-      restaurantEstimate.priceEstimate      = 0;
-      this.foodPriceEstimate.activityEstimates.push(restaurantEstimate);
-    });
-
   }
 
+  restaurantsToEstimate(storedFoodData: IVoiageRestaurant[]) {
+    storedFoodData.forEach((restaurant) => {
+      let restaurantEstimate: IActivityEstimate =
+        this.openAIService.onGetDefaultActivityEstimate();
 
+      restaurantEstimate.name = restaurant.name || "";
+      restaurantEstimate.address = restaurant.addressLocation || "";
+      restaurantEstimate.location = restaurant.locationCityCountry ?? "";
+      restaurantEstimate.priceEstimate = 0;
+      this.foodPriceEstimate.activityEstimates.push(restaurantEstimate);
+    });
+  }
 }

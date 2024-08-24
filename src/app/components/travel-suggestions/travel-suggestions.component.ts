@@ -1,59 +1,57 @@
-import { Component, effect, inject } from '@angular/core';
-import { PlaceAutocompleteComponent } from '../place-autocomplete/place-autocomplete.component';
-import { MapComponent } from '../map/map.component';
-import { LoaderComponent } from '../loader/loader.component';
-import { ModalComponent } from '../modal/modal.component';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { IOpenAIResponse, IPlaceSearchResult } from '../../interfaces/placeSearch';
-import { GoogleService } from '../../services/google.service';
-import { IActivity } from '../../interfaces/activities.interface';
+import { Component, effect, inject } from "@angular/core";
+import { PlaceAutocompleteComponent } from "../place-autocomplete/place-autocomplete.component";
+import { MapComponent } from "../map/map.component";
+import { LoaderComponent } from "../loader/loader.component";
+import { ModalComponent } from "../modal/modal.component";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
+import {
+  IOpenAIResponse,
+  IPlaceSearchResult,
+} from "../../interfaces/placeSearch";
+import { GoogleService } from "../../services/google.service";
+import { IActivity } from "../../interfaces/activities.interface";
 
 @Component({
-  selector: 'app-travel-suggestions',
+  selector: "app-travel-suggestions",
   standalone: true,
   imports: [
-    PlaceAutocompleteComponent,    
+    PlaceAutocompleteComponent,
     MapComponent,
     LoaderComponent,
     ModalComponent,
     CommonModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  templateUrl: './travel-suggestions.component.html',
-  styleUrl: './travel-suggestions.component.scss'
+  templateUrl: "./travel-suggestions.component.html",
+  styleUrl: "./travel-suggestions.component.scss",
 })
 export class TravelSuggestionsComponent {
-
-  fromValue: IActivity = { address: '' };
+  fromValue: IActivity = { address: "" };
   public GoogleService: GoogleService = inject(GoogleService);
   public travelSuggestions!: IOpenAIResponse;
 
   constructor() {
     this.getTravelSuggestions();
   }
-  
-  getTravelSuggestions() {
 
-    let destinationName = localStorage.getItem('destinationName');
+  getTravelSuggestions() {
+    let destinationName = localStorage.getItem("destinationName");
 
     if (!destinationName) {
-      this.GoogleService.suggestionsResponseSignal$();  
+      this.GoogleService.suggestionsResponseSignal$();
     }
-      
-    const datos : IActivity = {
-      address: destinationName || ''
+
+    const datos: IActivity = {
+      address: destinationName || "",
     };
 
     this.GoogleService.getPlaceSuggestions(datos.address);
 
     effect(() => {
       this.travelSuggestions = this.GoogleService.suggestionsResponseSignal$();
-      console.log(this.travelSuggestions);
     });
-
   }
-
 }

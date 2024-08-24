@@ -1,41 +1,70 @@
 <div>
+  <form class="needs-validation" #formTripInfo="ngForm" novalidate>
+    <div class="form-group margin-bottom-10">
+      <label for="tripName" class="margin-bottom-3 font-size-label"
+        >Trip Name</label
+      >
+      <input
+        type="text"
+        class="form-control"
+        aria-describedby="tripName"
+        placeholder="Write the name of your trip"
+        [(ngModel)]="tripNgModel.name"
+        [ngClass]="{
+          'is-invalid': name.invalid && name.touched,
+          'is-valid': name.valid && name.touched,
+        }"
+        name="name"
+        id="name"
+        #name="ngModel"
+        maxlength="100"
+        required
+      />
+      <div *ngIf="name.invalid" class="invalid-feedback">
+        Please enter a trip name
+      </div>
+    </div>
 
+    <div class="form-group margin-bottom-10">
+      <label for="tripDescription" class="margin-bottom-3 font-size-label"
+        >Trip Description</label
+      >
+      <textarea
+        class="form-control"
+        aria-label="With textarea"
+        placeholder="Write the description of your trip"
+        [(ngModel)]="tripNgModel.description"
+        [ngClass]="{
+          'is-invalid': description.invalid && description.touched,
+          'is-valid': description.valid && description.touched,
+        }"
+        name="description"
+        id="description"
+        #description="ngModel"
+        maxlength="300"
+        required
+      ></textarea>
 
-    <form class="needs-validation" #formTripInfo="ngForm" novalidate>
+      <div *ngIf="description.invalid" class="invalid-feedback">
+        Please enter a trip description
+      </div>
+    </div>
 
-
-        <div class="form-group margin-bottom-10">
-            <label for="tripName" class="margin-bottom-3 font-size-label">Trip Name</label>
-            <input type="text" class="form-control" aria-describedby="tripName"
-                placeholder="Write the name of your trip" [(ngModel)]="tripNgModel.name" [ngClass]="{
-                'is-invalid': name.invalid && name.touched,
-                'is-valid': name.valid && name.touched
-            }" name="name" id="name" #name="ngModel" maxlength="100" required>
-            <div *ngIf="name.invalid" class="invalid-feedback">
-                Please enter a trip name
-            </div>
-        </div>
-
-
-        <div class="form-group margin-bottom-10">
-            <label for="tripDescription" class="margin-bottom-3 font-size-label">Trip Description</label>
-            <textarea class="form-control" aria-label="With textarea" placeholder="Write the description of your trip"
-                [(ngModel)]="tripNgModel.description" [ngClass]="{
-                'is-invalid': description.invalid && description.touched,
-                'is-valid': description.valid && description.touched
-            }" name="description" id="description" #description="ngModel" maxlength="300" required></textarea>
-
-            <div *ngIf="description.invalid" class="invalid-feedback">
-                Please enter a trip description
-            </div>
-        </div>
-
-        <div class="d-grid gap-2">
-            <button class="btn btn-primary mt-2" type="button" (click)="onSaveTrip(formTripInfo, $event)">Confirm </button>
-            <button class="btn btn-secondary  mt-2" type="button" (click)="onStartAgain()">Start Again</button>
-        </div>
-
-    </form>
-
-
+    <div class="d-grid gap-2">
+      <button
+        class="btn btn-primary mt-2"
+        type="button"
+        (click)="onSaveTrip(formTripInfo, $event)"
+      >
+        Confirm
+      </button>
+      <button
+        class="btn btn-secondary mt-2"
+        type="button"
+        (click)="onStartAgain()"
+      >
+        Start Again
+      </button>
+    </div>
+  </form>
 </div>

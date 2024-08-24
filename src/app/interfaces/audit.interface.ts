@@ -1,6 +1,6 @@
-export interface IAudit{
-    creationResponsible         : number;
-    creationDatetime            : Date;
-    updateResponsible?          : number;
-    lastUpdateDatetime?         : Date;
+export interface IAudit {
+  creationResponsible: number;
+  creationDatetime: Date;
+  updateResponsible?: number;
+  lastUpdateDatetime?: Date;
 }

@@ -1,28 +1,33 @@
+@import "../../../assets/utils/_variables";
+
 html,
 body {
-    overflow-y: hidden;
-    /* Quita el scroll vertical */
-    height: 100%;
-    /* Asegura que el contenido se ajuste a la altura de la ventana */
+  overflow-y: hidden;
+  /* Quita el scroll vertical */
+  height: 100%;
+  /* Asegura que el contenido se ajuste a la altura de la ventana */
 }
 
 .mat-stepper-horizontal {
-    margin-top: 8px;
+  margin-top: 8px;
 }
 
 .mat-mdc-form-field {
-    margin-top: 16px;
+  margin-top: 16px;
 }
 
 .main-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: $custom-gradient !important;
 }
 
 .main-content {
-    flex: 1;
-    overflow-y: auto;
-    
+  flex: 1;
+  overflow-y: auto;
+}
+
+.mat-stepper-vertical .mat-stepper-horizontal {
+  background: none;
 }

@@ -1,62 +1,81 @@
-@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
-
-//variables de color 
+//variables de color
 $background-color-white: #ffffff;
 $background-color-grey: #b4b4b4;
 $background-color-grey-light: #f9f9f9;
-$border-color: #775D68;
-$image-backgorund-color: #FADCD4;
-$title-color: #6D3652;
+$border-color: #775d68;
+$image-backgorund-color: #fadcd4;
+$title-color: #6d3652;
 
+@import "../../../assets/utils/variables.scss";
 
 .yeseva-one-regular {
-    font-family: "Yeseva One", serif;
-    font-weight: 400;
-    font-style: normal;
+  font-family: "Yeseva One", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
-.title{
-    transform: translateY(30%);
-    padding-left: 1%;
-    font-size: 4vh;
-    color: $background-color-white;
+.title {
+  transform: translateY(30%);
+  padding-left: 45%;
+  font-size: 6vh;
+  color: $light-color-main;
+}
+
+.logo-container {
+  width: 5%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
 }
 
 .logo {
-    width: 2.5vw;
-    height: 5vh;
+  width: 6vh;
+  height: 6vh;
+}
+
+.logo:hover {
+  transform: scale(1.1);
 }
 
 .padding-1 {
-    padding: 1%;
+  padding: 1%;
 }
 
 .margin-right-10 {
-    margin-right: 10%;
+  margin-right: 10%;
 }
 
 .align-boxes {
-    width: 100%;
-    display: flex;
-    flex-wrap: nowrap;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
-
-.background-color{
-    background-color: $title-color;
+.background-color {
+  background-color: $neutro-color-second;
 }
-
 
 .title-box {
-    width: 80%;
-    display: flex;
-    flex-wrap: nowrap;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
-.stepper-button{
-    width: 20%;
-    align-items: center; 
-    display: flex;
-    justify-content: flex-end;
-    padding: 1%;
+.stepper-button {
+  width: 20%;
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  padding: 1%;
+}
+
+.stepper-button button {
+  color: $light-color-main;
+  background-color: $middle-color-main;
+  border: none;
+}
+
+.stepper-button button:hover {
+  background-color: $light-color-main;
+  color: $middle-color-main;
 }

@@ -1,23 +1,36 @@
+$line-gradient: linear-gradient(
+  to right,
+  rgba(255, 255, 255, 0.1),
+  #fadcd4,
+  rgba(255, 255, 255, 0.1)
+);
 
-.maps{
-    height: 100%;
-    width: 100%;
+.container-fluid {
+  padding: 0;
+  margin: 0;
+  height: 90vh;
+  width: 100%;
+  overflow: hidden;
 }
 
+google-map .maps {
+  height: 100%;
+  width: 100%;
+  background-color: $line-gradient;
+}
 
-.loader-desing{
-    align-items: center;
-
+.loader-desing {
+  align-items: center;
 }
 
 .lodge-container {
-    width: 60%;
-    max-width: 90%;
-    height: 100vh;
-    max-height: 100%;
-    padding: 2%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    overflow-y: auto;
+  width: 60%;
+  max-width: 90%;
+  height: 100vh;
+  max-height: 100%;
+  padding: 2%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  overflow-y: auto;
 }

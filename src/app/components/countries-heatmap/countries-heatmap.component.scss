@@ -1,5 +1,35 @@
+//Gradient for Voiage background
+$custom-gradient: linear-gradient(to bottom, #2d2230, #1d0f1c, #4b2137);
+//Variables de color
+$neutro-color-main: #1d0f1c;
+$neutro-color-second: #2d2230;
+$middle-color-main: #4b2137;
+$middle-color-second: #6d3c52;
+$light-color-main: #fadcd4;
+$light-color-second: #775d68;
+//Line gradient
+$line-gradient: linear-gradient(
+  to right,
+  rgba(255, 255, 255, 0.1),
+  #fadcd4,
+  rgba(255, 255, 255, 0.1)
+);
+
 :host {
   display: block;
   width: 1426px;
   margin: 0 auto;
+}
+
+h3 {
+  color: $light-color-main;
+  font-size: 4vh;
+  font-family: "Yeseva One";
+  padding-bottom: 2rem;
+}
+
+canvas {
+  background-color: white;
+  padding: 3rem;
+  border-radius: 0.3rem;
 }

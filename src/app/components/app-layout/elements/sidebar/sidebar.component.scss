@@ -1,59 +1,75 @@
-//variables de color 
-$background-color: #6D3C52;
-$sidebar-color: #4B2137;
-$text-color: #ffffff;
-$hover-background-color: #FADCD4;
-$active-background-color: #6D3C52;
+//variables de color
+$background-color: #6d3c52;
+$sidebar-color: #2d2230;
+$text-color: #fadcd4;
+$hover-background-color: #fadcd4;
+$active-background-color: #1d0f1c;
 
-.backgorund-color {
-  // background-color: #FADCD4;
-  background-color: $sidebar-color;
-}
+//variables de color
+$neutro-color-main: #1d0f1c;
+$neutro-color-second: #2d2230;
+$middle-color-main: #4b2137;
+$middle-color-second: #6d3c52;
+$light-color-main: #fadcd4;
+$light-color-second: #775d68;
+$line-gradient: linear-gradient(
+  to right,
+  rgba(255, 255, 255, 0.1),
+  #fadcd4,
+  rgba(255, 255, 255, 0.1)
+);
 
 .toggle-background-color {
-  color: $text-color;
+  color: $light-color-main;
 }
 
+//Logo de voiage arriba del side-bar
 .container-flex {
   display: flex;
   justify-content: center;
+  background-color: $neutro-color-second;
 }
 
+//Elimina el gap superior con el header del side-bar
 .margin-top-0 {
   margin-top: 0% !important;
 }
 
-body {
-  background-color: $background-color;
-  color: $text-color;
-  font-family: Arial, sans-serif;
-  margin-top: 0% !important;
+h6 {
+  font-size: 23px !important;
+  font-family: "Yeseva One";
+  color: $light-color-main !important;
+  padding-bottom: 1.5rem;
 }
 
-//Color del "General" 
-.sidebar-main * {
-  color: $text-color;
+a {
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
 }
 
-.sidebar-link {
-  color: $text-color;
+//Color del "General"
+.sidebar-main {
+  background-color: $neutro-color-second;
+}
 
+.sidebar-link .sidebar-title {
   &:hover {
-    background-color: $hover-background-color;
+    background-color: $middle-color-second;
   }
 
   &:active,
   &.active {
-    background-color: $active-background-color !important;
+    background-color: $middle-color-main !important;
+    color: $light-color-main !important;
   }
 }
 
-.sidebar-link,
-.sidebar-title,
-.sidebar-link span,
-.sidebar-title span {
-  color: $text-color !important;
-}
+// .sidebar-link,
+// .sidebar-title,
+// .sidebar-link span,
+// .sidebar-title span {
+//   color: $background-color !important;
+// }
 
 .padding-right-3 {
   padding-right: 3%;

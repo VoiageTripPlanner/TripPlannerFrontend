@@ -1,13 +1,14 @@
 <div class="container">
   <div>
-    <div class="input d-flex align-items-center">
-    </div>
+    <div class="input d-flex align-items-center"></div>
   </div>
   <div class="container">
     <!-- Contenedor de las sugerencias de viaje -->
     <div>
       <div>
-        <p class="expanded-text">{{GoogleService.suggestionsResponseSignal$().content}}</p>
+        <p class="expanded-text">
+          {{ GoogleService.suggestionsResponseSignal$().content }}
+        </p>
       </div>
     </div>
   </div>

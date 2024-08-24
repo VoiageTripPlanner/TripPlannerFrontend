@@ -1,0 +1,41 @@
+<table class="table table-striped background-color-white">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Depature Date</th>
+      <th scope="col">Return Date</th>
+      <th scope="col">Budget</th>
+      <th scope="col">AI Suggestion</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (trip of trips; track trip) {
+      <tr>
+        <td>{{ trip.name }}</td>
+        <td>{{ trip.description }}</td>
+        <td>{{ trip.departureDate | date: "MM-dd-YYYY" }}</td>
+        <td>{{ trip.returnDate | date: "MM-dd-YYYY" }}</td>
+        <td>{{ trip.budget | currency: "USD" }}</td>
+        <td class="text-truncate" style="max-width: 150px">
+          {{ trip.aiSuggestion }}
+        </td>
+        <td>
+          <button class="btn btn-primary btn-sm" (click)="viewTrip(trip)">
+            View
+          </button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+<mat-paginator
+  class="mb-5"
+  [length]="totalElements"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  (page)="changePage($event)"
+  aria-label="Select page"
+>
+</mat-paginator>

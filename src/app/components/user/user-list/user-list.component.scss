@@ -1,23 +1,53 @@
+//Gradient for Voiage background
+$custom-gradient: linear-gradient(to bottom, #2d2230, #1d0f1c, #4b2137);
+//Variables de color
+$neutro-color-main: #1d0f1c;
+$neutro-color-second: #2d2230;
+$middle-color-main: #4b2137;
+$middle-color-second: #6d3c52;
+$light-color-main: #fadcd4;
+$light-color-second: #775d68;
+//Line gradient
+$line-gradient: linear-gradient(
+  to right,
+  rgba(255, 255, 255, 0.1),
+  #fadcd4,
+  rgba(255, 255, 255, 0.1)
+);
+
 .btn-icon {
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-  }
-  
-  .icon-color-edit {
-    color: #007bff; 
-  }
-  
-  .icon-color-delete {
-    color: #f51e12; 
-  }
-  
-  .btn-icon:hover .icon-color-edit {
-    color: #0056b3;
-  }
-  
-  .btn-icon:hover .icon-color-delete {
-    color: #700e08; 
-  }
-  
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.icon-color-edit {
+  color: $neutro-color-second;
+}
+
+.icon-color-delete {
+  color: $middle-color-second;
+}
+
+.btn-icon:hover .icon-color-edit {
+  color: #0475ef;
+}
+
+.btn-icon:hover .icon-color-delete {
+  color: #cd1208;
+}
+
+thead {
+  padding: 0.3rem;
+  text-align: center;
+  color: $light-color-main;
+  font-size: 2vh;
+}
+
+td {
+  padding: 0.3rem;
+  text-align: center;
+  color: $neutro-color-main;
+  background-color: white;
+}

@@ -1,33 +1,33 @@
-import { CommonModule } from '@angular/common';
-import { Component, inject, Input, ViewChild } from '@angular/core';
-import { FormsModule, NgModel } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
-import { AuthService } from '../../../services/auth.service';
+import { CommonModule } from "@angular/common";
+import { Component, ViewChild } from "@angular/core";
+import { FormsModule, NgModel } from "@angular/forms";
+import { Router, RouterLink } from "@angular/router";
+import { AuthService } from "../../../services/auth.service";
 import { ModalComponent } from "../../../components/modal/modal.component";
 
 @Component({
-  selector: 'app-login',
+  selector: "app-login",
   standalone: true,
   imports: [CommonModule, FormsModule, RouterLink, ModalComponent],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  templateUrl: "./login.component.html",
+  styleUrl: "./login.component.scss",
 })
 export class LoginComponent {
-handleFormAction($event: Event) {
-throw new Error('Method not implemented.');
-}
+  handleFormAction($event: Event) {
+    throw new Error("Method not implemented.");
+  }
   public loginError!: string;
-  @ViewChild('email') emailModel!: NgModel;
-  @ViewChild('password') passwordModel!: NgModel;
+  @ViewChild("email") emailModel!: NgModel;
+  @ViewChild("password") passwordModel!: NgModel;
 
   public loginForm: { email: string; password: string } = {
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   };
 
   constructor(
-    private router: Router, 
-    private authService: AuthService
+    private router: Router,
+    private authService: AuthService,
   ) {}
 
   public handleLogin(event: Event) {
@@ -38,12 +38,9 @@ throw new Error('Method not implemented.');
     if (!this.passwordModel.valid) {
       this.passwordModel.control.markAsTouched();
     }
-    if (this.emailModel.valid && this.passwordModel.valid) {
-      this.authService.login(this.loginForm).subscribe({
-        next: () => this.router.navigateByUrl('/app/dashboard'),
-        error: (err: any) => (this.loginError = err.error.description),
-      });
-    }
+    this.authService.login(this.loginForm).subscribe({
+      next: () => this.router.navigateByUrl("/app/dashboard"),
+      error: (err: any) => (this.loginError = err.error.description),
+    });
   }
-
 }

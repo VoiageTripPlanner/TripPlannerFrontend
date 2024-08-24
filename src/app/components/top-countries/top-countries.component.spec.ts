@@ -1,25 +1,24 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { TopCountriesComponent } from './top-countries.component';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TopCountriesComponent } from "./top-countries.component";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 
-describe('TopCountriesComponent', () => {
+describe("TopCountriesComponent", () => {
   let component: TopCountriesComponent;
   let fixture: ComponentFixture<TopCountriesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TopCountriesComponent, HttpClientTestingModule]
-    })
-    .compileComponents();
-    
+      imports: [TopCountriesComponent, HttpClientTestingModule],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(TopCountriesComponent);
     component = fixture.componentInstance;
     component.topCountries = [];
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

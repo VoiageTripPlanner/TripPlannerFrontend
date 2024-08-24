@@ -1,20 +1,24 @@
-import { inject, Injectable, Signal, signal } from '@angular/core';
-import { ICountryInterest } from '../interfaces/country-interest.interface';
-import { HttpClient } from '@angular/common/http';
+import { inject, Injectable, Signal, signal } from "@angular/core";
+import { ICountryInterest } from "../interfaces/country-interest.interface";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class UserCountryInterestService {
-  private url = 'userCountryWishlist';
+  private url = "userCountryWishlist";
   private http: HttpClient = inject(HttpClient);
-  private userCountryInterest = signal<ICountryInterest|null>({ userId: 0, savedCountries: [], deletedCountries: [] });
+  private userCountryInterest = signal<ICountryInterest | null>({
+    userId: 0,
+    savedCountries: [],
+    deletedCountries: [],
+  });
 
-  public get userCountryInterestSig(): Signal<ICountryInterest|null> {
+  public get userCountryInterestSig(): Signal<ICountryInterest | null> {
     return this.userCountryInterest.asReadonly();
   }
 
-  constructor() { }
+  constructor() {}
 
   public getUserCountryInterest(userId: number): void {
     this.http.get<ICountryInterest>(`${this.url}/${userId}`).subscribe({
@@ -27,7 +31,7 @@ export class UserCountryInterestService {
       },
       error: () => {
         this.userCountryInterest.set(null);
-      }
+      },
     });
   }
 
@@ -41,9 +45,8 @@ export class UserCountryInterestService {
         }
       },
       error: () => {
-        console.log("Error updating user country interest");
-      }
+        console.error("Error updating user country interest");
+      },
     });
   }
-
 }

@@ -1,6 +1,6 @@
 export interface ILoginResponse {
   accessToken: string;
-  expiresIn: number
+  expiresIn: number;
 }
 
 export interface IResponse<T> {
@@ -17,17 +17,14 @@ export interface IFeedBackMessage {
 }
 
 export interface ICountry {
-
   country_id?: number;
   country_name?: string;
   country_code?: string;
   operational?: boolean;
-  
 }
 
 export enum IFeedbackStatus {
   success = "SUCCESS",
   error = "ERROR",
-  default = ''
+  default = "",
 }
-

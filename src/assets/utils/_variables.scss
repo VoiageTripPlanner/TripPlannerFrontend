@@ -1,3 +1,28 @@
+//Custom variables
+//Gradient for Voiage background
+$custom-gradient: linear-gradient(to bottom, #2d2230, #1d0f1c, #4b2137);
+//variables de color
+$neutro-color-main: #1d0f1c;
+$neutro-color-second: #2d2230;
+$middle-color-main: #4b2137;
+$middle-color-second: #6d3c52;
+$light-color-main: #fadcd4;
+$light-color-second: #775d68;
+$line-gradient: linear-gradient(
+  to right,
+  rgba(255, 255, 255, 0.1),
+  #fadcd4,
+  rgba(255, 255, 255, 0.1)
+);
+
+//variables de color
+$neutro-color-main: #1d0f1c;
+$neutro-color-second: #2d2230;
+$middle-color-main: #4b2137;
+$middle-color-second: #6d3c52;
+$light-color-main: #fadcd4;
+$light-color-second: #775d68;
+
 // General variables
 $theme-font-color: #242934;
 $theme-body-font-color: #2f2f3b;
@@ -6,7 +31,7 @@ $body-color: #f8f8f8;
 $main-body-color: #f7f8f9;
 
 // Theme colors variables
-$primary-color: #7366ff;
+$primary-color: $light-color-main;
 $secondary-color: #ff3364;
 $success-color: #54ba4a;
 $info-color: #16c7f9;

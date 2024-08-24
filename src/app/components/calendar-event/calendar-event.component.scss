@@ -1,36 +1,36 @@
 $background-color-white: #ffffff;
 $background-color-grey: #b4b4b4;
 $background-color-grey-light: #f9f9f9;
-$border-color: #775D68;
-$image-backgorund-color: #FADCD4;
-$title-color: #6D3652;
+$border-color: #775d68;
+$image-backgorund-color: #fadcd4;
+$title-color: #6d3652;
 
-label{
+label {
   font-weight: 500;
   font-size: 1.2rem;
 }
 
 .dialog-content {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;  
-    padding: 5%;
-  }
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5%;
+}
 
-  .title{
-    justify-content: center;
-    display: flex;
-    margin: 2%;
-    font-family: 'Yeseva One';
-    color: $title-color;
-  }
+.title {
+  justify-content: center;
+  display: flex;
+  margin: 2%;
+  font-family: "Yeseva One";
+  color: $title-color;
+}
 
-.buttons-container{
+.buttons-container {
   display: flex;
   justify-content: space-evenly;
 }
-.justify-content-space-around{
+.justify-content-space-around {
   justify-content: space-around;
 }

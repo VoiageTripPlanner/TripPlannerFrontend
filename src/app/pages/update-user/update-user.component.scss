@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap'); 
+@import url("https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap");
 
 .yeseva-one-regular {
   font-family: "Yeseva One", serif;
@@ -6,7 +6,7 @@
   font-style: normal;
 }
 
-.font-size-4{
+.font-size-4 {
   font-size: 4vh;
 }
 
@@ -18,10 +18,10 @@
   border-radius: 10px;
   box-shadow: 0 0 37px rgba(8, 21, 66, 0.05);
   margin: 100px auto 0;
-  background: #FADCD4;
+  background: #fadcd4;
 
   h2 {
-    border-bottom: 2px solid #1D0F1C;
+    border-bottom: 2px solid #1d0f1c;
   }
 }
 .invalid-feedback {
@@ -38,5 +38,3 @@
     right: 20px;
   }
 }
-
-
